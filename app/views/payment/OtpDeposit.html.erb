@@ -1,0 +1,320 @@
+<% content_for :headpayments do %>
+    <title>OTP Verifikasi</title>
+
+    <style type="text/css">
+        a.disabled {
+            /* Make the disabled links grayish*/
+            color: gray;
+            /* And disable the pointer events */
+            pointer-events: none;
+        }
+    </style>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pembelian</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Selesai</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment-item">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <form id="gantiNomorOtp" name="gantiNomorOtp" method="post" action="/api/transaksi/abupay/otp/<%= !@no_trans.nil? ? @no_trans : params['kode'] %>?type=<%= params['type'] %>" class="needs-validation1" novalidate>
+              <div class="card mt-2">
+                <ul class="list-group list-group-flush metode-pembayaran">
+                  <li class="list-group-item">
+                    <div class="form-group row m-0 justify-content-center">
+                      <div class="col-10">
+                        <p>
+                          Masukkan kode verifikasi
+                        </p>
+                          <table class="table table-flex">
+                            <tr>
+                              <td>
+                                <input type="text" id="otp1" name="otp1" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                              </td>
+                              <td>
+                                <input type="text" id="otp2" name="otp2" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                              </td>
+                              <td>
+                                <input type="text" id="otp3" name="otp3" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                              </td>
+                              <td>
+                                <input type="text" id="otp4" name="otp4" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                              </td>
+                              <td>
+                                <input type="text" id="otp5" name="otp5" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                              </td>
+                              <td>
+                                <input type="text" id="otp6" name="otp6" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td colspan="6" class="pt-3">
+                                <p class="card-text text-center mt-12">
+                                  <% if params['type'] == 'tiket' %>
+                                  Tidak terima kode ? <a id="resendOtpCode" href="#" class="text-success">Kirim ulang kode</a>
+                                  <% else %>
+                                  Tidak terima kode ? <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                                  <% end %>
+                                </p>
+                              </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card p-3 mb-2 mt-1">
+                <div class="row">
+                  <div class="col-6">
+                    <a href="<%= request.referrer %>" class="btn btn-block btn-secondary">Kembali</a>
+                  </div>
+                  <div class="col-6">
+                    <button type="submit" class="btn btn-block btn-success" data-toggle="modal" data-target="#abupayOTP">
+                      Issued
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <% if params['type'] == 'tiket' %>
+              <h4 class="mt-3 mb-2">
+                Ringkasan Pembelian
+              </h4>
+              <div class="card c-detail mt-1">
+                <table class="table table-sm mt-4">
+                  <tr>
+                    <td class="border-top-0">
+                      <% if @data['departures']['stop'] != "Langsung" %>
+                        <% @data['departures']['flight_infos']['flight_info'].each do |item_image|%>
+                          <%= image_tag item_image['img_src'], :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                        <% end %>
+                        <p class="mb-0 text-center d-block">
+                          <small class="text-muted">
+                            Multi Maskapai
+                          </small>
+                        </p>
+                      <% else %>
+                        <%= image_tag @data['departures']['image'], :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                        <p class="mb-0 text-center d-block">
+                          <small class="text-muted">
+                            Maskapai - <%= @data['departures']['airlines_name'] %>
+                          </small>
+                        </p>
+                      <% end %>
+                    </td>
+                    <!-- --------------------------------------------------------------- -->
+                    <td>
+                      <ul>
+                        <li><span></span>
+                          <div>
+                            <div class="title">
+                              <table class="table table-sm">
+                                <tr>
+                                  <td width="171">
+                                    <h3 class="mb-0"><%= @data['departures']['simple_departure_time'] %></h3>
+                                    <p class="mb-0">
+                                      <%= @data['departures']['departure_flight_date_str'] %>
+                                    </p>
+                                  </td>
+                                  <td>
+                                    <h6 class="mb-0">
+                                      <%= @data['departures']['departure_city_name'] + "( #{@data['departures']['departure_city']})"%>
+                                    </h6>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+
+                            <div class="info">
+                              <i class="icon-airplane3"></i> <%= @data['departures']['duration'] %>
+                            </div>
+
+                            <div class="title">
+                              <table class="table table-sm">
+                                <tr>
+                                  <td width="171">
+                                    <h3 class="mb-0"><%= @data['departures']['simple_arrival_time'] %></h3>
+                                    <p class="mb-0">
+                                      <%= @data['departures']['arrival_flight_date_str'] %>
+                                    </p>
+                                  </td>
+                                  <td>
+                                    <h6 class="mb-0">
+                                      <%= @data['departures']['arrival_city_name'] + "( #{@data['departures']['arrival_city']})"%>
+                                    </h6>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <!-- --------------------------------------------------------------- -->
+                    <td class="border-top-0">
+                      <p class="mb-0" style="font-size: 12px !important;">
+                        - Fligh Number : <%= @data['departures']['flight_id'] %> <br>
+                        - Bagasi : <%= @data['departures']['check_in_baggage'] %> kg
+                      </p>
+                    </td>
+                  </tr>
+                  <!-- --------------------------------------------------------------- -->
+                </table>
+              </div>
+              <!-- MASKAPAI PULANG INFO -->
+              <% if !@data['returns'].nil? %>
+                <div class="card c-detail mt-1">
+                  <table class="table table-sm mt-4">
+                    <tr>
+                      <td class="border-top-0">
+                        <% if @data['returns']['stop'] != "Langsung" %>
+                          <% @data['returns']['flight_infos']['flight_info'].each do |item_image|%>
+                            <%= image_tag item_image['img_src'], :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                          <% end %>
+                          <p class="mb-0 text-center d-block">
+                            <small class="text-muted">
+                              Multi Maskapai
+                            </small>
+                          </p>
+                        <% else %>
+                          <%= image_tag @data['returns']['image'], :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                          <p class="mb-0 text-center d-block">
+                            <small class="text-muted">
+                              Maskapai - <%= @data['returns']['airlines_name'] %>
+                            </small>
+                          </p>
+                        <% end %>
+                      </td>
+                      <!-- --------------------------------------------------------------- -->
+                      <td>
+                        <ul>
+                          <li><span></span>
+                            <div>
+                              <div class="title">
+                                <table class="table table-sm">
+                                  <tr>
+                                    <td width="171">
+                                      <h3 class="mb-0"><%= @data['returns']['simple_departure_time'] %></h3>
+                                      <p class="mb-0">
+                                        <%= @data['returns']['departure_flight_date_str'] %>
+                                      </p>
+                                    </td>
+                                    <td>
+                                      <h6 class="mb-0">
+                                        <%= @data['returns']['departure_city_name'] + "( #{@data['returns']['departure_city']})"%>
+                                      </h6>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+
+                              <div class="info">
+                                <i class="icon-airplane3"></i> <%= @data['returns']['duration'] %>
+                              </div>
+
+                              <div class="title">
+                                <table class="table table-sm">
+                                  <tr>
+                                    <td width="171">
+                                      <h3 class="mb-0"><%= @data['returns']['simple_arrival_time'] %></h3>
+                                      <p class="mb-0">
+                                        <%= @data['returns']['arrival_flight_date_str'] %>
+                                      </p>
+                                    </td>
+                                    <td>
+                                      <h6 class="mb-0">
+                                        <%= @data['returns']['arrival_city_name'] + "( #{@data['returns']['arrival_city']})"%>
+                                      </h6>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </td>
+                      <!-- --------------------------------------------------------------- -->
+                      <td class="border-top-0">
+                        <p class="mb-0" style="font-size: 12px !important;">
+                          - Fligh Number : <%= @data['returns']['flight_id'] %> <br>
+                          - Bagasi : <%= @data['returns']['check_in_baggage'] %> kg
+                        </p>
+                      </td>
+                    </tr>
+                    <!-- --------------------------------------------------------------- -->
+                  </table>
+                </div>
+              <% end %>
+              <% end %>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------- -->
+<% end %>
+<!-- ------------------------------------- -->
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        $( ".txtOnly" ).keypress(function(e) {
+            var key = e.keyCode;
+            if (key >= 48 && key <= 57) {
+                e.preventDefault();
+            }
+        });
+
+        $.autotab({ tabOnSelect: true });
+        $('.kode').autotab('filter', 'kode');
+
+        function active() {
+            $("#resendOtpCode").removeClass("disable");
+            $("#resendOtpCode").addClass("text-success");
+        }
+
+        function inactive() {
+            $("#resendOtpCode").removeClass("text-success");
+            $("#resendOtpCode").addClass("disabled");
+        }
+
+        $("#resendOtpCode").click(function () {
+            inactive();
+            $.get("/api/deposit/get-otp?kode_transaksi=<%= !@no_trans.nil? ? @no_trans : params['kode'] %>", function (data) {
+                if (data.status == 200) {
+                } else {
+                    alert(data.message);
+                }
+            });
+            setTimeout(function(){
+                active();
+            }, 60000);
+        });
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>
+<!-- ------------------------------------- -->

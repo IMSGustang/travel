@@ -1,0 +1,246 @@
+<% content_for :headpayments do %>
+    <title>Metode Pembayaran Transfer</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand pb-2" href="/">
+                    <%= image_tag 'logo/logo.png' %>
+                </a>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link nav-link-steps" href="#">Data Pembelian</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Selesai</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment-item">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <form id="mainForm" method="post" action="">
+                        <input type="hidden" name="kode_transaksi" value="<%= data['kodeTransaksi'] %>">
+                        <div class="card mt-2">
+                            <ul class="list-group list-group-flush metode-pembayaran">
+                                <li class="list-group-item">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="mt-3 mb-3">
+                                                Jumlah Deposit Anda
+                                            </h5>
+                                        </div>
+                                        <div class="d-flex ml-3">
+                                            <h3 class="mb-0 mt-3">
+                                                <%= number_to_currency(session[:account_saldo], precision: 0, unit: "Rp ") %>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row justify-content-center">
+                                        <div class="col-10">
+                                            <div class="media">
+                                                <%= image_tag 'lib/icon/tagihan.svg', :class => 'd-flex align-self-center mr-4', :height => '131px', :alt => '' %>
+                                                <div class="media-body">
+                                                    <h5 class="lead text-uppercase mt-2 mb-2">Detail Pembelian</h5>
+
+                                                    <p class="mb-0 mt-3">
+                                                        <%= data['namaTipe'] %>
+                                                    </p>
+
+                                                    <h5 class="mt-4">
+                                                        <p class="mb-1 text-muted">
+                                                            <small>Harga Bayar</small>
+                                                        </p>
+                                                        <%= number_to_currency(data['dataMain']['nominal_transfer'], precision: 0, unit: "Rp ") %>
+                                                    </h5>
+                                                    <% if session[:account_saldo] < data['dataMain']['nominal_transfer'] %>
+                                                        Saldo anda tidak mencukupi,
+                                                        <a href="/tambah-saldo-abupay">topup disini</a>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="card p-3 mb-2 mt-1">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="<%= request.referrer %>" class="btn btn-block btn-secondary">Kembali</a>
+                                </div>
+                                <div class="col-6">
+                                    <% if session[:account_saldo] < data['dataMain']['nominal_transfer'] %>
+                                        <a class="btn btn-block btn-success" data-backdrop="static" data-keyboard="false" disabled="true">Bayar</a>
+                                    <% else %>
+                                        <a onclick="paid()" class="btn btn-block btn-success" data-backdrop="static" data-keyboard="false">Bayar</a>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------- -->
+<% end %>
+<!-- ------------------------------------- -->
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <div class="modal fade" id="abupayOTP" role="dialog" aria-labelledby="abupayOTP" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-lg">
+                <form id="otpForm" name="" method="post" action="" class="needs-validation1" novalidate>
+                    <input type="hidden" name="kode_transaksi" value="<%= data['kodeTransaksi'] %>">
+                    <div class="modal-body p-4">
+                        <div class="form-group row m-0 justify-content-center">
+                            <div class="col-10">
+                                <p>
+                                    Masukkan kode verifikasi
+                                </p>
+                                <table class="table table-flex">
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="otp1" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="otp2" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="otp3" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="otp4" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="otp5" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="otp6" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" class="pt-3">
+                                            <p class="card-text text-center mt-12">
+                                                Tidak terima kode ?
+                                                <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" class="pt-3">
+                                            <!--<button type="submit" onclick="nextPaid()" class="btn btn-sm btn-block btn-danger">Kirim</button>-->
+                                            <a onclick="nextPaid()" class="btn btn-sm btn-block btn-danger">Kirim</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        $(".txtOnly").keypress(function (e) {
+            var key = e.keyCode;
+            if (key >= 48 && key <= 57) {
+                e.preventDefault();
+            }
+        });
+
+        $.autotab({tabOnSelect: true});
+        $('.kode').autotab('filter', 'kode');
+    </script>
+    <script type="text/javascript">
+        function paid() {
+            $('#abupayOTP').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $.ajax({
+                url: "/api/deposit/get-otp",
+                type: "get",
+                data: $("#mainForm").serialize(),
+                success: function (data) {
+                    if (data.status == 200) {
+                        swal({
+                            title: "Sukses!",
+                            text: "Kode OTP berhasil dikirim",
+                            type: "success",
+                            showConfirmButton: false
+                        });
+                    } else {
+                        sweetAlert("Mohon Maaf...", data.message, "error");
+                    }
+                },
+                error: function (xhr, thrownError, err) {
+                    if (err != 'Internal Server Error') {
+                        if (err == 'Timeout') {
+                            sweetAlert("Mohon Maaf...", "Koneksi terputus, Coba Lagi", "error");
+                        }
+                        sweetAlert("Mohon Maaf...", err, "error");
+                    } else {
+                        sweetAlert("Mohon Maaf...", "Terjadi kesalahan", "warning");
+                    }
+                }
+            });
+            $("#abupayOTP").modal("show", {backdrop: 'static', keyboard: false});
+        }
+
+        function nextPaid() {
+            $.ajax({
+                url: "/api/deposit/otp",
+                type: "get",
+                data: $("#otpForm").serialize(),
+                beforeSend: function () {
+                    swal({title: "Mohon Tunggu", text: "Proses sedang berlangsung", showConfirmButton: false});
+                },
+                success: function (data) {
+                    if (data.status == 200) {
+                        swal({
+                            title: "Sukses!",
+                            text: "Berhasil melakukan pembayaran",
+                            type: "success",
+                            showConfirmButton: false
+                        });
+                        location.href = "/evoucher/beli/<%= data['kodeTransaksi'] %>/invoice"
+                    } else {
+                        sweetAlert("Mohon Maaf...", data.message, "error");
+                    }
+                },
+                error: function (xhr, thrownError, err) {
+                    if (err != 'Internal Server Error') {
+                        if (err == 'Timeout') {
+                            sweetAlert("Mohon Maaf...", "Koneksi terputus, Coba Lagi", "error");
+                        }
+                        sweetAlert("Mohon Maaf...", err, "error");
+                    } else {
+                        sweetAlert("Mohon Maaf...", "Terjadi kesalahan", "warning");
+                    }
+                }
+            });
+        }
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>
+<!-- ------------------------------------- -->

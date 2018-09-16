@@ -1,0 +1,203 @@
+<%= content_for :head do %>
+    <title>Paket Umrah Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="_landing | c-cover-head">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            </ol>
+          <div class="carousel-inner">
+            <% if @data_slider && @data_slider.count > 0 %>
+                <% first = true %>
+                <% @data_slider.each do |slider| %>
+                    <div class="carousel-item <%= first ? 'active' : '' %>">
+                      <% first = false %>
+                      <%= image_tag slider['foto'], :class => 'd-block w-100', :alt => slider['judul'] %>
+                    </div>
+                <% end %>
+            <% else %>
+                <div class="carousel-item active">
+                  <%= image_tag 'lib/slider/umrah.png', :class => 'd-block w-100', :alt => '' %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+
+    <div class="ui-tabs">
+        <div class="container">
+            <%= render template: 'UI/partials/tabs' %>
+        </div>
+    </div>
+
+    <div class="ui-tabs__content">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <form method="get" action="/paket-umrah">
+                        <table class="table table-sm">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label>Kota keberangkatan</label>
+                                        <select id="kotakeberangkatan" name="kota" class="form-control w-100">
+                                            <option value="" > Pilih kota keberangkatan
+                                            </option>
+                                            <% if @data_pre_search %>
+                                                <% @kota = @data_pre_search['kota'] %>
+                                                <% @kota.each do |data| %>
+                                                    <optgroup label="<%= data['name'].titlecase %>">
+                                                        <% @kantor = data['kota'] %>
+                                                        <% @kantor.each do |kantor| %>
+                                                            <option value="<%= kantor['kdkantor'] %>"><%= kantor['namakantor'].titlecase %></option>
+                                                        <% end %>
+                                                    </optgroup>
+                                                <% end %>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td width="181">
+                                    <div class="form-group">
+                                        <label>Jenis Paket</label>
+                                        <select id="jenispaket" name="paket" class="form-control w-100">
+                                            <option value="" > Pilih jenis paket
+                                                <% if @data_pre_search %>
+                                                    <% @bulan = @data_pre_search['jnspaket'] %>
+                                                    <% @bulan.each do |data| %>
+                                                    <option value="<%= data['name'] %>" data-prefix="<span aria-hidden='true'></span>"><%= data['name'] %></option>
+                                                <% end %>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td width="200">
+                                    <div class="form-group">
+                                        <label>Bulan Keberangkatan</label>
+                                        <select id="bulankeberangkatan" name="bulan" class="form-control w-100">
+                                            <option value="" > Pilih bulan keberangkatan
+                                                <% if @data_pre_search %>
+                                                    <% @bulan = @data_pre_search['bulan'] %>
+                                                    <% @bulan.each do |data| %>
+                                                    <option value="<%= data['bulan'] %>"><%= data['name'] %></option>
+                                                <% end %>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td width="200">
+                                    <div class="form-group">
+                                        <label>Tahun Keberangkatan</label>
+                                        <select id="tahunkeberangkatan" name="tahun" class="form-control w-100">
+                                            <option value="" > Pilih tahun keberangkatan
+                                                <% if @data_pre_search %>
+                                                    <% @tahun = @data_pre_search['tahun'] %>
+                                                    <% @tahun.each do |data| %>
+                                                    <option value="<%= data['tahun'] %>"><%= data['tahun'] %></option>
+                                                <% end %>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3"></td>
+                                <td class="text-right">
+                                    <button class="btn btn-block btn-danger mt-2">Cari Paket</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-hotels">
+        <div class="container">
+            <h2 class="title-hotel text-center">
+                Paket Umrah Populer
+            </h2>
+
+            <div class="row pl-3 pr-3 mb-1">
+                <% data.each do |row| %>
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'destination_categories/surabaya.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span><%= row['kota'] %></span></h2>
+                                <p>Lihat <%= row['paket'] %> paket tersedia</p>
+                                <a href="/paket-umrah/<%= row['kode'].gsub(';', ',')%>/paket-umrah-di-kota-<%= row['kota'].parameterize %>">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <% end %>
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/palembang.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Palembang</span></h2>
+                                <p>Lihat 4 paket tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'destination_categories/jakarta.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Jakarta</span></h2>
+                                <p>Lihat 20 paket tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'destination_categories/makassar.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Makassar</span></h2>
+                                <p>Lihat 100 paket tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#kotakeberangkatan").select2({
+                theme: "bootstrap"
+            });
+
+            $("#jenispaket").select2({
+                theme: "bootstrap"
+            });
+
+            $("#bulankeberangkatan").select2({
+                theme: "bootstrap"
+            });
+
+            $("#tahunkeberangkatan").select2({
+                theme: "bootstrap"
+            });
+        });
+    </script>
+<% end %>

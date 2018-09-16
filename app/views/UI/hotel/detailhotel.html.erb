@@ -1,0 +1,271 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <section class="c-abutravel__detil">
+        <div class="container">
+            <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Detail hotel</li>
+            </ol>
+
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <div class="card c-abutravel__detil-card mt-0">
+                        <div class="card-body c-abutravel__detil-card--item">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h3 class="mt-1 mb-3 text-uppercase">
+                                        <%= data['breadcrumb']['business_name'] %>
+                                    </h3>
+                                    <p class="mt-1 mb-3 text-capitalize text-muted">
+                                        <%= data['general']['address'] %>
+                                    </p>
+                                  <p class="text-uppercase mb-0">Harga mulai</p>
+                                    <h3 class="mt-0 mb-1">
+                                        IDR <%= number_with_delimiter(data['results']['result'][0]['price'].to_i) %>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pl-3 pr-3">
+                        <div class="col-7 p-0">
+                            <div class="card thumbnail-large">
+                                <a href="<%= data['primaryPhotos_large'].gsub('.crop.', '.l.') %>" data-lightbox="preview">
+                                    <%= image_tag data['primaryPhotos_large'].gsub('.crop.', '.l.'), :class => 'mx-auto d-block w-100' %>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-5 p-0">
+                            <div class="row pl-3 pr-3">
+                                <% data['all_photo']['photo'].each_with_index do |row, i| %>
+                                <% break if i == 6; %>
+                                <div class="col-6 p-0">
+                                    <div class="card thumbnail-small">
+                                        <a href="<%= row['file_name'].gsub('.s.', '.l.') %>" data-lightbox="preview">
+                                            <%= image_tag row['file_name'].gsub('.s.', '.m.'), :class => 'mx-auto d-block w-100', :alt => row['photo_type'] %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-pemesanan_hotel mt-2">
+<!--                         <div class="card-header">
+                            Kamar untuk 1 MALAM (2017/12/14 - 2017/12/15), 1 KAMAR
+                        </div> -->
+                        <form action="">
+                            <div class="card-body">
+                                <table class="table table-sm table-flex">
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Check-in</label>
+                                                <input type="text" name="startdate" id="checkin" class="form-control dates" value="<%= TimeFormat::now %>" required>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Durasi</label>
+                                                <select id="duration" name="night" class="form-control w-100 dates">
+                                                    <option value="disabled" disabled> Pilih durasi</option>
+                                                    <% (1..8).each do |i| %>
+                                                        <option value="<%= i %>"> <%= i %> malam</option>
+                                                    <% end %>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Check-out</label>
+                                                <input type="text" name="enddate" id="checkout" class="form-control" value="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Kamar</label>
+                                                <select id="kamar" name="room" class="form-control w-100">
+                                                    <option value="disabled" disabled> Jumlah kamar</option>
+                                                    <% (1..8).each do |i| %>
+                                                        <option value="<%= i %>"> <%= i %> Kamar</option>
+                                                    <% end %>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Tamu</label>
+                                                <select id="tamu" name="adult" class="form-control w-100">
+                                                    <option value="disabled" disabled> Jumlah tamu</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2" selected="">2</option>
+                                                    <% (3..8).each do |i| %>
+                                                        <option value="<%= i %>"><%= i %></option>
+                                                    <% end %>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-sm btn-block btn-outline-danger">
+                                                    Ubah
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                        
+
+                        <div class="card-footer">
+                            Silakan Pilih Tipe Kamar
+                        </div>
+                    </div>
+                    <% data['results']['result'].each do |row| %>
+                    <a href="">
+                        <div class="card card-body card-hotel__kamar">
+                            <table class="table table-sm">
+                                <tr>
+                                    <td class="td-images">
+                                        <div class="media">
+                                            <div class="img-thumbnail mr-3">
+                                                <%= image_tag row['photo_url'], :class => 'align-self-center' %>
+                                            </div>
+                                            <div class="media-body">
+                                                <h2 class="mt-0 mb-1">
+                                                    <%= row['room_name'] %>
+                                                </h2>
+                                                <p class="m-0">
+                                                    Kamar tersedia (<%= row['room_available'] %>)
+                                                </p>
+                                                <p class="m-0">
+                                                    Minimal tinggal (<%= row['minimum_stays'] %> malam )
+                                                </p>
+                                                <p class="m-0">
+                                                    <i class="ion-ios-paper-outline"></i> Kebijakan Pembatalan Berlaku
+                                                </p>
+                                                <p class="m-0">
+                                                    <i class="ion-ios-paper-outline"></i> <%= row['with_breakfasts'] == 0 ? 'Tanpa Sarapan' : 'Dengan Sarapan' %>
+                                                </p>
+                                                <p class="m-0">
+                                                    <i class="ion-wifi"></i> WIFI Gratis
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="td-kamar">
+                                      <label>Kamar</label>
+                                      <select id="room<%= row['room_id'] %>" name="room" class="form-control w-100">
+                                        <option value="1" selected> 1 </option>
+                                        <option value="2"> 2 </option>
+                                      </select>
+                                    </td>
+                                    <td class="td-action">
+                                        <h2 class="mb-2 text-right">
+                                            IDR <%= number_with_delimiter(row['price'].to_i) %>
+                                        </h2>
+                                        <a href="/data-pemesan" class="btn btn-block btn-danger">Pesan Sekarang</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </a>
+                    <% end %>
+
+                </div>
+            </div>
+        </div>
+    </section>
+<% end %>
+
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#duration").select2({
+                theme: "bootstrap"
+            });
+
+            $("#duration2").select2({
+                theme: "bootstrap"
+            });
+
+            $("#duration3").select2({
+                theme: "bootstrap"
+            });
+            <% data['results']['result'].each do |row| %>
+            $("#room<%= row['room_id'] %>").select2({
+                theme: "bootstrap"
+            });
+            <% end %>
+
+        });
+        $(function () {
+            // $("#checkin").datepicker({
+            //     dateFormat: 'dd/mm/yy',
+            //     showOtherMonths: true,
+            //     numberOfMonths: 2
+            // });
+            $("#checkin2").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2
+            });
+        });
+
+        $(function () {
+            var nowDate = new Date();
+            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+            $("#checkin").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2,
+                minDate: today,
+                onSelect: function (selectedDate) {
+                    if (this.id == 'checkin') {
+                        var dateMin = $('#checkin').datepicker("getDate");
+                        durasi = $("#duration");
+                        if (durasi.val() > 1) {
+                            var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + parseInt(durasi.val()));
+                            console.log('a');
+                        } else {
+                            var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + 1);
+                            console.log('b');
+                        }
+                        $('#checkout').val($.datepicker.formatDate('dd/mm/yy', new Date(rMin)));
+                    }
+                }
+            });
+
+            $(".dates").change(function () {
+                $("input[name='enddate']").val(moment($("input[name='startdate']").val(), 'DDMMYYYY').add($(this).val(), 'days').format('DD/MM/YYYY'));
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        var swiper = new Swiper('.swiper-slide-produk', {
+            pagination: '.swiper-pagination',
+//            nextButton: '.swiper-button-next',
+//            prevButton: '.swiper-button-prev',
+            slidesPerView: 'auto',
+            paginationClickable: true,
+            autoplay: false,
+            autoplayDisableOnInteraction: false,
+            spaceBetween: 30
+        });
+    </script>
+
+    <script type="text/javascript">
+        lightbox.option({
+            'resizeDuration': 200,
+            'positionFromTop': 150,
+            'wrapAround': true
+        });
+    </script>
+<% end %>

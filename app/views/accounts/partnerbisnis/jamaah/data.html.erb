@@ -1,0 +1,304 @@
+<% content_for :head do %>
+    <title>Data Jamaah | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Data Jamaah</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white p-3 mt-2">
+              <form method="post" id="needs-validation" novalidate>
+                <div class="row">
+                  <div class="col-9 pr-0">
+                    <table class="table table-flex">
+                      <tr>
+                        <td>
+                          <div class="form-group m-0">
+                            <div class="search-invoice">
+                              <div class="search-invoice-images">
+                                <i class="ion-ios-people-outline"></i>
+                              </div>
+                              <div class="search-invoice-group">
+                                <label>Cari Jamaah</label>
+                                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                                <% cari = request.post? ? request['kode_booking'] : '' %>
+                                <input name="kode_booking" id="kode_booking" type="text" class="form-control" value="<%= cari %>" placeholder="Tulis nama jamaah atau kode booking" required>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="col-3 pl-1">
+                    <button type="submit" class="btn btn-custome btn-block btn-success">Cari</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts mt-0">
+              <div class="card c-dashboard-content mt-0">
+                <% if @data %>
+                    <div class="card-body c-dashboard-content__item p-0">
+                      <div id="accordion" role="tablist" class="accordion-seat mb-3">
+
+                        <% @data.each do |data| %>
+                            <div class="card m-3">
+                              <div class="card-header" role="tab" id="heading<%= data['kode_booking'] %>">
+                                <a data-toggle="collapse" href="#collapse<%= data['kode_booking'] %>" aria-expanded="true" aria-controls="collapse<%= data['kode_booking'] %>">
+
+                                  <table class="table table-sm mb-0">
+                                    <tr>
+                                      <td class="dataseat_b">
+                                        <small class="text-uppercase">Kode Booking</small>
+                                        <h5 class="m-0"><%= data['kode_booking'] %></h5>
+                                      </td>
+
+                                      <td class="dataseat_c">
+                                        <small class="text-uppercase">Nama Jamaah</small>
+                                        <h5 class="m-0">
+                                          <%= data['nama_jamaah'] %>
+                                        </h5>
+                                      </td>
+
+                                      <td class="dataseat_d">
+                                        <small class="text-uppercase">Status Berkas</small>
+                                        <h5 class="m-0">
+                                          <%= data['berkas'] && data['berkas']['is_complete'] ? 'Sudah Lengkap' : 'Belum Lengkap' %>
+                                        </h5>
+                                      </td>
+
+                                      <td class="dataseat_e">
+                                        <small class="text-uppercase">Status Logistik</small>
+                                        <h5 class="m-0">
+                                          <%= data['berkas'] && data['berkas']['is_complete'] ? 'Sudah Lengkap' : 'Belum Lengkap' %>
+                                        </h5>
+                                      </td>
+
+                                      <td class="dataseat_a">
+                                        <div class="icons-arrow"></div>
+                                      </td>
+                                    </tr>
+                                  </table>
+
+                                </a>
+                              </div>
+
+                              <div id="collapse<%= data['kode_booking'] %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= data['kode_booking'] %>" data-parent="#accordion">
+                                <div class="card-body">
+                                  <table class="table table-datajamaah p-0 m-0">
+                                    <tbody>
+                                    <tr>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Jadwal Keberangkatan</span>
+                                        <p class="m-0">
+                                          <%= TimeFormat::indonesiaMonthAlphabet(data['tanggal_keberangkatan']) %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Nomor Telepon</span>
+                                        <p class="m-0">
+                                          <%= data['telepon'] %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Nomor Passpor</span>
+                                        <p class="m-0">
+                                          <%= data['no_paspor'] %>
+                                        </p>
+                                      </th>
+                                    </tr>
+
+                                    <tr>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Tempat Pembuatan Passpor</span>
+                                        <p class="m-0">
+                                          <%= data['tempat_terbit_pass'] %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Tanggal Terbit Passpor</span>
+                                        <p class="m-0">
+                                          <%= TimeFormat::indonesia(data['tanggal_issued_pass']) %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Tanggal Expired Passpor</span>
+                                        <p class="m-0">
+                                          <%= TimeFormat::indonesia(data['tanggal_ex_pass']) %>
+                                        </p>
+                                      </th>
+                                    </tr>
+
+                                    <tr>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Tempat Tanggal Lahir</span>
+                                        <p class="m-0">
+                                          <%= data['tempat_lahir'] %>
+                                          , <%= TimeFormat::indonesia(data['tanggal_lahir']) %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Umur</span>
+                                        <p class="m-0">
+                                          <%= TimeFormat::indonesia(data['tanggal_lahir']) %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Jenis Kelamin</span>
+                                        <p class="m-0">
+                                          <%= data['jk'] == 'L' ? 'Laki-laki' : 'Perempuan' %>
+                                        </p>
+                                      </th>
+                                    </tr>
+
+                                    <tr>
+                                      <th class="bt-none p-2" colspan="2">
+                                        <span class="text-muted">Alamat Domisili</span>
+                                        <p class="m-0">
+                                          <%= data['alamat'] %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Provinsi</span>
+                                        <p class="m-0">
+                                          <%= data['province'] %>
+                                        </p>
+                                      </th>
+                                    </tr>
+
+                                    <tr>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Kab/Kota</span>
+                                        <p class="m-0">
+                                          <%= data['city'] %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Kecamatan</span>
+                                        <p class="m-0">
+                                          <%= data['subdistrict_name'] %>
+                                        </p>
+                                      </th>
+                                      <th class="bt-none p-2">
+                                        <span class="text-muted">Kelurahan</span>
+                                        <p class="m-0">
+                                          <%= data['kelurahan'] %>
+                                        </p>
+                                      </th>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+
+                                  <div class="alert alert-warning mb-0 mt-4" role="alert">
+                                    <h6 class="alert-heading">Informasi!</h6>
+                                    <p>
+                                      Untuk kelengkapan & berkas serta logistik jamaah dapat di lengkapi
+                                      di kantor cabang abutours terdekat
+                                    </p>
+                                    <hr>
+                                    <p class="mb-0">
+                                      Untuk informasi lebih lanjut hubungi call center kami di
+                                      <strong>(021) 227 93 555</strong>
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="card-footer">
+                                  <table class="table table-sm mb-0">
+                                    <tr>
+                                      <td>
+                                        <a data-toggle="collapse" href="#collapse<%= data['kode_booking'] %>" aria-expanded="false" aria-controls="collapseOne" class="btn btn-block btn-light">Tutup</a>
+                                      </td>
+                                      <!--<td>-->
+                                        <!--<a href="/pilih-penambahan-biaya-paket-umrah" class="btn btn-block btn-danger">Biaya Tambahan</a>-->
+                                      <!--</td>-->
+                                    </tr>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                        <% end %>
+
+                        <nav aria-label="Page navigation">
+                          <ul class="pagination justify-content-center mb-0">
+                            <li class="page-item">
+                              <%= @page[:link_prev].html_safe %>
+                            </li>
+                            <% @page[:html].each do |page| %>
+                                <%= page.html_safe %>
+                            <% end %>
+                            <li class="page-item">
+                              <%= @page[:link_next].html_safe %>
+                            </li>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                <% else %>
+                    <% if request.post? %>
+                        <div class="w-blank text-center p-5">
+                          <%= image_tag 'icon_blank/no_jamaah.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                          <p class="mb-0">
+                            Maaf, Anda belum memiliki jamaah
+                          </p>
+                        </div>
+                    <% else %>
+                        <div class="w-blank text-center p-5">
+                          <%= image_tag 'icon_blank/no_jamaah.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                          <p class="mb-0">
+                            Maaf, Anda belum memiliki jamaah
+                          </p>
+                        </div>
+                    <% end %>
+                <% end %>
+              </div>
+
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            window.addEventListener("load", function () {
+                var form = document.getElementById("needs-validation");
+                form.addEventListener("submit", function (event) {
+                    if (form.checkValidity() == false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            }, false);
+        }());
+    </script>
+<% end %>

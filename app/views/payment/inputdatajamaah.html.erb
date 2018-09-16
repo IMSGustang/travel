@@ -1,0 +1,352 @@
+<% content_for :headpayments do %>
+    <title>Form Pemesanan Paket Abutours | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pemesan</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Input Data Jamaah</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Konfirmasi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-formpemesanan">
+      <div class="container">
+        <div class="row">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <form action="" method="post">
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-0 mb-4">
+                    Pastikan Data Jamaah yang Akan Berangkat Benar :
+                  </p>
+                  <div class="form-group row c-bg-lightgrey">
+                    <div class="col-12">
+                      <p class="mt-0 mb-4">
+                        Masukan Data Jamaah yang akan Berangkat :
+                      </p>
+                    </div>
+                    <label class="form-check-label radio-inline">
+                      <input type="radio" id="idChk1" name="exemplesRadios">
+                        Diri sendiri
+                    </label>
+                    <label class="form-check-label radio-inline">
+                      <input type="radio" id="idChk2" name="exemplesRadios" checked="checked">
+                        Orang lain
+                    </label>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-4">
+                      <label class="col-form-label">Title</label>
+                      <select id="title" name="title" class="form-control">
+                        <option value="T" data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                          Tuan
+                        </option>
+                        <option value="Ny" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nyonya
+                        </option>
+                        <option value="N" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nona
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="col-8">
+                      <label class="col-form-label">Nama Lengkap</label>
+                      <input type="text" class="form-control" id="idTxt" placeholder="" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Email</label>
+                      <input type="email" class="form-control" id="idTxt" placeholder="" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-7">
+                      <label class="col-form-label">Nomor Identitas (KTP)</label>
+                      <input type="number" class="form-control" id="idTxt" placeholder="" value="">
+                    </div>
+                    <div class="col-5">
+                      <label class="col-form-label">Nomor Telepon</label>
+                      <input type="number" class="form-control" id="idTxt" placeholder="" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <label class="col-form-label">Tempat Lahir</label>
+                      <input type="text" class="form-control" id="idTxt" placeholder="" value="">
+                    </div>
+                    <div class="col-6">
+                      <label class="col-form-label">Tanggal Lahir</label>
+                      <input type="text" class="form-control" id="idTxt" placeholder="" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Alamat Lengkap</label>
+                      <textarea class="form-control" id="idTxt" rows="3"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <p class="small justify">Untuk data lainnya silahkan lengkapi di menu input data jamaah di Dashboard agen/mitra atau silahkan jamaah datangi kantor cabang abutours.com terdekat untuk melengkapi data jamaah dengan membawa berkas asli seperti:</p>
+                      <ol class="small" style="-webkit-padding-start: 15px;">
+                        <li>Pasport</li>
+                        <li>Kartu Keluarga</li>
+                        <li>Buku Nikah (bagi yang sudah menikah</li>
+                        <li>KTP</li>
+                      </ol>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <h5 class="card-title">
+                    Punya Kode Voucher ?
+                  </h5>
+                  <ul class="list-unstyled daftar-produk">
+                    <li class="daftar-produk__item align-items-stretch">
+                      <div class="form-group row">
+                        <div class="col-4">
+                          <label class="col-form-label">Jenis Voucher</label>
+                          <select id="title" name="title" class="form-control">
+                            <option value="T" data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                              Tidak ada
+                            </option>
+                            <option value="Ny" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                              Voucher Amanah
+                            </option>
+                            <option value="N" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                              Voucher Gift
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="col-5">
+                          <label class="col-form-label">Kode Voucher</label>
+                          <input type="text" class="form-control" id="idTxt" placeholder="" value="">
+                        </div>
+                        <div class="col-3">
+                          <div class="btn-group float-right" role="group" aria-label="action">
+                            <a href="/tambah-data-bank" class="text-success mr-3" data-toggle="tooltip" data-html="true" data-placement="top" title="Tambah data bank">
+                              <i class="icon-file-plus"></i>
+                            </a>
+                            <a href="#0" class="text-danger" id="hapus" data-toggle="tooltip" data-html="true" data-placement="top" title="Hapus">
+                              <i class="icon-cross2"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row mb-0">
+                        <div class="col-12">
+                          <span class="input-group-btn float-right">
+                            <button class="btn btn-danger" type="button">Gunakan</button>
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <h5 class="card-title">
+                    Daftar Pesanan
+                  </h5>
+                  <ul class="list-unstyled daftar-produk">
+                    <li class="media daftar-produk__item d-flex align-items-stretch">
+                      <div class="media-body daftar-produk__item-header">
+                        <%= image_tag 'lib/cover/packet_1.png', :class => 'd-flex', :alt => '' %>
+                      </div>
+
+                      <div class="media-body daftar-produk__item-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item list-group-item__nm-paket">
+                            <p class="item-link item-line">
+                              Promo umrah amanah 9 hari januari 2019 quad (pemberangkatan makassar)
+                            </p>
+                          </li>
+
+                          <li class="list-group-item list-group-item__hr-paket">
+                            Rp 30.000.000
+                          </li>
+
+                          <li class="list-group-item list-group-item__fa-paket">
+                            <i class="icon-star-full2"></i>
+                            <i class="icon-star-full2"></i>
+                            <i class="icon-star-full2"></i>
+                            <i class="icon-star-full2"></i>
+                            <i class="icon-star-empty3"></i>
+                            <span class="ml-1">Fasilitas</span>
+                          </li>
+
+                          <li class="list-group-item list-group-item__kb-paket">
+                            Tahun keberangkatan 2019
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="media-body daftar-produk__item-footer">
+                        <p class="mb-0">
+                          <span>Travel terpercaya</span><br>
+                          abutours.com
+                        </p>
+
+                        <p class="mb-0">
+                          <span>Lama Umrah</span><br>
+                          9 Hari
+                        </p>
+
+                        <p class="mb-0">
+                          <span>Jenis Paket</span><br>
+                          Promo
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-footer">
+                  <div class="row">
+                    <div class="col-7">
+                      <p class="text-muted mb-0">
+                        Total pembayaran
+                      </p>
+                      <span>
+                      Rp 20.000.000
+                    </span>
+                    </div>
+                    <div class="col-5">
+                      <a href="/pilih-metode-pembayaran" class="btn btn-lg btn-block btn-outline-secondary">Lanjutkan</a>
+                      <small class="form-text text-muted">Harga belum termasuk kode pembayaran</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- ------------------------------------- -->
+          <div class="col-4 pl-0 sticky">
+            <div class="card c-ringkasan theiaStickySidebar">
+              <div class="card-body c-ringkasan__item">
+                <h5 class="card-title c-ringkasan__title">
+                  Ringkasan Pesanan
+                </h5>
+
+                <dl class="row">
+                  <!-- <dt class="col-md-12 text-md-right voucher">
+                    <a href="#">Punya kode voucher ?</a>
+                  </dt>
+                  <dd class="col-md-12 c-voucher">
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="voucher" placeholder="Kode Voucher">
+                      <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">Gunakan</button>
+                      </span>
+                    </div>
+                  </dd> -->
+
+                  <dt class="col-6">Total Harga Paket</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 30.000.000
+                  </dd>
+
+                  <dt class="col-6">Administrasi</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 0
+                  </dd>
+                </dl>
+
+                <hr class="my-2">
+
+                <dl class="row">
+                  <dt class="col-6"><strong>Total Pembayaran</strong></dt>
+                  <dd class="col-6 text-md-right">
+                    <strong>
+                      Rp 30.000.000
+                    </strong>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <!-- ------------------------------------- -->
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------- -->
+<% end %>
+
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+
+    <script type="text/javascript">
+        // sticky scroll
+        $(document).ready(function () {
+            $('.sticky')
+                .theiaStickySidebar({
+                    additionalMarginTop: 10,
+                    additionalMarginBottom: 20
+                });
+        });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#idChk1').click(function() {
+           if($('#idChk1').is(':checked')) { 
+            $('select, input[type=text],input[type=email],input[type=number],textarea').attr('disabled', true);
+            $("#title").prop('disabled', 'disabled');
+          }
+        });
+        $('#idChk2').click(function() {
+           if($('#idChk2').is(':checked')) { 
+            $('select, input[type=text],input[type=email],input[type=number],textarea').attr('disabled', false);
+            $("#title").prop('disabled', false);
+          }
+        });
+      });
+    </script>
+     <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".voucher").click(function () {
+                    $(".c-voucher").toggle('speed,callback');
+                });
+            });
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>

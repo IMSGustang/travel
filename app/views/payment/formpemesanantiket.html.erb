@@ -1,0 +1,400 @@
+<% content_for :headpayments do %>
+    <title>Form Pemesanan Paket Abutours | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pemesan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Konfirmasi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-formpemesanan">
+      <div class="container">
+        <div class="row">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <form action="" method="post">
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-0 mb-4">
+                    Data Pemesan yang Dapat Dihubungi
+                  </p>
+                  <div class="form-group row">
+                    <label class="col-12 col-form-label">Nama Lengkap</label>
+                    <div class="col-12">
+                      <input type="text" class="form-control" id="" placeholder="" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <label class="col-form-label">Email</label>
+                      <input type="email" class="form-control" id="" placeholder="" value="">
+                    </div>
+                    <div class="col-6">
+                      <label class="col-form-label">No. Handphone</label>
+                      <input type="number" class="form-control" id="" placeholder="" value="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-0 mb-4">
+                    Data Penumpang (1 Dewasa)
+                  </p>
+                  <div class="form-group row">
+                    <div class="col-4">
+                      <label class="col-form-label">Title</label>
+                      <select id="dewasa" name="title">
+                        <option value="76023" title="Out of Stock" disabled>Pilih title...</option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                          Tuan
+                        </option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nona
+                        </option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nyonya
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-8">
+                      <label class="col-form-label">Nama lengkap (sesuai KTP/SIM/Paspor)</label>
+                      <input type="text" class="form-control" id="" placeholder="" value="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-0 mb-4">
+                    Data Penumpang (1 Anak Kecil)
+                  </p>
+                  <div class="form-group row">
+                    <div class="col-4">
+                      <label class="col-form-label">Title</label>
+                      <select id="anak" name="title">
+                        <option value="76023" title="Out of Stock" disabled>Pilih title...</option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                          Tuan
+                        </option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nona
+                        </option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nyonya
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-8">
+                      <label class="col-form-label">Nama lengkap (Sesuai KK)</label>
+                      <input type="text" class="form-control" id="" placeholder="" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-12 col-form-label">Tanggal Lahir</label>
+                    <div class="col-12">
+                      <input type="text" class="form-control" id="anak_tgl_lahir" placeholder="" value="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-0 mb-4">
+                    Data Penumpang (1 Bayi)
+                  </p>
+                  <div class="form-group row">
+                    <div class="col-4">
+                      <label class="col-form-label">Title</label>
+                      <select id="bayi" name="title">
+                        <option value="76023" title="Out of Stock" disabled>Pilih title...</option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                          Tuan
+                        </option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nona
+                        </option>
+                        <option data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nyonya
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-8">
+                      <label class="col-form-label">Nama lengkap (Sesuai KK)</label>
+                      <input type="text" class="form-control" id="" placeholder="" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-12 col-form-label">Tanggal Lahir</label>
+                    <div class="col-12">
+                      <input type="text" class="form-control" id="bayi_tgl_lahir" placeholder="" value="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-2">
+                    Detil Penerbangan pergi <br>
+
+                    <small class="text-muted">
+                      Jumat, 21 Juli 2017
+                    </small>
+                  </p>
+
+                  <table class="table table-flex">
+                    <tr>
+                      <td class="border-top-0">
+                        <%= image_tag 'lib/pesawat/lion.png', :class => 'rounded mx-auto d-block mt-3 p-3', :alt => '' %>
+                        <p class="mb-0 text-center">
+                          <small class="text-muted">
+                            Lion Air - JT-798 <br>
+                            Kelas Economy
+                          </small>
+                        </p>
+                      </td>
+                      <!-- --------------------------------------------------------------- -->
+                      <td class="border-top-0">
+                        <ul>
+                          <li><span></span>
+                            <div>
+                              <div class="title">
+                                <table class="table table-flex">
+                                  <tr>
+                                    <td>
+                                      10:40 <br>
+                                      <p class="mb-0">
+                                        12 Desember 2017
+                                      </p>
+                                    </td>
+                                    <td>
+                                      <h6 class="mb-0">
+                                        Surabaya (SUB)
+                                      </h6>
+                                      <p class="mb-0">
+                                        Juanda
+                                      </p>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+
+                              <div class="info"><i class="icon-airplane3"></i> 1j 30m</div>
+
+                              <div class="title">
+                                <table class="table table-flex">
+                                  <tr>
+                                    <td>
+                                      10:40 <br>
+                                      <p class="mb-0">
+                                        13 Desember 2017
+                                      </p>
+                                    </td>
+                                    <td>
+                                      <h6 class="mb-0">
+                                        Makassar (UPG)
+                                      </h6>
+                                      <p class="mb-0">
+                                        Hasanuddin
+                                      </p>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <!-- --------------------------------------------------------------- -->
+                  </table>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <h5 class="card-title">
+                    Punya Kode Voucher ?
+                  </h5>
+                  <ul class="list-unstyled daftar-produk m-0">
+                    <li class="daftar-produk__item align-items-stretch border-none">
+                      <div class="form-group row" id="b2">
+                        <div class="col-8">
+                          <div class="input-group">
+                            <input type="text" class="form-control" name="masukanVoucher" placeholder="Masukan kode voucher..." aria-label="Masukan kode voucher...">
+                          </div>
+                        </div>
+
+                        <div class="col-4">
+                          <table class="table table-flex">
+                            <tr>
+                              <td class="border-none p-0">
+                                <button onclick="appendText()" class="btn btn-block btn-light text-success" type="button">
+                                  <i class="icon-file-plus"></i>
+                                </button>
+                              </td>
+                              <!-- <td class="border-none p-0">
+                                <button class="btn btn-block btn-light text-danger d-none" id="hapus" onclick="removeDiv()">
+                                  <i class="icon-cross2"></i>
+                                </button>
+                              </td>
+                            </tr> -->
+                          </table>
+                        </div>
+                      </div>
+                      <div id="code"></div>
+                      <div class="form-group mb-0">
+                        <div class="row justify-content-md-center">
+                          <div class="col-6">
+                            <button class="btn btn-block btn-danger" type="submit">Gunakan</button>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- ------------------------------------- -->
+          <div class="col-4 pl-0 sticky">
+            <div class="card c-ringkasan theiaStickySidebar">
+              <div class="card-body">
+
+              </div>
+
+              <hr class="my-2">
+
+              <div class="card-body c-ringkasan__item">
+                <h3 class="card-title c-ringkasan__title">
+                  Ringkasan Pesanan
+                </h3>
+
+                <dl class="row">
+                  <dt class="col-6">Total Harga Tiket</dt>
+                  <dd class="col-6 text-md-right" id="total-harga-paket">
+                    Rp 300.000
+                  </dd>
+
+                  <dt class="col-6">Potongan Voucher</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 0
+                  </dd>
+
+                  <dt class="col-6">Administrasi</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 0
+                  </dd>
+
+                  <dt class="col-6">PPN</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 0
+                  </dd>
+                </dl>
+
+                <hr class="my-2">
+
+                <dl class="row">
+                  <dt class="col-6"><strong>Total Pembayaran</strong></dt>
+                  <dd class="col-6 text-md-right">
+                    <strong id="total-pembayaran">
+                      Rp 300.000
+                    </strong>
+                  </dd>
+                </dl>
+              </div>
+              <div class="col-12 mb-2">
+                <a href="/pilih-metode-pembayaran" id="lanjutPembayaran" class="btn btn-lg btn-block btn-danger disabled" onclick="">Lanjutkan</a>
+              </div>
+            </div>
+          </div>
+          <!-- ------------------------------------- -->
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------- -->
+<% end %>
+
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        // sticky scroll
+        $(document).ready(function () {
+            $('.sticky')
+                .theiaStickySidebar({
+                    additionalMarginTop: 10,
+                    additionalMarginBottom: 20
+                });
+
+        });
+
+        $(document).ready(function () {
+            $('input[name="anak_tgl_lahir"], input[name="bayi_tgl_lahir"] ').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                "singleDatePicker": true,
+                "autoApply": true,
+                "showDropdowns": true
+            });
+        });
+
+        $(document).ready(function () {
+            $('#dewasa').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#anak').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#bayi').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".txtOnly").keypress(function (e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>

@@ -1,0 +1,70 @@
+<%= content_for :active_transaction do %> active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Transaksi Umrah</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <%= render template: 'mobile/transaction/partials/mobileTabsTransactions' %>
+
+    <div class="data-transaction">
+        <% if !@data.nil? %>
+            <% @data.each do |item| %>
+                <% if item['status_bayar'] == 'Lunas' %>
+                    <div class="card card-transaction">
+                        <a href="">
+                            <div class="card-body">
+                                <table class="table table-sm mb-0">
+                                    <tr>
+                                        <td>
+                                            <p class="noTransaction mb-0">
+                                                <span>No Transaksi</span> : <strong><%= item['no_trans'] %></strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <p class="nmTransaction mb-0">
+                                                <%= item['nama_paket'].capitalize %>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <p class="tglTransaction mb-0">
+                                                <%= TimeFormat::indonesian_day_name(item['tgl_trans']) %>, <%= TimeFormat::indonesia(item['tgl_trans']) %>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <p class="mb-0">
+                                                <span class="badge badge-success"><%= item['sts_bayar'] %></span>
+                                            </p>
+
+                                            <h3 class="price-packet">
+                                                <%= number_to_currency(item['harga_bayar'], precision: 0, unit: "Rp ") %>
+                                            </h3>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
+            <% end %>
+        <% else %>
+            <div class="w-blank text-center p-5">
+                <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                <p class="mb-0 text-center">
+                    Maaf, Anda belum memiliki transaksi
+                </p>
+            </div>
+        <% end %>
+
+    </div>
+<% end %>

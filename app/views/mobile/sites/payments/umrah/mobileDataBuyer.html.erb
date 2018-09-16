@@ -1,0 +1,301 @@
+<%= content_for :headmobile do %>
+    <title>Data Pemesan</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-navbar-payment">
+        <table class="table table-nav table-sm mb-0">
+            <tbody>
+            <tr>
+                <td class="active">
+                    Isi Data Pemesan
+                </td>
+                <td>
+                    Pembayaran
+                </td>
+                <td>
+                    Konfirmasi
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="data-purchase-summary">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    Ringkasan Pembelian
+                </h5>
+                <hr/>
+            </div>
+            <div class="card-body">
+                <div class="media">
+                    <%= image_tag !@paket['gambar'].nil? ? @paket['gambar'] : "", :class => 'align-self-center mr-3', :alt => '' %>
+                    <div class="media-body">
+                        <p class="packet-rate mb-0">
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                        </p>
+                        <div class="name-packet name-packet-line">
+                            <h3 class="price-packet mb-1">
+                                <%= number_to_currency(@paket['harga_jual'], precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                            </h3>
+                            <%= @paket['nama'] %>
+                        </div>
+                        <h6 class="card-text packet-city m-0">
+                            <%= @paket['kantor'].titlecase %>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <table class="table table-sm mb-0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <small>Lama Umrah</small>
+                            <p class="mb-0">
+                                <%= @hari %> Hari
+                            </p>
+                        </td>
+                        <td class="text-right">
+                            <small>Jenis Paket</small>
+                            <p class="mb-0">
+                                <%= @paket['jenis_paket'] %>
+                            </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-detail-buyer">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    Data Pemesan
+                </h5>
+                <hr/>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm mb-0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <select id="title" name="title" class="form-control" disabled>
+                                    <option value="T">
+                                        Tuan
+                                    </option>
+                                    <option value="Ny">
+                                        Nyonya
+                                    </option>
+                                    <option value="N">
+                                        Nona
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label>Nama Lengkap</label>
+                                <input type="text" class="form-control txtOnly" placeholder="" value="<%= @data['user']['nama_depan'] %> <%= @data['user']['nama_belakang'] %>" disabled/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" placeholder="" value="<%= @data['user']['email'] %>" disabled=""/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label>Nomor Identitas (KTP)</label>
+                                <input type="number" class="form-control" placeholder="" value="<%= @data['user']['ktp'] %>" disabled/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label>Nomor Telepon</label>
+                                <input type="number" name="nomorTelepon" class="form-control" placeholder="" value="<%= Number::indonesianFormatPhone(@data['user']['telepon']) %>" disabled/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label>Tempat Lahir</label>
+                                <input type="text" class="form-control" placeholder="" value="<%= @data['detail']['tempat_lahir'] %>" disabled/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label>Tanggal Lahir</label>
+                                <input type="text" class="form-control" placeholder="" value="<%= @data['detail']['tanggal_lahir'] %>" disabled/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label>Alamat Lengkap</label>
+                                <input type="text" class="form-control" placeholder="" value="<%= @data['detail']['alamat'] %>" disabled/>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!%= react_component 'mobileCodeVoucher' %>
+    <!--voucher-->
+    <% if @jumlah_voucher_tersedia > 0 %>
+        <div class="data-code-voucher">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        Anda Memiliki Voucher ?
+                    </h5>
+                    <hr/>
+                </div>
+
+                <div class="card-body pt-0">
+                    <div class="textbox-wrapper">
+                        <div class="input-group mb-2">
+                            <input type="text" name="kodeVoucher" class="form-control" placeholder="Masukkan kode voucher" onchange="chechVoucher(this)" required/>
+                            <span class="input-group-btn">
+                            <button onclick="appendText()" type="button" class="btn btn-success add-textbox">
+                                <i class="ion-plus"></i>
+                            </button>
+                        </span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-block btn-outline-danger mt-3">Konfirmasi Voucher</button>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    <!--summary-->
+    <div class="data-ringkasan-pesanan">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    Ringkasan Pesanan
+                </h5>
+                <hr/>
+            </div>
+
+            <div class="card-body pt-0">
+                <div class="d-flex mb-2">
+                    <div class="mr-auto">
+                        Total Harga Paket
+                    </div>
+                    <div>
+                        <%= number_to_currency(@paket['harga_jual'], precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                    </div>
+                </div>
+                <div class="d-flex mb-2">
+                    <div class="mr-auto">
+                        Potongan Voucher
+                    </div>
+                    <div class="text-info">
+                        <%= @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR '%> <span id="ptvc">0</span>
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class="d-flex mb-2">
+                    <div class="mr-auto">
+                        <strong>
+                            Harga Total Paket
+                        </strong><br/>
+                        <small class="text-muted">
+                            (tidak termasuk administrasi & PPn
+                        </small>
+                    </div>
+                    <div>
+                        <strong>
+                            <%= number_to_currency(@paket['harga_jual'], precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--button baawah-->
+    <div class="data-navbar-price  fixed-bottom">
+        <nav class="navbar navbar-price navbar-light">
+            <span class="navbar-brand">
+                <table class="table table-sm mb-0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <% if @paket[:status] == false %>
+                                <a href="/pilih-metode-pembayaran?p=<%= params['id_produk'] %>&kk=<%= params['kk'] %>&type=<%= params['type'] %>&th=<%= params['th'] %>&bln=<%= params['bln'] %>" id="lanjutPembayaran" class="btn btn-block btn-danger disabled" onclick="">Pesan Sekarang</a>
+                            <% else %>
+                                <a href="/pilih-metode-pembayaran?p=<%= params['id_produk'] %>&kk=<%= params['kk'] %>&type=<%= params['type'] %>&th=<%= params['th'] %>&bln=<%= params['bln'] %>" id="lanjutPembayaran" class="btn btn-block btn-danger" onclick="">Pesan Sekarang</a>
+                            <% end %>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </span>
+        </nav>
+    </div>
+<% end %>
+
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var max = 3;
+            var cnt = 1;
+            $(".add-textbox").on("click", function (e) {
+                e.preventDefault();
+                if (cnt < max) {
+                    cnt++;
+                    $(".textbox-wrapper").append('' +
+                        '<div class="input-group mb-2">' +
+                        '<input type="text" name="text_arr[]" class="form-control" placeholder="Masukkan kode voucher" />' +
+                        '<span class="input-group-btn">' +
+                        '<button type="button" class="btn btn-danger remove-textbox">' +
+                        '<i class="ion-minus"></i>' +
+                        '</button>' +
+                        '</span>' +
+                        '</div>');
+                }
+            });
+
+            $(".textbox-wrapper").on("click", ".remove-textbox", function (e) {
+                e.preventDefault();
+                $(this).parents(".input-group").remove();
+                cnt--;
+            });
+        });
+    </script>
+<% end %>

@@ -1,0 +1,97 @@
+.data-invoice {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+
+    & .card-header {
+      background-color: #fd79a8;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: none;
+      padding: 18px;
+
+      & h5 {
+        color: #ffffff;
+        font-weight: 400;
+        letter-spacing: .5px;
+      }
+
+      & .no_invoice {
+        font-size: 12px;
+        color: #ffffff;
+        font-weight: normal;
+      }
+
+      & .date {
+        font-size: 10px;
+        color: #ffffff;
+        & span {
+          opacity: .7;
+        }
+      }
+
+      & h6 {
+        color: #ffffff;
+        font-weight: 400;
+        font-size: 24px;
+        & span {
+          font-size: 10px;
+          color: #ffffff;
+          opacity: .7;
+        }
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-color: transparent;
+        border-bottom: 0;
+      }
+
+      &:after {
+        border-top-color: #fd79a8;
+        border-width: 12px;
+        margin-top: 16px;
+        z-index: 1;
+        right: 15%;
+      }
+    }
+
+    & .card-body {
+      & .list-group {
+        & .list-group-item {
+          padding: 10px 0;
+          border: none;
+
+          & header {
+            text-transform: uppercase;
+            font-size: 10px;
+            color: #000000;
+            opacity: .5;
+          }
+
+          & p {
+            color: #000000;
+            font-size: 12px;
+          }
+
+          & .table {
+            & td {
+              border: none;
+              padding: 5px 0;
+              & span {
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

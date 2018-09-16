@@ -1,0 +1,258 @@
+.w-product {
+  padding: 40px 0;
+
+  & .card-header {
+    & h1 {
+      font-size: 22px !important;
+      font-weight: bold;
+      padding: 8px 0px;
+      margin: 0;
+    }
+
+    & h5 {
+      & a {
+        color: #555555;
+      }
+    }
+
+    & .btn {
+      border: none;
+      color: #303030;
+      background: transparent;
+      margin-top: 6px;
+
+      &:hover {
+        color: $color-default;
+      }
+      &:focus {
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+        background-color: transparent;
+      }
+    }
+  }
+
+  & .tabs-city {
+    background: #f5f5f5;
+    margin-bottom: 33px;
+
+    & .nav-item {
+      & .nav-link {
+        -webkit-transition: all .3ms;
+        -moz-transition: all .3ms;
+        -ms-transition: all .3ms;
+        -o-transition: all .3ms;
+        transition: all .3ms;
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #666666;
+        padding: 16px 0;
+        font-weight: bold;
+
+        &.active {
+          -webkit-border-radius: 0px;
+          -moz-border-radius: 0px;
+          border-radius: 0px;
+          background: $color-default;
+          color: #ffffff;position: relative;
+
+          &:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-color: transparent;
+            border-bottom: 0;
+          }
+
+          &:before {
+            left: 25px;
+            bottom: -12px;
+
+            /* If 1px darken stroke slightly */
+            border-top-color: $color-default;
+            border-width: 16px;
+          }
+
+          &:hover {
+            color: #ffffff !important;
+          }
+        }
+
+        &:hover {
+          color: $color-default;
+        }
+      }
+    }
+  }
+
+  & .card {
+    -webkit-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    -moz-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    -ms-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    -o-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+    & .card-body-image {
+      position: relative;
+      align-items: center;
+      width: 100%;
+      backface-visibility: hidden;
+      perspective: 1000px;
+      height: 252px !important;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+
+    & .badge-pax {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      font-weight: normal;
+      position: absolute;
+      top: 0;
+      right: 40%;
+      padding: 6px 12px;
+      text-transform: uppercase;
+      font-size: 12px;
+      background-color: $color-green;
+
+      &::before {
+
+      }
+    }
+
+    & .badge-date {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      font-weight: normal;
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      padding: 6px 12px;
+      text-transform: uppercase;
+      font-size: 12px;
+      background-color: $color-green;
+    }
+
+    & img {
+      width: 100%;
+      display: block !important;
+      vertical-align: middle;
+      opacity: 1;
+      -webkit-transition: .5s ease;
+      -moz-transition: .5s ease;
+      -ms-transition: .5s ease;
+      -o-transition: .5s ease;
+      transition: .5s ease;
+    }
+
+    & .card-body {
+      background: #ffffff;
+      position: relative;
+      padding: 12px;
+      height: 161px;
+
+      & .name-packet {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        height: 40px !important;
+        max-height: 40px !important;
+        margin-bottom: 0;
+
+        &.name-packet-line {
+          overflow: hidden;
+          height: 40px;
+          text-transform: capitalize;
+          color: rgba(0, 0, 0, .75);
+          font-size: 14px;
+          font-weight: bold;
+          letter-spacing: -.5px;
+        }
+
+        &::after {
+          content: "";
+          text-align: right;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 25%;
+          background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+          background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+          background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+          background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+          height: 22px !important;
+        }
+      }
+
+      & .price-packet {
+        -webkit-transition: all .2s ease-out;
+        -o-transition: all .2s ease-out;
+        transition: all .2s ease-out;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 18px !important;
+        color: $color-default;
+      }
+
+      & .packet-city {
+        text-transform: capitalize;
+        color: #333333;
+        opacity: .75;
+        font-weight: normal !important;
+        font-size: 12px;
+        line-height: 14px;
+        margin-top: 5px !important;
+      }
+
+      & .packet-rate {
+        color: $color-stars;
+        font-size: 13px;
+        margin-bottom: 5px;
+
+        & i {
+          font-size: 17px;
+        }
+      }
+    }
+
+    &:hover {
+      -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(0, 0, 0, 0.04);
+      -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e3e1e0;
+
+      & img {
+        opacity: .7;
+      }
+    }
+  }
+
+  & .card-group {
+    margin: 0px 0px;
+    display: flex;
+    /* flex-flow: row wrap; */
+
+    & .card {
+      margin: 0 5px;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+    }
+  }
+
+  & a {
+    &:hover {
+      text-decoration: none;
+
+      & .price-packet {
+        color: #333333 !important;
+      }
+    }
+  }
+}

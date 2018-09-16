@@ -1,0 +1,798 @@
+<% content_for :head do %>
+    <title>Semua Pencarian | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Tiket Pesawat</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <!-- --------------------------------------------------- -->
+            <% if !@daftar_keberangkatan['returns'].nil? && !@daftar_keberangkatan['departures'].nil?%>
+            <form action="" method="post" id="formCariTiket">
+              <div class="c-bg-white-accounts">
+                <div class="c-tiket-pencarian">
+                  <div class="card c-dashboard-content mb-0">
+                    <div class="card-header text-uppercase">
+                      <h5 class="mb-0">
+                        Ringkasan Pesanan
+                      </h5>
+                    </div>
+                    <div class="card-body c-dashboard-content__item p-0">
+                      <!-- --------------------------------------------------- -->
+                      <div class="w-ticket-selected">
+                        <table class="table table-selected">
+                          <tbody>
+                          <tr>
+                            <td class="p-0 border-top-0">
+                              <table class="table">
+                                <tbody>
+                                <% image_is_null = @daftar_maskapai_berangkat[0]['flight_infos']['flight_info'].nil? rescue true %>
+                                <% if image_is_null == false %>
+                                    <tr>
+                                      <td class="t1b1" id="logo-maskapai-pergi">
+                                        <% @item_image = 0 %>
+                                        <% @daftar_maskapai_berangkat[0]['flight_infos']['flight_info'].each do |item_image| %>
+                                            <%= image_tag item_image['img_src'], :class => 'rounded mx-auto d-block', :alt => '' %>
+                                        <% end %>
+                                        <% if @daftar_maskapai_berangkat[0]['flight_infos']['flight_info'].count > 1 %>
+                                            <p class="mb-0 bh5-<%= @daftar_maskapai_berangkat[0]['flight_id'] %>">
+                                              multi maskapai
+                                            </p>
+                                        <% else %>
+                                        <% end %>
+                                      </td>
+                                      <td class="t3">
+                                        <p class="mb-0" id="kota-pergi">
+                                          <strong class="text-uppercase">Pergi:</strong>
+                                          <span class="t3b1"><%= @daftar_maskapai_berangkat[0]['departure_city_name'] + " (#{@daftar_maskapai_berangkat[0]['departure_city']})" %></span>
+                                          ke
+                                          <span class="t3b2"><%= @daftar_maskapai_berangkat[0]['arrival_city_name'] + " (#{@daftar_maskapai_berangkat[0]['arrival_city']})" %></span><br>
+                                          <span class="t3b3"><%= @daftar_maskapai_berangkat[0]['flight_infos']['flight_info'][0]['string_departure_date'] %></span><br>
+                                          <small>
+                                            <span class="t3b4"><%= @daftar_maskapai_berangkat[0]['airlines_real_name'] %></span>
+                                            <span class="t3b5"><%= @daftar_maskapai_berangkat[0]['flight_infos']['flight_info'][0]['flight_number'] %></span>
+                                          </small>
+                                        </p>
+                                      </td>
+                                      <td class="t4" id="departure-pergi">
+                                        <h4 class="mb-0 t4b1"><%= @daftar_maskapai_berangkat[0]['simple_departure_time'] %></h4>
+                                        <small class="t4b2"><%= @daftar_maskapai_berangkat[0]['departure_city_name'] + " (#{@daftar_maskapai_berangkat[0]['departure_city']})" %></small>
+                                      </td>
+                                      <td class="t5" id="arrival-pergi">
+                                        <h4 class="mb-0 t5b1"><%= @daftar_maskapai_berangkat[0]['simple_arrival_time'] %></h4>
+                                        <small class="t5b2"><%= @daftar_maskapai_berangkat[0]['arrival_city_name'] + " (#{@daftar_maskapai_berangkat[0]['arrival_city']})" %></small>
+                                      </td>
+                                      <td rowspan="2" class="price-ticket p-3">
+                                        <input type="hidden" name="rndnumb1" value="0">
+                                        <input type="hidden" name="rndnumb2" value="0">
+                                        <h2 class="mb-3 text-uppercase harga">
+                                          <strong>
+                                            <%= number_to_currency(@daftar_maskapai_berangkat[0]['price_value'].to_i + @daftar_maskapai_pulang[0]['price_value'].to_i, precision: 0, unit: "Rp ") %>
+                                          </strong>
+                                        </h2>
+                                        <a href="/form-pemesanan-tiket?fi=<%= @daftar_maskapai_berangkat[0]['flight_id'] %>&rfi=<%= @daftar_maskapai_pulang[0]['flight_id'] %>" class="btn btn-block btn-danger linker">Bayar
+                                          Sekarang</a>
+                                      </td>
+                                    </tr>
+                                <% end %>
+
+                                <% image_is_null = @daftar_maskapai_pulang[0]['flight_infos']['flight_info'].nil? rescue true %>
+                                <% if image_is_null == false %>
+                                    <tr>
+                                      <td class="t1p1" id="logo-maskapai-pulang">
+                                        <% @item_image = 0 %>
+                                        <% @daftar_maskapai_pulang[0]['flight_infos']['flight_info'].each do |item_image| %>
+                                            <%= image_tag item_image['img_src'], :class => 'rounded mx-auto d-block', :alt => '' %>
+                                        <% end %>
+                                        <% if @daftar_maskapai_pulang[0]['flight_infos']['flight_info'].count > 1 %>
+                                            <p class="mb-0 bh5-<%= @daftar_maskapai_pulang[0]['flight_id'] %>">
+                                              multi maskapai
+                                            </p>
+                                        <% else %>
+                                        <% end %>
+                                      </td>
+                                      <td class="tp3">
+                                        <p class="mb-0" id="kota-pulang">
+                                          <strong class="text-uppercase">Pulang:</strong>
+                                          <span class="t3p1"><%= @daftar_maskapai_pulang[0]['departure_city_name'] + " (#{@daftar_maskapai_pulang[0]['departure_city']})" %>
+                                            ke <%= @daftar_maskapai_pulang[0]['arrival_city_name'] + " (#{@daftar_maskapai_pulang[0]['arrival_city']})" %></span><span class="t3p2"></span><br>
+                                          <span class="t3p3"><%= @daftar_maskapai_pulang[0]['flight_infos']['flight_info'][0]['string_departure_date'] %></span><br>
+                                          <small>
+                                            <span class="t3p4"><%= @daftar_maskapai_pulang[0]['airlines_real_name'] %></span>
+                                            <span class="t3b5"><%= @daftar_maskapai_pulang[0]['flight_infos']['flight_info'][0]['flight_number'] %></span>
+                                          </small>
+                                        </p>
+                                      </td>
+                                      <td class="tp4" id="arrival-pulang">
+                                        <h4 class="mb-0 t4p1">
+                                          <strong><%= @daftar_maskapai_pulang[0]['simple_departure_time'] %></strong>
+                                        </h4>
+                                        <small class="t4p2"><%= @daftar_maskapai_pulang[0]['departure_city_name'] + " (#{@daftar_maskapai_pulang[0]['departure_city']})" %></small>
+                                      </td>
+                                      <td class="tp5" id="departure-pulang">
+                                        <h4 class="mb-0 t5p1">
+                                          <strong><%= @daftar_maskapai_pulang[0]['simple_arrival_time'] %></strong></h4>
+                                        <small class="t5p2"><%= @daftar_maskapai_pulang[0]['arrival_city_name'] + " (#{@daftar_maskapai_pulang[0]['arrival_city']})" %></small>
+                                      </td>
+                                    </tr>
+                                <% end %>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- --------------------------------------------------- -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c-bg-white-accounts mb-2">
+                <div class="card c-dashboard-content m-0">
+                  <div class="card-body c-dashboard-content__item">
+                    <div class="c-tiket-pencarian">
+                      <!-- --------------------------------------------------------------- -->
+                      <div class="card">
+                        <h5 class="card-title text-left">
+                          <b>Pergi : </b>
+                          <%= @daftar_keberangkatan['go_det']['dep_airport']['business_name'] %> (<%= @daftar_keberangkatan['go_det']['dep_airport']['city_name'] %>)
+                          →
+                          <%= @daftar_keberangkatan['go_det']['arr_airport']['business_name'] %> (<%= @daftar_keberangkatan['go_det']['arr_airport']['city_name'] %>)
+                          <p></p>
+                          <b>Pulang : </b>
+                          <%= @daftar_keberangkatan['ret_det']['dep_airport']['business_name'] %> (<%= @daftar_keberangkatan['ret_det']['dep_airport']['city_name'] %>)
+                          →
+                          <%= @daftar_keberangkatan['ret_det']['arr_airport']['business_name'] %> (<%= @daftar_keberangkatan['ret_det']['arr_airport']['city_name'] %>)
+                        </h5>
+                        <ol class="breadcrumb border-bottom-0">
+                          <li class="breadcrumb-item">
+                            <%= @daftar_keberangkatan['go_det']['formatted_date'] %>
+                            - <%= @daftar_keberangkatan['ret_det']['formatted_date'] %>
+                          </li>
+                          <li class="breadcrumb-item">Dewasa : <%= !params['dewasa'].empty? ? params['dewasa'] : "" %>,
+                            Anak
+                            : <%= !params['anak'].empty? ? params['anak'] : "0" %>,
+                            Bayi : <%= !params['bayi'].empty? ? params['bayi'] : "0" %>
+                          </li>
+                        </ol>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="flightpergi-tab" data-toggle="tab" href="#flightpergi" role="tab" aria-controls="flightpergi" aria-selected="true">
+                              Penerbangan Pergi
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="flightpulang-tab" data-toggle="tab" href="#flightpulang" role="tab" aria-controls="flightpulang" aria-selected="false">
+                              Penerbangan Pulang
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                      
+              
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="flightpergi" role="tabpanel" aria-labelledby="flightpergi-tab">
+                  <table class="table table-sm table-ticket">
+                    <tbody>
+                    <tr>
+                      <td class="ticket-list">
+                        <% @daftar_maskapai_berangkat.each do |item| %>
+                            <table class="table mb-2">
+                              <tbody>
+                              <tr>
+                                <td class="ta-1" rowspan="2">
+                                  <% @item_image = 0 %>
+                                  <div class="bh1-<%= item['flight_id'] %>">
+                                    <% item['flight_infos']['flight_info'].each do |item_image| %>
+                                        <%= image_tag item_image['img_src'], :class => 'rounded mx-auto d-block', :alt => '' %>
+                                    <% end %>
+                                  </div>
+                                  <% if item['flight_infos']['flight_info'].count > 1 %>
+                                      <p class="mb-0 bh5-<%= item['flight_id'] %>">
+                                        multi maskapai
+                                      </p>
+                                  <% else %>
+                                      <p class="mb-0 bh5-<%= item['flight_id'] %>">
+                                        <%= item['airlines_real_name'] %>
+                                      </p>
+                                  <% end %>
+
+                                </td>
+                                <td class="ta-2">
+                                  <h3 class="mb-0 bh7-<%= item['flight_id'] %>">
+                                    <%= item['simple_departure_time'] %>
+                                  </h3>
+                                  <p class="mb-0 bh2-<%= item['flight_id'] %>">
+                                    <%= item['departure_city_name'] + " (#{item['departure_city']})" %>
+                                  </p>
+                                </td>
+                                <td class="ta-3">
+                                  <h3 class="mb-0 bh8-<%= item['flight_id'] %>">
+                                    <%= item['simple_arrival_time'] %>
+                                  </h3>
+                                  <p class="mb-0 bh3-<%= item['flight_id'] %>">
+                                    <%= item['arrival_city_name'] + " (#{item['arrival_city']})" %>
+                                  </p>
+                                </td>
+                                <td class="ta-4">
+                                  <h3 class="mb-0">
+                                    <%= item['duration'] %>
+                                  </h3>
+                                  <p class="mb-0">
+                                    <%= item['stop'] %>
+                                  </p>
+                                </td>
+                                <td class="ta-5">
+                                  <p class="mb-1">
+                                    <i class="icon-briefcase mr-1"></i> <%= item['check_in_baggage'] %> <%= item['check_in_baggage_unit'] %>
+                                  </p>
+                                  <p class="mb-1">
+                                    <i class="ion-android-plane mr-1"></i> Pajak
+                                  </p>
+                                </td>
+                                <td class="ta-price" rowspan="2">
+                                  <h4 class="mb-2 text-uppercase">
+                                    <%= number_to_currency(item['price_value'], precision: 0, unit: "Rp ") %>
+                                  </h4>
+                                  <button class="btn btn-sm btn-block btn-success btnFlight" data-toggle="tab" role="tab" aria-controls="flightpulang" aria-selected="false" onclick="TiketChoseTwoFlightOne(<%= item['flight_id'] %>)">Pilih
+                                    Pergi
+                                  </button>
+                                </td>
+                              </tr>
+                              <!-- --------------------------------------------------------------- -->
+                              <tr>
+                                <td class="ta-collapse" colspan="2">
+                                  <a class="collapsed text-info" data-toggle="collapse" data-parent="#accordion" href="#penerbangan<%= item['flight_id'] %>" aria-expanded="false" aria-controls="Cpenerbangan">
+                                    <span><i class="icon-arrow-down32"></i> Detil Penerbangan</span>
+                                  </a>
+                                </td>
+                                <td class="ta-collapse" colspan="2">
+                                  <a class="collapsed text-info" data-toggle="collapse" data-parent="#accordion" href="#harga<%= item['flight_id'] %>" aria-expanded="false" aria-controls="Charga">
+                                    <span><i class="icon-arrow-down32"></i> Detil Harga</span>
+                                  </a>
+                                </td>
+                              </tr>
+                              <!-- --------------------------------------------------------------- -->
+                              <tr>
+                                <td colspan="6" class="p-0 border-0">
+                                  <div id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="m-0">
+                                      <div id="penerbangan<%= item['flight_id'] %>" class="collapse m-0" role="tabpanel" aria-labelledby="Cpenerbangan">
+                                        <div class="card-body m-0 pl-0 pr-0">
+                                          <% @item_detail = 0 %>
+                                          <% item['flight_infos']['flight_info'].each do |item_detail| %>
+                                              <table class="table table-sm">
+                                                <% @item_detail = @item_detail + 1 %>
+                                                <% if item['stop'] != "Langsung" and @item_detail > 1 %>
+                                                    <tr>
+                                                      <td class="pt-0 pb-0 m-0" colspan="4">
+                                                        <div class="alert alert-success mt-3 mb-3 ml-5 mr-5">
+                                                          <i class="icon-info22"></i> Transit
+                                                          Selama <%= item_detail['transit_arrival_text_time'] %>
+                                                          di <%= item_detail['departure_city_name'] %>
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                <% end %>
+                                                <tr>
+                                                  <td class="border-top-0">
+                                                    <%= image_tag item_detail['img_src'], :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                                                    <p class="mb-0 text-center d-block">
+                                                      <small class="text-muted">
+                                                        Maskapai - <%= item_detail['airlines_name'] %>
+                                                      </small>
+                                                    </p>
+                                                  </td>
+                                                  <!-- --------------------------------------------------------------- -->
+                                                  <td class="border-top-0" style="min-width: 434px;">
+                                                    <ul>
+                                                      <li>
+                                                        <span></span>
+                                                        <div>
+                                                          <div class="title">
+                                                            <table class="table table-sm">
+                                                              <tr>
+                                                                <td>
+                                                                  <h3 class="mb-0"><%= item_detail['simple_departure_time'] %></h3>
+                                                                  <p class="mb-0 bh4-<%= item['flight_id'] %>">
+                                                                    <%= item_detail['string_departure_date'] %>
+                                                                  </p>
+                                                                </td>
+                                                                <td>
+                                                                  <h6 class="mb-0">
+                                                                    <%= item_detail['departure_city_name'] + " (#{item_detail['departure_city']})" %>
+                                                                  </h6>
+                                                                </td>
+                                                              </tr>
+                                                            </table>
+                                                          </div>
+                                                          <div class="info">
+                                                            <i class="icon-airplane3"></i> <%= item_detail['duration_hour'] %> <%= item_detail['duration_minute'] %>
+                                                          </div>
+                                                          <div class="title">
+                                                            <table class="table table-sm">
+                                                              <tr>
+                                                                <td>
+                                                                  <h3 class="mb-0"><%= item_detail['simple_arrival_time'] %></h3>
+                                                                  <p class="mb-0">
+                                                                    <%= item_detail['string_arrival_date'] %>
+                                                                  </p>
+                                                                </td>
+                                                                <td>
+                                                                  <h6 class="mb-0">
+                                                                    <%= item_detail['arrival_city_name'] + " (#{item_detail['arrival_city']})" %>
+                                                                  </h6>
+                                                                </td>
+                                                              </tr>
+                                                            </table>
+                                                          </div>
+                                                        </div>
+                                                      </li>
+                                                    </ul>
+                                                  </td>
+                                                  <!-- --------------------------------------------------------------- -->
+                                                  <td class="border-top-0">
+                                                    <p class="mb-0" style="font-size: 12px !important;">
+                                                      - Fligh Number :
+                                                      <span class="bh6-<%= item['flight_id'] %>"><%= item_detail['flight_number'] %></span>
+                                                      <br>
+                                                      - Bagasi : <%= item_detail['check_in_baggage'] %> kg
+                                                    </p>
+                                                  </td>
+                                                </tr>
+                                                <!-- --------------------------------------------------------------- -->
+                                              </table>
+                                          <% end %>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="m-0">
+                                      <div id="harga<%= item['flight_id'] %>" class="collapse m-0" role="tabpanel" aria-labelledby="Charga">
+                                        <div class="card-body m-0 p-0">
+                                          <table class="table">
+                                            <tr>
+                                              <td class="border-top-0">
+                                                <h6 class="lead">
+                                                  <%= item['departure_city_name'] + " (#{item['departure_city']})" %>
+                                                  - <%= item['arrival_city_name'] + " (#{item['arrival_city']})" %>
+                                                </h6>
+                                              </td>
+                                              <!-- --------------------------------------------------------------- -->
+                                              <td class="border-top-0">
+                                                <h6 class="lead">
+                                                  Harga Dasar Dewasa <%= "(x#{params['dewasa']})" %>
+                                                  <span class="float-right">
+                                                        <strong><%= number_to_currency(item['price_adult'], precision: 0, unit: "Rp ") %></strong>
+                                                      </span>
+                                                </h6>
+                                                <h6>
+                                                  Harga Dasar
+                                                  Anak <%= "(x#{ !params['anak'].empty? ? params['anak'] : '0'})" %>
+                                                  <span class="float-right">
+                                                        <strong><%= number_to_currency(item['price_child'], precision: 0, unit: "Rp ") %></strong>
+                                                      </span>
+                                                </h6>
+                                                <h6>
+                                                  Harga Dasar
+                                                  Anak <%= "(x#{ !params['bayi'].empty? ? params['bayi'] : '0'})" %>
+                                                  <span class="float-right">
+                                                        <strong><%= number_to_currency(item['price_infant'], precision: 0, unit: "Rp ") %></strong>
+                                                      </span>
+                                                </h6>
+                                                <hr class="my-3">
+                                                <h6 class="">
+                                                  Jumlah Pembayaran
+                                                  <span class="float-right">
+                                                        <strong><%= number_to_currency(item['price_value'], precision: 0, unit: "Rp ") %></strong>
+                                                      </span>
+                                                </h6>
+                                              </td>
+                                              <!-- --------------------------------------------------------------- -->
+                                            </tr>
+                                            <!-- --------------------------------------------------------------- -->
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                        <% end %>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="tab-pane fade" id="flightpulang" role="tabpanel" aria-labelledby="flightpulang-tab">
+                  <table class="table table-sm table-ticket">
+                    <tbody>
+                    <tr>
+                      <td class="ticket-list">
+                        <% @daftar_maskapai_pulang.each do |item| %>
+                            <table class="table mb-2">
+                              <tbody>
+                              <tr>
+                                <td class="ta-1 " rowspan="2">
+                                  <% @item_image = 0 %>
+                                  <div class="ph1-<%= item['flight_id'] %>">
+                                    <% item['flight_infos']['flight_info'].each do |item_image| %>
+                                        <%= image_tag item_image['img_src'], :class => 'rounded mx-auto d-block', :alt => '' %>
+                                    <% end %>
+                                  </div>
+                                  <% if item['flight_infos']['flight_info'].count > 1 %>
+                                      <p class="mb-0 ph5-<%= item['flight_id'] %>">
+                                        multi maskapai
+                                      </p>
+                                  <% else %>
+                                      <p class="mb-0 ph5-<%= item['flight_id'] %>">
+                                        <%= item['airlines_real_name'] %>
+                                      </p>
+                                  <% end %>
+                                </td>
+                                <td class="ta-2">
+                                  <h3 class="mb-0 ph7-<%= item['flight_id'] %>">
+                                    <%= item['simple_departure_time'] %>
+                                  </h3>
+                                  <p class="mb-0 ph2-<%= item['flight_id'] %>">
+                                    <%= item['departure_city_name'] + " (#{item['departure_city']})" %>
+                                  </p>
+                                </td>
+                                <td class="ta-3">
+                                  <h3 class="mb-0 ph8-<%= item['flight_id'] %>">
+                                    <%= item['simple_arrival_time'] %>
+                                  </h3>
+                                  <p class="mb-0 ph3-<%= item['flight_id'] %>">
+                                    <%= item['arrival_city_name'] + " (#{item['arrival_city']})" %>
+                                  </p>
+                                </td>
+                                <td class="ta-4">
+                                  <h3 class="mb-0">
+                                    <%= item['duration'] %>
+                                  </h3>
+                                  <p class="mb-0">
+                                    <%= item['stop'] %>
+                                  </p>
+                                </td>
+                                <td class="ta-5">
+                                  <p class="mb-1">
+                                    <i class="icon-briefcase mr-1"></i> <%= item['check_in_baggage'] %> <%= item['check_in_baggage_unit'] %>
+                                  </p>
+                                  <p class="mb-1">
+                                    <i class="ion-android-plane mr-1"></i> Pajak
+                                  </p>
+                                </td>
+                                <td class="ta-price" rowspan="2">
+                                  <h4 class="mb-2 text-uppercase">
+                                    <%= number_to_currency(item['price_value'], precision: 0, unit: "Rp ") %>
+                                  </h4>
+                                  <a href="#" class="btn btn-sm btn-block btn-success" onclick="TiketChoseTwoFlightTwo(<%= item['flight_id'] %>)">Pilih
+                                    Pulang</a>
+                                </td>
+                              </tr>
+                              <!-- --------------------------------------------------------------- -->
+                              <tr>
+                                <td class="ta-collapse" colspan="2">
+                                  <a class="collapsed text-info" data-toggle="collapse" data-parent="#accordion" href="#penerbangan<%= item['flight_id'] %>" aria-expanded="false" aria-controls="Cpenerbangan">
+                                    <span><i class="icon-arrow-down32"></i> Detil Penerbangan</span>
+                                  </a>
+                                </td>
+                                <td class="ta-collapse" colspan="2">
+                                  <a class="collapsed text-info" data-toggle="collapse" data-parent="#accordion" href="#harga<%= item['flight_id'] %>" aria-expanded="false" aria-controls="Charga">
+                                    <span><i class="icon-arrow-down32"></i> Detil Harga</span>
+                                  </a>
+                                </td>
+                              </tr>
+                              <!-- --------------------------------------------------------------- -->
+                              <tr>
+                                <td colspan="6" class="p-0 border-0">
+                                  <div id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="m-0">
+                                      <div id="penerbangan<%= item['flight_id'] %>" class="collapse m-0" role="tabpanel" aria-labelledby="Cpenerbangan1">
+                                        <div class="card-body m-0 pl-0 pr-0">
+                                          <% @item_detail = 0 %>
+                                          <% item['flight_infos']['flight_info'].each do |item_detail| %>
+                                              <table class="table table-sm">
+                                                <% @item_detail = @item_detail + 1 %>
+                                                <% if item['stop'] != "Langsung" and @item_detail > 1 %>
+                                                    <tr>
+                                                      <td class="pt-0 pb-0 m-0" colspan="4">
+                                                        <div class="alert alert-success mt-3 mb-3 ml-5 mr-5">
+                                                          <i class="icon-info22"></i> Transit
+                                                          Selama <%= item_detail['transit_arrival_text_time'] %>
+                                                          di <%= item_detail['departure_city_name'] %>
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                <% end %>
+                                                <tr>
+                                                  <td class="border-top-0">
+                                                    <%= image_tag item_detail['img_src'], :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                                                    <p class="mb-0 text-center d-block">
+                                                      <small class="text-muted">
+                                                        Maskapai - <%= item_detail['airlines_name'] %>
+                                                      </small>
+                                                    </p>
+                                                  </td>
+                                                  <!-- --------------------------------------------------------------- -->
+                                                  <td class="border-top-0" style="min-width: 434px;">
+                                                    <ul>
+                                                      <li>
+                                                        <span></span>
+                                                        <div>
+                                                          <div class="title">
+                                                            <table class="table table-sm">
+                                                              <tr>
+                                                                <td>
+                                                                  <h3 class="mb-0"><%= item_detail['simple_departure_time'] %></h3>
+                                                                  <p class="mb-0 ph4-<%= item['flight_id'] %>">
+                                                                    <%= item_detail['string_departure_date'] %>
+                                                                  </p>
+                                                                </td>
+                                                                <td>
+                                                                  <h6 class="mb-0">
+                                                                    <%= item_detail['departure_city_name'] + " (#{item_detail['departure_city']})" %>
+                                                                  </h6>
+                                                                </td>
+                                                              </tr>
+                                                            </table>
+                                                          </div>
+                                                          <div class="info">
+                                                            <i class="icon-airplane3"></i> <%= item_detail['duration_hour'] %> <%= item_detail['duration_minute'] %>
+                                                          </div>
+                                                          <div class="title">
+                                                            <table class="table table-sm">
+                                                              <tr>
+                                                                <td>
+                                                                  <h3 class="mb-0"><%= item_detail['simple_arrival_time'] %></h3>
+                                                                  <p class="mb-0">
+                                                                    <%= item_detail['string_arrival_date'] %>
+                                                                  </p>
+                                                                </td>
+                                                                <td>
+                                                                  <h6 class="mb-0">
+                                                                    <%= item_detail['arrival_city_name'] + " (#{item_detail['arrival_city']})" %>
+                                                                  </h6>
+                                                                </td>
+                                                              </tr>
+                                                            </table>
+                                                          </div>
+                                                        </div>
+                                                      </li>
+                                                    </ul>
+                                                  </td>
+                                                  <!-- --------------------------------------------------------------- -->
+                                                  <td class="border-top-0">
+                                                    <p class="mb-0" style="font-size: 12px !important;">
+                                                      - Fligh Number :
+                                                      <span class="ph6-<%= item['flight_id'] %>"><%= item_detail['flight_number'] %></span>
+                                                      - Bagasi : <%= item_detail['check_in_baggage'] %> kg
+                                                    </p>
+                                                  </td>
+                                                </tr>
+                                                <!-- --------------------------------------------------------------- -->
+                                              </table>
+                                          <% end %>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="m-0">
+                                      <div id="harga<%= item['flight_id'] %>" class="collapse m-0" role="tabpanel" aria-labelledby="Charga">
+                                        <div class="card-body m-0 p-0">
+                                          <table class="table">
+                                            <tr>
+                                              <td class="border-top-0">
+                                                <h6 class="lead">
+                                                  <%= item['departure_city_name'] + " (#{item['departure_city']})" %>
+                                                  - <%= item['arrival_city_name'] + " (#{item['arrival_city']})" %>
+                                                </h6>
+                                              </td>
+                                              <!-- --------------------------------------------------------------- -->
+                                              <td class="border-top-0">
+                                                <h6 class="lead">
+                                                  Harga Dasar Dewasa <%= "(x#{params['dewasa']})" %>
+                                                  <span class="float-right">
+                                                        <strong><%= number_to_currency(item['price_adult'], precision: 0, unit: "Rp ") %></strong>
+                                                      </span>
+                                                </h6>
+                                                <h6>
+                                                  Harga Dasar
+                                                  Anak <%= "(x#{ !params['anak'].empty? ? params['anak'] : '0'})" %>
+                                                  <span class="float-right">
+                                                        <strong><%= number_to_currency(item['price_child'], precision: 0, unit: "Rp ") %></strong>
+                                                      </span>
+                                                </h6>
+                                                <h6>
+                                                  Harga Dasar
+                                                  Anak <%= "(x#{ !params['bayi'].empty? ? params['bayi'] : '0'})" %>
+                                                  <span class="float-right">
+                                                        <strong><%= number_to_currency(item['price_infant'], precision: 0, unit: "Rp ") %></strong>
+                                                      </span>
+                                                </h6>
+                                                <hr class="my-3">
+                                                <h6 class="">
+                                                  Jumlah Pembayaran
+                                                  <span class="float-right">
+                                                        <strong><%= number_to_currency(item['price_value'], precision: 0, unit: "Rp ") %></strong>
+                                                      </span>
+                                                </h6>
+                                              </td>
+                                              <!-- --------------------------------------------------------------- -->
+                                            </tr>
+                                            <!-- --------------------------------------------------------------- -->
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                        <% end %>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- --------------------------------------------------- -->
+            </form>
+            <% else %>
+              <div class="w-blank text-center">
+                <%= image_tag 'icon_blank/no_ticket.png', :class => 'mx-auto d-block', :alt => '' %>
+                <p class="mb-0">
+                  Tidak tersedia penerbangan pada rute yang Anda pilih
+                </p>
+                <p class="m-0">
+                  <a href="/tiket-pesawat">Cari penerbangan yang lain...</a>
+                </p>
+              </div>
+            <% end %>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btnFlight').click(function () {
+                $('.nav-tabs a[href="#flightpulang"]').tab('show');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dewasa').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#anak').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#bayi').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+        });
+        // select 2
+        $(document).ready(function () {
+            $(".js-example-placeholder-single").select2({
+                placeholder: ""
+            });
+        });
+        // daterange numberMonth
+        $(function () {
+            $("#sekalijalan").datepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                showOtherMonths: true,
+                numberOfMonths: 2
+            });
+            $("#pulangpergi").datepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                showOtherMonths: true,
+                numberOfMonths: 2
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tooltip").popover({
+                content: "Bagasi max 20kg",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formCariTiket").bootstrapValidator({
+                message: 'Value is not valid',
+                fields: {
+                    b: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Kota asal tidak boleh kosong'
+                            },
+                            different: {
+                                field: 'p',
+                                message: 'Kota asal dan tujuan tidak boleh sama'
+                            }
+                        }
+                    },
+                    p: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Kota tujuan tidak boleh kosong'
+                            },
+                            different: {
+                                field: 'b',
+                                message: 'Kota tujuan dan asal tidak boleh sama'
+                            }
+                        }
+                    }
+
+                }
+            });
+            setTimeout(function () {
+                swal({
+                    title: 'Session Telah Habis',
+                    text: "Halaman akan di refresh otomatis",
+                    type: 'warning',
+                    confirmButtonText: 'Ok'
+                }).then(function (result) {
+                  console.log(result)
+                    if (true) {
+                        window.location = window.location.href
+                    }
+                });
+            }, 600000);
+
+        });
+    </script>
+
+<% end %>

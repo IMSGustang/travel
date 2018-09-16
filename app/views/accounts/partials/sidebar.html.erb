@@ -1,0 +1,246 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="media">
+      <a onclick="showModal();" href="/pengaturan-akun-profile">
+        <%= image_tag !session[:account_detail][:foto]['url'].nil? ? session[:account_detail][:foto]['url'] : "https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g", :class => 'd-flex align-self-center img-circle mr-3', :alt => '', onerror: 'this.error=null;this.src="https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g"' %>
+        <div class="hover-image"></div>
+      </a>
+      <div class="media-body">
+        <h5 class="mt-2 name-user name-user-line"><%= session[:account_nama_depan] %> <%= session[:account_nama_belakang] %></h5>
+        <p class="mb-0 level-user">
+          <%= session[:nama_role] %>
+        </p>
+      </div>
+      <div class="dotted-item">
+        <span class="dotted-item-c"></span>
+      </div>
+    </div>
+
+    <p class="mb-0 id-user text-uppercase">
+      <%= session['account_kode_user'] %>
+    </p>
+  </li>
+</ul>
+<!-- --------------------------------------------------------------- -->
+<ul class="list-group">
+  <li class="list-group-item">
+    <h6 class="lead mb-0">
+      akun
+    </h6>
+  </li>
+  <li class="list-group-item <%= active_class('/accounts/dashboard') %>">
+    <a onclick="showModal();" href="/accounts/dashboard" class="list-group-item-link">
+      Ringkasan Akun
+    </a>
+  </li>
+  <li class="list-group-item <%= active_class_sub('/tambah-saldo-abupay', '/transaksi-abupay') %>">
+    <a onclick="showModal();" href="/tambah-saldo-abupay" class="list-group-item-link">
+      TopUp Deposit
+    </a>
+  </li>
+  <li class="list-group-item <%= active_class_eig_sub('/tiket-pesawat', '/tiket-pesawat/pencarian', '', '/pulsa', '/paket-data', '/token-listrik', '/voucher-game', '/detail-pembelian-evoucher') %>">
+    <a onclick="showModal();" href="/pulsa" class="list-group-item-link">
+      E-Voucher & Tiket
+    </a>
+  </li>
+</ul>
+<!-- --------------------------------------------------------------- -->
+<% if session[:role] == "CMS" %>
+
+<% else %>
+    <% if session[:account_detail][:is_ownership] == 'Y' %>
+        <!--<ul id="accordion2" class="list-group accordion">-->
+          <!--<li class="list-group-item">-->
+            <!--<h6 class="lead mb-0">-->
+              <!--Manajemen Toko-->
+            <!--</h6>-->
+          <!--</li>-->
+
+          <!--<li class="<%= active_class_six_sub('/pengaturan-site-ownerships', '/pengaturan-toko', '/manajemen-paket', '/create-packet', '', '') %>">-->
+            <!--<div class="link">Pengaturan Toko <i class="ion-ios-arrow-down"></i></div>-->
+
+            <!--<ul class="submenu">-->
+              <!--<li class="<%= active_class('/pengaturan-site-ownerships') %>">-->
+                <!--<a onclick="showModal();" href="/pengaturan-site-ownerships">Pengaturan Microsite</a></li>-->
+
+              <!--<li class="<%= active_class('/pengaturan-toko') %>">-->
+                <!--<a onclick="showModal();" href="/pengaturan-toko">Pengaturan Toko Agen</a></li>-->
+              <!--<li class="<%= active_class('/manajemen-paket') %>">-->
+                <!--<a onclick="showModal();" href="/manajemen-paket">Pengaturan Paket</a></li>-->
+            <!--</ul>-->
+          <!--</li>-->
+
+          <!--<li class="list-group-item <%= active_class_five_sub('/paket-saya', '', '', '', '') %>">-->
+            <!--<a onclick="showModal();" href="/paket-saya" class="list-group-item-link">-->
+              <!--Paket Saya-->
+            <!--</a>-->
+          <!--</li>-->
+
+          <!--<li class="list-group-item <%= active_class_five_sub('/semua-pesanan-paket', '/history-pesanan', '', '', '') %>">-->
+            <!--<a onclick="showModal();" href="/semua-pesanan-paket" class="list-group-item-link">-->
+              <!--Daftar Penjualan-->
+            <!--</a>-->
+          <!--</li>-->
+
+          <!--<li class="list-group-item <%= active_class_five_sub('/daftar-penjualan', '', '', '', '') %>">-->
+            <!--<a onclick="showModal();" href="/daftar-penjualan" class="list-group-item-link">-->
+              <!--Konfirmasi Penjualan-->
+            <!--</a>-->
+          <!--</li>-->
+        <!--</ul>-->
+        <!-- --------------------------------------------------------------- -->
+    <% end %>
+<% end %>
+<!-- --------------------------------------------------------------- -->
+<ul id="accordion" class="list-group accordion">
+  <li class="list-group-item">
+    <h6 class="lead mb-0">
+      Halaman Pembelian
+    </h6>
+  </li>
+
+  <li class="<%= active_class_sev_sub('/daftar-paket-b2c', '/detil-paket-b2c', '/paket-agen', '/paket-haji-customer', '/syarat-ketentuan', '/naurah-customer', '/detail-naurah-customer') %>">
+    <div class="link">Beli Paket<i class="ion-ios-arrow-down"></i></div>
+    <ul class="submenu">
+      <li class="<%= active_class('/daftar-paket-b2c') %>">
+        <a onclick="showModal();" href="/daftar-paket-b2c">Paket Umrah</a></li>
+      <li class="<%= active_class('/paket-agen') %>">
+        <a onclick="showModal();" href="/paket-agen">Paket Umrah Agen</a></li>
+      <!--<li class="<%= active_class('/naurah-customer') %>">-->
+      <!--<a onclick="showModal();" href="/naurah-customer">Paket Umrah Naurah</a>-->
+      <!--</li>-->
+      <li class="<%= active_class('/account/paket-haji') %>">
+        <a onclick="showModal();" href="/account/paket-haji">Paket Haji</a></li>
+    </ul>
+  </li>
+
+  <li class="list-group-item <%= active_class_three_sub('/beli-voucher', '/voucher-saya', '/semua-transaksi-voucher') %>">
+    <a onclick="showModal();" href="/beli-voucher" class="list-group-item-link">
+      Voucher
+    </a>
+  </li>
+
+  <li class="list-group-item <%= active_class_three_sub('/fee', '/fee/pencairan', '/fee/transaksi-pencairan') %>">
+    <a onclick="showModal();" href="/fee" class="list-group-item-link">
+      Fee
+    </a>
+  </li>
+
+  <li class="list-group-item <%= active_class_sub('/tukar-poin', '/transaksi-tukar-poin') %>">
+    <a onclick="showModal();" href="/tukar-poin" class="list-group-item-link">
+      Poin Saya
+    </a>
+  </li>
+</ul>
+<!-- --------------------------------------------------------------- -->
+<ul class="list-group">
+  <li class="list-group-item">
+    <h6 class="lead mb-0">
+      Pengaturan Manifest
+    </h6>
+  </li>
+
+  <li class="list-group-item <%= active_class('/data-jamaah') %>">
+    <a onclick="showModal();" href="/data-jamaah" class="list-group-item-link">
+      Jamaah Saya
+    </a>
+  </li>
+
+  <li class="list-group-item <%= active_class_four_sub('/pengaturan-seat', '/add-jamaah', '/transfer-seat', '/riwayat-transfer-seat') %>">
+    <a onclick="showModal();" href="/pengaturan-seat" class="list-group-item-link">
+      Seat Umrah
+    </a>
+  </li>
+
+  <% if session[:account_detail][:is_kcp] == 'Y' %>
+      <!--<li class="list-group-item <%= active_class_four_sub('/pengaturan-seat-kcp', '/pengaturan-seat-markup', '/history-penggunaan-seat-kcp', '') %>">-->
+        <!--<a onclick="showModal();" href="/pengaturan-seat-kcp" class="list-group-item-link">-->
+          <!--Seat Umrah (KCP)-->
+        <!--</a>-->
+      <!--</li>-->
+  <% end %>
+</ul>
+<!-- --------------------------------------------------------------- -->
+<ul class="list-group">
+  <li class="list-group-item">
+    <h6 class="lead mb-0">
+      Maklumat Abutours
+    </h6>
+  </li>
+
+  <li class="list-group-item <%= active_class_three_sub('/pengajuan-penambahan-biaya', '/detail-pengajuan', '') %>">
+    <a onclick="showModal();" href="/pengajuan-penambahan-biaya" class="list-group-item-link">
+      Claim Transaksi
+    </a>
+  </li>
+
+  <li class="list-group-item <%= active_class_three_sub('/daftar-penambahan-biaya-paket-umrah', '/pilih-kategori-penambahan-biaya', '/penambahan-biaya-paket-umrah') %>">
+    <a onclick="showModal();" href="/daftar-penambahan-biaya-paket-umrah" class="list-group-item-link">
+      Penambahan Biaya
+    </a>
+  </li>
+
+  <li class="list-group-item <%= active_class('/history-pembahan-biaya') %>">
+    <a onclick="showModal();" href="/history-pembahan-biaya" class="list-group-item-link">
+      History Penambahan Biaya
+    </a>
+  </li>
+</ul>
+<!-- --------------------------------------------------------------- -->
+<ul class="list-group">
+  <li class="list-group-item">
+    <h6 class="lead mb-0">
+      Transaksi
+    </h6>
+  </li>
+  <li class="list-group-item <%= active_class_four_sub('/pembayaran-umrah', '/transaksi-umrah', '', '') %>">
+    <a onclick="showModal();" href="/pembayaran-umrah" class="list-group-item-link">
+      Pembelian
+      <% if @badge_pembelian && @badge_pembelian['status'] == 200 %>
+          <span class="badge badge-pill badge-success"><%= @badge_pembelian['total'] %></span>
+      <% end %>
+    </a>
+  </li>
+
+  <li class="list-group-item <%= active_class('/mutasi-deposit') %>">
+    <a onclick="showModal();" href="/mutasi-deposit" class="list-group-item-link">
+      Mutasi Deposit
+    </a>
+  </li>
+</ul>
+<!-- --------------------------------------------------------------- -->
+<ul id="accordion3" class="list-group border-none accordion">
+  <li class="list-group-item">
+    <h6 class="lead mb-0">
+      Pengaturan Umum
+    </h6>
+  </li>
+
+  <li class="<%= active_class_six_sub('/pengaturan-akun-profile', '/data-bank', '/tambah-data-bank', '/edit-data-bank', '/pengaturan-password', '') %>">
+    <div class="link">Pengaturan Profil <i class="ion-ios-arrow-down"></i></div>
+    <ul class="submenu">
+      <li class="<%= active_class('/pengaturan-akun-profile') %>">
+        <a onclick="showModal();" href="/pengaturan-akun-profile">Data Diri</a>
+      </li>
+      <li class="<%= active_class_three_sub('/data-bank', '/tambah-data-bank', '') %>">
+        <a onclick="showModal();" href="/data-bank">Data Bank</a>
+      </li>
+      <li class="<%= active_class('/pengaturan-password') %>">
+        <a onclick="showModal();" href="/pengaturan-password">Password</a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="list-group-item <%= active_class('/informasi') %>">
+    <a onclick="showModal();" href="/informasi" class="list-group-item-link">
+      Notification
+      <!--<span class="badge">New</span>-->
+    </a>
+  </li>
+
+  <li class="list-group-item <%= active_class('/') %>">
+    <a onclick="showModal();" href="/app/logout" class="list-group-item-link">
+      Keluar
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,118 @@
+.modal {
+  background-color: rgba(255, 255, 255, .95);
+
+  &-dialog {
+    max-width: 666px;
+  }
+
+  &-content {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border: 1px solid #f3f1f0;
+
+    & .close_modal {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      background: #ffffff;
+      border-radius: 100%;
+      border: 4px solid #f9f7f6;
+      z-index: 10;
+      opacity: 1;
+      text-shadow: none;
+      color: $color-default;
+    }
+
+    & .modal-body {
+      padding: 30px 15px;
+
+      & .form-group {
+        & label {
+          margin: 4px 0;
+          font-size: 13px;
+          color: #000;
+          font-weight: 500;
+          letter-spacing: -.3px;
+          text-transform: capitalize;
+        }
+
+        & .input-group {
+          & .input-group-addon {
+            position: absolute;
+            z-index: 10;
+            background: transparent;
+            border-radius: 0px;
+            border: none;
+          }
+        }
+
+        & .form-control {
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-size: 14px;
+
+          &:focus {
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+          }
+        }
+
+        //& .select2-container--bootstrap .select2-selection--single {
+        //  padding-left: 0px !important;
+        //}
+
+        & .select2-container--bootstrap .select2-selection {
+          -webkit-border-radius: 3px !important;
+          -moz-border-radius: 3px !important;
+          border-radius: 3px !important;
+        }
+
+        & .table {
+          margin: 0;
+
+          & tr {
+            & td {
+              border: none;
+
+              & p {
+                font-size: 12px;
+              }
+
+              & .custom-control {
+                & .custom-control-indicator {
+                  top: 1px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & .modal-footer {
+      & .table {
+        margin: 0;
+
+        & td {
+          border: none;
+
+          & .btn {
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+            font-size: 14px;
+          }
+
+          & .btn-outline-light {
+            color: #333333;
+          }
+        }
+      }
+    }
+  }
+}

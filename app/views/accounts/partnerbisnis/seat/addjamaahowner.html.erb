@@ -1,0 +1,553 @@
+<% content_for :head do %>
+    <title>Tambah Data Jamaah | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Tambah Jamaah</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-content mt-1">
+                <div class="card-body c-dashboard-content__item">
+                  <div class="row justify-content-between">
+                    <div class="col-4">
+                      <h3 class="mt-1 mb-0 text-uppercase">
+                        Data Seat
+                      </h3>
+                    </div>
+                    <div class="col-5">
+                      <label class="custom-control custom-radio">
+                        <input id="checked1" name="radio" type="radio" class="custom-control-input" checked="checked" value="Y">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Data Jamaah</span>
+                      </label>
+                      <label class="custom-control custom-radio">
+                        <input id="checked2" name="radio" type="radio" class="custom-control-input" value="N">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Orang Lain</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <hr>
+                  <form class="form-costumes" action="/api/jamaah/seat" method="post" id="needs-validation" enctype="multipart/form-data" novalidate>
+                    <input type="hidden" name="status_pemesan" id="status_pemesan" value="Y">
+                    <input type="hidden" name="kode_produk" value="<%= params['kp'] %>">
+                    <input type="hidden" name="kode_kantor" value="<%= params['kk'] %>">
+                    <input type="hidden" name="bulan_berangkat" value="<%= @data['bulan_paket'] %>">
+                    <div id="form1">
+                      <div class="alert alert-secondary">
+                        <div class="form-group row">
+                          <div class="col-4">
+                            <label>Kode Booking</label>
+                            <input type="text" name="kode_booking" class="form-control" value="<%= @data['kode_booking'] %>" readonly>
+                          </div>
+                          <div class="col-4">
+                            <label>Bulan Keberangkatan</label>
+                            <input type="text" name="bulan_berangkat_dumy" class="form-control" value="<%= TimeFormat::month(@data['bulan_paket']) %>" readonly>
+                          </div>
+                          <div class="col-4">
+                            <label>Tahun Keberangkatan</label>
+                            <input type="number" name="tahun_berangkat" class="form-control" value="<%= @data['tahun_paket'] %>" readonly>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-3">
+                          <div class="form-group text-center mb-0">
+                            <label class="text-left">Photo Jamaah</label>
+                            <div class="kv-avatar">
+                              <div class="file-loading">
+                                <input id="photo_jamaah" name="photo_jamaah" type="file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-9">
+                          <div class="form-group row">
+                            <div class="col-3">
+                              <label>Title <span class="text-danger">*</span></label>
+                              <select id="title" name="title">
+                                <option value="Mr" data-prefix="<span aria-hidden='true''></span>">
+                                  Mr
+                                </option>
+                                <option value="Mrs" data-prefix="<span aria-hidden='true''></span>">
+                                  Mrs
+                                </option>
+                                <option value="Ms" data-prefix="<span aria-hidden='true''></span>">
+                                  Ms
+                                </option>
+                              </select>
+                            </div>
+
+                            <div class="col-9">
+                              <label>Nama Lengkap Jamaah <span class="text-danger">*</span></label>
+                              <input type="text" name="nama_jamaah" class="form-control txtOnly" value="" placeholder="" required>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <div class="col-6">
+                              <label>Jenis Kelamin <span class="text-danger">*</span></label>
+                              <select id="jk" name="jk" required>
+                                <option value="0" disabled>
+                                  Pilih jenis kelamin...
+                                </option>
+                                <option value="L" data-prefix="<span aria-hidden='true''></span>">
+                                  Laki - Laki
+                                </option>
+                                <option value="P" data-prefix="<span aria-hidden='true''></span>">
+                                  Perempuan
+                                </option>
+                              </select>
+                            </div>
+
+                            <div class="col-6">
+                              <label>Tempat Lahir <span class="text-danger">*</span></label>
+                              <input type="text" name="tempat_lahir" class="form-control txtOnly" value="" placeholder="" required>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <div class="col-6">
+                              <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                              <input type="text" name="tanggal_lahir" class="form-control" placeholder="" required>
+                            </div>
+
+                            <div class="col-6">
+                              <label>Umur Anda <span class="text-danger">*</span></label>
+                              <input type="text" name="" class="form-control" placeholder="" disabled>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr class="my-3">
+
+                      <div class="row">
+                        <div class="col-3">
+                          <div class="form-group text-center mb-0">
+                            <label class="text-left">Photo Passpor</label>
+                            <div class="kv-avatar">
+                              <div class="file-loading">
+                                <input id="photo_paspor" name="photo_passpor" type="file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-9">
+                          <div class="form-group row">
+                            <div class="col-12">
+                              <label>Nomor Passpor <span class="text-danger">*</span></label>
+                              <input type="text" name="no_paspor" class="form-control" value="" placeholder="" required>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <div class="col-12">
+                              <label>Tempat Terbit Passpor <span class="text-danger">*</span></label>
+                              <input type="text" name="tempat_terbit_pass" class="form-control txtOnly" placeholder="" required>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-6">
+                              <label>Tanggal Terbit Passpor <span class="text-danger">*</span></label>
+                              <input type="text" name="tanggal_issued_pass" class="form-control" placeholder="" required>
+                            </div>
+
+                            <div class="col-6">
+                              <label>Tanggal Expired Passpor <span class="text-danger">*</span></label>
+                              <input type="text" name="tanggal_ex_pass" class="form-control" placeholder="" required>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr class="my-3">
+
+                      <div class="form-group row">
+                        <div class="col-4">
+                          <label for="abutours">Provinsi</label>
+                          <div class="input-group">
+                            <select class="js-example-placeholder-single form-control" name="provinsi" id="province">
+                              <% @provinsi.each do |provinsis| %>
+                                  <option value="<%= provinsis['province_id'] %>"><%= provinsis["province"] %></option>
+                              <% end %>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="abutours">Kab/Kota</label>
+                          <div class="input-group">
+                            <select class="js-example-placeholder-single form-control" name="kota" id="kabkot">
+                              <option value="0" disabled>
+                                Pilih kab/kota...
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="abutours">Kecamatan</label>
+                          <div class="input-group">
+                            <select class="js-example-placeholder-single form-control" name="kecamatan" id="kec">
+                              <option value="0" disabled>
+                                Pilih kecamatan...
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-4">
+                          <label>Kelurahan</label>
+                          <input type="text" name="kelurahan" class="form-control" placeholder="">
+                        </div>
+
+                        <div class="col-4">
+                          <label>Nomor Telepon Jamaah <span class="text-danger">*</span></label>
+                          <input type="number" name="telepon" class="form-control" maxlength="14" placeholder="" required>
+                        </div>
+                        <div class="col-4">
+                          <label>Nomor Identitas (KTP) <span class="text-danger">*</span></label>
+                          <input type="number" name="ktp" class="form-control" maxlength="14" placeholder="" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-7">
+                          <label>Jamaah Pernah Umrah Sebelumnya ?</label>
+                          <select id="PU" name="pernah_umrah">
+                            <option value="N" data-prefix="<span aria-hidden='true''></span>">
+                              Tidak Pernah
+                            </option>
+                            <option value="Y" data-prefix="<span aria-hidden='true''></span>">
+                              Pernah
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="col-5" id="pernah">
+                          <label>Kapan</label>
+                          <input type="text" name="tanggal_umrah" class="form-control" placeholder="">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-4">
+                          <label>Jamaah memiliki mahrom ?</label>
+                          <select id="mahrom" name="mahrom">
+                            <option value="T" data-prefix="<span aria-hidden='true''></span>">
+                              Tidak
+                            </option>
+                            <option value="P" data-prefix="<span aria-hidden='true''></span>">
+                              Ya
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="col-8" id="kode_booking">
+                          <label>Kode Booking Mahrom</label>
+                          <input type="text" name="" class="form-control" placeholder="">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-12">
+                          <label for="abutours">Alamat Lengkap Jamaah (Domisili)
+                            <span class="text-danger">*</span></label>
+                          <textarea class="form-control" rows="3" maxlength="300" name="alamat" required></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-12">
+                          <label for="abutours">Keterangan</label>
+                          <textarea class="form-control" rows="3" name="keterangan" maxlength="300"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="alert alert-light pl-0 pr-0">
+                        <table class="table">
+                          <tr>
+                            <td>Biaya Asuransi Umur (17 - 45 Tahun)</td>
+                            <td width="202" id="asuransi">
+                              Rp 0
+                            </td>
+                            <td rowspan="3">
+                              <button type="button" class="btn btn-block btn-outline-danger " onclick="biayaTambahan()">Cek</button>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              Visa Progresif
+                            </td>
+                            <td width="202" id="visa_progressif">
+                              Rp 0
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <th class="text-danger">
+                              Total Biaya Tambahan
+                            </th>
+                            <th width="202" class="text-danger" id="total">
+                              Rp 0
+                            </th>
+                          </tr>
+                        </table>
+                      </div>
+
+                      <!-- --------------------------------------------------- -->
+                      <div class="form-group row mt-5">
+                        <div class="col-6">
+                          <a href="/pengaturan-seat" class="btn btn-block btn-outline-secondary">Batalkan</a>
+                        </div>
+                        <div class="col-6">
+                          <button type="submit" role="button" class="btn btn-block btn-success" onclick="">Simpan</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <form class="form-costumes" action="/api/jamaah/seat" method="post" id="needs-validation" novalidate>
+                    <input type="hidden" name="status_pemesan" id="status_pemesan" value="N">
+                    <input type="hidden" name="kode_produk" value="<%= params['kp'] %>">
+                    <input type="hidden" name="kode_kantor" value="<%= params['kk'] %>">
+                    <input type="hidden" name="bulan_berangkat" value="<%= @data['bulan_paket'] %>">
+                    <div id="form2" class="d-none">
+                      <div class="alert alert-secondary">
+                        <div class="form-group row">
+                          <div class="col-4">
+                            <label>Kode Booking</label>
+                            <input type="text" name="kode_booking" class="form-control" value="<%= @data['kode_booking'] %>" readonly>
+                          </div>
+                          <div class="col-4">
+                            <label>Bulan Keberangkatan</label>
+                            <input type="text" name="bulan_berangkat_dumy" class="form-control" value="<%= TimeFormat::month(@data['bulan_paket']) %>" readonly>
+                          </div>
+                          <div class="col-4">
+                            <label>Tahun Keberangkatan</label>
+                            <input type="number" name="tahun_berangkat" class="form-control" value="<%= @data['tahun_paket'] %>" readonly>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-12">
+                          <label>Nama Lengkap<span class="text-danger">*</span></label>
+                          <input type="text" name="nama_jamaah" class="form-control txtOnly" placeholder="" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-6">
+                          <label>Email</label>
+                          <input type="email" name="" class="form-control" value="" placeholder="">
+                        </div>
+                        <div class="col-6">
+                          <label>No. Telepon <span class="text-danger">*</span></label>
+                          <input type="number" name="telepon" class="form-control" placeholder="" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-12">
+                          <label for="abutours">Alamat Lengkap Jamaah (Domisili)
+                            <span class="text-danger">*</span></label>
+                          <textarea class="form-control" rows="2" maxlength="300" name="alamat" required></textarea>
+                        </div>
+                      </div>
+
+                      <!-- --------------------------------------------------- -->
+                      <div class="form-group row mt-5">
+                        <div class="col-6">
+                          <a href="/pengaturan-seat" class="btn btn-block btn-outline-secondary">Batalkan</a>
+                        </div>
+                        <div class="col-6">
+                          <button type="submit" role="button" class="btn btn-block btn-success">Simpan</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#jk').prettyDropdown({
+                afterLoad: function () {
+
+                }
+            });
+
+            $('#PU, #title, #mahrom').prettyDropdown({
+                afterLoad: function () {
+
+                }
+            });
+        });
+
+        $(".js-example-placeholder-single").select2({
+            placeholder: "Pilih alamat . . ."
+        });
+
+        $(document).ready(function () {
+            $('input[name="tanggal_issued_pass"], input[name="tanggal_ex_pass"], input[name="tanggal_lahir"], input[name="tanggal_umrah"] ').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                "singleDatePicker": true,
+                "autoApply": true,
+                "showDropdowns": true
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[name="radio"]').click(function () {
+                $('input[name="status_pemesan"]').val($(this).val());
+            });
+        });
+    </script>
+
+    <!-- the fileinput plugin initialization -->
+    <script type="text/javascript">
+        $("#photo_jamaah").fileinput({
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: false,
+            showUpload: false,
+            showCaption: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="ion-ios-camera-outline"></i>',
+            removeIcon: '<i class="ion-ios-close-empty"></i>',
+//            removeTitle: 'Cancel or reset changes',
+//            elErrorContainer: '#kv-avatar-errors-2',
+//            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '<img src="/assets/lib/icon/03.png" class="p-4" alt="Gambar anda">',
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+
+        $("#photo_paspor").fileinput({
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: false,
+            showUpload: false,
+            showCaption: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="ion-ios-camera-outline"></i>',
+            removeIcon: '<i class="ion-ios-close-empty"></i>',
+//            removeTitle: 'Cancel or reset changes',
+//            elErrorContainer: '#kv-avatar-errors-2',
+//            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '<img src="/assets/lib/icon/03.png" class="p-4" alt="Gambar anda">',
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+    </script>
+
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            window.addEventListener("load", function () {
+                var form = document.getElementById("needs-validation");
+                form.addEventListener("submit", function (event) {
+                    if (form.checkValidity() == false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            }, false);
+        }());
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#checked1").on('click', function () {
+                if ($('#checked1').is(':checked')) {
+                    $('#form1').removeClass('d-none');
+                    $('#form2').addClass('d-none');
+                }
+            });
+
+            $("#checked2").on('click', function () {
+                if ($('#checked2').is(':checked')) {
+                    $('#form1').addClass('d-none');
+                    $('#form2').removeClass('d-none');
+                }
+            });
+        });
+
+        $(function () {
+            $('#pernah').hide();
+            $('#PU').change(function () {
+                if ($('#PU').val() == 'Y') {
+                    $('#pernah').show();
+                } else {
+                    $('#pernah').hide();
+                }
+            });
+        });
+
+        $(function () {
+            $('#kode_booking').hide();
+            $('#mahrom').change(function () {
+                if ($('#mahrom').val() == 'P') {
+                    $('#kode_booking').show();
+                } else {
+                    $('#kode_booking').hide();
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".txtOnly").keypress(function (e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+<% end %>

@@ -1,0 +1,72 @@
+<% content_for :head do %>
+    <title>Pengaturan Password | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Pengaturan Password</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user c-dashboard-user-small">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <form action="" method="post" id="needs-validation" novalidate>
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item">
+                    <table class="table table-profile">
+                      <tr>
+                        <td class="bt-none" width="200">Kode OTP</td>
+                        <td class="bt-none">
+                          <input type="text" name="kodeOtp" class="form-control" placeholder="Masukan Kode OTP yang Telah Anda Terima..." value="" required>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <!-- --------------------------------------------------- -->
+                <div class="card c-dashboard-content mt-1 mb-3">
+                  <div class="card-body c-dashboard-content__item">
+                    <table class="table table-flex">
+                      <tr>
+                        <td class="bt-none">
+                          <a href="/" class="btn btn-lg btn-block btn-secondary">
+                            Batal
+                          </a>
+                        </td>
+                        <td class="bt-none">
+                          <button type="submit" class="btn btn-lg btn-block btn-success">Simpan Perubahan</button>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<% content_for :foot do %>
+<% end %>

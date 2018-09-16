@@ -1,0 +1,172 @@
+<% content_for :head do %>
+    <title>Konfirmasi Pembayaran | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+        <div class="container">
+            <div class="row">
+                <!-- --------------------------------------------------- -->
+                <div class="col-3 pr-4 sticky">
+                    <div class="card c-dashboard-side pb-5">
+                        <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                            <%= render template: 'accounts/partials/sidebar' %>
+                        </div>
+                    </div>
+                </div>
+                <!-- --------------------------------------------------- -->
+                <div class="col-9 pl-0 pr-2 ml-15">
+                    <div class="_landing | w-breadcrumb">
+                        <ol class="breadcrumb border-bottom-0">
+                            <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                            <li class="breadcrumb-item active">Konfirmasi</li>
+                        </ol>
+                    </div>
+
+                    <!-- --------------------------------------------------- -->
+                    <div class="card c-dashboard-user c-dashboard-user-small">
+                        <%= render template: 'accounts/partials/bannerTop' %>
+                    </div>
+                    <!-- --------------------------------------------------- -->
+                    <div class="c-bg-white-accounts">
+                        <form action="/api/transaksi/konfirmasi/abupay" method="post" enctype="multipart/form-data" id="needs-validation" novalidate>
+                        <input type="hidden" name="type" value="<%= params['type'] %>">
+                        <div class="card c-dashboard-content mt-1">
+                            <div class="card-body c-dashboard-content__item">
+                                <h3 class="mb-4">
+                                    Konfirmasi Pembayaran Transfer
+                                </h3>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="form-group text-center">
+                                            <label>Bukti Transfer</label>
+                                            <div class="kv-avatar">
+                                                <div class="file-loading">
+                                                    <input id="bkt_transfer" name="gambar" type="file" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>No Transaksi</label>
+                                                    <input type="text" name="no_transaksi" class="form-control" value="<%= @data['no_trans'] %>" readonly>
+                                                    <input type="hidden" name="no_bayar" value="<%= @data['no_bukti'] %>">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Kode Booking</label>
+                                                    <input type="text" name="tgl_transaksi" class="form-control" value="<%= TimeFormat::indonesia(@data['tgl_trans']) %>" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Metode Pembayaran</label>
+                                                    <input type="text" name="metode_pembayaran" class="form-control" value="Transfer" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Bank Tujuan</label>
+                                                    <% if !@bank[0].nil? %>
+                                                        <input type="text" name="" id="" class="form-control" value="<%= @bank[0]['nama'] %> <%= @bank[0]['norekening'] %>" readonly>
+                                                        <input type="hidden" name="kode_bank" value="<%= !@data['kdbank'].nil? ? @data['kdbank'] : @bank[0]['kdbank'] %>">
+                                                    <% else %>
+                                                        <input type="text" name="" id="" class="form-control" value="Data tidak ditemukan" readonly>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Jumlah Transaksi</label>
+                                                    <% if !@bank[0].nil? %>
+                                                    <input type="text" name="jumlah" class="form-control" value="<%= number_to_currency(@data['harga_bayar'].to_i, precision: 0, unit: @bank[0]['kdbank'].last(3).to_s == "USD" ? "USD " : "IDR ") %>" readonly>
+                                                    <% else %>
+                                                    <input type="text" name="jumlah" class="form-control" value="<%= number_to_currency(@data['harga_bayar'].to_i, precision: 0, unit: @data['kdbank'].last(3).to_s == "USD" ? "USD " : "IDR ") %>" readonly>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Jumlah Pembayaran</label>
+                                                    <input type="text" name="jumlah" id="nominalT" class="form-control" required>
+                                                    <small class="form-text text-muted">
+                                                        Masukan jumlah pembayaran yang anda kirim
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center mt-4 mb-4">
+                                <div class="col-10">
+                                    <table class="table table-flex">
+                                        <tr>
+                                            <td class="bt-none">
+                                                <a href="/accounts/dashboard" class="btn btn-block btn-secondary">
+                                                    Kembali
+                                                </a>
+                                            </td>
+                                            <td class="bt-none">
+                                                <button type="submit" class="btn btn-block btn-success">Konfirmasi</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        </form>
+                        </form>
+                    </div>
+                </div>
+                <!-- --------------------------------------------------- -->
+            </div>
+        </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#bkt_transfer").fileinput({
+                overwriteInitial: true,
+                maxFileSize: 1500,
+                showClose: false,
+                showUpload: false,
+                showCaption: false,
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="ion-ios-camera-outline"></i>',
+                removeIcon: '<i class="ion-ios-close-empty"></i>',
+                defaultPreviewContent: '<%= image_tag !session[:account_detail][:foto]['url'].nil? ? session[:account_detail][:foto]['url'] : "", :alt => '' %>',
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+
+            $('#nominalT').maskMoney({prefix: 'Rp ', thousands: ',', decimal: ',', precision: 0});
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            window.addEventListener("load", function () {
+                var form = document.getElementById("needs-validation");
+                form.addEventListener("submit", function (event) {
+                    if (form.checkValidity() == false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            }, false);
+        }());
+    </script>
+<% end %>

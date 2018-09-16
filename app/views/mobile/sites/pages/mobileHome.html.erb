@@ -1,0 +1,275 @@
+<%= content_for :active_home do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Abutours | Best Travel Services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <% if session['acc_token'] %>
+        <div class="data-fitur">
+          <div class="card card-body">
+            <table class="table table-sm">
+              <tbody>
+              <tr>
+                <td>
+                  <a href="/tambah-saldo-abupay">
+                    <div class="media">
+                      <div class="align-self-center mr-2">
+                        <div class="icons-sm icons-deposit"></div>
+                      </div>
+                      <div class="media-body">
+                        <h6 class="text-uppercase text-left mt-0 mb-0">
+                          Deposit
+                        </h6>
+                        <h4 class="text-left mb-0">
+                          Rp <%= number_to_currency(session['account_saldo'], precision: 0, unit: " ") %>
+                        </h4>
+                      </div>
+                    </div>
+                  </a>
+                </td>
+                <td>
+                  <a href="/tukar-poin" class="w-100">
+                    <div class="media">
+                      <div class="media-body">
+                        <h6 class="text-uppercase text-right mt-0 mb-0">
+                          Poin
+                        </h6>
+                        <h4 class="text-right mb-0">
+                          <%= session[:account_poin] %> pt
+                        </h4>
+                      </div>
+                      <div class="align-self-center ml-2">
+                        <div class="icons-sm icons-poin"></div>
+                      </div>
+                    </div>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="data-sliders">
+      <div class="swiper-container swiper-banner">
+        <div class="swiper-wrapper">
+          <% if @data_slider %>
+              <% first = true %>
+              <% @data_slider.each do |slider| %>
+                  <div class="swiper-slide">
+                    <%= image_tag slider['foto_mobile'], :class => 'd-block w-100', :alt => slider['judul'] %>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <%= react_component 'mobileCategories' %>
+
+    <div class="data-recomended">
+      <div class="card-header">
+        <h6 class="m-0">
+          Umrah Terpopuler di Indonesia
+        </h6>
+      </div>
+      <div class="line-border"></div>
+      <div class="swiper-container carousel-product">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <a href="/paket-umrah/CNM,MPG/paket-umrah-di-kota-jakarta-selatan" class="data-city">
+              <div class="card mt-2 mb-2">
+                <div class="card-body-image">
+                  <%= image_tag '/assets/destination_categories/jakarta.png', :class => 'card-img', :alt => '' %>
+                </div>
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Jakarta</h5>
+                  <p class="card-text">
+                    Lihat paket tersedia
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="/paket-umrah/BJG,DAY,HRM,PET/paket-umrah-di-kota-makassar" class="data-city">
+              <div class="card mt-2 mb-2">
+                <div class="card-body-image">
+                  <%= image_tag '/assets/destination_categories/makassar.png', :class => 'card-img', :alt => '' %>
+                </div>
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Makassar</h5>
+                  <p class="card-text">
+                    Lihat paket tersedia
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="/paket-umrah/SBY,SUB/paket-umrah-di-kota-surabaya" class="data-city">
+              <div class="card mt-2 mb-2">
+                <div class="card-body-image">
+                  <%= image_tag '/assets/destination_categories/surabaya.png', :class => 'card-img', :alt => '' %>
+                </div>
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Bandung</h5>
+                  <p class="card-text">
+                    Lihat paket tersedia
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="swiper-pagination" id="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- haji -->
+    <div class="data-recomended pt-0">
+      <div class="card-header">
+        <h6 class="m-0">
+          Solusi Untuk Semua Ibadah Haji
+        </h6>
+      </div>
+      <div class="line-border"></div>
+      <div class="swiper-container carousel-product">
+        <div class="swiper-wrapper">
+          <% if !@paket_haji_list.nil? %>
+              <% @paket_haji_list.each do |items| %>
+                  <div class="swiper-slide">
+                    <a href="/paket-haji/<%= items['kode_produk'] %>/<%= items['kdkantor'] %>/<%= items['tahun'] %>/<%= items['bulan'] %>/<%= items['nama_seo'] %>" class="data-products">
+                      <div class="card mt-2 mb-2">
+                        <div class="card-body-image">
+                          <%= image_tag !items['gambar'].nil? ? items['gambar'] : 'no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '' %>
+                        </div>
+                        <div class="card-body">
+                          <p class="packet-rate mb-0">
+                            <!--Active Star-->
+                            <% (1..items['rating']).each do |star|%>
+                                <i class="ion-android-star"></i>
+                            <% end %>
+                            <!--End-->
+                            <!--Non Active Star-->
+                            <%(1..5-items['rating']).each do |star|%>
+                                <i class="ion-android-star-outline"></i>
+                            <% end %>
+                            <!--End-->
+                          </p>
+                          <div class="name-packet name-packet-line">
+                            <h3 class="price-packet mb-1">
+                              <%= number_to_currency(items['harga_jual'], precision: 0, unit: "#{items['tipe_curr']} ") %>
+                            </h3>
+                            <%= items['nama'].titlecase %>
+                          </div>
+                          <h6 class="card-text packet-city m-0">
+                            Kota <%= items['kota'].titlecase %> , <%= items['kantor'].titlecase %>
+                          </h6>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+
+        <div class="swiper-pagination" id="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- store -->
+    <!--<div class="data-recomended pt-0">-->
+    <!--<div class="card-header">-->
+    <!--<h6 class="m-0">-->
+    <!--Produk Terbaru-->
+    <!--</h6>-->
+    <!--</div>-->
+    <!--<div class="line-border"></div>-->
+    <!--<div class="swiper-container">-->
+    <!--<div class="swiper-wrapper">-->
+    <!--<div class="swiper-slide">-->
+    <!--<a href="/detil-produk" class="data-products">-->
+    <!--<div class="card mt-2 mb-2">-->
+    <!--<div class="card-body-image">-->
+    <!--<%= image_tag '/assets/store/1.jpg', :class => 'mx-auto d-block', :alt => '' %>-->
+    <!--</div>-->
+    <!--<div class="card-body" style="height: 66px">-->
+    <!--<div class="name-packet name-packet-line">-->
+    <!--<h3 class="price-packet mb-1">-->
+    <!--Rp20,000-->
+    <!--</h3>-->
+    <!--Souvenir Umrah Original Madinah-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+
+    <!--<div class="swiper-slide">-->
+    <!--<a href="/detil-produk" class="data-products">-->
+    <!--<div class="card mt-2 mb-2">-->
+    <!--<div class="card-body-image">-->
+    <!--<%= image_tag '/assets/store/2.jpg', :class => 'mx-auto d-block', :alt => '' %>-->
+    <!--</div>-->
+    <!--<div class="card-body" style="height: 66px">-->
+    <!--<div class="name-packet name-packet-line">-->
+    <!--<h3 class="price-packet mb-1">-->
+    <!--Rp20,000-->
+    <!--</h3>-->
+    <!--Souvenir Umrah Original Madinah-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+
+    <!--<div class="swiper-slide">-->
+    <!--<a href="/detil-produk" class="data-products">-->
+    <!--<div class="card mt-2 mb-2">-->
+    <!--<div class="card-body-image">-->
+    <!--<%= image_tag '/assets/store/3.jpg', :class => 'mx-auto d-block', :alt => '' %>-->
+    <!--</div>-->
+    <!--<div class="card-body" style="height: 66px">-->
+    <!--<div class="name-packet name-packet-line">-->
+    <!--<h3 class="price-packet mb-1">-->
+    <!--Rp20,000-->
+    <!--</h3>-->
+    <!--Souvenir Umrah Original Madinah-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="swiper-pagination" id="swiper-pagination"></div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+<% end %>
+
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        var swiper = new Swiper('.carousel-product', {
+            pagination: '.swiper-pagination',
+            slidesPerView: 2,
+            paginationClickable: true,
+            spaceBetween: 0
+        });
+
+        var swiper = new Swiper('.swiper-banner', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true
+        });
+    </script>
+<% end %>

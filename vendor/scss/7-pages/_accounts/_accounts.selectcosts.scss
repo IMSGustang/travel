@@ -1,0 +1,182 @@
+.additional-cost {
+  & .title-cost {
+    color: #000;
+    opacity: .7;
+    letter-spacing: -.5px;
+  }
+
+  & .card {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin: 10px 0;
+
+    & .card-header {
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      border: none;
+      background: #ffffff;
+      padding: 0;
+
+      & .table {
+        & td {
+          border: none;
+          border-right: 2px solid #f5f5f5;
+          padding: 14px;
+
+          & span {
+            text-transform: uppercase;
+            font-size: 10px;
+            color: #000;
+            opacity: .5;
+            font-weight: 600;
+          }
+
+          & p {
+            color: #000;
+            font-weight: 500;
+          }
+
+          &.cos1 {
+            width: 200px;
+            & p {
+              font-size: 12px;
+              line-height: 24px;
+              font-weight: bold;
+            }
+          }
+          &.cos2 {
+            width: 110px;
+          }
+          &.cos3 {
+            & .name-packet {
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              position: relative;
+              overflow: hidden;
+              height: 22px !important;
+              max-height: 22px !important;
+              margin-bottom: 0;
+
+              &.name-packet-line {
+                -webkit-transition: all .2s ease-out;
+                -o-transition: all .2s ease-out;
+                transition: all .2s ease-out;
+                overflow: hidden;
+                text-transform: capitalize;
+                font-size: 14px;
+                letter-spacing: -.5px;
+              }
+
+              &::after {
+                content: "";
+                text-align: right;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 25%;
+                background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+                background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+                background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+                background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+                height: 25px !important;
+              }
+            }
+          }
+          &.cos4 {
+            vertical-align: middle;
+            width: 100px;
+
+            & .btn {
+              font-size: 14px;
+              font-weight: 500;
+            }
+          }
+
+          &:last-child {
+            border-right: none;
+          }
+        }
+      }
+    }
+
+    & .card-body {
+      & .table {
+        & th {
+          font-size: 11px;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #000;
+          opacity: .5;
+          vertical-align: middle;
+        }
+
+        & td {
+          vertical-align: middle;
+          font-size: 12px;
+          color: #000;
+          font-weight: 500;
+
+          & .btn {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+          }
+
+          & .badge {
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+          }
+        }
+      }
+    }
+  }
+
+  & .card-group {
+    & .card {
+      margin: 10px 5px;
+
+      & .card-img-top {
+        width: 141px;
+        margin-top: 10px;
+      }
+
+      & .card-body {
+        & p {
+          text-align: justify;
+          word-break: keep-all;
+
+          & span {
+            font-weight: 500;
+          }
+        }
+
+        & ul {
+          padding-left: 18px;
+          & li {
+            padding-left: 0px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+            margin: 6px 0;
+          }
+        }
+      }
+
+      & .card-footer {
+        border: none;
+        & .btn {
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}

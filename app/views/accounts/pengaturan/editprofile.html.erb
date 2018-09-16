@@ -1,0 +1,511 @@
+<% content_for :head do %>
+    <title>Pengaturan Akun | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Pengaturan Profile</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user c-dashboard-user-small">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <form class="form-costumes" action="/api/profil-update" method="post" enctype="multipart/form-data" id="needs-validation" novalidate>
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item edit-profile">
+
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="form-group text-center">
+                          <div class="kv-avatar">
+                            <div class="file-loading">
+                              <input id="avatar-1" name="photo" type="file">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-9">
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="abutours">Nama Lengkap</label>
+                              <input type="text" name="nama" class="form-control txtOnly" id="validate1" value="<%= session[:account_nama_depan] %> <%= session[:account_nama_belakang] %>">
+                            </div>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="abutours">E-Mail</label>
+                              <input type="email" name="email" class="form-control" value="<%= session[:account_email] %>">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="abutours">Tempat Lahir</label>
+                          <input type="text" name="tempat_lahir" class="form-control txtOnly" placeholder="Tempat lahir anda" value="<%= session[:account_detail][:tempat_lahir] %>">
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="abutours">Tanggal Lahir</label>
+                          <% if !session[:account_detail][:tanggal_lahir].nil? %>
+                              <input type="text" name="tgl_lahir" class="form-control" value="<%= TimeFormat::indonesia(session[:account_detail][:tanggal_lahir]) %>">
+                          <% else %>
+                              <input type="text" name="tgl_lahir" class="form-control" value="">
+                          <% end %>
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                          <p for="abutours" class="sr-only" style="width: 100%;position: relative;height: 36px">Jenis Kelamin</p>
+                          <% if session['account_jk'] == 'L' %>
+                          <% @l = 'checked' %>
+                          <% elsif session['account_jk'] == 'P' %>
+                          <% @p = 'checked' %>
+                          <% end %>
+
+                          <label class="form-check-label radio-inline">
+                            <input type="radio" id="radios2" name="jk" <%= @l %> value="L">
+                            Laki - Laki
+                          </label>
+                          <label class="form-check-label radio-inline">
+                            <input type="radio" id="radios2" name="jk" <%= @p %> value="P">
+                            Perempuan
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="abutours">Nomor Identitas (KTP)</label>
+                          <input type="number" name="ktp" class="form-control" value="<%= session[:account_ktp] %>">
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                            <label for="abutours">Nomor Telepon</label>
+                            <div class="input-group">
+                              <input type="number" id="telepon" name="telepon" class="form-control" value="<%= Number::indonesianFormatPhone(session[:account_telepon]) %>" disabled="true" >
+                              <span class="input-group-btn">
+                              <button id="changeNumber" class="btn btn-danger" type="button" style="margin: 0;padding: 4px 10px">
+                                <% if @user_detail['user']['phone_valid'] %>
+                                <i class="ion-ios-compose-outline" style="font-size: 22px"></i>
+                                <% else %>
+                                <i class="ion-ios-plus-empty" style="font-size: 22px"></i>
+                                <% end %>
+                              </button>
+                              </span>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                            <label for="abutours">Telepon Rumah</label>
+                            <input type="number" name="telepon_rumah" class="form-control" value="<%= @user_detail['detail']['telepon_rumah'] %>">
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="abutours">Provinsi</label>
+                          <div class="input-group">
+                            <select class="js-example-placeholder-single form-control" name="id_provinsi" id="province">
+                              <option selected="" value="<%= @provinsi_detail['province_id'] %>"><%= @provinsi_detail["province"] %></option>
+                              <% @provinsi.each do |provinsis| %>
+                                  <option value="<%= provinsis['province_id'] %>"><%= provinsis["province"] %></option>
+                              <% end %>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="abutours">Kota / Kabupaten</label>
+                          <div class="input-group appnd-kabkot">
+                            <select class="js-example-placeholder-single form-control jxkabkot" name="id_kabkot" id="kabkot">
+                              <option selected="" value="<%= @kabkot_detail['city_id'] %>"><%= @kabkot_detail["city_name"] %></option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="abutours">Kecamatan</label>
+                          <div class="input-group appnd-kec">
+                            <select class="js-example-placeholder-single form-control jxkec" name="id_kecamatan" id="kec">
+                              <option selected="" value="<%= @kecamatan_detail['subdistrict_id'] %>"><%= @kecamatan_detail["subdistrict_name"] %></option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="abutours">Alamat Lengkap (Domisili)</label>
+                          <textarea class="form-control" rows="4" name="alamat"><%= @user_detail['detail']['alamat'] %></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <table class="table table-flex">
+                      <tr>
+                        <td class="bt-none">
+                          <a href="/" class="btn btn-lg btn-block btn-secondary">
+                            Batal
+                          </a>
+                        </td>
+                        <td class="bt-none">
+                          <button type="submit" class="btn btn-lg btn-block btn-success">Simpan Perubahan</button>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </form>
+
+              <div class="modal fade" id="dlgChangeNumber" role="dialog" aria-labelledby="OTP1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content modal-lg">
+                    <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+                    </button>
+                    <form id="gantiNomor" name="gantiNomor" method="post" action="/api/change-number" class="needs-validation" novalidate>
+                      <div class="modal-body p-4">
+                        <div class="form-group row m-0 justify-content-center">
+                          <div class="col-10">
+                            <p>
+                              Masukkan nomor ponsel baru
+                            </p>
+                            <table class="table table-flex">
+                              <tr>
+                                <td>
+                                  <input type="text" id="new_number" name="new_number" class="kode form-control form-control-sm text-center text-uppercase" maxlength="15" required>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="6" class="pt-3">
+                                  <p class="card-text text-center mt-12">
+                                    Pastikan nomor lama anda masih aktif dan bisa menerima sms.
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="6" class="pt-3">
+                                  <button type="submit" id="submitChange" class="btn btn-sm btn-block btn-danger">Kirim</button>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="dlgChangeNumberOTP" role="dialog" aria-labelledby="OTP2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content modal-lg">
+                    <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+                    </button>
+                    <form id="gantiNomorOtp" name="gantiNomorOtp" method="post" action="/api/confirm-change-number" class="needs-validation1" novalidate>
+                      <div class="modal-body p-4">
+                        <div class="form-group row m-0 justify-content-center">
+                          <div class="col-10">
+                            <p>
+                              Masukkan kode verifikasi
+                            </p>
+                            <table class="table table-flex">
+                              <tr>
+                                <td>
+                                  <input type="text" id="otp1" name="otp1" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                </td>
+                                <td>
+                                  <input type="text" id="otp2" name="otp2" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                </td>
+                                <td>
+                                  <input type="text" id="otp3" name="otp3" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                </td>
+                                <td>
+                                  <input type="text" id="otp4" name="otp4" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                </td>
+                                <td>
+                                  <input type="text" id="otp5" name="otp5" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                </td>
+                                <td>
+                                  <input type="text" id="otp6" name="otp6" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="6" class="pt-3">
+                                  <p class="card-text text-center mt-12">
+                                    Tidak terima kode? <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="6" class="pt-3">
+                                  <button type="submit" class="btn btn-sm btn-block btn-danger">Kirim</button>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-example-placeholder-single").select2({
+                placeholder: "Pilih alamat . . ."
+            });
+
+            $('#province').change(function(){
+              $('#kabkot > *').remove();
+              $.get( "/app/lokasi/kabkot", { id: $('#province').val() } ).done(function( r_data ) {
+                $('#select2-kabkot-results').remove();
+                console.log(r_data);
+                var datac = $.map(
+                  r_data
+                , function (obj) {
+                  obj.id = obj.id || obj.city_id;
+                  obj.text = obj.text || obj.city_name + " - " + obj.type;
+
+                  return obj;
+                  console.log(obj);
+                });
+
+                $("#kabkot").select2({
+                    data: datac
+                });
+                console.log($('#kabkot').val());
+              });
+
+            });
+        });
+
+        $(document).ready(function(){
+          // Kabkot
+
+          $('#kabkot').change(function(){
+            $('#kec > *').remove();
+
+            $.get( "/app/lokasi/kecamatan", { id: $('#kabkot').val() } ).done(function( r2_data ) {
+              console.log(r2_data);
+              var datacx = $.map(
+                r2_data
+              , function (objkec) {
+                objkec.id = objkec.id || objkec.subdistrict_id;
+                objkec.text = objkec.text || objkec.subdistrict_name;
+
+                return objkec;
+                console.log(objkec);
+              });
+
+              $("#kec").select2({
+                  data: datacx
+              });
+
+            });
+
+          });
+        });
+
+        $(document).ready(function () {
+            $('input[name="tgl_lahir"]').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                "singleDatePicker": true,
+                "autoApply": true,
+                "showDropdowns": true
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#avatar-1").fileinput({
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: false,
+            showUpload: false,
+            showCaption: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="ion-ios-camera-outline"></i>',
+            removeIcon: '<i class="ion-ios-close-empty"></i>',
+            defaultPreviewContent: '<%= image_tag !session[:account_detail][:foto]['url'].nil? ? session[:account_detail][:foto]['url'] : "https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g", :alt => '' %>',
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+    </script>
+
+    <script type="text/javascript">
+        (function() {
+            "use strict";
+            window.addEventListener("load", function() {
+                var form = document.getElementById("needs-validation");
+                form.addEventListener("submit", function(event) {
+                    if (form.checkValidity() == false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            }, false);
+        }());
+    </script>
+    <script type="text/javascript">
+      $( document ).ready(function() {
+          $( ".txtOnly" ).keypress(function(e) {
+              var key = e.keyCode;
+              if (key >= 48 && key <= 57) {
+                  e.preventDefault();
+              }
+          });
+
+          $.autotab({ tabOnSelect: true });
+          $('.kode').autotab('filter', 'kode');
+
+          $('#changeNumber').on('click', function(){
+              $('#dlgChangeNumber').modal('show');
+          });
+
+          $("#gantiNomor").on("submit", function( event ) {
+              $form = $(this).get(0);
+
+              data = $('#gantiNomor').serialize();
+              event.preventDefault();
+              if ($form.checkValidity()) {
+                  $("#submitChange").attr('disabled', true);
+                  $.post( $form.action, data, function( result ) {
+                      if (result.status == 200) {
+                          if (result.otp == true) {
+                              $('#dlgChangeNumber').modal('hide');
+                              $('#dlgChangeNumberOTP').modal('show');
+                          }
+                      } else {
+                          $("#submitChange").attr('disabled', false);
+                          swal({
+                              type: 'error',
+                              text: result.message,
+                              showConfirmButton: false,
+                              timer: 1500
+                          })
+                      }
+                  });
+              }
+              $form.classList.add("was-validated");
+          });
+
+          $("#gantiNomorOtp").on("submit", function( event ) {
+              event.preventDefault();
+              $form = $(this).get(0);
+              $otp = $('#otp1').val() + $('#otp2').val() + $('#otp3').val() + $('#otp4').val() + $('#otp5').val() + $('#otp6').val();
+
+              data = {
+                  new_number: $('#new_number').val(),
+                  kode_otp: $otp
+              }
+
+              if ($form.checkValidity()) {
+                  $.post( $form.action, data, function( result ) {
+                      if (result.status == 200) {
+                          swal({
+                              text: result.message,
+                              timer: 2000,
+                              showConfirmButton: false,
+                              type: "success",
+                              button: false
+                          });
+                          $('#dlgChangeNumberOTP').modal('hide');
+                          $('#telepon').val($('#new_number').val());
+                      } else {
+                          swal({
+                              text: result.message,
+                              timer: 2000,
+                              showConfirmButton: false,
+                              type: "error",
+                              button: false
+                          });
+                      }
+                  })
+              }
+              $form.classList.add("was-validated");
+          });
+
+          $("#resendOtp").on("click", function( event ) {
+              event.preventDefault();
+              $.get( '/api/change-number-resend-otp?_=' + Math.random(), function( result ) {
+                  if (result.status == 200) {
+                    swal({
+                        text: result.message,
+                        timer: 2000,
+                        showConfirmButton: false,
+                        button: false,
+                        type: "success"
+                    });
+                  } else {
+                      swal({
+                          text: result.message,
+                          timer: 2000,
+                          showConfirmButton: false,
+                          type: "error",
+                          button: false
+                      });
+                  }
+              })
+          });
+      });
+    </script>
+<% end %>

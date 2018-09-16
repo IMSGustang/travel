@@ -1,0 +1,141 @@
+<nav class="navbar navbar-expand abu-navbar abu-navbar__landing fixed-top">
+  <div class="container pl-3 pr-3">
+    <a class="navbar-brand" href="/abutours">
+      <%= image_tag "logo/ui-logo.png" %>
+    </a>
+
+    <ul class="navbar-nav nav navbar-item-left">
+      <li class="nav-item">
+        <a class="nav-link" href="/">
+          Beranda
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/umrah">
+          Umrah
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/haji">
+          Haji
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/flight">
+          Tiket Pesawat
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/beli-pulsa">
+          E-Voucher
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="moreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i data-feather="more-horizontal"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="moreDropdown">
+          <a class="dropdown-item" href="/penambahan-biaya">Penambahan Biaya</a>
+          <a class="dropdown-item" href="/about-us">Tentang</a>
+          <a class="dropdown-item" href="/blog">Blog</a>
+          <a class="dropdown-item" href="/faq">Bantuan</a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav nav ml-auto navbar-auth">
+      <% if session[:acc_token].nil? %>
+          <li class="nav-item">
+            <div class="dropdown">
+              <a href="#" class="btn btn-outline-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right">
+                <form id="needs-validation" method="post" action="/api/login" novalidate>
+                  <input type="hidden" name="afb" id="afb">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i data-feather="phone-forwarded"></i></span>
+                      <input type="numbers" name="no_telepon" class="form-control" id="validationCustom01" placeholder="No telepon" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i data-feather="unlock"></i></span>
+                      <input type="password" name="password" class="form-control" id="validationCustom02" placeholder="Password" required>
+                      <a class="hide-password">show</a>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <p class="m-0 p-0 text-left">
+                      <small class="form-text text-muted">
+                        Anda lupa password?
+                        <a href="/app/reset-password-number" class="card-link text-danger">Reset password</a>
+                      </small>
+                    </p>
+                  </div>
+                  <button class="btn btn-block btn-success" type="submit">Login</button>
+                </form>
+                <!-- ---------------------------------------------- -->
+                <div class="separator mb-3 mt-3">
+                  <span class="separator-text">
+                    or
+                  </span>
+                </div>
+                <!-- ---------------------------------------------- -->
+                <p class="mb-2">
+                  <a href="auth/facebook" class="btn btn-block btn-light" id="authfb">
+                    <%= image_tag 'lib/icon/fb-logo.png' %>
+                    Masuk dengan facebook
+                  </a>
+                </p>
+                <!-- ---------------------------------------------- -->
+                <p class="m-0">
+                  <a href="auth/google_oauth2" class="btn btn-block btn-light" id="authgplus">
+                    <%= image_tag 'lib/icon/gg-logo.png' %>
+                    Masuk dengan google
+                  </a>
+                </p>
+                <!-- ---------------------------------------------- -->
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-danger mr-2" href="/abutours-registers">
+              Daftar
+            </a>
+          </li>
+      <% end %>
+
+      <% if !session[:acc_token].nil? %>
+          <li class="nav-item d-none">
+            <a class="nav-link btn btn-light btn-cart pl-2 pr-2 mr-3" href="/keranjang-belanja">
+              <i class="ion-bag"></i>
+              <span class="badge badge-light">2</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link btn btn-light btn-cart pl-2 pr-2" href="/informasi">
+              <i data-feather="bell"></i>
+              <% if @notifikasi && @notifikasi['unread'] > 0 %>
+                  <span id="badge-unread-count" class="badge badge-pill badge-danger"><%= @notifikasi['unread'] %></span>
+              <% end %>
+            </a>
+          </li>
+
+          <li class="nav-item nav-item-user">
+            <a class="nav-link" href="/accounts/dashboard">
+              <%= image_tag !session[:account_detail][:foto]['url'].nil? ? session[:account_detail][:foto]['url'] : "https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g", onerror: 'this.error=null;this.src="https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g"' %>
+            </a>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<div class="clearfix" style="height: 55px"></div>

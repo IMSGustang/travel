@@ -1,0 +1,119 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <!--<div class="p-blog__header">-->
+    <!--<div class="container">-->
+    <!--<ul class="nav nav-pills nav-fill pt-4 pb-4">-->
+    <!--<li class="nav-item display-4 text-uppercase">-->
+    <!--Blog-->
+    <!--</li>-->
+    <!--
+    <% data_kategori.each do |row| %>-->
+        <!--<li class="nav-item">-->
+        <!--<a class="nav-link" href="#<%= row['kategori'] %>"><%= row['kategori'] %></a>-->
+        <!--</li>-->
+        <!--
+    <% end %>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <div class="_landing | c-blog | p-blog">
+      <div class="container">
+        <div class="d-flex justify-content-end">
+          <div class="mr-auto p-3 mt-3">
+            <p class="text-muted mb-0">
+              Menampilkan <strong>12</strong> Dari <strong>42</strong> Postingan
+            </p>
+          </div>
+        </div>
+
+        <div class="row p-3">
+          <div class="col-8">
+            <div class="row">
+              <% data.each do |row| %>
+                  <div class="col-6">
+                    <div class="card | c-blog__item">
+                      <a href="#" class="btn btn-sm btn-success btn-cat"><%= row['nama_kategori'] %></a>
+
+                      <a href="/blog-detil/<%= row['id'] %>/<%= row['judul'] %>">
+                        <div class="thumb">
+                          <%= image_tag row['tumbnail'], :class => 'd-flex | mx-auto', :alt => '', :onerror => "this.onerror=null;this.src='assets/no_images/no_package_1.png';" %>
+                        </div>
+                      </a>
+
+                      <div class="card-body | c-blog__item-b">
+                        <h5 class="card-title b-title">
+                          <div class="item-link item-line">
+                            <%= row['judul'].titlecase %>
+                          </div>
+                        </h5>
+                        <p class="mb-2">
+                          abutours • <%= TimeFormat::indonesia(row['tanggal']) %>
+                        </p>
+
+                        <div class="desc mb-0">
+                          <%= row['artikel'].html_safe %>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="card card-side-blog">
+              <div class="card-header">
+                <span>Recent Post</span>
+                <hr>
+              </div>
+
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <% data_side.each do |item| %>
+                  <li class="media">
+                    <div class="thumb mr-3">
+                      <%= image_tag item['tumbnail'], :class => 'mr-3', :alt => '' %>
+                    </div>
+                    <div class="media-body">
+                      <h5 class="mt-0 mb-0 title-desc title-desc-line"><%= item['judul'] %></h5>
+                      <small class="text-muted mb-1">
+                        abutours • <%= TimeFormat::indonesia(item['tanggal']) %>
+                      </small>
+                      <p class="mb-0">
+                        <%= !item['artikel'].nil? ? item['artikel'].html_safe : "" %>
+                      </p>
+                    </div>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <nav aria-label="Page navigation" class="pb-3">
+          <ul class="pagination justify-content-center mb-0">
+            <li class="page-item">
+              <%= @page['link_prev'].html_safe %>
+            </li>
+            <% @page['html'].each do |page| %>
+                <%= page.html_safe %>
+            <% end %>
+            <li class="page-item">
+              <%= @page['link_next'].html_safe %>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :foot do %>
+
+<% end %>

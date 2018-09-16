@@ -1,0 +1,105 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Edit Data Pribadi</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-edit-pribadi">
+        <div class="card">
+            <form class="form" action="/api/profil-update-mobile" method="post">
+                <div class="card-body">
+                    <table class="table table-sm mb-0">
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <label for="">Nomor Identitas (KTP)</label>
+                                    <input type="text" name="ktp" class="form-control" placeholder="" value="<%= session[:account_ktp] %>">
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label for="">Nama Depan</label>
+                                    <input type="text" name="nama_depan" class="form-control" placeholder="" value="<%= session[:account_nama_depan] %>">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label for="">Nama Belakang</label>
+                                    <input type="text" name="nama_belakang" class="form-control" placeholder="" value="<%= session[:account_nama_belakang] %>">
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <label for="">Tempat Lahir</label>
+                                    <input type="text" name="tempat_lahir" class="form-control" placeholder="" value="<%= session[:account_detail][:tempat_lahir] %>">
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <label for="">Tanggal Lahir</label>
+                                    <% if !session[:account_detail][:tanggal_lahir].nil? %>
+                                        <input type="text" name="tgl_lahir" class="form-control" value="<%= TimeFormat::indonesia(session[:account_detail][:tanggal_lahir]) %>">
+                                    <% else %>
+                                        <input type="text" name="tgl_lahir" class="form-control" placeholder="">
+                                    <% end %>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <label for="">Jenis Kelamin</label>
+                                    <% if session['account_jk'] == 'L' %>
+                                        <% @l = 'checked' %>
+                                    <% elsif session['account_jk'] == 'P' %>
+                                        <% @p = 'checked' %>
+                                    <% end %>
+
+                                    <label class="form-check-label radio-inline">
+                                        <input type="radio" id="radios2" name="jk" <%= @l %> value="L">
+                                        Laki - Laki
+                                    </label>
+                                    <label class="form-check-label radio-inline">
+                                        <input type="radio" id="radios2" name="jk" <%= @p %> value="P">
+                                        Perempuan
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-block btn-danger">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<% end %>
+
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[name="tgl_lahir"]').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                "singleDatePicker": true,
+                "autoApply": true,
+                "showDropdowns": true
+            });
+        });
+    </script>
+<% end %>

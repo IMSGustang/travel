@@ -1,0 +1,65 @@
+<%= content_for :active_blog do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Blog abutours</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-blog">
+      <div class="container">
+        <div class="row">
+          <% data.each do |row| %>
+              <div class="col-12 col-sm-6">
+                <div class="card">
+                  <a href="#" class="btn btn-sm btn-success btn-cat"><%= row['nama_kategori'] %></a>
+                  <a href="/blog-detil/<%= row['id'] %>/<%= row['judul'] %>">
+                    <div class="thumb">
+                      <%= image_tag row['tumbnail'], :class => 'd-flex | mx-auto', :alt => '', :onerror => "this.onerror=null;this.src='assets/no_images/no_package_1.png';" %>
+                    </div>
+                  </a>
+                  <div class="card-body">
+                    <h5 class="card-title b-title">
+                      <div class="item-link item-line">
+                        <%= row['judul'].titlecase %>
+                      </div>
+                    </h5>
+
+                    <p class="upload_title mb-2">
+                      abutours • <%= TimeFormat::indonesia(row['tanggal']) %>
+                    </p>
+
+                    <div class="desc mb-0">
+                      <%= row['artikel'].html_safe %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+
+          <div class="col-12">
+            <nav aria-label="Page navigation" class="mb-0">
+              <ul class="pagination justify-content-center mb-0">
+                <li class="page-item">
+                  <%= @page['link_prev'].html_safe %>
+                </li>
+                <% @page['html'].each do |page| %>
+                    <%= page.html_safe %>
+                <% end %>
+                <li class="page-item">
+                  <%= @page['link_next'].html_safe %>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

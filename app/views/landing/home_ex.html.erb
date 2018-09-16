@@ -1,0 +1,1650 @@
+<%= content_for :head do %>
+    <meta name="google-site-verification" content="cabRIyYETm1zlJS4G8SR64_CLPwL9yfILvZqKGDfAC0"/>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="_landing | c-cover-head">
+      <div id="promotion" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% if @data_slider %>
+              <% first = true %>
+              <% @data_slider.each do |slider| %>
+                  <div class="carousel-item <%= first ? 'active' : '' %>">
+                    <% first = false %>
+                    <%= image_tag slider['foto'], :class => 'd-block w-100', :alt => slider['judul'] %>
+                    <div class="carousel-caption d-none d-md-block">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-5"></div>
+                          <div class="col-7">
+                            <h1><%= slider['judul'].titlecase %></h1>
+                            <p class="title-sub title-sub-line">
+                              <%= slider['sub_judul'].titlecase %>
+                            </p>
+                            <% unless slider['link'] == '#' %>
+                                <a href="<%= slider['link'] %>" class="btn btn-lg btn-danger">Selengkapnya</a>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+
+        <a class="carousel-control-prev" href="#promotion" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#promotion" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="_landing | w-abu-fitur pb-0" style="padding-top: 10px;background: #f5f5f5;">
+      <div class="container">
+        <div class="card c-fitur-side">
+          <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="packet-tab" data-toggle="tab" href="#packet" role="tab" aria-controls="packet" aria-selected="true">
+                <div class="icons-sm icons-umrah d-inline-block mb4"></div>
+                Paket Umrah
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="haji-tab" data-toggle="tab" href="#haji" role="tab" aria-controls="haji" aria-selected="false">
+                <div class="icons-sm icons-haji d-inline-block mb4"></div>
+                Paket Haji
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="ticket-tab" data-toggle="tab" href="#ticket" role="tab" aria-controls="ticket" aria-selected="false">
+                <div class="icons-sm icons-tiketpesawat d-inline-block mb4"></div>
+                Tiket Pesawat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pulsa-tab" data-toggle="tab" href="#pulsa" role="tab" aria-controls="pulsa" aria-selected="false">
+                <div class="icons-sm icons-pulsa d-inline-block mb4"></div>
+                Beli Pulsa
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="false">
+                <div class="icons-sm icons-paketdata d-inline-block mb4"></div>
+                Paket Data
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="tokenlistrik-tab" data-toggle="tab" href="#tokenlistrik" role="tab" aria-controls="tokenlistrik" aria-selected="false">
+                <div class="icons-sm icons-tokenlistrik d-inline-block mb4"></div>
+                Token Listrik
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="voucher-tab" data-toggle="tab" href="#voucher" role="tab" aria-controls="voucher" aria-selected="false">
+                <div class="icons-sm icons-vouchergame d-inline-block mb4"></div>
+                Voucher Game
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="_landing | w-abu-fitur pb-2" style="background: #f5f5f5">
+      <div class="container">
+        <div class="card c-fitur-content">
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="packet" role="tabpanel" aria-labelledby="packet-tab">
+              <div class="card-body">
+                <form action="/paket-umrah" method="GET">
+                  <table class="table table-sm">
+                    <tr>
+                      <td width="400px">
+                        <div class="form-group">
+                          <label>Kota Keberangkatan</label>
+                          <select id="kota" name="kota" class="form-control">
+                            <option value="disabled" disabled> Kota keberangkatan...</option>
+                            <option value="" selected placeholder="Semua Kota..."> Semua kota
+                            </option>
+                            <% if @data_pre_search %>
+                                <% @kota = @data_pre_search['kota'] %>
+                                <% @kota.each do |data| %>
+                                    <optgroup label="<%= data['name'].titlecase %>">
+                                      <% @kantor = data['kota'] %>
+                                      <% @kantor.each do |kantor| %>
+                                          <option value="<%= kantor['kdkantor'] %>"><%= kantor['namakantor'].titlecase %></option>
+                                      <% end %>
+                                    </optgroup>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Jenis Paket</label>
+                          <select id="paket" name="paket" class="form-control">
+                            <option value="disabled" disabled> Pilih jenis paket...</option>
+                            <option value="" selected> Semua Paket</option>
+                            <% if @data_pre_search %>
+                                <% @bulan = @data_pre_search['jnspaket'] %>
+                                <% @bulan.each do |data| %>
+                                    <option value="<%= data['name'] %>" data-prefix="<span aria-hidden='true'></span>"><%= data['name'] %></option>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label>Bulan Keberangkatan</label>
+                          <select id="bulan" name="bulan" class="form-control">
+                            <option value="disabled" disabled> Bulan keberangkatan...</option>
+                            <option value=""> Semua Bulan</option>
+                            <% if @data_pre_search %>
+                                <% @bulan = @data_pre_search['bulan'] %>
+                                <% @bulan.each do |data| %>
+                                    <option value="<%= data['bulan'] %>"><%= data['name'] %></option>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label>Tahun Keberangkatan</label>
+                          <select id="tahun" name="tahun" class="form-control">
+                            <option value="disabled" disabled> Pilih Tahun Keberangkatan...
+                            </option>
+                            <option value=""> Semua Tahun</option>
+                            <% if @data_pre_search %>
+                                <% @tahun = @data_pre_search['tahun'] %>
+                                <% @tahun.each do |data| %>
+                                    <option value="<%= data['tahun'] %>"><%= data['tahun'] %></option>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4">
+                        <div class="form-group text-right mb-0">
+                          <button type="submit" class="btn btn-costume btn-danger">
+                            Cari Paket
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="haji" role="tabpanel" aria-labelledby="haji-tab">
+              <div class="card-body">
+                <form method="get" action="/paket-haji">
+                  <table class="table table-sm">
+                    <tr>
+                      <td width="400px">
+                        <div class="form-group">
+                          <label>Kota Keberangkatan</label>
+                          <select id="kotakeberangkatan" name="kota" class="form-control w-100">
+                            <option value=""> Pilih kota keberangkatan</option>
+                            <% if !@paket_haji['data']['kota'].nil? %>
+                                <% @paket_haji['data']['kota'].each do |item| %>
+                                    <optgroup label="<%= item['name'] %>">
+                                      <% item['kota'].each do |sub_item| %>
+                                          <option value="<%= sub_item['kdkantor'] %>"><%= sub_item['namakantor'].titleize %></option>
+                                      <% end %>
+                                    </optgroup>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label>Jenis Paket</label>
+                          <select id="jenispaket" name="paket" class="form-control w-100">
+                            <option value=""> Pilih jenis paket</option>
+                            <% if !@paket_haji['data']['kota'].nil? %>
+                                <% @paket_haji['data']['jnspaket'].each do |item| %>
+                                    <option value="<%= item['name'] %>"><%= item['name'] %></option>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label>Tahun Keberangkatan</label>
+                          <select id="tahunkeberangkatan" name="tahun" class="form-control w-100">
+                            <option value=""> Pilih tahun keberangkatan</option>
+                            <% if !@paket_haji['data']['kota'].nil? %>
+                                <% @paket_haji['data']['tahun'].each do |item| %>
+                                    <option value="<%= item['tahun'] %>"><%= item['tahun'] %></option>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="3">
+                        <div class="form-group text-right mb-0">
+                          <button type="submit" class="btn btn-costume btn-danger">
+                            Cari Paket
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="ticket" role="tabpanel" aria-labelledby="ticket-tab">
+              <div class="card-body">
+                <form action="/pencarian-tiket" method="GET" id="formCariTiket">
+                  <table class="table table-ticket table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Kota Asal</label>
+                          <select name="b" class="form-control" id="kota1">
+                            <% group = '' %>
+                            <% @bandara_terdekat.each do |item| %>
+                                <% if item %>
+                                <% if group != item['country_name'] %>
+                                    <% group = item['country_name'] %>
+                                    <optgroup label="<%= group %>">
+                                <% end %>
+                                <option value="<%= item['airport_code'] %>" <%= item['airport_code'] == 'CGK' ? 'selected' : '' %>><%= item['location_name'] + "(#{item['airport_code']})" %></option>
+                                <% if group != item['country_name'] %>
+                                    </optgroup>
+                                <% end %>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+
+                      <td>
+                        <button type="button" class="btn btn-portal btn-sm btn-success" id="tombol">
+                          <i class="ion-arrow-swap"></i>
+                        </button>
+                        <div class="form-group">
+                          <label>Kota Tujuan</label>
+                          <select name="p" class="form-control" id="kota2">
+                            <% group = '' %>
+                            <% @bandara.each do |item| %>
+                                <% if item %>
+                                <% if group != item['country_name'] %>
+                                    <% group = item['country_name'] %>
+                                    <optgroup label="<%= group %>">
+                                <% end %>
+                                <option value="<%= item['airport_code'] %>" <%= item['airport_code'] == 'UPG' ? 'selected' : '' %>><%= item['location_name'] + "(#{item['airport_code']})" %></option>
+                                <% if group != item['country_name'] %>
+                                    </optgroup>
+                                <% end %>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="popover-markup" style="width: 100%">
+                          <div class="trigger form-group" triggers="focus">
+                            <label>Jumlah Penumpang</label>
+                            <input type="text" name="passanger-info" id="passanger-info" class="form-control" value="Dewasa 1, Anak 0, Bayi 0" readonly>
+                            <input type="hidden" name="passengers" id="passengers" class="form-control d-none" value="1" disabled>
+                            <input type="hidden" name="dewasa" id="rAdult" class="form-control d-none" value="1">
+                            <input type="hidden" name="anak" id="rChild" class="form-control d-none" value="0">
+                            <input type="hidden" name="bayi" id="rInfant" class="form-control d-none" value="0">
+                          </div>
+
+                          <div class="content d-none">
+                            <div class="form-group">
+                              <label><strong>Dewasa</strong>
+                                <small> (Umur +12 Tahun)</small>
+                              </label>
+                              <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                    </span>
+                                <input type="text" disabled name="adult" id="adult" class="form-control" value="1" max=9 min=1>
+                                <span class="input-group-btn">
+                                      <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label><strong>Anak - Anak</strong>
+                                <small> (Umur 3 - 12 Tahun)</small>
+                              </label>
+                              <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                    </span>
+                                <input type="text" disabled name="child" id="child" class="form-control" value="0" max=9 min=0>
+                                <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label><strong>Bayi</strong>
+                                <small> (Umur 1 - 2 Tahun)</small>
+                              </label>
+                              <div class="input-group number-spinner">
+                                  <span class="input-group-btn">
+                                      <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                  </span>
+                                <input type="text" disabled name="infant" id="infant" class="form-control" value="0" max=9 min=0>
+                                <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                              </div>
+                            </div>
+                            <a class="btn btn-outline-secondary btn-block demise">Selesai</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Tanggal Berangkat</label>
+                          <input type="text" name="tgl-b" class="form-control" id="sekalijalan" placeholder="Tanggal Berangkat" required>
+                        </div>
+                      </td>
+                      <td style="display: block">
+                        <label class="custom-control custom-checkbox">
+                          <input type="checkbox" name="checkbox" id="checkbox" class="custom-control-input" value="double">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Pulang Pergi</span>
+                        </label>
+                        <div class="form-group d-none" id="PP">
+                          <input type="text" name="tgl-p" class="form-control" id="pulangpergi" placeholder="Tanggal Pulang">
+                        </div>
+                      </td>
+                      <td class="d-block">
+                        <div class="form-group text-right" style="margin-top: 30px">
+                          <button type="button" class="btn btn-costume btn-danger" onclick="cariTiket()">
+                            Cari Tiket
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="pulsa" role="tabpanel" aria-labelledby="pulsa-tab">
+              <div class="card-body">
+                <form action="/pulsa/detail" method="post">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Nomor Handphone</label>
+                          <input type="text" id="msisdn" name="msisdn" class="form-control" placeholder="" onkeyup="cekHargaPulsa(this.value)" maxlength="13">
+                        </div>
+                      </td>
+
+                      <td width="400">
+                        <div class="form-group">
+                          <label>Nominal</label>
+                          <select name="nominal" id="nominalsPulsa" class="form-control" onchange="activePulsa(this.value)"></select>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="form-group mt-3">
+                          <%= image_tag 'lib/ui-icon/provider/axis.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/bolt.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/indosat_ooredoo.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/smartfren.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/telkomsel.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/three.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/xl_axiata.png', :class => 'img-rounded' %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2 pr-0">
+                              <% if session[:acc_token] %>
+                                  <button type="submit" class="btn btn-costume btn-danger disabled" disabled id="btnPulsa">
+                                    Beli Sekarang
+                                  </button>
+                              <% else %>
+                                  <a href="/abutours-login" class="btn btn-costume btn-danger">
+                                    Beli Sekarang
+                                  </a>
+                              <% end %>
+                            </div>
+                            <div class="p-2">
+                              <h1 class="mb-0" id="priceTagPulsa">Rp 0</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="data-tab">
+              <div class="card-body">
+                <form action="/paket-data/detail" method="post">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Nomor Handphone</label>
+                          <input type="text" id="msisdnpaket" name="msisdn" class="form-control" placeholder="" onkeyup="cekHargaPaket(this.value)" maxlength="13">
+                        </div>
+                      </td>
+                      <td width="400">
+                        <div class="form-group">
+                          <label>Nominal</label>
+                          <select id="nominalsPaket" name="nominal" class="form-control" onchange="activePaket(this.value)">
+                            <option value="" disabled></option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="form-group mt-3">
+                          <%= image_tag 'lib/ui-icon/provider/axis.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/bolt.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/indosat_ooredoo.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/smartfren.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/telkomsel.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/three.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/xl_axiata.png', :class => 'img-rounded' %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2">
+                              <% if session[:acc_token] %>
+                                  <button type="submit" class="btn btn-costume btn-danger disabled" disabled id="btnPaket">
+                                    Beli Sekarang
+                                  </button>
+                              <% else %>
+                                  <a href="/abutours-login" class="btn btn-costume btn-danger">
+                                    Beli Sekarang
+                                  </a>
+                              <% end %>
+                            </div>
+                            <div class="p-2">
+                              <h1 class="mb-0" id="priceTagPaket">Rp 0</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="tokenlistrik" role="tabpanel" aria-labelledby="tokenlistrik-tab">
+              <div class="card-body">
+                <form action="/token-listrik/detail" method="post">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Nomor Meteran</label>
+                          <input type="text" name="id_pelanggan" class="form-control" placeholder="" onkeyup="cekHargaToken(this.value)" maxlength="13">
+                        </div>
+                      </td>
+                      <td width="400">
+                        <div class="form-group">
+                          <label>Nominal</label>
+                          <select id="nominalsToken" name="nominal" class="form-control" onchange="activeToken(this.value)">
+                            <option value="0" disabled>
+                              Pilih nominal...
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2">
+                              <% if session[:acc_token] %>
+                                  <button type="submit" class="btn btn-costume btn-danger disabled" disabled id="btnToken">
+                                    Beli Sekarang
+                                  </button>
+                              <% else %>
+                                  <a href="/abutours-login" class="btn btn-costume btn-danger">
+                                    Beli Sekarang
+                                  </a>
+                              <% end %>
+                            </div>
+                            <div class="p-2">
+                              <h1 class="mb-0" id="priceTagToken">Rp 0</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="voucher" role="tabpanel" aria-labelledby="voucher-tab">
+              <div class="card-body">
+                <form action="/voucher-game/detail" method="post">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Voucher Game</label>
+                          <select id="voucherProvider" name="voucher" class="form-control" onchange="cekHargaVoucher(this.value)">
+                            <option value="0" disabled>
+                              Pilih voucher...
+                            </option>
+                            <% provider_nil = @provider['data'].nil? rescue true %>
+                            <% if provider_nil %>
+                                <%= @provider.each do |row| %>
+                                    <option value="<%= row['game'] %>" data-prefix="<span aria-hidden='true'></span>">
+                                      <%= row['game'] %>
+                                    </option>
+                                <% end %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+                      <td width="400">
+                        <div class="form-group">
+                          <label>Nominal</label>
+                          <select id="nominalsGame" name="nominal" class="form-control" onchange="activeGame(this.value)">
+                            <option value="0" disabled>
+                              Pilih nominal...
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2">
+                              <% if session[:acc_token] %>
+                                  <button type="submit" class="btn btn-costume btn-danger disabled" disabled id="btnGame">
+                                    Beli Sekarang
+                                  </button>
+                              <% else %>
+                                  <a href="/abutours-login" class="btn btn-costume btn-danger">
+                                    Beli Sekarang
+                                  </a>
+                              <% end %>
+                            </div>
+                            <div class="p-2">
+                              <h1 class="mb-0" id="priceTagGame">Rp 0</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="_landing | w-product">
+      <div class="container">
+        <div class="card-header c-bg-transparant mb-2">
+          <div class="d-flex">
+            <div class="mr-auto">
+              <h4 class="text-uppercase text-left text-muted mb-2">
+                <strong>Paket Haji</strong>
+              </h4>
+              <h1 class="text-capitalize text-left mb-0">
+                Solusi Untuk Semua Ibadah Haji
+              </h1>
+            </div>
+
+            <div>
+              <a href="/paket-haji" class="btn btn-sm btn-outline-secondary">
+                Lihat semua paket <i class="ion-arrow-right-c ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row pl-1 pr-1">
+          <% if !@paket_haji_list.nil? %>
+              <% @paket_haji_list.each do |items| %>
+                  <div class="col-3 pl-2 pr-2">
+                    <div class="card mb-3">
+                      <a href="/paket-haji/<%= items['kode_produk'] %>/<%= items['kdkantor'] %>/<%= items['tahun'] %>/<%= items['bulan'] %>/<%= items['nama_seo'] %>">
+                        <div class="card-body-image">
+                          <%= image_tag !items['gambar'].nil? ? items['gambar'] : 'no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '' %>
+                          <div class="middle-hover"></div>
+                        </div>
+
+                        <div class="card-body">
+                          <div class="name-packet name-packet-line">
+                            <%= items['nama'].titlecase %>
+                          </div>
+
+                          <p class="text-left mt-1 mb-0">
+                      <span class="price-packet">
+                        <%= number_to_currency(items['harga_jual'], precision: 0, unit: "#{items['tipe_curr']} ") %>
+                      </span>
+                          </p>
+
+                          <p class="packet-rate mb-0 mt-0">
+                            <span class="text-muted">fasilitas</span>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                          </p>
+
+                          <p class="card-text packet-city text-left m-0">
+                            Kota <%= items['kota'].titlecase %> , <%= items['kantor'].titlecase %>
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="_landing | w-product">
+      <div class="container">
+        <div class="card-header c-bg-transparant">
+          <h4 class="text-uppercase text-left text-muted mb-2">
+            <strong>Paket Umrah</strong>
+          </h4>
+          <h2 class="text-uppercase text-left mb-3">
+            Solusi Untuk Semua Ibadah Umrah
+          </h2>
+        </div>
+
+        <ul class="nav nav-pills nav-fill tabs-city" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="all-tab" data-toggle="tab" href="#1A" role="tab" aria-controls="all" aria-selected="true">
+              Semua Kota
+            </a>
+          </li>
+          <% @paket_populer['kota'].each do |item| %>
+              <li class="nav-item">
+                <a class="nav-link" id="<%= item['kota'].delete(' ') %>-tab" data-toggle="tab" href="#<%= item['kota'].delete(' ') %>" role="tab" aria-controls="<%= item['kota'].delete(' ') %>" aria-selected="true"><%= item['kota'] %></a>
+              </li>
+          <% end %>
+        </ul>
+
+        <div class="tab-content w-100">
+          <div class="tab-pane show active" id="1A" role="tabpanel" aria-labelledby="1A-tab">
+            <div class="row pl-1 pr-1 mt-4">
+
+              <!% paket_nil = @paket.nil? rescue true %>
+              <!% if paket_nil %>
+              <% if @paket %>
+                  <% @paket.each do |item| %>
+                      <div class="col-3 pl-2 pr-2">
+                        <div class="card mb-3">
+                          <a href="/detil-paket/<%= item['kode_produk'] %>/<%= item['kdkantor'] %>/<%= item['tahun'] %>/<%= item['bulan'] %>/<%= item['nama_seo'].downcase %>">
+                            <div class="card-body-image">
+                              <!--<%= TimeFormat::month(item['bulan']) + " " + item['tahun'] %>-->
+                              <% if item['gambar'] && !item['gambar'].nil? %>
+                                  <%= image_tag !item['gambar'].nil? ? item['gambar'] : '/assets/no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '' %>
+                              <% else %>
+                                  <!-- Jika gambar kosong -->
+                                  <%= image_tag 'no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '', onerror: 'this.error=null;this.src="/assets/no_images/no_package_1.png"' %>
+                              <% end %>
+                              <div class="middle-hover"></div>
+                            </div>
+
+                            <div class="card-body">
+                              <div class="name-packet name-packet-line">
+                                <%= item['nama'].titlecase %>
+                              </div>
+
+                              <p class="text-left mt-1 mb-0">
+                                <span class="price-packet"><%= number_to_currency(item['harga_jual'], precision: 0, unit: "Rp ") %></span>
+                              </p>
+
+                              <p class="packet-rate mb-0 mt-0">
+                                <span class="text-muted">fasilitas</span>
+                                <% item['rating'] > 0 ? rating = item['rating'] : 0 %>
+                                <% (0..(rating-1)).each do |r| %>
+                                    <i class="ion-android-star"></i>
+                                <% end %>
+                                <% (0..(4-rating)).each do |r| %>
+                                    <i class="ion-android-star-outline"></i>
+                                <% end %>
+                              </p>
+
+                              <p class="card-text packet-city text-left m-0">
+                                Kota <%= item['kota'].titlecase %> , <%= item['kantor'].titlecase %>
+                              </p>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+          <% @paket_populer['kota'].each do |item| %>
+              <div class="tab-pane" id="<%= item['kota'].delete(' ') %>" role="tabpanel" aria-labelledby="<%= item['kota'].delete(' ') %>-tab">
+                <div class="row pl-1 pr-1 mt-4">
+                  <% if @paket_all %>
+                      <% count = 0 %>
+                      <% @paket_all.each do |paket| %>
+                          <% break if paket == nil %>
+                          <% if paket['kota'] == item['kota'] %>
+                              <% count = 1 %>
+                              <div class="col-3 pl-2 pr-2">
+                                <div class="card mb-3">
+                                  <a href="/detil-paket/<%= paket['kode_produk'] %>/<%= paket['kdkantor'] %>/<%= paket['tahun'] %>/<%= paket['bulan'] %>/<%= paket['nama_seo'].downcase %>">
+                                    <div class="card-body-image">
+                                      <!--<%= TimeFormat::month(paket['bulan']) + " " + paket['tahun'] %>-->
+                                      <% if paket['gambar'] && !paket['gambar'].nil? %>
+                                          <%= image_tag !paket['gambar'].nil? ? paket['gambar'] : 'assets/no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '' %>
+                                      <% else %>
+                                          <!-- Jika gambar kosong -->
+                                          <%= image_tag 'no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '' %>
+                                      <% end %>
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="name-packet name-packet-line">
+                                        <%= paket['nama'].titlecase %>
+                                      </div>
+
+                                      <p class="text-left mt-1 mb-0">
+                                        <span class="price-packet"><%= number_to_currency(paket['harga_jual'], precision: 0, unit: "Rp ") %></span>
+                                      </p>
+
+                                      <p class="packet-rate mb-0 mt-0">
+                                        <span class="text-muted">fasilitas</span>
+                                        <% paket['rating'] > 0 ? rating = paket['rating'] : 0 %>
+                                        <% (0..(rating-1)).each do |r| %>
+                                            <i class="ion-android-star"></i>
+                                        <% end %>
+                                        <% (0..(4-rating)).each do |r| %>
+                                            <i class="ion-android-star-outline"></i>
+                                        <% end %>
+                                      </p>
+
+                                      <p class="card-text packet-city text-left m-0">
+                                        Kota <%= paket['kota'].titlecase %>
+                                        ,<%= paket['kantor'].titlecase %>
+                                      </p>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                          <% end %>
+                      <% end %>
+                      <% if count == 0 %>
+                          <div class="w-blank text-center p-5">
+                            <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                            <p class="mb-0 text-center">
+                              Maaf, untuk sementara seat tidak tersedia
+                            </p>
+                          </div>
+                      <% end %>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="_landing | w-product">
+      <div class="container">
+        <div class="card-header c-bg-transparant mb-2">
+          <div class="d-flex">
+            <div class="mr-auto">
+              <h4 class="text-uppercase text-left text-muted mb-2">
+                <strong>Shopping</strong>
+              </h4>
+              <h1 class="text-capitalize text-left mb-0">
+                Solusi Belanja Online Termurah
+              </h1>
+            </div>
+
+            <div>
+              <a href="/abustore-produk" class="btn btn-sm btn-outline-secondary mt-3">
+                Lihat semua produk <i class="ion-arrow-right-c ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-columns">
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/1.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/2.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/3.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/4.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/5.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="card-columns">
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/6.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/7.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/8.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/9.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="card mb-3">
+            <a href="/detil-produk">
+              <div class="card-body-image">
+                <%= image_tag 'store/10.jpg', :class => 'mx-auto d-block', :alt => '' %>
+                <div class="middle-hover"></div>
+              </div>
+
+              <div class="card-body">
+                <div class="name-product name-product-line">
+                  Souvenir madinah original
+                </div>
+
+                <p class="text-left mt-1 mb-0">
+                    <span class="price-packet">
+                      Rp 10,000
+                    </span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="_landing | c-about">
+      <div class="container" style="min-width: 1120px;">
+        <h1 class="text-center mb-5">
+          Mengapa Umrah di Abutours <strong>Lebih Nyaman & Terpercaya ?</strong>
+        </h1>
+
+        <div class="card-group">
+          <div class="row">
+            <div class="card | c-about__item col-3">
+              <%= image_tag 'lib/icon/travelumrahterbesar.png', :class => 'mx-auto d-block', :alt => '' %>
+              <div class="card-body | c-about__item-b">
+                <p class="card-text | a-text text-center mb-0">
+                  <strong>TRAVEL UMRAH TERBESAR</strong>
+                </p>
+                <p class="card-text | a-text">
+                  Online travel umrah pertama dan terbesar dengan memiliki 24
+                  kantor
+                  cabang yang tersebar di seluruh Indonesia berada di kota Jakarta, Makassar,
+                  Palembang, Surabaya, serta kota lainnya dengan
+                  bekerjasama banyak airline dalam menghadirkan harga khusus yang
+                  terpercaya.
+                </p>
+              </div>
+            </div>
+
+            <div class="card | c-about__item col-3">
+              <%= image_tag 'lib/icon/hargaterjamin.png', :class => 'mx-auto d-block', :alt => '' %>
+              <div class="card-body | c-about__item-b">
+                <p class="card-text | a-text text-center mb-0">
+                  <strong>HARGA TERJAMIN</strong>
+                </p>
+                <p class="card-text | a-text">
+                  Kami menyediakan paket umrah dengan harga yang terjamin dan
+                  berkualitas. Semua biaya sudah termasuk dengan airport tax,handling dan tentu saja
+                  dengan fasilitas
+                  dan pelayanan terbaik.
+                </p>
+              </div>
+            </div>
+
+            <div class="card | c-about__item col-3">
+              <%= image_tag 'lib/icon/teknologimutakhir.png', :class => 'mx-auto d-block', :alt => '' %>
+              <div class="card-body | c-about__item-b">
+                <p class="card-text | a-text text-center mb-0">
+                  <strong>TEKNOLOGI MUTAKHIR</strong>
+                </p>
+                <p class="card-text | a-text">
+                  Berbeda dengan travel umroh dan biro perjalanan lainnya,
+                  abutours.com dengan sistem online dan berbasis teknologi yang aman &amp; mutakhir, 
+                  sehingga
+                  memudahkan
+                  jama’ah dalam bertransaksi dan menghemat waktu.
+                </p>
+              </div>
+            </div>
+
+            <div class="card | c-about__item col-3">
+              <%= image_tag 'lib/icon/tidakrepot.png', :class => 'mx-auto d-block', :alt => '' %>
+              <div class="card-body | c-about__item-b">
+                <p class="card-text | a-text text-center mb-0">
+                  <strong>TIDAK PERLU SUSAH</strong>
+                </p>
+                <p class="card-text | a-text">
+                  Pengurusan barang bawaan Anda akan ditangani langsung oleh tim abutours sejak
+                  keberangkatan hingga kepulangan. Jadi, Anda tidak perlu susah untuk membawanya
+                  karena Anda akan mendapatkan barang bawaan Anda di dalam kamar hotel.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            new Fingerprint2().get(function (result, components) {
+                $('#afb').val(result);
+                var _link1 = $("#authgplus").attr('href')
+                var _link2 = $("#authfb").attr('href')
+                $("#authgplus").attr('href', _link1 + '?fp=' + result);
+                $("#authfb").attr('href', _link2 + '?fp=' + result);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('select').select2({
+                theme: 'bootstrap'
+            })
+            $("#kota").select2({
+                theme: "bootstrap"
+            });
+            $("#kotahaji").select2({
+                theme: "bootstrap"
+            });
+            $("#paket").select2({
+                theme: "bootstrap"
+            });
+            $("#jenishaji").select2({
+                theme: "bootstrap"
+            });
+            $("#bulan").select2({
+                theme: "bootstrap"
+            });
+            $("#tahun").select2({
+                theme: "bootstrap"
+            });
+            $("#tahunhaji").select2({
+                theme: "bootstrap"
+            });
+            $("#kota1").select2({
+                theme: "bootstrap"
+            });
+            $("#kota2").select2({
+                theme: "bootstrap"
+            });
+
+            $('#nominalsPulsa').select2({
+                theme: "bootstrap"
+            });
+            $('#nominalsPaket').select2({
+                theme: "bootstrap"
+            });
+            $('#nominalsToken').select2({
+                theme: "bootstrap"
+            });
+            $('#voucherProvider').select2({
+                theme: "bootstrap"
+            });
+            $('#nominalsGame').select2({
+                theme: "bootstrap"
+            });
+        });
+
+        $(document).ready(function () {
+            $('input[name=checkbox]').change(function () {
+                if ($(this).prop("checked")) {
+                    setTimeout(function () {
+                        $('#PP').fadeIn('slow');
+                        $('#PP').removeClass('d-none');
+                    }, 200);
+                } else {
+                    setTimeout(function () {
+                        $('#PP').fadeOut('slow');
+                        $('#PP').addClass('d-none');
+                    }, 200);
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        // daterange numberMonth
+        function setDate() {
+            var d = $("#sekalijalan").datepicker('getDate');
+            $("#pulangpergi").datepicker('option', 'minDate', d);
+            if ($("#pulangpergi").val() == '') {
+                $("#pulangpergi").datepicker('setDate', d);
+            }
+        }
+
+        $(function () {
+            $("#sekalijalan").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2,
+                minDate: 'today',
+                onSelect: setDate
+
+            });
+
+            $("#pulangpergi").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2,
+                minDate: 'today',
+                beforeShow: setDate
+            });
+
+            $("#sekalijalan").datepicker('setDate', new Date());
+        });
+    </script>
+
+    <script type="text/javascript">
+        $.fn.animateRotate = function (angle, duration, easing, complete) {
+            var args = $.speed(duration, easing, complete);
+            var step = args.step;
+            return this.each(function (i, e) {
+                args.complete = $.proxy(args.complete, e);
+                args.step = function (now) {
+                    $.style(e, 'transform', 'rotate(' + now + 'deg)');
+                    if (step) return step.apply(e, arguments);
+                };
+
+                $({deg: 0}).animate({deg: angle}, args);
+            });
+        };
+
+        $("#tombol").click(function (e) {
+            var asal = $('#kota1').val();
+            var tujuan = $('#kota2').val();
+            $('#kota1').val(tujuan).trigger('change');
+            $('#kota2').val(asal).trigger('change');
+        });
+
+        $('#tombol2').click(function () {
+            var $departures = $('#kota1 option');
+            var $arrivals = $('#kota2 option');
+
+            /* Store the selected values */
+            var departure = $('#kota1 option:checked').text();
+            var arrival = $('#kota2 option:checked').text();
+
+            /* Swap the option lists */
+            $('#kota1').append($departures);
+            $('#koat2').append($arrivals);
+
+            /* Re-set the selected values */
+            $('#kota1 option:contains(' + departure + ')').prop('selected', true);
+            $('#kota2 option:contains(' + arrival + ')').prop('selected', true);
+        });
+    </script>
+
+    <script type="text/javascript">
+        var typeText = {
+            adult: {
+                singular: 'Dewasa', plural: 'Dewasa'
+            },
+            child: {
+                singular: 'Anak', plural: 'Anak'
+            },
+            infant: {
+                singular: 'Bayi', plural: 'Bayi'
+            }
+        }
+
+        $(function () {
+            var $popover = $('.popover-markup>.trigger').popover({
+                container: "body",
+                html: true,
+                placement: 'top',
+
+                content: function () {
+                    return $(this).parent().find('.content').html();
+                }
+            });
+
+            // open popover & inital value in form
+            var passengers = [1, 0, 0];
+            $('.popover-markup>.trigger').click(function (e) {
+                e.stopPropagation();
+                $(".popover-body input").each(function (i) {
+                    $(this).val(passengers[i]);
+                });
+            });
+
+            // close popover
+            $(document).click(function (e) {
+                if ($(e.target).is('.demise')) {
+                    $('.popover-markup>.trigger').popover('hide');
+                }
+            });
+
+            // store form value when popover closed
+            $popover.on('hide.bs.popover', function () {
+                $(".popover-body input").each(function (i, val) {
+                    passengers[i] = $(this).val();
+
+                    dewasa = $('#rAdult');
+                    anak = $('#rChild');
+                    bayi = $('#rInfant');
+
+                    dewasa.val(passengers[0]);
+                    anak.val(passengers[1]);
+                    bayi.val(passengers[2]);
+
+                });
+            });
+
+            // spinner(+-btn to change value) & total to parent input
+            $(document).on('click', '.number-spinner a', function () {
+                var btn = $(this),
+                    input = btn.closest('.number-spinner').find('input'),
+                    total = $('#passengers').val(),
+                    oldValue = input.val().trim();
+                adult = $('#adult').val();
+
+                if (btn.attr('data-dir') == 'up') {
+                    if (oldValue < input.attr('max')) {
+                        oldValue++;
+                        total++;
+                    }
+                } else {
+                    if (oldValue > input.attr('min')) {
+                        oldValue--;
+                        total--;
+                    }
+                }
+
+                $('#passengers').val(total);
+
+                input.val(oldValue);
+
+                passangerInfoText = [];
+                $(".popover-body input").each(function (i) {
+                    if (this.value > -1) {
+                        passangerInfoText.push(typeText[this.id][this.value > 1 ? 'plural' : 'singular'] + ': ' + this.value);
+                    }
+                });
+                $('#passanger-info').val(passangerInfoText.join(', '));
+
+                // Ambil Value Dari Response
+                var passanger_value = passangerInfoText.join(', ');
+                var dewasa = passanger_value.substr(8, 1);
+                var anak = passanger_value.substr(17, 1);
+                var balita = passanger_value.substr(26, 1);
+
+                $('#rAdult').val(dewasa);
+                $('#rChild').val(anak);
+                $('#rInfant').val(balita);
+
+            });
+            $(".popover-markup>.trigger").popover('hide');
+        });
+    </script>
+
+    <script type="text/javascript">
+        function cekHargaPulsa(val) {
+            nominal = $('#nominalsPulsa'); //pulsa
+            nominal.html('');
+            if (val.length > 9) {
+                $.ajax({
+                    url: "/pulsa/inquiry-news/" + val,
+                    type: 'get',
+                    success: function (data) {
+                        nominal.html('');
+                        if (data.status == 200) {
+                            $.each(data['data'], function (i, value) {
+                                nominal.append("<option value='" + value.product_id + "' data-price='Rp " + numberFormat(value.price) + "' data-value='" + value.nominal + "'>" + value.voucher + ' - ' + value.nominal + "</option>");
+                            });
+                            $('#priceTagPulsa').html($('#nominalsPulsa').find("option:selected").data('price'));
+                            activePulsa($("#nominalsPulsa").val());
+                        } else {
+                            swal({
+                                text: 'Maaf, Mohon periksa kembali nomor telepon Anda!',
+                                imageUrl: 'assets/lib/sticker/25.png',
+                                imageWidth: 100,
+                                animation: true,
+                                showConfirmButton: false,
+                                timer: 6000
+                            });
+                        }
+                    },
+                    error: function (data) {
+                        swal({
+                            text: 'Maaf, Mohon periksa kembali nomor telepon Anda!',
+                            imageUrl: 'assets/lib/sticker/26.png',
+                            imageWidth: 100,
+                            animation: true,
+                            showConfirmButton: false,
+                            timer: 6000,
+                            onOpen: function () {
+                                swal.showLoading()
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function activePulsa(val) {
+            if (val) {
+                $("#btnPulsa").removeAttr('disabled');
+                $("#btnPulsa").removeClass('disabled');
+            } else {
+                $("#btnPulsa").attr('disabled');
+                $("#btnPulsa").addClass('disabled');
+            }
+        }
+
+        $('#nominalsPulsa').on('change', function (e) {
+            $('#priceTagPulsa').html($(this).find("option:selected").data('price'));
+        });
+
+        function cekHargaPaket(val) {
+            nominal = $('#nominalsPaket'); // paket data
+            nominal.html('');
+            if (val.length > 10) {
+                $.ajax({
+                    url: "/paket-data/inquiry-news/" + val,
+                    type: 'get',
+                    success: function (data) {
+                        nominal.html('');
+                        if (data.status == 200) {
+                            if (data['data'].length == 0) {
+                                alert('paket data tidak tersedia');
+                            } else {
+                                $.each(data['data'], function (i, value) {
+                                    nominal.append("<option value='" + value.product_id +
+                                        "' data-price='Rp " + numberFormat(value.price) +
+                                        "' data-value='" + value.nominal + "'>" + value.voucher + ' - ' + value.nominal + "</option>");
+                                });
+                                $('#priceTagPaket').html($('#nominalsPaket').find("option:selected").data('price'));
+                                activePaket($("#nominalsPaket").val());
+                            }
+                        } else {
+                            swal({
+                                text: 'Maaf, Mohon periksa kembali nomor telepon Anda!',
+                                imageUrl: 'assets/lib/sticker/25.png',
+                                imageWidth: 100,
+                                animation: true,
+                                showConfirmButton: false,
+                                timer: 6000
+                            });
+                        }
+                    },
+                    error: function (data) {
+                        swal({
+                            text: data.responseJSON.message,
+                            imageUrl: 'assets/lib/sticker/26.png',
+                            imageWidth: 100,
+                            animation: true,
+                            showConfirmButton: false,
+                            timer: 6000,
+                            onOpen: function () {
+                                swal.showLoading()
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function activePaket(val) {
+            if (val) {
+                $("#btnPaket").removeAttr('disabled');
+                $("#btnPaket").removeClass('disabled');
+            } else {
+                $("#btnPaket").attr('disabled');
+                $("#btnPaket").addClass('disabled');
+            }
+        }
+
+        $('#nominalsPaket').on('change', function (e) {
+            $('#priceTagPaket').html($(this).find("option:selected").data('price'));
+        });
+
+        function cekHargaToken(val) {
+            nominal = $('#nominalsToken'); // paket data
+            nominal.html('');
+            if (val.length > 9) {
+                $.ajax({
+                    url: "/token-listrik/inquiry/" + val,
+                    type: 'get',
+                    success: function (data) {
+                        if (data.status == 200) {
+                            nominal.html('');
+                            admin = parseInt(data.data.admin);
+                            data = data.power_purchase_denom.item;
+                            $.each(data, function (i, value) {
+                                harga = numberFormat(parseInt(value) + admin);
+                                nominal.append("<option value='" + value + "' data-price='Rp " + harga + "'data-value='" + value + "'>" + numberFormat(value) + "</option>");
+                            });
+                            $('#priceTagToken').html($('#nominalsToken').find("option:selected").data('price'));
+                            activeToken($("#nominalsToken").val());
+                        } else {
+                            swal({
+                                text: 'Maaf, Mohon periksa kembali id pelanggan atau nomor meteran Anda!',
+                                imageUrl: 'assets/lib/sticker/25.png',
+                                imageWidth: 100,
+                                animation: true,
+                                showConfirmButton: false,
+                                timer: 6000
+                            });
+                        }
+                    },
+                    error: function (data) {
+                        swal({
+                            text: data.responseJSON.message,
+                            imageUrl: 'assets/lib/sticker/26.png',
+                            imageWidth: 100,
+                            animation: true,
+                            showConfirmButton: false,
+                            timer: 6000,
+                            onOpen: function () {
+                                swal.showLoading()
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function activeToken(val) {
+            if (val) {
+                $("#btnToken").removeAttr('disabled');
+                $("#btnToken").removeClass('disabled');
+            } else {
+                $("#btnToken").attr('disabled');
+                $("#btnToken").addClass('disabled');
+            }
+        }
+
+        $('#nominalsToken').on('change', function (e) {
+            $('#priceTagToken').html($('#nominalsToken').find("option:selected").data('price'));
+        });
+
+        function cekHargaVoucher(val) {
+            nominal = $('#nominalsGame');
+            nominal.html('');
+            $.get("/voucher-game/inquiry-new/" + val, function (data) {
+                if (data.status == 200) {
+                    if (data['data'].length == 0) {
+                        alert('voucher game tidak tersedia');
+                    } else {
+                        nominal.html('');
+                        $.each(data['data'], function (i, value) {
+                            nominal.append("<option value='" + value.product_id + "' data-price='Rp " + numberFormat(value.harga) + "'data-value='" + value.nominal + "'>" + value.voucher + ' - ' + value.nominal + "</option>");
+                        });
+                        $('#priceTagGame').html($('#nominalsGame').find("option:selected").data('price'));
+                        activeGame($("#nominalsGame").val());
+                    }
+                } else {
+                    swal({
+                        text: 'Maaf, Mohon periksa kembali voucher Anda!',
+                        imageUrl: 'assets/lib/sticker/25.png',
+                        imageWidth: 100,
+                        animation: true,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
+        }
+
+        function activeGame(val) {
+            if (val) {
+                $("#btnGame").removeAttr('disabled');
+                $("#btnGame").removeClass('disabled');
+            } else {
+                $("#btnGame").attr('disabled');
+                $("#btnGame").addClass('disabled');
+            }
+        }
+
+        $('#nominalsGame').on('change', function (e) {
+            $('#priceTagGame').html($(this).find("option:selected").data('price'));
+        });
+
+        function cariTiket() {
+            kota1 = $("#kota1");
+            kota2 = $("#kota2");
+            if (kota1.val() == kota2.val()) {
+                swal({
+                    text: 'Maaf, Kota asal dan kota tujuan tidak boleh sama!',
+                    imageUrl: 'assets/lib/sticker/2.png',
+                    imageWidth: 100,
+                    animation: true,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else {
+                $("#formCariTiket").submit();
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#promotion").carousel({
+                interval: 6000
+            });
+        });
+    </script>
+<% end %>

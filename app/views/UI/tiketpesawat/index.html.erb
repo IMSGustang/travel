@@ -1,0 +1,510 @@
+<%= content_for :head do %>
+    <title>Booking Tiket Pesawat di Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="_landing | c-cover-head">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            </ol>
+          <div class="carousel-inner">
+            <% if @data_slider && @data_slider.count > 0 %>
+                <% first = true %>
+                <% @data_slider.each do |slider| %>
+                    <div class="carousel-item <%= first ? 'active' : '' %>">
+                      <% first = false %>
+                      <%= image_tag slider['foto'], :class => 'd-block w-100', :alt => slider['judul'] %>
+                    </div>
+                <% end %>
+            <% else %>
+                <div class="carousel-item active">
+                  <%= image_tag 'lib/slider/tiket_pesawat.png', :class => 'd-block w-100', :alt => '' %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+
+    <div class="ui-tabs">
+        <div class="container">
+            <%= render template: 'UI/partials/tabs' %>
+        </div>
+    </div>
+
+    <div class="ui-tabs__content">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/pencarian-tiket" method="GET" id="formCariTiket">
+                        <table class="table table-ticket table-sm">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label>Kota Asal</label>
+                                        <select name="b" class="form-control" id="kota1">
+                                            <% group = '' %>
+                                            <% @bandara_terdekat.each do |item| %>
+                                                <% if item %>
+                                                <% if group != item['country_name'] %>
+                                                    <% group = item['country_name'] %>
+                                                    <optgroup label="<%= group %>">
+                                                <% end %>
+                                                <option value="<%= item['airport_code'] %>" <%= item['airport_code'] == 'CGK' ? 'selected' : '' %>><%= item['location_name'] + "(#{item['airport_code']})" %></option>
+                                                <% if group != item['country_name'] %>
+                                                    </optgroup>
+                                                <% end %>
+                                              <% end %>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-portal btn-sm btn-success" id="tombol">
+                                        <i class="ion-arrow-swap"></i>
+                                    </button>
+                                    <div class="form-group">
+                                        <label>Kota Tujuan</label>
+                                        <select name="p" class="form-control" id="kota2">
+                                            <% group = '' %>
+                                            <% @bandara.each do |item| %>
+                                              <% if item %>
+                                                <% if group != item['country_name'] %>
+                                                    <% group = item['country_name'] %>
+                                                    <optgroup label="<%= group %>">
+                                                <% end %>
+                                                <option value="<%= item['airport_code'] %>" <%= item['airport_code'] == 'UPG' ? 'selected' : '' %>><%= item['location_name'] + "(#{item['airport_code']})" %></option>
+                                                <% if group != item['country_name'] %>
+                                                    </optgroup>
+                                                <% end %>
+                                            <% end %>
+                                          <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="popover-markup" style="width: 100%">
+                                        <div class="trigger form-group" triggers="focus">
+                                            <label>Jumlah Penumpang</label>
+                                            <input type="text" name="passanger-info" id="passanger-info" class="form-control" value="Dewasa 1, Anak 0, Bayi 0" readonly>
+                                            <input type="hidden" name="passengers" id="passengers" class="form-control d-none" value="1" disabled>
+                                            <input type="hidden" name="dewasa" id="rAdult" class="form-control d-none" value="1">
+                                            <input type="hidden" name="anak" id="rChild" class="form-control d-none" value="0">
+                                            <input type="hidden" name="bayi" id="rInfant" class="form-control d-none" value="0">
+                                        </div>
+
+                                        <div class="content d-none">
+                                            <div class="form-group">
+                                                <label><strong>Dewasa</strong>
+                                                    <small> (Umur +12 Tahun)</small>
+                                                </label>
+                                                <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                    </span>
+                                                    <input type="text" disabled name="adult" id="adult" class="form-control" value="1" max=9 min=1>
+                                                    <span class="input-group-btn">
+                                      <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label><strong>Anak - Anak</strong>
+                                                    <small> (Umur 3 - 12 Tahun)</small>
+                                                </label>
+                                                <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                    </span>
+                                                    <input type="text" disabled name="child" id="child" class="form-control" value="0" max=9 min=0>
+                                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label><strong>Bayi</strong>
+                                                    <small> (Umur 1 - 2 Tahun)</small>
+                                                </label>
+                                                <div class="input-group number-spinner">
+                                  <span class="input-group-btn">
+                                      <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                  </span>
+                                                    <input type="text" disabled name="infant" id="infant" class="form-control" value="0" max=9 min=0>
+                                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                                                </div>
+                                            </div>
+                                            <a class="btn btn-outline-secondary btn-block demise">Selesai</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label>Tanggal Berangkat</label>
+                                        <input type="text" name="tgl-b" class="form-control" id="sekalijalan" placeholder="Tanggal Berangkat" required>
+                                    </div>
+                                </td>
+                                <td style="display: block">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="checkbox" id="checkbox" class="custom-control-input" value="double">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Pulang Pergi</span>
+                                    </label>
+                                    <div class="form-group d-none" id="PP">
+                                        <input type="text" name="tgl-p" class="form-control" id="pulangpergi" placeholder="Tanggal Pulang">
+                                    </div>
+                                </td>
+                                <td class="d-block">
+                                    <div class="form-group text-right">
+                                        <button type="button" class="btn btn-costume btn-danger" onclick="cariTiket()">
+                                            Cari Tiket
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-hotels">
+        <div class="container">
+            <h2 class="title-hotel text-center">
+                Tujuan Populer
+            </h2>
+
+            <div class="row pl-3 pr-3 mb-1">
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/bali.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Bali</span></h2>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/surabaya.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Surabaya</span></h2>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/jakarta.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Jakarta</span></h2>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/makassar.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Makassar</span></h2>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/yogyakarta.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Yogyakarta</span></h2>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/medan.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Medan</span></h2>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/bandung.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Bandung</span></h2>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-3 pl-1 pr-1 mb-2">
+                    <div class="grid-umrah">
+                        <figure class="effect-umrah">
+                            <%= image_tag 'flight_categories/lombok.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Lombok</span></h2>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#kota1").select2({
+                theme: "bootstrap"
+            });
+
+            $("#kota2").select2({
+                theme: "bootstrap"
+            });
+
+            $("#kamar").select2({
+                theme: "bootstrap"
+            });
+
+            $("#duration").select2({
+                theme: "bootstrap"
+            });
+        });
+
+        $(document).ready(function () {
+            $('input[name=checkbox]').change(function () {
+                if ($(this).prop("checked")) {
+                    setTimeout(function () {
+                        $('#PP').fadeIn('slow');
+                        $('#PP').removeClass('d-none');
+                    }, 200);
+                } else {
+                    setTimeout(function () {
+                        $('#PP').fadeOut('slow');
+                        $('#PP').addClass('d-none');
+                    }, 200);
+                }
+            });
+        });
+
+        // daterange numberMonth
+        function setDate() {
+            var d = $("#sekalijalan").datepicker('getDate');
+            $("#pulangpergi").datepicker('option', 'minDate', d);
+            if ($("#pulangpergi").val() == '') {
+                $("#pulangpergi").datepicker('setDate', d);
+            }
+        }
+
+        $(function () {
+            $("#sekalijalan").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2,
+                minDate: 'today',
+                onSelect: setDate
+
+            });
+
+            $("#pulangpergi").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2,
+                minDate: 'today',
+                beforeShow: setDate
+            });
+
+            $("#sekalijalan").datepicker('setDate', new Date());
+        });
+
+        $.fn.animateRotate = function (angle, duration, easing, complete) {
+            var args = $.speed(duration, easing, complete);
+            var step = args.step;
+            return this.each(function (i, e) {
+                args.complete = $.proxy(args.complete, e);
+                args.step = function (now) {
+                    $.style(e, 'transform', 'rotate(' + now + 'deg)');
+                    if (step) return step.apply(e, arguments);
+                };
+
+                $({deg: 0}).animate({deg: angle}, args);
+            });
+        };
+
+        $("#tombol").click(function (e) {
+            var asal = $('#kota1').val();
+            var tujuan = $('#kota2').val();
+            $('#kota1').val(tujuan).trigger('change');
+            $('#kota2').val(asal).trigger('change');
+        });
+
+        $('#tombol2').click(function () {
+            var $departures = $('#kota1 option');
+            var $arrivals = $('#kota2 option');
+
+            /* Store the selected values */
+            var departure = $('#kota1 option:checked').text();
+            var arrival = $('#kota2 option:checked').text();
+
+            /* Swap the option lists */
+            $('#kota1').append($departures);
+            $('#koat2').append($arrivals);
+
+            /* Re-set the selected values */
+            $('#kota1 option:contains(' + departure + ')').prop('selected', true);
+            $('#kota2 option:contains(' + arrival + ')').prop('selected', true);
+        });
+
+        var typeText = {
+            adult: {
+                singular: 'Dewasa', plural: 'Dewasa'
+            },
+            child: {
+                singular: 'Anak', plural: 'Anak'
+            },
+            infant: {
+                singular: 'Bayi', plural: 'Bayi'
+            }
+        }
+
+        $(function () {
+            var $popover = $('.popover-markup>.trigger').popover({
+                container: "body",
+                html: true,
+                placement: 'top',
+
+                content: function () {
+                    return $(this).parent().find('.content').html();
+                }
+            });
+
+            // open popover & inital value in form
+            var passengers = [1, 0, 0];
+            $('.popover-markup>.trigger').click(function (e) {
+                e.stopPropagation();
+                $(".popover-body input").each(function (i) {
+                    $(this).val(passengers[i]);
+                });
+            });
+
+            // close popover
+            $(document).click(function (e) {
+                if ($(e.target).is('.demise')) {
+                    $('.popover-markup>.trigger').popover('hide');
+                }
+            });
+
+            // store form value when popover closed
+            $popover.on('hide.bs.popover', function () {
+                $(".popover-body input").each(function (i, val) {
+                    passengers[i] = $(this).val();
+
+                    dewasa = $('#rAdult');
+                    anak = $('#rChild');
+                    bayi = $('#rInfant');
+
+                    dewasa.val(passengers[0]);
+                    anak.val(passengers[1]);
+                    bayi.val(passengers[2]);
+
+                });
+            });
+
+            // spinner(+-btn to change value) & total to parent input
+            $(document).on('click', '.number-spinner a', function () {
+                var btn = $(this),
+                    input = btn.closest('.number-spinner').find('input'),
+                    total = $('#passengers').val(),
+                    oldValue = input.val().trim();
+                adult = $('#adult').val();
+
+                if (btn.attr('data-dir') == 'up') {
+                    if (oldValue < input.attr('max')) {
+                        oldValue++;
+                        total++;
+                    }
+                } else {
+                    if (oldValue > input.attr('min')) {
+                        oldValue--;
+                        total--;
+                    }
+                }
+
+                $('#passengers').val(total);
+
+                input.val(oldValue);
+
+                passangerInfoText = [];
+                $(".popover-body input").each(function (i) {
+                    if (this.value > -1) {
+                        passangerInfoText.push(typeText[this.id][this.value > 1 ? 'plural' : 'singular'] + ': ' + this.value);
+                    }
+                });
+                $('#passanger-info').val(passangerInfoText.join(', '));
+
+                // Ambil Value Dari Response
+                var passanger_value = passangerInfoText.join(', ');
+                var dewasa = passanger_value.substr(8, 1);
+                var anak = passanger_value.substr(17, 1);
+                var balita = passanger_value.substr(26, 1);
+
+                $('#rAdult').val(dewasa);
+                $('#rChild').val(anak);
+                $('#rInfant').val(balita);
+
+            });
+            $(".popover-markup>.trigger").popover('hide');
+        });
+
+        function cariTiket() {
+            kota1 = $("#kota1");
+            kota2 = $("#kota2");
+            if (kota1.val() == kota2.val()) {
+                swal({
+                    text: 'Maaf, Kota asal dan kota tujuan tidak boleh sama!',
+                    imageUrl: 'assets/lib/sticker/2.png',
+                    imageWidth: 100,
+                    animation: true,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else {
+                $("#formCariTiket").submit();
+            }
+        }
+    </script>
+<% end %>

@@ -1,0 +1,124 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="p-help__cover">
+      <div class="container">
+        <div class="card text-center">
+          <h1 class="card-title text-uppercase mb-1">
+            Pusat Bantuan Abutours
+          </h1>
+
+          <h3>
+            Kami disini untuk melayani & membantu anda
+          </h3>
+
+          <!--<form onsubmit="$('#helps').blur();return false;" class="helps" action="" method="post">-->
+            <!--<div class="form-group row justify-content-center">-->
+              <!--<div class="col-6">-->
+                <!--<div class="input-group">-->
+                  <!--<input type="text" id="helps" autofocus class="form-control form-control-lg" name="" placeholder="Apa yang bisa kami bantu ?">-->
+                  <!--<span class="input-group-addon">-->
+                  <!--<i class="ion-ios-search-strong"></i>-->
+                <!--</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</form>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="p-helps">
+      <div class="container">
+        <div class="card-group">
+          <div class="row">
+            <% if @data_faq %>
+            <div class="card col-3 p-0">
+              <div class="card-body card-sideslinky">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <% first = true %>
+                  <% @data_faq.each do |faq| %>
+                  <li class="nav-item">
+                    <span class="lead"><%= faq['nama_kategori'] %></span>
+                  </li>
+                  <% faq['sub_kategori'].each do |subkat| %>
+                  <li class="nav-item">
+                    <a class="nav-link <%= first ? 'active':''%>" id="tab-<%= subkat['id_subkategori'] %>" data-toggle="tab" href="#content<%= subkat['id_subkategori'] %>" role="tab" aria-controls="content<%= subkat['id_subkategori'] %>" aria-selected="true">
+                      <%= subkat['nama_subkategori'] %>
+                      <% first = false %>
+                    </a>
+                  </li>
+                  <% end %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card col-9">
+              <div class="card-body">
+                <div class="tab-content">
+                  <% first = true %>
+                  <% @data_faq.each do |faq| %>
+                      <% faq['sub_kategori'].each do |subkat| %>
+                          <div class="tab-pane <%= first ? 'active':''%>" id="content<%= subkat['id_subkategori'] %>" role="tabpanel" aria-labelledby="1A-tab">
+                            <% first = false %>
+                            <% subkat['artikel'].each do |artikel| %>
+                            <div class="card-body">
+                              <h2 class="mb-2" style="text-transform: none !important;">
+                                <%= artikel['judul'] %>
+                              </h2>
+                              <p class="mb-0">
+                                <%= artikel['artikel'].html_safe %>
+                              </p>
+                            </div>
+                            <% end %>
+                          </div>
+                      <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <% else %>
+              TIDAK ADA FAQ
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        $(function () {
+            $('#helps').autoComplete({
+                minChars: 1,
+                source: function (term, suggest) {
+                    term = term.toLowerCase();
+                    var choices = [
+                        'Apa itu abutours.com ?',
+                        'Layanan yang tersedia apa saja ?',
+                        'Bagaiman cara menjadi agen ?',
+                        'Bagaiman cara menjadi mitra ?',
+                        'Bagaiman cara menjadi ustad ?',
+                        'Bagaiman cara TopUp di abutours.com ?'
+                    ];
+                    var suggestions = [];
+                    for (i = 0; i < choices.length; i++)
+                        if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                    suggest(suggestions);
+                }
+            });
+        });
+    </script>
+    <!-- --------------------------------------------------- -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#menu').slinky({
+                title: true,
+            });
+        });
+    </script>
+    <!-- --------------------------------------------------- -->
+<% end %>

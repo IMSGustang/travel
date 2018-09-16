@@ -1,0 +1,51 @@
+<%= content_for :active_home do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Beli Paket Data di Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Detail pembelian paket data
+        </h6>
+        <%= image_tag 'lib/icon/tagihan.svg', :class => 'mx-auto d-block', :alt => '' %>
+      </div>
+    </div>
+
+    <div class="data-detail-evoucher overlap-data">
+      <div class="card">
+        <form action="/paket-data/beli" method="post">
+          <div class="card-body">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="hidden" name="msisdn" value="<%= telepon %>">
+            <input type="hidden" name="product" value="<%= data['produk_id'] %>">
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Provider <span class="float-right"><%= data['voucher'] %></span>
+              </li>
+              <li class="list-group-item">
+                Nominal <span class="float-right">Rp <%= number_with_delimiter(data['harga']) %></span>
+              </li>
+              <li class="list-group-item">
+                No Telepon <span class="float-right"><%= telepon %></span>
+              </li>
+              <li class="list-group-item list-group-item-price">
+                Harga Bayar <span class="float-right">Rp <%= number_with_delimiter(data['harga']) %></span>
+              </li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-block btn-outline-danger">Lanjutkan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+<% end %>
+<% content_for :footmobile do %>
+
+<% end %>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="js csstransforms supports csstransforms3d">
+<head>
+  <%= yield :headdownload %>
+  <%= favicon_link_tag 'logo/favicon.png' %>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Abu Tours & Travel Umrah memberikan jaminan transaksi aman, fasilitas dan pelayanan ibadah yang lebih baik untuk perjalanan umroh maupun haji anda. Kami Tumbuh dari Kepercayaan Anda, lebih dari sekedar nikmatnya beribadah."/>
+  <meta name="author" content="PT Amanah Bersama Ummat"/>
+
+  <meta property="og:title" content="www.abutours.com - lebih dari sekedar nikmatnya ibadah"/>
+  <meta property="og:description" content="www.abutours.com - semua bisa umrah bersama kami"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.abutours.com"/>
+  <meta property="og:image" content="https://www.abutours.com/abutours/logo/favicon.png"/>
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
+<body>
+
+<!-- Just an image -->
+<nav class="navbar navbar-light fixed-top p-1">
+  <a class="navbar-brand mr-0" href="/" style="width: 100%">
+    <%= image_tag 'logo/logo.png', :width => '60', :style => 'display: block;margin: 0 auto;' %>
+  </a>
+</nav>
+
+<%= yield :download %>
+
+<!--&lt;!&ndash;<script type="text/javascript">&ndash;&gt;-->
+<!--//    if (screen.width >= 721) {-->
+<!--//        window.location = "/";-->
+<!--//    }-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+</body>
+</html>

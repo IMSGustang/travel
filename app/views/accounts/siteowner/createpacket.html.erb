@@ -1,0 +1,162 @@
+<% content_for :head do %>
+    <title>Pengaturan Paket | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Pengaturan Paket</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="row">
+              <div class="col-md-4"><h3>Pengaturan Paket</h3></div>
+              <div class="col-md-4 ml-auto">
+                <h3 class="text-right text-success text-uppercase">
+                  <strong>Total : <%= @seat %> Seat</strong>
+                </h3>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+
+            <form action="/api/create-paket" method="post" enctype="multipart/form-data">
+              <div class="c-bg-white-accounts c-management__packet mb-2">
+                <div class="card c-dashboard-content c-management__packet-item mt-0 mb-0 pl-2 pr-2">
+                  <div class="card-body c-dashboard-content__item c-management__packet-item--body">
+                    <div class="form-group">
+                      <label>Gambar Paket</label>
+                      <div class="file-loading">
+                        <input id="input-image-3" name="photo" type="file" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Nama Paket</label>
+                      <input type="text" name="nama_paket" class="form-control" value="<%= @data['nama_paket'] %>">
+                      <input type="hidden" name="no_trans" value="<%= @data['no_trans'] %>">
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-6">
+                        <label>Harga Dasar</label>
+                        <input type="text" name="harga_dasar" id="harga_dasar" class="form-control" required>
+                      </div>
+                      <div class="col-3">
+                        <label>Pax</label>
+                        <input type="number" name="pax" id="pax" class="form-control" min="0" max="100" required>
+                      </div>
+                      <div class="col-3">
+                        <label>Jumlah</label>
+                        <input type="number" name="jmh" id="jmh" class="form-control" readonly="" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-6">
+                        <label>Harga Jual</label>
+                        <input type="text" name="harga_jual" id="harga_jual" class="form-control" required>
+                      </div>
+                      <div class="col-6">
+                        <label>Diskon (%)</label>
+                        <input type="number" name="diskon" id="diskon" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group pl-2 pr-2 row">
+                <div class="col-6 pr-1">
+                  <a href="" class="btn btn-back btn-block btn-light">Kembali</a>
+                </div>
+                <div class="col-6 pl-1">
+                  <!--<a href="" class="btn btn-block btn-danger">Publish Paket</a>-->
+                  <% if @seat == 0 %>
+                      <span class="btn btn-block btn-danger">Maaf, Kuota sudah habis.</span>
+                  <% else %>
+                      <input type="submit" class="btn btn-block btn-success" value="Publish Paket">
+                  <% end %>
+                </div>
+              </div>
+            </form>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script type="text/javascript">
+      var total_seat = '<%= @seat %>';
+      var total_bayar = 0;
+
+        $("#input-image-3").fileinput({
+            uploadUrl: "/site/image-upload",
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            maxImageHeight: 50,
+            maxFileCount: 4,
+            showRemove: false,
+            showUpload: false,
+            resizeImage: true
+        });
+
+        $('#harga_jual').maskMoney({prefix: 'Rp ', thousands: ',', decimal: ',', precision: 0});
+        $('#harga_dasar').maskMoney({prefix: 'Rp ', thousands: ',', decimal: ',', precision: 0});
+
+        $('#pax').on('keyup', function(){
+//            console.log(typeof total_seat)
+            if($('#pax').val() > total_seat){
+                swal('Perhatian','Maaf, pax melebihi kuota yang tersedia.','error');
+                $('#pax').val(0);
+                $('#jmh').val(0);
+            }else{
+                var harga = $('#harga_dasar').val();
+                var pax = $('#pax').val();
+
+                harga = harga.replace('Rp','');
+                harga = harga.replace(',','');
+                harga = harga.replace(',','');
+                harga = harga.replace(',','');
+                harga = harga.replace('.','');
+                harga = harga.replace(' ','');
+
+              $('#jmh').val($('#pax').val());
+              total_bayar = harga * pax;
+              var number = numeral(total_bayar).format('0,0');
+              $("#harga_jual").val('Rp ' + number);
+
+            }
+        });
+
+        $('#diskon').on('keyup', function(){
+            if($('#diskon').val() < 0 || $('#diskon').val() > 100){
+                swal('Perhatian','Maaf, data berupa persen (%).','error');
+                var number = numeral(total_bayar).format('0,0');
+                $("#harga_jual").val('Rp ' + number);
+                $('#diskon').val("");
+            }else{
+                var diskon = total_bayar * $('#diskon').val() / 100;
+                var bayar_all = total_bayar - diskon;
+                var number = numeral(bayar_all).format('0,0');
+                $("#harga_jual").val('Rp ' + number);
+            }
+        });
+    </script>
+<% end %>

@@ -1,0 +1,981 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="_landing | c-cover-head">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag 'lib/slider/tiket_pesawat.png', :class => 'd-block w-100', :alt => '' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="_landing | w-abu-fitur-search" style="background: #f9f7f6;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <div class="searching-head mb-4">
+              <div class="row justify-content-between">
+                <div class="col-8">
+                  <h2>
+                    <% if @daftar_keberangkatan && @daftar_keberangkatan['go_det'] && params['tgl-b'].present? %>
+                        <%= @daftar_keberangkatan['go_det']['dep_airport']['business_name'] + " (#{@daftar_keberangkatan['go_det']['dep_airport']['airport_code']})" + " #{@daftar_keberangkatan['go_det']['dep_airport']['city_name']}" %>
+                        → <%= @daftar_keberangkatan['go_det']['arr_airport']['business_name'] + " (#{@daftar_keberangkatan['go_det']['arr_airport']['airport_code']})" + " #{@daftar_keberangkatan['go_det']['arr_airport']['city_name']}" %>
+                    <% else %>
+                        Parameter pencarian kosong
+                    <% end %>
+                  </h2>
+                  <h6 class="lead mb-3">
+                    <% if @daftar_keberangkatan && params['tgl-b'].present? %>
+                        <% tgl = @daftar_keberangkatan['go_det']['date'] %>
+                        <%= TimeFormat::indonesian_day_name(tgl) + ', ' + TimeFormat::indonesiaMonthAlphabet(tgl) %> |
+                        Dewasa: <%= params['dewasa'] %>, Anak: <%= params['anak'] %>, Bayi: <%= params['bayi'] %>
+                    <% else %>
+                        Dewasa: 0, Anak: 0, Bayi: 0
+                    <% end %>
+                  </h6>
+
+                </div>
+                <div class="col-4 text-right">
+                  <button type="button" class="btn btn-lg btn-outline-danger" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ganti
+                    Pencarian
+                  </button>
+                </div>
+              </div>
+
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <form action="/pencarian-tiket" method="get" id="formCariTiket">
+                    <table class="table table-sm">
+                      <tr>
+                        <td>
+                          <div class="form-group">
+                            <label>Kota Asal</label>
+                            <select name="b" class="js-example-placeholder-single form-control" id="kota1">
+                              <% group = '' %>
+                              <% @bandara_terdekat.each do |item| %>
+                                  <% if !item.nil? %>
+                                      <% if group != item['country_name'] %>
+                                          <% group = item['country_name'] %>
+                                          <optgroup label="<%= group %>">
+                                      <% end %>
+
+                                      <option value="<%= item['airport_code'] %>" <%= params[:b] == item['airport_code'] ? 'selected' : '' %>><%= item['location_name'] + "(#{item['airport_code']})" %></option>
+                                      <% if group != item['country_name'] %>
+                                          </optgroup>
+                                      <% end %>
+                                  <% end %>
+                              <% end %>
+                            </select>
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-portal btn-sm btn-success" id="tombol">
+                            <i class="ion-arrow-swap"></i></button>
+                          <div class="form-group">
+                            <label>Kota Tujuan</label>
+                            <select name="p" class="js-example-placeholder-single form-control" id="kota2">
+                              <% group = '' %>
+                              <% @bandara.each do |item| %>
+                                  <% if !item.nil? %>
+                                      <% if group != item['country_name'] %>
+                                          <% group = item['country_name'] %>
+                                          <optgroup label="<%= group %>">
+                                      <% end %>
+
+                                      <option value="<%= item['airport_code'] %>" <%= params[:p] == item['airport_code'] ? 'selected' : '' %>><%= item['location_name'] + "(#{item['airport_code']})" %></option>
+                                      <% if group != item['country_name'] %>
+                                          </optgroup>
+                                      <% end %>
+                                  <% end %>
+                              <% end %>
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="popover-markup" style="width: 100%">
+                            <div class="trigger form-group form-group-icon-left">
+                              <label>Jumlah Penumpang</label>
+                              <input type="text" name="passanger-info" id="passanger-info" class="form-control" value="<%= params['passanger-info'] %>" readonly>
+                              <input type="hidden" name="passengers" id="passengers" class="form-control" value="1" disabled>
+                              <input type="hidden" name="dewasa" id="rAdult" class="form-control" value="<%= params['dewasa'] %>">
+                              <input type="hidden" name="anak" id="rChild" class="form-control" value="<%= params['anak'] %>">
+                              <input type="hidden" name="bayi" id="rInfant" class="form-control" value="<%= params['bayi'] %>">
+                            </div>
+
+                            <div class="content d-none">
+                              <div class="form-group">
+                                <label><strong>Dewasa</strong>
+                                  <i> (Umur +12 Tahun)</i>
+                                </label>
+                                <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-light" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                    </span>
+                                  <input type="text" disabled name="adult" id="adult" class="form-control" max=9 min=1 value="<%= params['dewasa'] %>">
+                                  <span class="input-group-btn">
+                                      <a class="btn btn-light" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <label><strong>Anak - Anak</strong>
+                                  <i> (Umur 3 - 12 Tahun)</i>
+                                </label>
+                                <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-light" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                    </span>
+                                  <input type="text" disabled name="child" id="child" class="form-control" max=9 min=0 value="<%= params['anak'] %>">
+                                  <span class="input-group-btn">
+                                        <a class="btn btn-light" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <label><strong>Bayi</strong>
+                                  <i> (Umur 1 - 2 Tahun)</i>
+                                </label>
+                                <div class="input-group number-spinner">
+                                  <span class="input-group-btn">
+                                      <a class="btn btn-light" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                  </span>
+                                  <input type="text" disabled name="infant" id="infant" class="form-control" max=9 min=0 value="<%= params['bayi'] %>">
+                                  <span class="input-group-btn">
+                                        <a class="btn btn-light" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                                </div>
+                              </div>
+                              <a class="btn btn-sm btn-light btn-block demise">Selesai</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <div class="form-group">
+                            <label>Tanggal Berangkat</label>
+                            <input type="text" name="tgl-b" class="form-control" id="sekalijalan" placeholder="Tanggal Berangkat" value="<%= params['tgl-b'] %>">
+                          </div>
+                        </td>
+                        <td>
+                          <label class="custom-control custom-checkbox">
+                            <input type="checkbox" name="checkbox" class="custom-control-input" value="double" <%= params['checkbox'] == 'double' ? 'checked' : '' %>>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Pulang Pergi</span>
+                          </label>
+                          <div class="form-group d-none" id="PP">
+                            <input type="text" name="tgl-p" class="form-control" id="pulangpergi" placeholder="Tanggal Pulang" value="<%= params['tgl-p'] %>">
+                          </div>
+                        </td>
+                        <td>
+                          <button type="submit" class="btn btn-search btn-block btn-success text-uppercase">
+                            <i class="icon-search4 mr-2"></i>
+                            Cari Tiket
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <% if @daftar_maskapai_berangkat %>
+                <% @harga_min = @daftar_maskapai_berangkat.min {|a, b| a['price_value'].to_f <=> b['price_value'].to_f} %>
+                <% @harga_max = @daftar_maskapai_berangkat.max {|a, b| a['price_value'].to_f <=> b['price_value'].to_f} %>
+                <% maskapai_uniq = @daftar_maskapai_berangkat.map {|h| h['airlines_short_real_name']}.uniq %>
+
+                <div class="row">
+                  <div class="col-12">Filter :
+                    <div class="btn-group ml-1 mr-1">
+                      <button type="button" class="btn btn-sm btn-outline-dark dummy-class dropdown-toggle" id="ddMaskapai" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Maskapai
+                      </button>
+                      <div class="dropdown-menu m-0 p-0">
+                        <% maskapai_uniq.each do |m| %>
+                            <a class="dropdown-item small" href="javascript:void(0);" data-value="<%= m %>" tabIndex="-1">
+                              <input type="checkbox" value="<%= m %>"/>&nbsp;<%= m %>
+                            </a>
+                            <div class="dropdown-divider m-0 p-0"></div>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <div class="btn-group ml-1 mr-1">
+                      <button type="button" class="btn btn-sm btn-outline-dark dummy-class dropdown-toggle" id="ddWaktu" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                        Waktu
+                      </button>
+                      <div class="dropdown-menu m-0 p-0">
+                        <h6 class="dropdown-header text-center mb-0">
+                          <strong><span id="timeLow">00:00</span> - <span id="timeHigh">24:00</span></strong>
+                        </h6>
+                        <p class="dropdown-item">
+                          <input id="ex1" type="text" class="span2" value="" data-slider-min="0" data-slider-max="24" data-slider-step="1" data-slider-value="[0,24]"/>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="btn-group ml-1 mr-1">
+                      <button type="button" class="btn btn-sm btn-outline-dark dummy-class dropdown-toggle" id="ddHarga" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                        Harga
+                      </button>
+                      <div class="dropdown-menu m-0 p-0">
+                        <h6 class="dropdown-header text-center mb-0">
+                          <strong><span id="priceLow"><%= number_to_currency(@harga_min['price_value'], precision: 0, unit: 'IDR ') %></span> - <span id="priceHigh"><%= number_to_currency(@harga_max['price_value'], precision: 0, unit: 'IDR ') %></span></strong>
+                        </h6>
+                        <p class="dropdown-item">
+                          <input id="ex2" type="text" class="span2" value="" data-slider-min="<%= @harga_min['price_value'] %>" data-slider-max="<%= @harga_max['price_value'] %>" data-slider-step="50000" data-slider-value="[<%= @harga_min['price_value'] %>,<%= @harga_max['price_value'] %>]"/>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="btn-group ml-1 mr-1">
+                      <button type="button" class="btn btn-sm btn-outline-dark" id="resetFilter" style="display: none">
+                        Reset Filter
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>&nbsp;</div>
+                <table class="table table-sm table-ticket">
+                  <tr>
+                    <td class="ticket-list">
+                      <table class="table table-sm mb-0">
+                        <tbody>
+                        <td class="ta-1" style="width: 200px !important;">
+                          <a class="dummy-class" href="javascript:void(0);" id="sort_airlinesname" data-sort="asc">
+                            Pesawat
+                            <div class="icon-updown"></div>
+                          </a>
+                        </td>
+                        <td class="ta-2">
+                          <a class="dummy-class" href="javascript:void(0);" id="sort_depart" data-sort="asc">Pergi
+                            <div class="icon-updown"></div>
+                          </a></td>
+                        <td class="ta-3" style="width: 165px !important;">
+                          <a class="dummy-class" href="javascript:void(0);" id="sort_arrival" data-sort="asc">Tiba
+                            <div class="icon-updown"></div>
+                          </a></td>
+                        <td class="ta-4" style="width: 130px !important;">
+                          <a class="dummy-class" href="javascript:void(0);" id="sort_stop" data-sort="asc">Transit
+                            <div class="icon-updown"></div>
+                          </a></td>
+                        <td class="ta-5">
+                          <a class="dummy-class" href="javascript:void(0);" id="sort_baggage" data-sort="asc">Fasilitas
+                            <div class="icon-updown"></div>
+                          </a></td>
+                        <td class="ta-price">
+                          <a class="dummy-class" href="javascript:void(0);" id="sort_price" data-sort="asc">Harga
+                            <div class="icon-updown"></div>
+                          </a></td>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+                <table class="table table-sm table-ticket" id="search_res">
+                  <% @daftar_maskapai_berangkat.each do |item| %>
+                      <% maskapais = '' %>
+                      <% item['flight_infos']['flight_info'].each do |fi| %>
+                          <% maskapais = maskapais + fi['airlines_name'] + '-' %>
+                      <% end %>
+                      <% maskapais = maskapais.chop %>
+
+                      <tr id="fl_<%= item['flight_id'] %>"
+                          data-airlinesshortname="<%= item['airlines_short_real_name'] %>"
+                          data-airlines="<%= item['flight_id'] %>"
+                          data-airlinesname="<%= maskapais %>"
+                          data-flightid="<%= item['flight_id'] %>"
+                          data-depart="<%= item['simple_departure_time'] %>"
+                          data-arrival="<%= item['simple_arrival_time'] %>"
+                          data-stop="<%= item['stop'] == 'Langsung' ? '0' : '1' %>"
+                          data-stoptext="<%= item['stop'] %>"
+                          data-baggage="<%= item['check_in_baggage'] %> Kg"
+                          data-price="<%= item['price_value'] %>">
+                        <td class="ticket-list">
+                          <table class="table table-sm mb-3">
+                            <tbody>
+                            <tr>
+                              <td class="ta-1" style="width: 200px !important;">
+                                <% item['flight_infos']['flight_info'].each do |fi| %>
+                                    <%= image_tag fi['img_src'], :class => 'rounded mr-2', :alt => '' %>
+                                <% end %>
+                                <p class="mb-0">
+                                  <%= item['flight_infos']['flight_info'].size > 1 ? 'Multi Maskapai' : item['airlines_real_name'] %>
+                                </p>
+                                <p class="mt-1">
+                                  <a class="collapsed text-uppercase text-danger" data-toggle="collapse" data-parent="#accordion" href="#flight<%= item['flight_id'] %>" aria-expanded="false" aria-controls="accordion">
+                                    <i class="ion-chevron-down"></i> Detail Penerbangan
+                                  </a>
+                                </p>
+                              </td>
+
+                              <td class="ta-2">
+                                <h3 class="mb-0">
+                                  <%= item['simple_departure_time'] %>
+                                </h3>
+                                <p class="mb-0">
+                                  <%= item['departure_city_name'] + " (#{item['departure_city']})" %>
+                                </p>
+                              </td>
+
+                              <td class="ta-3">
+                                <h3 class="mb-0">
+                                  <%= item['simple_arrival_time'] %>
+                                </h3>
+                                <p class="mb-0">
+                                  <%= item['arrival_city_name'] + " (#{item['arrival_city']})" %>
+                                </p>
+                              </td>
+
+                              <td class="ta-4">
+                                <h3 class="mb-0">
+                                  <%= item['duration'] %>
+                                </h3>
+                                <p class="mb-0">
+                                  <%= item['stop'] %>
+                                </p>
+                              </td>
+
+                              <td class="ta-5">
+                                <p class="mb-1">
+                                  <i class="ion-briefcase"></i> <%= item['check_in_baggage'] %> kg
+                                </p>
+                                <p class="mb-1">
+                                  <% if item['airport_tax'] == true %>
+                                      <i class="ion-happy-outline"></i>
+                                      Pajak bandara
+                                  <% end %>
+                                </p>
+                                <p class="mb-1">
+                                  <% if item['has_food'] == '1' %>
+                                      <i class="ion-fork"></i>
+                                      <i class="ion-spoon"></i>
+                                      Makanan gratis
+                                  <% end %>
+                                </p>
+                              </td>
+
+                              <td class="ta-price">
+                                <h4 class="mb-2 text-uppercase">
+                                  <% if item['is_promo'] == 1 %>
+                                      <p class="promo mb-1 text-danger">PROMO</p>
+                                      <span>
+                              <strong><%= number_to_currency(item['price_value'], precision: 0, unit: "Rp ") %></strong>
+                            </span>
+                                  <% else %>
+                            <span>
+                              <strong><%= number_to_currency(item['price_value'], precision: 0, unit: "Rp ") %></strong>
+                            </span>
+                                  <% end %>
+                                </h4>
+
+                                <% if session[:acc_token].nil? %>
+                                    <a href="/abutours-login" class="btn btn-block btn-danger">Pilih</a>
+                                <% else %>
+                                    <a href="/form-pemesanan-tiket?fi=<%= item['flight_id'] %>" class="btn btn-sm btn-block btn-danger">Pesan</a>
+                                <% end %>
+                              </td>
+                            </tr>
+                            <!-- --------------------------------------------------------------- -->
+                            <tr>
+                              <td colspan="6" class="p-0 border-top-0">
+                                <div class="searching-content" id="accordion" role="tablist" aria-multiselectable="true">
+                                  <div id="flight<%= item['flight_id'] %>" class="collapse m-0" role="tabpanel" aria-labelledby="accordion">
+                                    <table class="table table-sm">
+                                      <% item['flight_infos']['flight_info'].each do |items| %>
+                                          <% if items['transit_arrival_text_city'] != "" %>
+                                              <tr>
+                                                <td class="pt-0 pb-0 m-0" colspan="3">
+                                                  <div class="alert alert-success mt-3 mb-3 ml-5 mr-5">
+                                                    <i class="icon-info22"></i> Transit
+                                                    Selama <%= items['transit_arrival_text_time'] %>
+                                                    di <%= items['departure_city_name'] %>
+                                                  </div>
+                                                </td>
+                                              </tr>
+                                          <% end %>
+                                          <tr>
+                                            <td class="border-top-0">
+                                              <%= image_tag items['img_src'], :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                                              <p class="mb-0 text-center">
+                                                <small class="text-muted">
+                                                  <%= item['airlines_real_name'] %>
+                                                </small>
+                                              </p>
+                                            </td>
+                                            <!-- --------------------------------------------------------------- -->
+                                            <td class="border-top-0">
+                                              <ul>
+                                                <li><span></span>
+                                                  <div>
+                                                    <div class="title">
+                                                      <table class="table table-flex">
+                                                        <tr>
+                                                          <td>
+                                                            <%= items['simple_departure_time'] %> <br>
+                                                            <p class="mb-0">
+                                                              <%= items['string_arrival_date'] %>
+                                                            </p>
+                                                          </td>
+                                                          <td>
+                                                            <h6 class="mb-0">
+                                                              <%= items['departure_city_name'] + " (#{items['departure_city']})" %>
+                                                            </h6>
+                                                          </td>
+                                                        </tr>
+                                                      </table>
+                                                    </div>
+
+                                                    <div class="info">
+                                                      <i class="icon-airplane3"></i> <%= items['duration_hour'] + " " + items['duration_minute'] %>
+                                                    </div>
+
+                                                    <div class="title">
+                                                      <table class="table table-flex">
+                                                        <tr>
+                                                          <td>
+                                                            <%= items['simple_arrival_time'] %> <br>
+                                                            <p class="mb-0">
+                                                              <%= items['string_arrival_date'] %>
+                                                            </p>
+                                                          </td>
+                                                          <td>
+                                                            <h6 class="mb-0">
+                                                              <%= items['arrival_city_name'] + " (#{items['arrival_city']})" %>
+                                                            </h6>
+                                                          </td>
+                                                        </tr>
+                                                      </table>
+                                                    </div>
+                                                  </div>
+                                                </li>
+                                              </ul>
+                                            </td>
+                                            <!-- --------------------------------------------------------------- -->
+                                            <td class="border-top-0">
+                                              <small>
+                                                - Fligh Number : <%= items['flight_number'] %> <br>
+                                                - Bagasi : <%= items['check_in_baggage'] %> kg
+                                                <% if items['has_food'] == '1' %>
+                                                    - Makanan gratis
+                                                <% end %>
+                                              </small>
+                                            </td>
+                                          </tr>
+                                          <%
+                                            @transit_counter = item['stop'][0]
+                                            @loop_transit_count = 0
+                                          %>
+                                      <% end %>
+                                    </table>
+
+                                    <table class="table table-sm">
+                                      <tr>
+                                        <td class="border-top-0">
+                                          <h6 class="lead">
+                                            <%= @daftar_keberangkatan['go_det']['dep_airport']['city_name'] + " (#{@daftar_keberangkatan['go_det']['dep_airport']['airport_code']})" + " - " + @daftar_keberangkatan['go_det']['arr_airport']['city_name'] + " (#{@daftar_keberangkatan['go_det']['arr_airport']['airport_code']})" %>
+                                          </h6>
+                                        </td>
+                                        <!-- --------------------------------------------------------------- -->
+                                        <td class="border-top-0">
+                                          <h6 class="lead">
+                                            <% if @daftar_keberangkatan['search_queries']['adult'] != 0 %>
+                                                Harga Dasar Dewasa
+                                                (x<%= @daftar_keberangkatan['search_queries']['adult'] %>)
+                                                <span class="float-right">
+                                                <%= number_to_currency(item['price_adult'], precision: 0, unit: "Rp ") %>
+                                              </span>
+                                            <% end %>
+                                          </h6>
+
+                                          <h6>
+                                            <% if @daftar_keberangkatan['search_queries']['child'] != 0 %>
+                                                Harga Dasar Anak
+                                                (x<%= @daftar_keberangkatan['search_queries']['child'] %>)
+                                                <span class="float-right">
+                                                <%= number_to_currency(item['price_child'], precision: 0, unit: "Rp ") %>
+                                              </span>
+                                            <% end %>
+                                          </h6>
+
+                                          <h6>
+                                            <% if @daftar_keberangkatan['search_queries']['infant'] != 0 %>
+                                                Harga Dasar Bayi
+                                                (x<%= @daftar_keberangkatan['search_queries']['infant'] %>)
+                                                <span class="float-right">
+                                                <%= number_to_currency(item['price_infant'], precision: 0, unit: "Rp ") %>
+                                              </span>
+                                            <% end %>
+                                          </h6>
+
+                                          <hr class="my-3">
+
+                                          <h6 class="">
+                                            Jumlah Pembayaran
+                                            <span class="float-right">
+                                              <%= number_to_currency(item['price_value'], precision: 0, unit: "Rp ") %>
+                                              </span>
+                                          </h6>
+                                        </td>
+                                        <!-- --------------------------------------------------------------- -->
+                                      </tr>
+                                      <!-- --------------------------------------------------------------- -->
+                                    </table>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                  <% end %>
+                </table>
+            <% else %>
+                <div class="w-blank text-center">
+                  <%= image_tag 'icon_blank/no_ticket.png', :class => 'mx-auto d-block', :alt => '' %>
+                  <p class="mb-0">
+                    Tidak tersedia penerbangan pada rute yang Anda pilih
+                  </p>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-example-placeholder-single").select2({
+                placeholder: "",
+                theme : "bootstrap"
+            });
+        });
+
+
+        $(document).ready(function () {
+            <% if @daftar_maskapai_berangkat && @daftar_maskapai_pulang %>
+            // check updated flight every 10 secs
+            var interval = 10000;
+
+            function chckUpdate() {
+                var isUpdate = 0;
+                var tanggal = $("#sekalijalan").datepicker('getDate');
+
+                $.ajax({
+                    type: 'POST',
+                    url: "api/tiket/check-updated-flights",
+                    data: {
+                        d: $("#kota1").val(),
+                        a: $("#kota2").val(),
+                        date: $.datepicker.formatDate('yy-mm-dd', tanggal)
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        isUpdate = data.update;
+                        if (isUpdate > 0) {
+                            swal({
+                                title: 'Update Harga',
+                                text: 'Harga tiket telah berubah, klik OK untuk memuat harga baru',
+                                type: 'warning',
+                                allowOutsideClick: false,
+                            }).then(function () {
+                                location.reload();
+                            });
+                        }
+
+                    },
+                    complete: function (data) {
+                        if (isUpdate <= 0) {
+                            setTimeout(chckUpdate, interval);
+                        }
+                    }
+                });
+            }
+
+            setTimeout(chckUpdate, interval);
+            <% end %>
+
+            $("#tombol").click(function (e) {
+                var asal = $('#kota1').val();
+                var tujuan = $('#kota2').val();
+                $('#kota1').val(tujuan).trigger('change');
+                $('#kota2').val(asal).trigger('change');
+            });
+
+            $('input[name=checkbox]').change(function () {
+                if ($(this).prop("checked")) {
+                    setTimeout(function () {
+                        $('#PP').fadeIn('slow');
+                        $('#PP').removeClass('d-none');
+                    }, 200);
+                } else {
+                    setTimeout(function () {
+                        $('#PP').fadeOut('slow');
+                        $('#PP').addClass('d-none');
+                    }, 200);
+                }
+            });
+            $('input[name=checkbox]').trigger('change');
+        });
+    </script>
+
+    <script type="text/javascript">
+        var typeText = {
+            adult: {
+                singular: 'Dewasa', plural: 'Dewasa'
+            },
+            child: {
+                singular: 'Anak', plural: 'Anak'
+            },
+            infant: {
+                singular: 'Bayi', plural: 'Bayi'
+            }
+        }
+
+        $(function () {
+            var $popover = $('.popover-markup>.trigger').popover({
+                html: true,
+                placement: 'auto',
+//                title: '<?= lang("Select passengers");?><a class="close demise");"><i class="ion-close"></i></a>',
+                content: function () {
+                    return $(this).parent().find('.content').html();
+                }
+            });
+
+            // open popover & inital value in form
+            var passengers = [$('#rAdult').val(), $('#rChild').val(), $('#rInfant').val()];
+            $('.popover-markup>.trigger').click(function (e) {
+                e.stopPropagation();
+                $(".popover-body input").each(function (i) {
+                    $(this).val(passengers[i]);
+                });
+            });
+
+            // close popover
+            $(document).click(function (e) {
+                if ($(e.target).is('.demise')) {
+                    $('.popover-markup>.trigger').popover('hide');
+                }
+            });
+
+            // store form value when popover closed
+            $popover.on('hide.bs.popover', function () {
+                $(".popover-body input").each(function (i, val) {
+                    passengers[i] = $(this).val();
+
+                    dewasa = $('#rAdult');
+                    anak = $('#rChild');
+                    bayi = $('#rInfant');
+
+                    dewasa.val(passengers[0]);
+                    anak.val(passengers[1]);
+                    bayi.val(passengers[2]);
+                });
+            });
+
+            // spinner(+-btn to change value) & total to parent input
+            $(document).on('click', '.number-spinner a', function () {
+                var btn = $(this),
+                    input = btn.closest('.number-spinner').find('input'),
+                    total = $('#passengers').val(),
+                    oldValue = input.val().trim();
+                adult = $('#adult').val();
+
+                if (btn.attr('data-dir') == 'up') {
+                    if (oldValue < input.attr('max')) {
+                        oldValue++;
+                        total++;
+                    }
+                } else {
+                    if (oldValue > input.attr('min')) {
+                        oldValue--;
+                        total--;
+                    }
+                }
+
+                $('#passengers').val(total);
+
+                input.val(oldValue);
+
+                passangerInfoText = [];
+                $(".popover-body input").each(function (i) {
+                    if (this.value >= 0) {
+                        passangerInfoText.push(typeText[this.id][this.value > 1 ? 'plural' : 'singular'] + ': ' + this.value);
+                    }
+                });
+                $('#passanger-info').val(passangerInfoText.join(', '));
+
+                var passanger_value = passangerInfoText.join(', ');
+                var dewasa = passanger_value.substr(8, 1);
+                var anak = passanger_value.substr(17, 1);
+                var balita = passanger_value.substr(26, 1);
+
+                $('#rAdult').val(dewasa);
+                $('#rChild').val(anak);
+                $('#rInfant').val(balita);
+
+
+            });
+            $(".popover-markup>.trigger").popover('hide');
+        });
+    </script>
+
+    <script type="text/javascript">
+        // daterange numberMonth
+        function setDate() {
+            var d = $("#sekalijalan").datepicker('getDate');
+            $("#pulangpergi").datepicker('option', 'minDate', d);
+            if ($("#pulangpergi").val() == '') {
+                $("#pulangpergi").datepicker('setDate', d);
+            }
+        }
+
+        $(function () {
+            $("#sekalijalan").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2,
+                minDate: 'today',
+                onSelect: setDate
+
+            });
+
+            $("#pulangpergi").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2,
+                minDate: 'today',
+                beforeShow: setDate
+            });
+
+            $("#sekalijalan").trigger("onSelect");
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formCariTiket").bootstrapValidator({
+                message: 'Value is not valid',
+                fields: {
+                    b: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Kota asal tidak boleh kosong'
+                            },
+                            different: {
+                                field: 'p',
+                                message: 'Kota asal dan tujuan tidak boleh sama'
+                            }
+                        }
+                    },
+                    p: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Kota tujuan tidak boleh kosong'
+                            },
+                            different: {
+                                field: 'b',
+                                message: 'Kota tujuan dan asal tidak boleh sama'
+                            }
+                        }
+                    }
+
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        var options = [];
+        var prices = [];
+        var times = [];
+
+        function initFilter() {
+            options = [];
+            prices = [<%= @harga_min['price_value'] rescue '0' %>, <%= @harga_max['price_value'] rescue '0' %>];
+            times = ['00:00','24:00'];
+        }
+
+
+        $(document).ready(function () {
+            Number.prototype.formatMoney = function (c, d, t) {
+                var n = this,
+                    c = isNaN(c = Math.abs(c)) ? 2 : c,
+                    d = d == undefined ? "." : d,
+                    t = t == undefined ? "," : t,
+                    s = n < 0 ? "-" : "",
+                    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+                    j = (j = i.length) > 3 ? j % 3 : 0;
+                return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+            };
+
+            function pad(n, width, z) {
+                z = z || '0';
+                n = n + '';
+                return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+            }
+
+            initFilter();
+
+            $('a[id^=sort_]').each(function () {
+                $(this).click(function () {
+                    $(".dummy-class").removeClass('active');
+                    $(".dummy-class>div").removeClass('icon-updown').removeClass('icon-down').removeClass('icon-up').addClass('icon-updown');
+                    $(this).addClass('active');
+                    var sort_by = $(this).attr('id').substring(5);
+                    var order = $(this).data('sort');
+                    if (order === 'asc') {
+                        $(this).data('sort', 'desc');
+                        $(this).find("div").addClass('icon-up');
+                    } else {
+                        $(this).data('sort', 'asc');
+                        $(this).find("div").addClass('icon-down');
+                    }
+                    tinysort('table#search_res>tbody>tr', {
+                        data: sort_by,
+                        order: (this.isAsc = !this.isAsc) ? 'asc' : 'desc'
+                    });
+                });
+            });
+
+            function doFilter(_options, _times, _prices) {
+
+                var $result = $('table#search_res>tbody>tr');
+                var len = _options.length;
+                var $res1, $res2, $res3;
+                $res1 = $result;
+                $result.hide();
+                if (len > 0) {
+                    $res1 = $result.filter(function () {
+                        return $.inArray($(this).data('airlinesshortname'), _options) > -1;
+                    });
+                }
+
+                $res2 = $res1.filter(function() {
+                    return (
+                        eval( $(this).data('price') ) >= _prices[0] &&
+                        eval( $(this).data('price') ) <= _prices[1]
+                    );
+                });
+
+
+                $res3 = $res2.filter(function() {
+                    return (
+                        $(this).data('depart') >= _times[0] &&
+                        $(this).data('depart') <= _times[1]
+                    );
+                });
+
+                $res3.show();
+                $('#resetFilter').show();
+
+            }
+
+            $('.dropdown-menu a.dropdown-item').on('click', function (event) {
+
+                var $target = $(event.currentTarget),
+                    val = $target.attr('data-value'),
+                    $inp = $target.find('input'),
+                    idx;
+
+                if (( idx = options.indexOf(val) ) > -1) {
+                    options.splice(idx, 1);
+                    setTimeout(function () {
+                        $inp.prop('checked', false)
+                    }, 0);
+                } else {
+                    options.push(val);
+                    setTimeout(function () {
+                        $inp.prop('checked', true)
+                    }, 0);
+                }
+                $(event.target).blur();
+                if (options.length <= 0) {
+                    $('#ddMaskapai').removeClass('active');
+                } else {
+                    $('#ddMaskapai').addClass('active');
+                }
+                doFilter(options, times, prices);
+                return false;
+            });
+            var mySlider1 = $("#ex1").bootstrapSlider();
+            var mySlider2 = $("#ex2").bootstrapSlider();
+
+            $("#ex2").on("change", function (event) {
+                var a = event.value.newValue;
+                var b = event.value.oldValue;
+
+                var changed = !($.inArray(a[0], b) !== -1 &&
+                    $.inArray(a[1], b) !== -1 &&
+                    $.inArray(b[0], a) !== -1 &&
+                    $.inArray(b[1], a) !== -1 &&
+                    a.length === b.length);
+
+                if( changed ) {
+                    prices[0] = event.value.newValue[0];
+                    prices[1] = event.value.newValue[1];
+                    $("#priceLow").text('IDR ' + prices[0].formatMoney(0, ',', '.'));
+                    $("#priceHigh").text('IDR ' + prices[1].formatMoney(0, ',', '.'));
+                    $('#ddHarga').addClass('active');
+                    doFilter(options, times, prices);
+                }
+            });
+
+            $("#ex1").on("change", function (event) {
+                var a = event.value.newValue;
+                var b = event.value.oldValue;
+
+                var changed = !($.inArray(a[0], b) !== -1 &&
+                    $.inArray(a[1], b) !== -1 &&
+                    $.inArray(b[0], a) !== -1 &&
+                    $.inArray(b[1], a) !== -1 &&
+                    a.length === b.length);
+
+                if( changed ) {
+                    jam1 = pad(event.value.newValue[0], 2) + ':00';
+                    jam2 = pad(event.value.newValue[1], 2) + ':00';
+                    times[0] = jam1;
+                    times[1] = jam2;
+                    $("#timeLow").text(jam1);
+                    $("#timeHigh").text(jam2);
+                    $('#ddWaktu').addClass('active');
+                    doFilter(options, times, prices);
+                }
+            })
+
+            $('#resetFilter').click(function () {
+                initFilter();
+                $('table#search_res>tbody>tr').show();
+
+                $("input:checkbox").attr( "checked" , false );
+                $("#ex2").bootstrapSlider('refresh');
+                $("#ex1").bootstrapSlider('refresh');
+
+                $('#ddMaskapai').removeClass('active');
+                $('#ddWaktu').removeClass('active');
+                $('#ddHarga').removeClass('active');
+
+                $(this).hide();
+            })
+        });
+
+    </script>
+
+<% end %>

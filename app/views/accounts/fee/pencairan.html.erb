@@ -1,0 +1,298 @@
+<% content_for :head do %>
+    <title>Pencairan Fee | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+    <style type="text/css">
+      #slide-2 {
+        display: none;
+      }
+    </style>
+<% end %>
+<% content_for :abutours do %>
+    <form action="/api/fee/konfirmasi" method="post">
+      <section class="c-dashboard">
+        <div class="container">
+          <div class="row">
+            <!-- --------------------------------------------------- -->
+            <div class="col-3 pr-4 sticky">
+              <div class="card c-dashboard-side pb-5">
+                <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                  <%= render template: 'accounts/partials/sidebar' %>
+                </div>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="col-9 pl-0 pr-2 ml-15">
+              <div class="_landing | w-breadcrumb">
+                <ol class="breadcrumb border-bottom-0">
+                  <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                  <li class="breadcrumb-item active">Pencairan</li>
+                </ol>
+              </div>
+
+              <!-- --------------------------------------------------- -->
+              <div class="card c-dashboard-user">
+                <%= render template: 'accounts/partials/bannerTop' %>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <div class="c-bg-white-accounts">
+                <ul class="nav tabs-voucher mb-2">
+                  <li class="nav-item">
+                    <a class="nav-link <%= active_class('/fee') %>" href="/fee">Fee Agen</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link <%= active_class('/fee/pencairan') %>" href="/fee/pencairan">Pencairan Fee</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link <%= active_class('/fee/transaksi-pencairan') %>" href="/fee/transaksi-pencairan">Riwayat
+                      Pencairan</a>
+                  </li>
+                </ul>
+                <!-- --------------------------------------------------- -->
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item pt-4">
+                    <div class="row" id="slide-1">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label>Jumlah Pencairan</label>
+                          <input type="text" name="nominal" class="form-control" value="Rp <%= number_with_delimiter(session[:account_fee]) %>" readonly>
+                          <% if session[:account_fee] != 0 %>
+                              <small class="form-text text-muted">
+                                Jumlah pencairan fee sesuai dengan jumlah fee anda.
+                              </small>
+                          <% else %>
+                              <small class="form-text text-muted">
+                                Anda belum mempunyai fee
+                              </small>
+                          <% end %>
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label>Pencairan Fee</label>
+                          <select id="tipepencairan" name="metode" title="Tipe Pencairan" onchange="chooseMethod(this.value)" class="">
+                            <option value="76023" title="Out of Stock" disabled>
+                              Pilih tipe pencairan...
+                            </option>
+                            <option value="deposit" data-prefix="<span aria-hidden='true'></span>">
+                              Tambah Ke Deposit
+                            </option>
+                            <option value="transfer" data-prefix="<span aria-hidden='true'></span>">
+                              Transfer Ke Rekening
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-6" style="display: none;" id="panelBank">
+                        <div class="form-group">
+                          <label>Pilih Bank</label>
+                          <div class="input-group">
+                            <select id="bank" name="bank">
+                              <option value="0" disabled>
+                                Silahkan Pilih...
+                              </option>
+                              <% dataBank.each do |row| %>
+                                  <option value="<%= row['kode_bank'] %>" data-prefix="<span aria-hidden='true'></span>"
+                                          data-suffix="<small><%= row['nama_bank'] %></small>"> <%= row['atas_nama'] %>
+                                    - <%= row['no_rekening'] %>
+                                  </option>
+                              <% end %>
+                            </select>
+                            <span class="input-group-btn">
+                                                      <a href="/tambah-data-bank" class="btn btn-danger" role="button">Tambah Bank</a>
+                                                    </span>
+                          </div>
+                          <small class="form-text text-muted" id="noteBank">
+                            Silahkan buat data bank terlebih dahulu
+                          </small>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-group">
+                          <table class="table table-flex">
+                            <tr>
+                              <td class="bt-none">
+                                <a href="" class="btn btn-lg btn-block btn-secondary">Kembali</a>
+                              </td>
+                              <td class="bt-none">
+                                <!--<a href="#" class="btn btn-lg btn-block btn-success" data-toggle="modal" data-target="#feeOTP">Kirim</a>-->
+                                <button type="button" class="btn btn-lg btn-block btn-success" id="btnNext" onclick="asp()" <%= session[:account_fee] == 0 ? 'disabled="true"' : '' %>>Kirim</button>
+                                <!-- <input type="button" class="btn btn-lg btn-block btn-success " id="btnNext" value="Selanjutnya" <%= session[:account_fee] == 0 ? 'disabled' : '' %> onclick="all()"> -->
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row" id="slide-2">
+                      <form id="otpForm" name="" method="post" action="" class="needs-validation1" novalidate>
+                        <div class="modal-body p-4">
+                          <div class="form-group row m-0 justify-content-center">
+                            <div class="col-10">
+                              <p>
+                                Masukkan kode verifikasi
+                              </p>
+                              <table class="table table-flex">
+                                <tr>
+                                  <td>
+                                    <input type="text" id="otp1" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                  </td>
+                                  <td>
+                                    <input type="text" id="otp2" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                  </td>
+                                  <td>
+                                    <input type="text" id="otp3" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                  </td>
+                                  <td>
+                                    <input type="text" id="otp4" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                  </td>
+                                  <td>
+                                    <input type="text" id="otp5" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                  </td>
+                                  <td>
+                                    <input type="text" id="otp6" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td colspan="6" class="pt-3">
+                                    <p class="card-text text-center mt-12">
+                                      Tidak terima kode ?
+                                      <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td colspan="6" class="pt-3">
+                                    <button type="submit" class="btn btn-sm btn-block btn-danger">Kirim</button>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- --------------------------------------------------- -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- --------------------------------------------------- -->
+      <div class="modal fade" id="feeOTP" role="dialog" aria-labelledby="feeOTP" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content modal-lg">
+            <div class="modal-body p-4">
+              <div class="form-group row m-0 justify-content-center">
+                <div class="col-10">
+                  <p>
+                    Masukkan kode verifikasi yang dikirimkan ke nomor handphone Anda
+                  </p>
+                  <table class="table table-flex">
+                    <tr>
+                      <td>
+                        <input type="text" id="otp1" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp2" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp3" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp4" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp5" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp6" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="6" class="pt-3">
+                        <p class="card-text text-center mt-12">
+                          Tidak terima kode ? <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="6" class="pt-3">
+                        <button type="submit" class="btn btn-sm btn-block btn-danger">Kirim</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(".txtOnly").keypress(function (e) {
+            var key = e.keyCode;
+            if (key >= 48 && key <= 57) {
+                e.preventDefault();
+            }
+        });
+
+        $.autotab({tabOnSelect: true});
+        $('.kode').autotab('filter', 'kode');
+
+        $('#btnNext').click(function () {
+            $('#slide-1').fadeOut(0);
+            $('#slide-2').fadeIn(500);
+        });
+
+        function asp() {
+            all();
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tipepencairan').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+
+            $('#bank').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function chooseMethod(val) {
+            panelBank = $("#panelBank");
+            if (val == "deposit") {
+                panelBank.css("display", "none");
+            } else {
+                <% if dataBank.empty? %>
+                $("#noteBank").show();
+                $("#btnNext").addClass("disabled");
+                $("#btnNext").attr("disabled");
+                <% else %>
+                <% if session[:account_fee] == 0 %>
+                $("#noteBank").hide();
+                <% else %>
+                $("#noteBank").hide();
+                $("#btnNext").removeClass("disabled");
+                $("#btnNext").removeAttr("disabled");
+                <% end %>
+                <% end %>
+                panelBank.css("display", "block");
+            }
+        }
+    </script>
+<% end %>

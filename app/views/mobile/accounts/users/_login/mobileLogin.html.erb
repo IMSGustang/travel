@@ -1,0 +1,111 @@
+<%= content_for :headmobile do %>
+    <title>Login abutours</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-login">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-1">
+            Login Ke Akun Abutours Anda
+          </h5>
+          <p class="mb-0">
+            Nikmati segala kemudahan perjalanan ibadah dimulai dari sini.
+          </p>
+        </div>
+        <div class="card-body pt-2">
+          <table class="table table-sm mb-3 mt-0">
+            <tbody>
+            <tr>
+              <td>
+                <a href="auth/facebook" class="btn btn-block btn-social btn-outline-secondary" id="authfb">
+                  <%= image_tag 'lib/icon/fb-logo.png' %>
+                  Facebook
+                </a>
+              </td>
+              <td>
+                <a href="auth/google_oauth2" class="btn btn-block btn-social btn-outline-secondary" id="authgplus">
+                  <%= image_tag 'lib/icon/gg-logo.png' %>
+                  Google
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <p class="text-center title-or mb-0">
+            <span>atau</span>
+          </p>
+          <hr/>
+
+          <form action="/api/login" method="post">
+            <input type="hidden" name="afb" id="afb">
+            <div class="form-group">
+              <label>Nomor Telepon</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i data-feather="phone-forwarded"></i>
+                  </span>
+                </div>
+                <input type="text" name="no_telepon" class="form-control" placeholder="Nomor telepon"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i data-feather="unlock"></i>
+                  </span>
+                </div>
+                <input type="password" name="password" class="form-control" placeholder="Password"/>
+              </div>
+              <p class="text-right mt-2">
+                <a href="/m/forgot-pass" class="text-muted">
+                  Lupa password ?
+                </a>
+              </p>
+            </div>
+
+            <div class="form-group mb-4">
+              <button class="btn btn-block btn-success" type="submit">Masuk Sekarang</button>
+            </div>
+          </form>
+
+          <div class="title-register text-center">
+            <p class="mb-0">
+              Belum punya akun ?
+            </p>
+            <a href="/abutours-registers" class="text-danger text-uppercase">
+              Daftar Sekarang
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        // $(document).ready(function(){
+        //   if ("<%= @data %>" == 'fails') {
+        //     swal({
+        //       title: "Username atau password salah",
+        //       timer: 2000,
+        //       showConfirmButton: false,
+        //       type: "error",
+        //       button: false,
+        //     });
+        //   }
+        // });
+
+        new Fingerprint2().get(function (result, components) {
+            $('#afb').val(result);
+            var _link1 = $("#authgplus").attr('href')
+            var _link2 = $("#authfb").attr('href')
+            $("#authgplus").attr('href', _link1 + '?fp=' + result);
+            $("#authfb").attr('href', _link2 + '?fp=' + result);
+        });
+    </script>
+<% end %>

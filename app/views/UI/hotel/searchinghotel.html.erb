@@ -1,0 +1,439 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+    <style type="text/css">
+        @keyframes loading_timeline {
+            0%   {left: -45%;}
+            100% {left: 45%;}
+        }
+        .loading-bar{
+            height: 10px;
+            width: 50px;
+            background-color: #FF696D;
+            margin: 0 auto;
+            border-radius: 10px;
+            left: 100px;
+            position: relative;
+            animation-name: loading_timeline;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+            display: inline-block;
+        }
+        .loading-canvas{
+            height: 10px;
+            display: none;
+        }
+        .sparator-bar{
+            height: 10px;
+            width: 50px;
+            background-color: #f5f5f5;
+            z-index: 10;
+        }
+    </style>
+<% end %>
+<%= content_for :abutours do %>
+    <div class="_landing | w-packet">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 pr-5 sticky">
+                    <div class="card w-packet-side w-packet-side-hotel mt-3">
+                        <div class="body p-0 theiaStickySidebar">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item heading">
+                                    <h5>
+                                        Urutkan Hasil Pencarian
+                                    </h5>
+                                    <p class="text-capitalize mb-0">
+                                        Mengurutkan hasil berdasarkan pilihan Anda
+                                    </p>
+                                </li>
+                                <li class="list-group-item line-border pt-3 pb-3">
+                                    <table class="table table-flex table-sm">
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-radio">
+                                                    <input id="radio1" name="radio" type="radio" class="custom-control-input" onclick="hotel_refresh('&sort=pricedesc')">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Harga Tertinggi</span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="custom-control custom-radio">
+                                                    <input id="radio2" name="radio" type="radio" class="custom-control-input" onclick="hotel_refresh('&sort=priceasc')">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Harga Terendah</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-radio">
+                                                    <input id="radio1" name="radio" type="radio" class="custom-control-input" onclick="hotel_refresh('&sort=stardesc')">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Nilai Review</span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="custom-control custom-radio">
+                                                    <input id="radio2" name="radio" type="radio" class="custom-control-input" onclick="hotel_refresh('&sort=popular')">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Popularitas</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li class="list-group-item heading">
+                                    <h5>
+                                        Filter Hasil Pencarian
+                                    </h5>
+                                    <p class="text-capitalize mb-0">
+                                        Menampilkan hasil berdasarkan kategori
+                                    </p>
+                                </li>
+                                <li class="list-group-item line-border pt-3 pb-3">
+                                    <h4>
+                                        <strong>Bintang</strong>
+                                    </h4>
+                                    <table class="table table-flex table-sm">
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              <i class="ion-android-star"></i>
+                              <i class="ion-android-star"></i>
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              <i class="ion-android-star"></i>
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li class="list-group-item line-border pt-3 pb-3">
+                                    <h4>
+                                        <strong>Fasilitas</strong>
+                                    </h4>
+                                    <table class="table table-flex table-sm">
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Wifi
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Kolam Renang
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Parkir
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Restoran
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Lift
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li class="list-group-item line-border pt-3 pb-3">
+                                    <h4>
+                                        <strong>Tipe Akomodasi</strong>
+                                    </h4>
+                                    <table class="table table-flex table-sm">
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Hotel
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Guest House
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Hostel
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Homestay
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">
+                              Apartemen
+                            </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-8 pl-0 pr-2 ml-15">
+                    <div class="_landing | w-breadcrumb">
+                        <ol class="breadcrumb border-bottom-0">
+                            <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                            <li class="breadcrumb-item active">Semua Hotel</li>
+                        </ol>
+                    </div>
+
+                    <h4 class="title-filter-packet mb-3">
+                        <span id="jumlah_data"><%= data['pagination']['total_found'] %></span> Hotel Ditemukan di <%= params[:q] %>, Indonesia
+                    </h4>
+
+                    <div class="rplc-content">
+                    <% data['results']['result'].each do |row| %>
+                        <div class="card w-packet-table mb-2 rplc">
+                            <table class="table table-paket m-0">
+                                <tr>
+                                    <td class="w-packet__tablebody">
+                                        <div class="media">
+                                            <div class="img-thumbnail img-thumbnail-hotel">
+                                                <%= image_tag row['photo_primary'].gsub('.sq2.', '.m.'), :class => 'images-product images-product-hotel d-flex align-self-center mr-3', :alt => '' %>
+                                            </div>
+
+                                            <div class="media-body">
+                                                <p class="item-link item-line mt-2">
+                                                    <%= row['name'] %>
+                                                </p>
+                                                <p class="packet-rate mb-0 mt-2">
+                                                    <% (1..row['star_rating'].to_i).each do |i| %>
+                                                        <i class="ion-android-star"></i>
+                                                    <% end %>
+                                                </p>
+
+                                                <p class="card-text packet-city m-0">
+                                                    <%= row['regional'] %>
+                                                </p>
+
+                                                <% trip = row['tripadvisor_avg_rating'] %>
+                                                <% if trip %>
+                                                <p class="tripadvisor mb-0">
+                                                    <%= image_tag trip['image_url'], :style => 'height: 12px;margin-top: -2px' %>
+                                                    <%= trip['review_count'] %>
+                                                </p>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td width="200" class="c-packet__tablefooter">
+                                        <h2 class="packet-price mt-1 mb-3 text-right">
+                                            IDR <%= number_with_delimiter(row['total_price'].to_i) %>
+                                        </h2>
+
+                                        <a href="/rincian-hotel/<%= row['province_name'].gsub(' ', '-') %>/<%= row['regional'].gsub(' ', '') %>/<%= row['name'].gsub(' ', '-') %>" class="btn btn-block btn-danger text-uppercase" onclick="document.cookie = 'hotel_uri=<%= row['business_uri'] %>'" target="_blank">
+                                            Rincian Hotel 
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    <% end %>
+                    <!-- <span style="bottom: 10px; background-color: #FFEB3B;" id="line-reloader">l</span> -->
+                    </div>
+                    <button type="button" name="" class="btn btn-block btn-danger text-uppercase btn-loadmore" onclick="hotel_load_page('2');">Muat Lebih</button>
+                    <div class="loading-canvas">
+                        <div class="sparator-bar"></div>
+                        <div class="loading-bar"></div>
+                        <div class="sparator-bar"></div>
+                    </div>
+                    <div style="display: none;" class="shorter"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        var shorter = "";
+        var load_hotel = 1
+        function hotel_load_page(no_page){
+            $('.btn-loadmore').hide();
+            $('.loading-canvas').css( "display", "flex" );
+            load_hotel = load_hotel + 1;
+            request = $.ajax({
+                url: "/cari-hotel-js",
+                type: "post",
+                data: {
+                    url : '<%= @url.html_safe %>',
+                    url_added : window.location.href,
+                    params_added : shorter,
+                    page: no_page
+                },
+                success:function(data) {
+                    $('.btn-loadmore').show();
+                    $('.loading-canvas').hide();
+                    $('.rplc-content').append(data['html']);
+                    $('#jumlah_data').html(data['total_data']);
+                    $('.btn-loadmore').attr("onclick","hotel_load_page('"+data['page']+"')");
+                    if (data['page_finish'] == true) {
+                        $('.btn-loadmore').html('Tidak ada hotel yang dapat dimuat');
+                        $('.btn-loadmore').prop('disabled', true);
+                    }
+                    console.log(data);
+                },
+                error: function(data){
+                    console.log('skdjbferr');
+                }
+            });
+            console.log(shorter);
+        }
+
+        function hotel_refresh(prm){
+            // Writer
+            $('.btn-loadmore').hide();
+            $('.loading-canvas').css( "display", "flex" );
+            shorter = prm;
+            $('.shorter').html(shorter);
+            $('.rplc-content').html('');
+            request = $.ajax({
+                url: "/cari-hotel-js",
+                type: "post",
+                data: {
+                    url : '<%= @url.html_safe %>',
+                    url_added : window.location.href,
+                    params_added : shorter
+                },
+                success:function(data) {
+                    $('.btn-loadmore').show();
+                    $('.loading-canvas').hide();
+                    $('.rplc-content').append(data['html']);
+                    $('#jumlah_data').html(data['total_data']);
+                    console.log(data);
+                },
+                error: function(data){
+                    console.log('skdjbferr');
+                }
+            });
+            console.log(shorter);
+        }
+    </script>
+<% end %>

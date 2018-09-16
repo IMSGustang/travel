@@ -1,0 +1,45 @@
+.form {
+  & .table {
+    & td {
+      border: none;
+
+      & .form-group {
+        margin-bottom: 0;
+
+        & label {
+          font-size: 12px;
+          letter-spacing: -.5px;
+          margin-bottom: 0;
+          opacity: .7;
+        }
+
+        & .form-control {
+          -webkit-border-radius: 0px;
+          -moz-border-radius: 0px;
+          border-radius: 0px;
+          border: none;
+          border-bottom: 1px solid #e3e1e0;
+          font-size: 14px;
+          color: #212121;
+          letter-spacing: -.5px;
+
+          &:focus {
+            -webkit-box-shadow: none !important;
+            -moz-box-shadow: none !important;
+            box-shadow: none !important;
+            border-bottom: 1px solid $color-stars;
+          }
+        }
+
+        & .select2-container--bootstrap .select2-selection {
+          -webkit-border-radius: 0px !important;
+          -moz-border-radius: 0px !important;
+          border-radius: 0px !important;
+          border: none !important;
+          border-bottom: 1px solid #e3e1e0 !important;
+        }
+      }
+
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="js csstransforms supports csstransforms3d">
+<head>
+  <%= yield :head %>
+  <%= favicon_link_tag 'logo/favicon.png' %>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Abu Tours & Travel Umrah memberikan jaminan transaksi aman, fasilitas dan pelayanan ibadah yang lebih baik untuk perjalanan umroh maupun haji anda. Kami Tumbuh dari Kepercayaan Anda, lebih dari sekedar nikmatnya beribadah."/>
+  <meta name="author" content="PT Amanah Bersama Ummat"/>
+
+  <meta property="og:title" content="www.abutours.com - lebih dari sekedar nikmatnya ibadah"/>
+  <meta property="og:description" content="www.abutours.com - semua bisa umrah bersama kami"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.abutours.com"/>
+  <meta property="og:image" content="https://www.abutours.com/abutours/logo/favicon.png"/>
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'errors', media: 'all' %>
+  <%= javascript_include_tag 'errors', type: 'text/javascript' %>
+
+  <!--<script src="https://js.pusher.com/4.1/pusher.min.js"></script>-->
+
+  <% if Rails.env.production? %>
+
+      <!-- Google Tag Manager -->
+      <script>(function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({
+              'gtm.start':
+                  new Date().getTime(), event: 'gtm.js'
+          });
+          var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src =
+              'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-5HKZP56');</script>
+      <!-- End Google Tag Manager -->
+
+  <% end %>
+</head>
+<body>
+
+<%= yield :errors %>
+
+</body>
+</html>

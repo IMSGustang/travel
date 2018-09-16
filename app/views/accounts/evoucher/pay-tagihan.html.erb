@@ -1,0 +1,174 @@
+<% content_for :headpayments do %>
+    <title>Ringkasan Tagihan Pembayaran</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg navbar-toggleable">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pembelian</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Selesai</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-invoice">
+      <div class="container">
+        <div class="row justify-content-center">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <h4 class="card-title text-uppercase mt-5 text-left">
+              Selesaikan Pembayaran Sebelum
+            </h4>
+            <div class="card card-invoice__pemesanan mb-3">
+              <div class="card-body card-invoice__pemesanan-item">
+                <!-- ---------------------------------------- -->
+                <p class="card-text text-center mb-3">
+                  Hari Ini
+                </p>
+                <!-- ---------------------------------------- -->
+                <div class="waktu-pembayaran">
+                  <span class="countdown"></span>
+                </div>
+                <!-- ---------------------------------------- -->
+                <p class="card-text text-center mt-3">
+                  Transfer dana anda sebelum tanggal
+                  <span class="text-warning">
+                    <%= VariableHelper::timeCleanParsing(data['dataMain']['expired']) %>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <h4 class="card-title text-uppercase mt-5 text-left">
+              Mohon Transfer Ke :
+            </h4>
+            <div class="card card-invoice__pemesanan mb-3">
+              <div class="card-header">
+                <table class="table">
+                  <tr>
+                    <td>
+                      <h3>
+                        Bank <%= bank['data']['nama'] %>
+                      </h3>
+                    </td>
+                      <% if bank['data']['nama'] == 'Mandiri'
+                        icon = 'MANDIRI.png'
+                      elsif bank['data']['nama'] == 'BCA'
+                        icon = 'BCA.png'
+                      elsif bank['data']['nama'] == 'BRI'
+                        icon = 'BRI.png'
+                      elsif bank['data']['nama'] == 'BNI'
+                        icon = 'BNI.png'
+                      else
+                        icon = 'MANDIRI.png'
+                      end %>
+                    <td>
+                      <%= image_tag 'lib/payment-icon/'+ icon, :class => 'float-right' %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="card-body card-invoice__pemesanan-item">
+                <dl class="row">
+                  <dd class="col-sm-3">Nomor Rekening: </dd>
+                  <dt class="col-sm-9"><%= bank['data']['norekening'] %></dt>
+
+                  <dd class="col-sm-3">Nama Penerima: </dd>
+                  <dt class="col-sm-9">PT Amanah Bersama Ummat</dt>
+                </dl>
+              </div>
+              <div class="card-footer">
+                <table class="table">
+                  <tr>
+                    <td width="202" class="lead">Jumlah Transfer:</td>
+                    <th class="text-warning lead">
+                      <%= number_to_currency(data['dataMain']['nominal_transfer'], precision: 0, unit: "Rp ") %>
+                    </th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <h4 class="card-title text-uppercase mt-5 text-left">
+              Ringkasan Pembelian
+            </h4>
+            <div class="card card-invoice__pemesanan mb-3">
+              <div class="card-body card-invoice__pemesanan-item">
+                <table class="table">
+                  <tr>
+                    <td>
+                      <p class="title">Nomor Transaksi</p>
+                      #<%= data['dataMain']['kode_transaksi'] %>
+                    </td>
+
+                    <td>
+                      <p class="title">Nama Paket</p>
+                      <%= data['dataMain']['kode_transaksi'] %>
+                    </td>
+
+                    <td>
+                      <p class="title">Harga</p>
+                      <h5><%= number_to_currency(data['dataMain']['nominal_transfer'], precision: 0, unit: "Rp ") %></h5>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <% if data['dataMain']['status'] == 1 %>
+
+            <% else %>
+                <div class="card card-invoice__pemesanan mb-3">
+                  <div class="card-body card-invoice__pemesanan-item">
+                    <h4 class="card-title card-title-h4 mb-3 text-left">
+                      Anda Sudah Membayar ?
+                    </h4>
+
+                    <p>
+                      Setelah melakukan pembayaran, mohon konfirmasi pembayaran anda untuk mempercepat proses
+                      verifikasi.
+                    </p>
+
+                    <a href="/evoucher/beli/<%= data['dataMain']['kode_transaksi'] %>/konfirmasi" class="btn btn-outline-success">
+                      Konfirmasi Pembayaran
+                    </a>
+                  </div>
+                </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- --------------------------------------------------- -->
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :footpayments do %>
+    <!-- --------------------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- --------------------------------------------------- -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('.countdown').dsCountDown({
+                endDate: new Date("<%= VariableHelper::timeCleanParsing(data['dataMain']['expired']) %>")
+            });
+        });
+    </script>
+    <!-- --------------------------------------------------- -->
+<% end %>
+<!-- --------------------------------------------------- -->

@@ -1,0 +1,148 @@
+<% content_for :head do %>
+    <title>Transaksi haji | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+        <div class="container">
+            <div class="row">
+                <!-- --------------------------------------------------- -->
+                <div class="col-3 pr-4 sticky">
+                    <div class="card c-dashboard-side pb-5">
+                        <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                            <%= render template: 'accounts/partials/sidebar' %>
+                        </div>
+                    </div>
+                </div>
+                <!-- --------------------------------------------------- -->
+                <div class="col-9 pl-0 pr-2 ml-15">
+                    <div class="_landing | w-breadcrumb">
+                        <ol class="breadcrumb border-bottom-0">
+                            <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                            <li class="breadcrumb-item active">Pembelian haji</li>
+                        </ol>
+                    </div>
+                    <!-- --------------------------------------------------- -->
+                    <div class="card c-dashboard-user">
+                        <%= render template: 'accounts/partials/bannerTop' %>
+                    </div>
+                    <!-- --------------------------------------------------- -->
+                  <%= render template: 'accounts/partials/navigasi_pembayaran' %>
+                    <!-- --------------------------------------------------- -->
+                    <div class="c-bg-white-accounts c-packetowner mt-0">
+                        <ul class="nav tabs-voucher">
+                            <li class="nav-item">
+                                <a class="nav-link <%= active_class('/transaksi-haji') %>" href="/transaksi-haji">
+                                    Daftar Pembelian
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <%= active_class('/history-transaksi-haji') %>" href="/history-transaksi-haji">
+                                    History Pembelian
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- --------------------------------------------------- -->
+                        <div class="card c-dashboard-paket c-packetowner__item mt-2">
+                            <div class="card-body c-dashboard-paket__item c-packetowner__item--body p-2">
+                                <% if !@data.nil? %>
+                                    <% @data.each do |row| %>
+                                        <!% if row[''] %>
+                                        <% if row['status_bayar'] != 'Lunas'  %>
+                                            <table class="table table-pesanan">
+                                                <tr>
+                                                    <td class="pc-2">
+                                                        <small>Nama paket</small>
+                                                        <h3 class="">
+                                                            <%= row['nama_paket'] %>
+                                                        </h3>
+                                                        <p class="mb-0">
+                                                            <!--Senin, 12 Jan 2019-->
+                                                            <%= TimeFormat::indonesian_day_name(row['tgl_trans']) %>
+                                                            , <%= TimeFormat::indonesia(row['tgl_trans']) %>
+                                                        </p>
+                                                    </td>
+
+                                                    <td class="pc-3">
+                                                        <small>Status</small>
+                                                        <p class="text-info">
+                                                            <%= row['status_bayar'] %>
+                                                        </p>
+                                                    </td>
+
+                                                    <td class="pc-4">
+                                                        <a href="#<%= row['no_trans'] %>" class="btn btn-block btn-sm btn-success" data-toggle="collapse" aria-expanded="false" aria-controls="<%= row['no_trans'] %>">
+                                                            Lihat <i class="ion-ios-arrow-thin-right"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td colspan="4" class="pc-5 p-0">
+                                                        <div class="collapse" id="<%= row['no_trans'] %>">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <h5>
+                                                                        Ringkasan Paket
+                                                                    </h5>
+                                                                    <table class="table table-sm">
+                                                                        <tr>
+                                                                            <td class="td-1">
+                                                                                <small>Harga</small>
+                                                                                <p class="mb-0">
+                                                                                    <%= row['kdbank'].last(3).to_s == "USD" ? "USD" : "IDR" %> <%= number_with_delimiter(row['harga_bayar']) %>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td class="td-1">
+                                                                                <small>Estimasi Keberangkatan</small>
+                                                                                <p class="mb-0">
+                                                                                    <%= TimeFormat::month(row['bulan']) %>
+                                                                                    - <%= row['tahun'] %>
+                                                                                </p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="card-footer">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <a href="#<%= row['no_trans'] %>" class="btn btn-block btn-sm btn-light" data-toggle="collapse" aria-expanded="false" aria-controls="<%= row['no_trans'] %>">
+                                                                                Tutup
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <% if row['status_bayar'] == 'Menunggu Approval'  %>
+                                                                            <% else %>
+                                                                                <a href="/konfirmasi-pembayaran/<%= row['no_trans'] %>?type=haji" class="btn btn-block btn-sm btn-danger">Konfirmasi</a>
+                                                                            <% end %>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        <% end %>
+                                        <!% end %>
+
+                                    <% end %>
+                                <% else %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- --------------------------------------------------- -->
+                </div>
+                <!-- --------------------------------------------------- -->
+            </div>
+        </div>
+    </section>
+<% end %>
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-example-placeholder-single").select2({});
+        });
+    </script>
+<% end %>

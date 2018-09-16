@@ -1,0 +1,243 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+<%= content_for :abutours do %>
+    <div class="_landing | w-packet">
+      <div class="container">
+        <div class="row">
+          <div class="col-3 pr-4 sticky">
+            <div class="card w-packet-side mt-3">
+              <div class="body p-0 theiaStickySidebar">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item heading">
+                    <%= image_tag 'lib/ui-icon/black/kota.png', :style => 'max-width: 100%;height: 25px;' %> Kota Keberangkatan
+                  </li>
+
+                  <% if @data_pre_search %>
+                      <% @kota = @data_pre_search['kota'] %>
+                      <!--<li class="list-group-item">-->
+                      <!--<a href="/paket-umrah">-->
+                      <!--Semua Kota-->
+                      <!--</a>-->
+                      <!--</li>-->
+                      <% @kota.each do |data| %>
+                          <% @kantor = data['kota'] %>
+                          <% @kantor.each do |kantor| %>
+                              <% if kantor['namakantor'].include? "Semua" %>
+                                  <li class="list-group-item">
+                                    <!--<a href="?kota=<%= kantor['kdkantor'].gsub(';', ',') %>&tahun=&bulan=&paket="><%= kantor['namakantor'].titlecase.gsub "Semua", "" %></a>-->
+                                    <% nama_kota = kantor['namakantor'].downcase.gsub('semua', '').strip %>
+                                    <% nama_kota = nama_kota.gsub(' ', '-') %>
+                                    <% if kantor['kdkantor'].gsub(';', ',') == params[:kota] %>
+                                    <a href="/paket-umrah/<%= kantor['kdkantor'].gsub(';', ',') %>/paket-umrah-di-kota-<%= nama_kota %>" class="active"><%= kantor['namakantor'].titlecase.gsub "Semua", "" %></a>
+                                    <% else %>
+                                    <a href="/paket-umrah/<%= kantor['kdkantor'].gsub(';', ',') %>/paket-umrah-di-kota-<%= nama_kota %>"><%= kantor['namakantor'].titlecase.gsub "Semua", "" %></a>
+                                    <% end %>
+                                  </li>
+                              <% end %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+
+                  <!-- Jenis Paket -->
+                  <li class="list-group-item heading">
+                    <%= image_tag 'lib/ui-icon/black/bulan.png', :style => 'max-width: 100%;height: 25px;' %> Jenis Paket
+                  </li>
+                  <% if @data_pre_search %>
+                      <!--<li class="list-group-item">-->
+                      <!--<a href="?kota=&bulan=&tahun=&paket=">-->
+                      <!--Semua Paket-->
+                      <!--</a>-->
+                      <!--</li>-->
+                      <% @tahun = @data_pre_search['jnspaket'] %>
+                      <% @tahun.each do |data| %>
+                          <li class="list-group-item">
+                            <a href="/paket-umrah/paket-<%= data['name'].downcase %>"><%= data['name'].titlecase %></a>
+                          </li>
+                      <% end %>
+                  <% end %>
+
+                  <!-- Tahun Keberangkatan -->
+                  <li class="list-group-item heading">
+                    <%= image_tag 'lib/ui-icon/black/tahun.png', :style => 'max-width: 100%;height: 25px;' %>  Tahun Keberangkatan
+                  </li>
+                  <% if @data_pre_search %>
+                      <!--<li class="list-group-item">-->
+                      <!--<a href="/paket-umrah">-->
+                      <!--Semua Tahun-->
+                      <!--</a>-->
+                      <!--</li>-->
+                      <% @tahun = @data_pre_search['tahun'] %>
+                      <% @tahun.each do |data| %>
+                          <li class="list-group-item">
+                            <a href="/paket-umrah-tahun-<%= data['tahun'] %>"><%= data['tahun'] %></a></li>
+                      <% end %>
+                  <% end %>
+                  <!-- Bulan Keberangkatan -->
+                  <li class="list-group-item heading">
+                    <%= image_tag 'lib/ui-icon/black/bulan.png', :style => 'max-width: 100%;height: 25px;' %> Bulan Keberangkatan
+                  </li>
+                  <% if @data_pre_search %>
+                      <li class="list-group-item">
+                        <a href="/paket-umrah">
+                          Semua Bulan
+                        </a>
+                      </li>
+                      <% @bulan = @data_pre_search['bulan'] %>
+                      <% @bulan.each do |data| %>
+                          <li class="list-group-item">
+                            <a href="/paket-umrah/<%= data['bulan'] %>/paket-umrah-bulan-<%= data['name'].downcase %>"><%= data['name'] %></a>
+                          </li>
+                      <% end %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-9 pl-0 pr-2 ml-15">
+
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Semua paket umrah</li>
+              </ol>
+            </div>
+
+            <h4 class="title-filter-packet">
+              Paket Umrah
+            </h4>
+
+            <% if @data != nil %>
+                <% @data.each do |item| %>
+                    <div class="card w-packet-table mb-2">
+                      <table class="table table-paket m-0">
+                        <tr>
+                          <td class="w-packet__tablebody">
+                            <div class="media">
+                              <div class="img-thumbnail">
+                                <% if item['gambar'] && !item['gambar'].nil? %>
+                                    <%= image_tag item['gambar'], :class => 'images-product d-flex align-self-center mr-3', :alt => '', onerror: 'this.error=null;this.src="/assets/no_images/no_package_1.png"' %>
+                                <% else %>
+                                    <%= image_tag 'no_images/no_package_1.png', :class => 'images-product mx-auto d-block', :alt => '', onerror: 'this.error=null;this.src="/assets/no_images/no_package_1.png"' %>
+                                <% end %>
+                              </div>
+
+                              <div class="media-body">
+                                <p class="packet-rate mb-0 mt-2">
+                                  <span class="text-muted">fasilitas</span>
+                                  <% item['rating'] > 0 ? rating = item['rating'] : 0 %>
+                                  <% (0..(rating-1)).each do |r| %>
+                                      <i class="ion-android-star"></i>
+                                  <% end %>
+                                  <% (0..(4-rating)).each do |r| %>
+                                      <i class="ion-android-star-outline"></i>
+                                  <% end %>
+                                </p>
+
+                                <p class="item-link item-line mt-2">
+                                  <%= item['nama'].titlecase %>
+                                </p>
+
+                                <h3 class="packet-price mt-2 mb-1">
+                                  <%= number_to_currency(item['harga_jual'], precision: 0, unit: "Rp ") %>
+                                </h3>
+
+                                <p class="card-text packet-city m-0">
+                                  Kota <%= item['kota'].titlecase %> - <%= item['kantor'].titlecase %>
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+
+                          <td width="100" class="c-packet__tablefooter">
+                            <a href="/detil-paket/<%= item['kode_produk'] %>/<%= item['kdkantor'] %>/<%= item['tahun'] %>/<%= item['bulan'] %>/<%= item['nama_seo'].downcase %>" class="btn btn-block btn-danger">
+                              Pesan Sekarang
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                <% end %>
+                <nav aria-label="Page navigation" class="mt-3 mb-3">
+                  <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item">
+                      <%= @page['link_prev'].html_safe %>
+                    </li>
+                    <% @page['html'].each do |page| %>
+                        <%= page.html_safe %>
+                    <% end %>
+                    <li class="page-item">
+                      <%= @page['link_next'].html_safe %>
+                    </li>
+                    </li>
+                  </ul>
+                </nav>
+            <% else %>
+                <div class="w-blank text-center">
+                  <%= image_tag 'lib/sticker/19.png', :class => 'mx-auto d-block', :alt => '' %>
+                  <p class="mb-0">
+                    Maaf untuk sementara paket umrah belum tersedia
+                  </p>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#urutkanPaket').on('change', function () {
+                var newUrl = '';
+                var url = location.href;
+                var separator = (url.indexOf("?") === -1) ? "?" : "&";
+                url = url.replace(separator + "order=1", '');
+                url = url.replace(separator + "order=2", '');
+                url = url.replace(separator + "order=3", '');
+                url = url.replace(separator + "order=4", '');
+                newUrl = url + separator + "order=" + $(this).val();
+                window.location.href = newUrl;
+            });
+        });
+    </script>
+
+    <!-- --------------------------------------------------- -->
+    
+
+    <script type="text/javascript">
+        $(function () {
+            $("#tooltip1").popover({
+                content: "Umrah 12 hari",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+            $("#tooltip2").popover({
+                content: "Tiket pesawat pulang - pergi",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+            $("#tooltip3").popover({
+                content: "Hotel Madinah & Makkah",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+            $("#tooltip4").popover({
+                content: "Bus Antar - Jemput",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+            $("#tooltip5").popover({
+                content: "Koper, Baju Ihram dan Baju Batik",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+        });
+    </script>
+<% end %>

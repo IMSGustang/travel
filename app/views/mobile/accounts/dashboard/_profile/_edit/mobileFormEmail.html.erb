@@ -1,0 +1,74 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Data Email</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-edit-alamat">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex">
+            <div class="mr-auto">
+              <small class="text-muted">
+                E-mail Sekarang
+              </small>
+            </div>
+            <div class="p-0">
+              <small>
+                <%= @user_detail['user']['email'] %>
+              </small>
+
+              <button type="button" class="btn btnEdit btn-sm btn-danger ml-2"><i class="ion-ios-compose"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="cardEdit">
+        <form class="form" method="post" action="/api/change-email">
+          <div class="card-header">
+            <h5 class="mb-0">
+              Ubah E-mail
+            </h5>
+            <hr />
+          </div>
+          <div class="card-body pt-0">
+            <table class="table table-sm mb-0">
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <label for="">Email Baru</label>
+                    <input type="email" name="email" class="form-control">
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <label for="">Konfirmasi Password</label>
+                    <input type="password" name="password" class="form-control">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-block btn-danger">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $(".btnEdit").click(function () {
+                $("#cardEdit").toggle('speed,callback');
+            });
+        });
+    </script>
+<% end %>

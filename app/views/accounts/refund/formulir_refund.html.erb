@@ -1,0 +1,155 @@
+<% content_for :head do %>
+    <title>Formulir Refund | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <form action="/api/refund-paket" class="col-9 pl-0 pr-2 ml-15" method="post">
+            <input type="hidden" name="no_trans" value="<%= params[:no_trans] %>">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Formulir Refund</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card gCard-refund">
+              <div class="card-header gCard-refund__header">
+                <h1 class="text-center mb-0">
+                  Formulir Refund Abutours
+                </h1>
+              </div>
+              <div class="card-body gCard-refund__body p-5">
+                <h4>
+                  Detail transaksi umrah yang akan Anda refund
+                </h4>
+
+                <div class="jumbotron p-3">
+                  <span>Nomor Invoice</span>
+                  <p class="mb-0">
+                    <%= @data['no_trans'] %>
+                  </p>
+
+                  <span>Nama Paket</span>
+                  <p class="mb-0">
+                    <%= @data['nama_paket'] %>
+                  </p>
+
+                  <span>Jumlah Seat</span>
+                  <p class="mb-0">
+                    <%= @data['o'] %>
+                  </p>
+                </div>
+
+                <h4>
+                  Informasi Pemohon refund
+                </h4>
+
+                <div class="form-group">
+                  <label>Nama Pemilik Rekening Bank</label>
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td>
+                        <select class="form-control w-100" id="bank" name="bank">
+                          <% @data_bank.each do |item| %>
+                            <option value="<%= item['kode_bank']%>"><%= item['nama_bank'] + " ( #{item['atas_nama']} )" %></option>
+                          <% end %>
+                        </select>
+                      </td>
+                      <td width="100">
+                        <a href="/tambah-data-bank" class="btn btn-block btn-success">Tambah</a>
+                      </td>
+                    </tr>
+                  </table>
+                  <small class="form-text">(harus sama dengan nama agen atau salah satu jamaah)</small>
+                </div>
+
+                <div class="form-group">
+                  <label>Nomor Rekening</label>
+                  <input type="text" class="form-control" placeholder="">
+                  <small class="form-text">(harus sesuai dengan nama pemilik rekening)</small>
+                </div>
+
+                <h4>
+                  Alasan refund
+                </h4>
+
+                <div class="form-group mb-0">
+                  <label class="custom-control custom-radio">
+                    <input id="radio2" name="alasan" type="radio" class="custom-control-input" value="Sala pilih paket">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Salah pilih paket</span>
+                  </label>
+                </div>
+
+                <div class="form-group mb-0">
+                  <label class="custom-control custom-radio">
+                    <input id="radio2" name="alasan" type="radio" class="custom-control-input" value="Jadwal berubah">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Jadwal berubah</span>
+                  </label>
+                </div>
+
+                <div class="form-group mb-0">
+                  <label class="custom-control custom-radio">
+                    <input id="radio2" name="alasan" type="radio" class="custom-control-input" value="Sudah terdaftar di travel lain">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Sudah terdaftar di travel lain</span>
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <label class="custom-control custom-radio">
+                    <input id="radio2" name="alasan" type="radio" class="custom-control-input" value="Lainnya">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Lainnya (diterangkan dalam deskripsi)</span>
+                  </label>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="keterangan_alasan"></textarea>
+                </div>
+
+                <p class="mb-0">
+                  Saya yang memiliki nama di atas telah menyetujui Syarat dan Ketentuan Refund untuk seat umrah saya,
+                  dan mengerti bahwa dengan menekan tombol "Kirim Refund" maka seat umrah dengan No Transaksi tertera yang telah diterbitkan
+                  oleh abutours.com akan di batalkan atas kehendak saya.
+                </p>
+                <label class="custom-control custom-checkbox">
+                  <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">
+                          Ya, saya setuju
+                        </span>
+                </label>
+              </div>
+
+              <div class="card-footer gCard-refund__footer">
+                <p class="text-center">
+                  <button href="/otp-refund" class="btn btn-success">Kirim Refund</button>
+                </p>
+              </div>
+            </div>
+          </form>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $("#bank").select2({
+            theme: 'bootstrap'
+        });
+    </script>
+<% end %>

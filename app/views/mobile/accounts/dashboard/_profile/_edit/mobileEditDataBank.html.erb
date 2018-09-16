@@ -1,0 +1,112 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Edit Data Bank</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-edit-alamat">
+        <div class="card">
+            <form class="form" action="/api/data-bank-update" method="post">
+                <input type="hidden" name="id" value="<%= @data[0]['kode_bank'] %>">
+                <div class="card-body">
+                    <table class="table table-sm mb-0">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label for="">Nama Bank</label>
+                                    <select id="Adatabank" name="nama_bank" class="nama_bank">
+                                        <option value="<%= @data[0]['nama_bank'] %>" ><%= @data[0]['nama_bank'] %></option>
+                                        <option value="0" disabled>Pilih...</option>
+                                        <option  value="BCA" data-suffix="<small></small>">
+                                            BCA
+                                        </option>
+                                        <option  value="BCA SYARIAH">
+                                            BCA SYARIAH
+                                        </option>
+                                        <option  value="BNI">
+                                            BNI
+                                        </option>
+                                        <option  value="BNI SYARIAH">
+                                            BNI SYARIAH
+                                        </option>
+                                        <option  value="BRI">
+                                            BRI
+                                        </option>
+                                        <option  value="BRI SYARIAH">
+                                            BRI SYARIAH
+                                        </option>
+                                        <option  value="BTN">
+                                            BTN
+                                        </option>
+                                        <option  value="CIMB NIAGA">
+                                            CIMB NIAGA
+                                        </option>
+                                        <option  value="MANDIRI">
+                                            MANDIRI
+                                        </option>
+                                        <option  value="MANDIRI SYARIAH">
+                                            MANDIRI SYARIAH
+                                        </option>
+                                        <option  value="MEGA">
+                                            MEGA
+                                        </option>
+                                        <option  value="OCBC NISP">
+                                            OCBC NISP
+                                        </option>
+                                        <option  value="PERMATA">
+                                            PERMATA
+                                        </option>
+                                        <option  value="LAINNYA">
+                                            LAINNYA
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label for="">Nama Rekening</label>
+                                    <input type="text" name="atas_nama" value="<%= @data[0]['atas_nama'] %>" class="form-control" placeholder="">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label for="">Nomor Rekening</label>
+                                    <input type="text" name="no_rekening" value="<%= @data[0]['no_rekening'] %>" class="form-control" placeholder="">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label for="">Cabang</label>
+                                    <input type="text" name="cabang" value="<%= @data[0]['cabang'] %>" class="form-control" placeholder="">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-block btn-danger">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Adatabank').select2({
+                theme: 'bootstrap'
+            });
+        });
+    </script>
+<% end %>

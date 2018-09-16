@@ -1,0 +1,203 @@
+.p-help {
+  background-color: #f5f5f5;
+  min-width: 960px !important;
+  & .nav {
+    background-color: #ffffff;
+    margin-top: -85px;
+    padding: 8px;
+
+    & .nav-item {
+      margin: 0 4px;
+      & .nav-link {
+        background-color: #ffffff;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        border: 1px solid #ffffff;
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #686866;
+
+        & img {
+          width: 40px;
+        }
+
+        &.active {
+          background-color: #f5f5f5;
+          border: 1px solid #f3f1f0;
+          color: $color-default;
+        }
+      }
+    }
+  }
+
+  & .tab-content {
+    & .tab-pane {
+      & .p-help__item {
+        border: none;
+
+        & .p-help__item-b {
+          & .card {
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            border: 1px solid #e3e1e0;
+            margin-bottom: 15px;
+            padding: 15px 30px;
+
+            & .card-header {
+              background-color: transparent;
+              border: none;
+              & h5 {
+                a {
+                  color: #383836;
+                  font-size: 17px;
+                  width: 100%;
+                  display: block;
+                  text-transform: capitalize;
+
+                  &:focus, &:active, &:hover {
+                    text-decoration: none;
+                    color: $color-default;
+                  }
+                }
+
+                & i {
+                  font-size: 20px;
+                  margin-top: -19px;
+                }
+              }
+            }
+
+            & .card-block {
+              border-top: 1px solid $color-default;
+              line-height: 24px;
+              font-size: 15px;
+              color: #383836;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.p-helps {
+
+  & .card {
+    & .list-group {
+      & .list-group-item {
+        -webkit-border-radius: 0px !important;
+        -moz-border-radius: 0px !important;
+        border-radius: 0px !important;
+        border: none;
+
+        & a {
+          color: $color-default;
+          font-size: 16px;
+        }
+      }
+    }
+
+    & .card-block {
+      & h1, h2, h3, h4, h5, h6 {
+        font-size: 20px;
+      }
+      & p {
+        font-size: 14px;
+        color: rgba(0, 0, 0, .7);
+      }
+    }
+  }
+
+  & .card {
+    border: none;
+    & .card-sideslinky {
+      & .lead {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      & .nav {
+        border: none;
+        & .nav-item {
+          width: 100%;
+          margin: 0;
+
+          & .nav-link {
+            border: none;
+            color: #666666;
+            font-size: 15px;
+            padding: 8px 0;
+            padding-left: 10px;
+
+            &.active {
+              border: none;
+              color: $color-default;
+            }
+
+            &:hover {
+              border: none;
+              -webkit-box-shadow: none !important;
+              -moz-box-shadow: none !important;
+              box-shadow: none !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & .tab-content {
+    & .tab-pane {
+      & .card-body {
+        border-bottom: 1px solid #e3e1e0;
+        & h2 {
+          text-transform: capitalize;
+          font-weight: 500;
+          letter-spacing: .5px;
+        }
+
+        & p {
+          line-height: 24px;
+        }
+
+        & ul {
+          & li {
+            font-size: 14px;
+            line-height: 24px;
+          }
+        }
+
+        &:last-child {
+          border-bottom: none !important;
+        }
+      }
+    }
+  }
+}
+
+.terms-wrapper {
+  & .terms-wrapper__item {
+    & h2 {
+    }
+
+    & h4 {
+      font-weight: bold !important;
+
+    }
+
+    & p {
+      font-size: 16px !important;
+      line-height: 30px !important;
+      margin-bottom: 0 !important;
+    }
+
+    & ul {
+      & li {
+        font-size: 16px !important;
+        line-height: 30px !important;
+      }
+    }
+  }
+}

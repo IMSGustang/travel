@@ -1,0 +1,43 @@
+.data-list-search {
+  & .nav-filters {
+    border-top: 1px solid #e3e1e0;
+    border-bottom: 1px solid #e3e1e0;
+
+    & .nav-item {
+      border-right: 1px solid #e3e1e0;
+
+      & .nav-link {
+        font-size: 13px;
+        color: #666666;
+        padding: 12px;
+
+        & i {
+          color: $color-default;
+          font-size: 16px;
+          line-height: 0;
+          position: relative;
+          top: 2px;
+        }
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.data-search {
+  & .badge {
+    padding: 5px 10px;
+    border: 1px solid #e3e1e0;
+    background-color: transparent;
+    color: #000000;
+    opacity: .75;
+    font-weight: normal;
+  }
+}
+
+.data-list-products {
+  background: #f5f5f5;
+}

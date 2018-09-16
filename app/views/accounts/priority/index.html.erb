@@ -1,0 +1,129 @@
+<% content_for :head do %>
+    <title>Priority | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0  pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Priority</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user c-dashboard-user-small">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-content">
+                <div class="card-body c-dashboard-content__item">
+                  <h3 class="mb-3">
+                    Saldo Cashback
+                  </h3>
+                  <% if @saldo && !@saldo['detail'].empty? %>
+                      <% @saldo['detail'].each do |saldo| %>
+                          <table class="table table-transaksi">
+                            <tr>
+                              <th>
+                                <small class="text-uppercase">No Transaksi</small>
+                                <p class="m-0">
+                                  <strong><%= saldo['no_transaksi'] %></strong>
+                                </p>
+                              </th>
+
+                              <th>
+                                <small class="text-uppercase">Total Saldo</small>
+                                <p class="m-0">
+                                  <%= number_to_currency(saldo['saldo'], precision: 0, unit: "Rp ") %>
+                                </p>
+                              </th>
+
+                              <th>
+                                <small class="text-uppercase">Tanggal Transaksi</small>
+                                <p class="m-0">
+                                  <%= TimeFormat::indonesia(saldo['tanggal_transaksi']) %>
+                                </p>
+                              </th>
+
+                              <th>
+                                <small class="text-uppercase">Tanggal Refund</small>
+                                <p class="m-0">
+                                  <%= TimeFormat::indonesia(saldo['tanggal_refund']) %>
+                                </p>
+                              </th>
+
+                              <th>
+                                <small class="text-uppercase">Aktif</small>
+                                <p class="m-0">
+                                  <%= saldo['is_active'] %>
+                                </p>
+                              </th>
+                              <th>
+                                <a href="#lihat" class="btn btn-block btn-danger btn-sm text-capitalize" data-toggle="collapse" aria-expanded="false" aria-controls="lihat">
+                                  Lihat
+                                </a>
+                              </th>
+                            </tr>
+
+                            <tr>
+                              <td colspan="6" class="p-0">
+                                <div class="collapse" id="lihat">
+                                  <div class="card card-body border-none">
+                                    <div class="row">
+                                      <div class="col-12" style="padding-left: 4px">
+                                        <div class="d-flex flex-column">
+                                          <small class="text-uppercase">Ringkasan</small>
+
+                                          <dl class="row">
+                                            <dt class="col-3">Kode Priority</dt>
+                                            <dd class="col-9"><%= saldo['kode_priority'] %></dd>
+
+                                            <dt class="col-3">Tanggal Referral</dt>
+                                            <dd class="col-9"><%= TimeFormat::indonesia(saldo['tanggal_referal']) %></dd>
+
+                                            <dt class="col-3">Nomor Voucher</dt>
+                                            <dd class="col-9"><%= saldo['no_voucher'] %></dd>
+
+                                            <dt class="col-3">Limit Bulanan</dt>
+                                            <dd class="col-9"><%= number_to_currency(saldo['limit'], precision: 0, unit: "Rp ") %></dd>
+
+                                            <dt class="col-3">Pemakaian</dt>
+                                            <dd class="col-9"><%= number_to_currency(saldo['pemakaian'], precision: 0, unit: "Rp ") %></dd>
+                                          </dl>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                      <% end %>
+                  <% else %>
+                      <p>Belum ada data saldo cashback</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>

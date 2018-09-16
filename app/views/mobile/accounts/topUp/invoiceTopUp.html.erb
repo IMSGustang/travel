@@ -1,0 +1,81 @@
+<%= content_for :active_invoiceTopUp do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Deposit</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-payment-bill">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-0">
+            Bank Tujuan Transfer :
+          </h5>
+
+          <div class="media">
+            <div class="media-body">
+              <p class="text-info mt-2 mb-0">
+                <%= Bank::abutours(data['kode_bank'])['nama'] %> - <%= dataBank['data']['norekening'] %>
+              </p>
+              <p class="text-info text-capitalize mt-0 mb-0">
+                PT Amanah Bersama Ummat
+              </p>
+            </div>
+            <% if (dataBank['data']['nama'] == 'Mandiri') %>
+                <% @gambar = 'lib/payment-icon/MANDIRI.png' %>
+            <% elsif dataBank['data']['nama'] == 'BNI' %>
+                <% @gambar = 'lib/payment-icon/BNI.png' %>
+            <% elsif dataBank['data']['nama'] == 'BRI' %>
+                <% @gambar = 'lib/payment-icon/BRI.png' %>
+            <% elsif dataBank['data']['nama'] == 'BCA' %>
+                <% @gambar = 'lib/payment-icon/BCA.png' %>
+            <% end %>
+            <%= image_tag @gambar, :class => 'align-self-center ml-3' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header text-center">
+          <p class="text-uppercase mb-2">
+            Batas waktu pembayaran
+          </p>
+
+          <div class="alert alert-warning mb-0" role="alert">
+            <%= VariableHelper::timeCleanParsing(data['berakhir']) %>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <p class="text-uppercase text-center mb-0">
+            <small>Jumlah Transfer</small>
+          </p>
+          <h2 class="text-center mb-3">
+            <%= number_to_currency(data['nominal_transfer'], precision: 0, unit: "Rp ") %>
+          </h2>
+
+          <div class="alert alert-warning" role="alert">
+            Lakukan transfer ke <span class="text-danger">rekening tujuan diatas</span> sesuai TOTAL TAGIHAN ANDA
+            agar tidak menghambat proses verifikasi.
+          </div>
+
+          <p class="text-muted">
+            Kami akan memproses transaksi anda selambat-lambatnya dalam waktu 1x24 jam setelah anda melakukan
+          </p>
+          <% if data['status'] == 1 %>
+
+          <% else %>
+              <p class="text-center">
+                <a href="/konfirmasi-pembayaran/<%= data['kode_transaksi'] %>?type=deposit" class="text-danger">Konfirmasi Pembayaran</a>
+              </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :footmobile do %>
+
+<% end %>

@@ -1,0 +1,87 @@
+<% content_for :head do %>
+    <title>Refund | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Refund</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card gCard-refund">
+              <div class="card-header gCard-refund__header">
+                <h1 class="text-center mb-0">
+                  Syarat dan Ketentuan Refund Abutours
+                </h1>
+              </div>
+              <div class="card-body gCard-refund__body p-5">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem dicta eligendi et eum explicabo fuga iste itaque, laboriosam libero molestias nobis officiis omnis perferendis praesentium quod saepe soluta voluptate!
+                </p>
+
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem dicta eligendi et eum explicabo fuga iste itaque, laboriosam libero molestias nobis officiis omnis perferendis praesentium quod saepe soluta voluptate!
+                </p>
+
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem dicta eligendi et eum explicabo fuga iste itaque, laboriosam libero molestias nobis officiis omnis perferendis praesentium quod saepe soluta voluptate!
+                </p>
+
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem dicta eligendi et eum explicabo fuga iste itaque, laboriosam libero molestias nobis officiis omnis perferendis praesentium quod saepe soluta voluptate!
+                </p>
+
+                <hr class="my-5">
+
+                <div class="gAlert-card">
+                  <div class="gAlert-card__body">
+                    <div class="alert alert-secondary" role="alert">
+                      <p class="mb-0">
+                        Saya telah membaca dan menyetujui semua poin Syarat dan Ketentuan Refund yang tertera di atas.
+                      </p>
+
+                      <label class="custom-control custom-checkbox">
+                        <input id="radio2" name="checkboxradio" type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">
+                          Ya, saya setuju
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="card-footer gCard-refund__footer">
+                <p class="text-center">
+                  <a href="/formulir-refund/<%= params[:no_trans] %>" class="btn btn-success">Langkah selanjutnya</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<% content_for :foot do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

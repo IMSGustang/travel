@@ -1,0 +1,117 @@
+<% content_for :head do %>
+    <title><%= @data_toko? "#{@data_toko['nama_toko']} | " : "" %>Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <!-- --------------------------------------------------- -->
+        <div class="_landing | w-breadcrumb">
+          <ol class="breadcrumb border-bottom-0">
+            <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+            <li class="breadcrumb-item active">Toko</li>
+          </ol>
+        </div>
+        <!-- --------------------------------------------------- -->
+        <% if @data_toko %>
+        <div class="card-group s-toko">
+          <div class="row m-0 w-100">
+            <div class="card s-toko__item bordersideleft col-3">
+              <div class="card-body s-toko__item-body d-flex pl-0 pr-0">
+                <div class="media">
+                  <%= image_tag @data_toko['logo'] && @data_toko['logo']['url'] ? @data_toko['logo']['url'] : 'logo/wb_2.png', :class => 'img-circle mr-2' %>
+                  <div class="media-body">
+                    <h5 class="mt-0"><%= @data_toko['nama_toko'] %></h5>
+                    <p class="mb-0 level-user">
+                      <i class="ion-ribbon-b"></i> <%= @data_user['nama_role'] if @data_user %> abutours
+                    </p>
+                    <!--<p class="mb-0 user-location">-->
+                      <!--<i class="ion-android-pin"></i> DKI Jakarta-->
+                    <!--</p>-->
+                  </div>
+                  <div class="dotted-item">
+                    <span class="dotted-item-c"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card s-toko__item col-9 pl-0 pr-0">
+              <div id="banners" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <%= image_tag @data_toko['banner'] && @data_toko['banner']['url'] ? @data_toko['banner']['url'] : 'lib/slider/Artboard-7@2x-8.png', :class => 'd-block w-100', :alt => '' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            <% if @data_paket && @data_paket.count > 0 %>
+        <!-- --------------------------------------------------- -->
+        <h5 class="title-paket-toko mt-4 mb-1">
+          Semua Paket
+        </h5>
+            <% end %>
+        <!-- --------------------------------------------------- -->
+        <div class="row">
+          <% if @data_paket && @data_paket.count > 0 %>
+              <% if @data_paket.count >= 4
+                   cnt = 3
+                 else
+                   cnt1 = (12 % @data_paket.count).floor
+                   cnt2 = (12 / @data_paket.count).floor
+                   cnt = cnt1 + cnt2
+                 end
+              %>
+              <% @data_paket.each do |paket| %>
+              <div class="col-<%= cnt %>">
+                <a href="/detail-paket/<%= params[:nama_toko] %>/<%= paket['kode_paket'] %>/<%= paket['nama_paket_seo'] %>" class="productagen">
+                  <div class="card mt-2 mb-2">
+                    <div class="card-body-image">
+                      <!--<span class="badge badge-date badge-success"><%= TimeFormat::month(paket['bulan']) %> <%= paket['tahun'] %> </span>-->
+                      <!--<%= image_tag 'lib/cover/packet_1.png', :class => 'image-small mx-auto d-block', :alt => '' %>-->
+                      <%= image_tag paket['gambar'] && paket['gambar']['url'] ? paket['gambar']['url'] : 'lib/cover/packet_1.png', :class => 'image-small mx-auto d-block', :alt => '' %>
+                    </div>
+                    <div class="card-body">
+                      <div class="name-packet name-packet-line">
+                        <p class="price-packet mb-0">
+                          <%= number_to_currency(paket['harga_jual'], precision: 0, unit: "Rp ") %>
+                        </p>
+                        <%= paket['nama_paket'] %>
+                      </div>
+                      <p class="card-text packet-city m-0">
+                        <small class="text-muted"><%= paket['kota'] %></small>
+                      </p>
+                      <!--<p class="card-text packet-city m-0">-->
+                        <!--<small class="text-muted">Baji Gau</small>-->
+                      <!--</p>-->
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <% end %>
+          <% end %>
+        </div>
+
+            <% if @data_paket && @data_paket.count > 0 %>
+        <nav aria-label="Page navigation" class="mt-5">
+          <ul class="pagination justify-content-center mb-0">
+            <li class="page-item">
+              <%= @data_page[:link_prev].html_safe %>
+            </li>
+            <% @data_page[:html].each do |page| %>
+                <%= page.html_safe %>
+            <% end %>
+            <li class="page-item">
+              <%= @data_page[:link_next].html_safe %>
+            </li>
+            </li>
+          </ul>
+        </nav>
+            <% end %>
+        <% end %>
+      </div>
+    </section>
+<% end %>

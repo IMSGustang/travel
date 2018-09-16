@@ -1,0 +1,107 @@
+.data-products {
+  width: 100%;
+
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+
+    & .card-body-image {
+      position: relative;
+      align-items: center;
+      width: 100%;
+      backface-visibility: hidden;
+      perspective: 1000px;
+      height: 176px !important;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+
+    & img {
+      max-width: 100%;
+      display: block !important;
+      vertical-align: middle;
+      opacity: 1;
+      -webkit-transition: .5s ease;
+      -moz-transition: .5s ease;
+      -ms-transition: .5s ease;
+      -o-transition: .5s ease;
+      transition: .5s ease;
+    }
+
+    & .card-body {
+      background: #ffffff;
+      position: relative;
+      padding: 12px;
+      height: 121px;
+
+      & .name-packet {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        height: 40px !important;
+        max-height: 40px !important;
+        margin-bottom: 0;
+
+        &.name-packet-line {
+          overflow: hidden;
+          height: 40px;
+          text-transform: capitalize;
+          color: rgba(0, 0, 0, .75);
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: -.5px;
+        }
+
+        &::after {
+          content: "";
+          text-align: right;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 25%;
+          background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+          background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+          background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+          background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+          height: 22px !important;
+        }
+      }
+
+      & .price-packet {
+        -webkit-transition: all .2s ease-out;
+        -o-transition: all .2s ease-out;
+        transition: all .2s ease-out;
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 15px !important;
+        color: $color-default;
+        letter-spacing: -.5px;
+      }
+
+      & .packet-city {
+        text-transform: capitalize;
+        color: #333333;
+        opacity: .75;
+        font-weight: normal !important;
+        font-size: 10px;
+        line-height: 14px;
+        margin-top: 5px !important;
+      }
+
+      & .packet-rate {
+        color: $color-stars;
+        font-size: 10px;
+        margin-top: -8px;
+
+        & i {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

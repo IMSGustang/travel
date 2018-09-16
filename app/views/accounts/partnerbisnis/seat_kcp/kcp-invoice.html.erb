@@ -1,0 +1,186 @@
+<% content_for :head do %>
+<title>Invoice | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :abutours do %>
+<section class="c-dashboard">
+  <div class="container">
+    <div class="row">
+      <!-- --------------------------------------------------- -->
+      <div class="col-3 pr-4 sticky">
+        <div class="card c-dashboard-side pb-5">
+          <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+            <%= render template: 'accounts/partials/sidebar' %>
+          </div>
+        </div>
+      </div>
+      <!-- --------------------------------------------------- -->
+      <div class="col-9 pl-0 pr-2 ml-15">
+        <div class="_landing | w-breadcrumb">
+          <ol class="breadcrumb border-bottom-0">
+            <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+            <li class="breadcrumb-item active">Pembelian Invoice</li>
+          </ol>
+        </div>
+        <!-- --------------------------------------------------- -->
+
+        <div class="c-bg-white-accounts mt-0">
+          <button type="button" id="btnPrint" class="btn btn-sm btn-success btn-print"><i class="ion ion-printer"></i> Cetak</button>
+
+          <div id="pageToPrint" class="card c-dashboard-content mt-0 mb-3">
+            <div class="card-body c-dashboard-content__item">
+              <div class="c-invoices">
+                <table class="table">
+                  <tr>
+                    <td colspan="2" class="border-none pt-2 pb-4">
+                      <%= image_tag 'logo/abutours_com.png' %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="border-none">
+                      <p class="lead mb-1 text-uppercase">
+                        <strong>Tagihan Dari :</strong>
+                      </p>
+                      <h6 class="">
+                        <%= session[:account_nama_depan] %> <%= session[:account_nama_belakang] %>
+                        <p class="mt-2"><%= JSON.parse(Api::Account::UserProfilController.user_detail(session[:acc_token]))['detail']['alamat'] %></p>
+                        <p>Telp <%= Number::indonesianFormatPhone(session[:account_telepon]) %></p>
+                        <p>Email <%= session[:account_email] %></p>
+                      </h6>
+                    </td>
+
+                    <td width="333"  class="border-none">
+                      <p class="lead mb-1 text-uppercase">
+                        <strong>Tagihan Kepada :</strong>
+                      </p>
+                      <h6 class="">
+                      <%= @penjualan['data']['detail_jamaah']['nama_jamaah'] %>
+                      <p class="mt-2"><%= @penjualan['data']['detail_jamaah']['alamat'] %></p>
+                      <p>Telp <%= @penjualan['data']['detail_jamaah']['telepon'] %></p>
+                        <h6 class="mb-2">
+                          Kode Booking
+                          <span class="float-right">
+                            <strong><%= @penjualan['data']['detail_jamaah']['kode_booking'] %></strong>
+                          </span>
+                        </h6>
+                      </h6>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="border-none"></td>
+
+                    <td width="333"  class="border-none">
+                      <p class="lead mb-1 text-uppercase">
+                        <strong>Detail Pembayaran :</strong>
+                      </p>
+                      <h6 class="mb-2">
+                        Total Pembayaran
+                        <span class="float-right">
+                        <strong>Rp <%= number_with_delimiter(@penjualan['data']['markup']) %></strong>
+                      </span>
+                      </h6>
+                      <h6 class="mb-0">
+                        Metode Pembayaran
+                        <span class="float-right">
+                          <strong>Cash</strong>
+                        </span>
+                      </h6>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="pt-5 pb-5">
+                      <h6 class="text-uppercase">
+                        Invoice <stroong>#<%= @penjualan['data']['kcp_trans'] %></stroong>
+                      <p class="text-capitalize mt-2">Tanggal
+                        : <%= TimeFormat::indonesiaMonthAlphabet(@penjualan['data']['tgl_trans']) %></p>
+                      </h6>
+                    </td>
+
+                    <td class="">
+
+                    </td>
+
+                  </tr>
+                  <!-- Detail pembayaran -->
+                  <tr>
+                    <th>
+                      Deskripsi
+                    </th>
+                    <th>
+                      Jumlah
+                    </th>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <%= @penjualan['data']['transaksi_umrah']['namapaket']%>
+                    </td>
+                    <td>
+                      <strong>Rp <%= number_with_delimiter(@penjualan['data']['markup'] ) %></strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="border-none"></td>
+                    <td>
+                      <h6 class="mb-2">
+                        Subtotal
+                        <span class="float-right">
+                        <strong>Rp <%= number_with_delimiter(@penjualan['data']['markup'])%></strong>
+                      </span>
+                      </h6>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="border-none"></td>
+                    <td>
+                      <h6 class="mb-2">
+                        Jumlah Pembayaran
+                        <span class="float-right">
+                        <strong>Rp <%= number_with_delimiter(@penjualan['data']['markup']) %></strong>
+                      </span>
+                      </h6>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- --------------------------------------------------- -->
+      </div>
+      <!-- --------------------------------------------------- -->
+    </div>
+  </div>
+</section>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#btnPrint').on('click', function(){
+                $('#btnPrint').hide();
+                $('#pageToPrint').printThis({
+                    ebug: false,               // show the iframe for debugging
+                    importCSS: true,            // import page CSS
+                    importStyle: false,         // import style tags
+                    printContainer: true,       // grab outer container as well as the contents of the selector
+                    pageTitle: "Invoice Umrah",              // add title to print page
+                    removeInline: false,        // remove all inline styles from print elements
+                    printDelay: 333,            // variable print delay; depending on complexity a higher value may be necessary
+                    header: null,               // prefix to html
+                    footer: null,               // postfix to html
+                    base: false ,               // preserve the BASE tag, or accept a string for the URL
+                    formValues: true,           // preserve input/form values
+                    canvas: false,              // copy canvas elements (experimental)
+                    doctypeString: "<html><title>Invoice</title></html>",       // enter a different doctype for older markup
+                    removeScripts: false,       // remove script tags from print content
+                    copyTagClasses: false       // copy classes from the html & body tag
+                });
+                $('#btnPrint').show();
+            });
+        });
+    </script>
+<% end %>

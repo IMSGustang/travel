@@ -1,0 +1,14 @@
+.w-blank {
+  width: 100%;
+
+  & img {
+    max-width: 100%;
+    height: 222px;
+    padding: 10px;
+  }
+
+  & p {
+    font-size: 14px;
+    opacity: .8;
+  }
+}

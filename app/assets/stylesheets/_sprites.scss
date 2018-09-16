@@ -1,0 +1,277 @@
+$images-bases: url('./sprites/icon_sprites.png');
+$images-black: url('./sprites/icon_sprites_black.png');
+
+$images-sm-width: 18px;
+$images-sm-height: 18px;
+
+$images-md-width: 40px;
+$images-md-height: 40px;
+
+$images-lg-width: 60px;
+$images-lg-height: 60px;
+
+$images-main-height: 0px;
+
+// icon margin sprites
+.mb4 {
+  margin-bottom: -4px;
+}
+
+.mt8 {
+  margin-top: 8px !important;
+}
+
+.mauto {
+  margin: 0 auto;
+}
+
+// icon sm sprites black
+.micons-sm {
+  background: $images-black no-repeat;
+  background-size: 100%;
+  width: $images-sm-width;
+  height: $images-sm-height;
+
+  &.icons-home {
+    -ms-background-position-y: $images-main-height - 0 * $images-sm-width;
+    background-position-y: $images-main-height - 0 * $images-sm-width;
+  }
+  &.icons-notification {
+    -ms-background-position-y: $images-main-height - 1 * $images-sm-width;
+    background-position-y: $images-main-height - 1 * $images-sm-width;
+  }
+  &.icons-transactions {
+    -ms-background-position-y: $images-main-height - 2 * $images-sm-width;
+    background-position-y: $images-main-height - 2 * $images-sm-width;
+  }
+  &.icons-help {
+    -ms-background-position-y: $images-main-height - 3 * $images-sm-width;
+    background-position-y: $images-main-height - 3 * $images-sm-width;
+  }
+  &.icons-profile {
+    -ms-background-position-y: $images-main-height - 4 * $images-sm-width;
+    background-position-y: $images-main-height - 4 * $images-sm-width;
+  }
+}
+
+// icon sm sprites active
+.active {
+  & .micons-sm {
+    background: $images-bases no-repeat;
+    background-size: 100%;
+    width: $images-sm-width;
+    height: $images-sm-height;
+
+    &.icons-home {
+      -ms-background-position-y: $images-main-height - 0 * $images-sm-width;
+      background-position-y: $images-main-height - 0 * $images-sm-width;
+    }
+    &.icons-notification {
+      -ms-background-position-y: $images-main-height - 1 * $images-sm-width;
+      background-position-y: $images-main-height - 1 * $images-sm-width;
+    }
+    &.icons-transactions {
+      -ms-background-position-y: $images-main-height - 2 * $images-sm-width;
+      background-position-y: $images-main-height - 2 * $images-sm-width;
+    }
+    &.icons-help {
+      -ms-background-position-y: $images-main-height - 3 * $images-sm-width;
+      background-position-y: $images-main-height - 3 * $images-sm-width;
+    }
+    &.icons-profile {
+      -ms-background-position-y: $images-main-height - 4 * $images-sm-width;
+      background-position-y: $images-main-height - 4 * $images-sm-width;
+    }
+  }
+}
+
+// icon sm sprites
+.icons-sm {
+  background: $images-bases no-repeat;
+  background-size: 100%;
+  width: $images-sm-width;
+  height: $images-sm-height;
+
+  &.icons-umrah {
+    -ms-background-position-y: $images-main-height - 8 * $images-sm-width;
+    background-position-y: $images-main-height - 8 * $images-sm-width;
+  }
+  &.icons-haji {
+    -ms-background-position-y: $images-main-height - 9 * $images-sm-width;
+    background-position-y: $images-main-height - 9 * $images-sm-width;
+  }
+  &.icons-tiketpesawat {
+    -ms-background-position-y: $images-main-height - 11 * $images-sm-width;
+    background-position-y: $images-main-height - 11 * $images-sm-width;
+  }
+  &.icons-hotel {
+    -ms-background-position-y: $images-main-height - 10 * $images-sm-width;
+    background-position-y: $images-main-height - 10 * $images-sm-width;
+  }
+  &.icons-pulsa {
+    -ms-background-position-y: $images-main-height - 12 * $images-sm-width;
+    background-position-y: $images-main-height - 12 * $images-sm-width;
+  }
+  &.icons-paketdata {
+    -ms-background-position-y: $images-main-height - 13 * $images-sm-width;
+    background-position-y: $images-main-height - 13 * $images-sm-width;
+  }
+  &.icons-tokenlistrik {
+    -ms-background-position-y: $images-main-height - 14 * $images-sm-width;
+    background-position-y: $images-main-height - 14 * $images-sm-width;
+  }
+  &.icons-vouchergame {
+    -ms-background-position-y: $images-main-height - 15 * $images-sm-width;
+    background-position-y: $images-main-height - 15 * $images-sm-width;
+  }
+
+  &.icons-deposit {
+    -ms-background-position-y: $images-main-height - 54 * $images-sm-width;
+    background-position-y: $images-main-height - 54 * $images-sm-width;
+  }
+  &.icons-poin {
+    -ms-background-position-y: $images-main-height - 57 * $images-sm-width;
+    background-position-y: $images-main-height - 57 * $images-sm-width;
+  }
+
+  &.icons-fee {
+    -ms-background-position-y: $images-main-height - 80 * $images-sm-width;
+    background-position-y: $images-main-height - 80 * $images-sm-width;
+  }
+
+  &.icons-voucher {
+    -ms-background-position-y: $images-main-height - 81 * $images-sm-width;
+    background-position-y: $images-main-height - 81 * $images-sm-width;
+  }
+
+  &.icons-seat {
+    -ms-background-position-y: $images-main-height - 75 * $images-sm-width;
+    background-position-y: $images-main-height - 75 * $images-sm-width;
+  }
+
+  &.icons-jamaah {
+    -ms-background-position-y: $images-main-height - 52 * $images-sm-width;
+    background-position-y: $images-main-height - 52 * $images-sm-width;
+  }
+
+  &.icons-setting {
+    -ms-background-position-y: $images-main-height - 77 * $images-sm-width;
+    background-position-y: $images-main-height - 77 * $images-sm-width;
+  }
+
+  &.icons-terms {
+    -ms-background-position-y: $images-main-height - 76 * $images-sm-width;
+    background-position-y: $images-main-height - 76 * $images-sm-width;
+  }
+
+  &.icons-abouts {
+    -ms-background-position-y: $images-main-height - 68 * $images-sm-width;
+    background-position-y: $images-main-height - 68 * $images-sm-width;
+  }
+
+  &.icons-datapribadi {
+    -ms-background-position-y: $images-main-height - 52 * $images-sm-width;
+    background-position-y: $images-main-height - 52 * $images-sm-width;
+  }
+
+  &.icons-arrow-right {
+    -ms-background-position-y: $images-main-height - 85 * $images-sm-width;
+    background-position-y: $images-main-height - 85 * $images-sm-width;
+  }
+
+  &.icons-address {
+    -ms-background-position-y: $images-main-height - 49 * $images-sm-width;
+    background-position-y: $images-main-height - 49 * $images-sm-width;
+  }
+
+  &.icons-rekening {
+    -ms-background-position-y: $images-main-height - 59 * $images-sm-width;
+    background-position-y: $images-main-height - 59 * $images-sm-width;
+  }
+
+  &.icons-telepon {
+    -ms-background-position-y: $images-main-height - 62 * $images-sm-width;
+    background-position-y: $images-main-height - 62 * $images-sm-width;
+  }
+
+  &.icons-email {
+    -ms-background-position-y: $images-main-height - 65 * $images-sm-width;
+    background-position-y: $images-main-height - 65 * $images-sm-width;
+  }
+
+  &.icons-password {
+    -ms-background-position-y: $images-main-height - 69 * $images-sm-width;
+    background-position-y: $images-main-height - 69 * $images-sm-width;
+  }
+
+  &.icons-menu {
+    -ms-background-position-y: $images-main-height - 68 * $images-sm-width;
+    background-position-y: $images-main-height - 68 * $images-sm-width;
+  }
+}
+
+// icon md sprites
+.icons-md {
+  background: $images-bases no-repeat;
+  background-size: 100%;
+  width: $images-md-width;
+  height: $images-md-height;
+
+  &.icons-deposit {
+    -ms-background-position-y: $images-main-height - 54 * $images-md-width;
+    background-position-y: $images-main-height - 54 * $images-md-width;
+  }
+
+  &.icons-cashback {
+    -ms-background-position-y: $images-main-height - 55 * $images-md-width;
+    background-position-y: $images-main-height - 55 * $images-md-width;
+  }
+
+  &.icons-cashbacksaldo {
+    -ms-background-position-y: $images-main-height - 56 * $images-md-width;
+    background-position-y: $images-main-height - 56 * $images-md-width;
+  }
+
+  &.icons-poin {
+    -ms-background-position-y: $images-main-height - 57 * $images-md-width;
+    background-position-y: $images-main-height - 57 * $images-md-width;
+  }
+
+  &.icons-fee {
+    -ms-background-position-y: $images-main-height - 80 * $images-md-width;
+    background-position-y: $images-main-height - 80 * $images-md-width;
+  }
+
+  &.icons-voucher {
+    -ms-background-position-y: $images-main-height - 81 * $images-md-width;
+    background-position-y: $images-main-height - 81 * $images-md-width;
+  }
+
+  &.icons-seat {
+    -ms-background-position-y: $images-main-height - 75 * $images-md-width;
+    background-position-y: $images-main-height - 75 * $images-md-width;
+  }
+
+  &.icons-jamaah {
+    -ms-background-position-y: $images-main-height - 52 * $images-md-width;
+    background-position-y: $images-main-height - 52 * $images-md-width;
+  }
+}
+
+// icon lg sprites
+.icons-lg {
+  background: $images-bases no-repeat;
+  background-size: 100%;
+  width: $images-lg-width;
+  height: $images-lg-height;
+
+  &.icons-seat {
+    -ms-background-position-y: $images-main-height - 53 * $images-lg-width;
+    background-position-y: $images-main-height - 53 * $images-lg-width;
+  }
+
+  &.icons-jamaah {
+    -ms-background-position-y: $images-main-height - 52 * $images-lg-width;
+    background-position-y: $images-main-height - 52 * $images-lg-width;
+  }
+}

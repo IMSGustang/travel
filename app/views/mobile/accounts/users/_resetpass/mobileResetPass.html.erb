@@ -1,0 +1,46 @@
+<%= content_for :headmobile do %>
+<title>Reset Password</title>
+<% end %>
+<%= content_for :mobile do %>
+<div class="data-reset-pass">
+	<div class="card">
+		<div class="card-header">
+			<h5 class="mb-1">
+			Reset Password
+			</h5>
+			<p class="mb-0">
+				Buat password baru anda disini, Persyaratan minimal 6 karakter. Buat password anda se-unik mungkin
+			</p>
+		</div>
+		<div class="card-body">
+			<form method="post" action="/api/reset-password">
+				<div class="form-group">
+					<label>Password Baru</label>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<img src="/assets/mobile/icons/users/password_2.png" />
+							</span>
+						</div>
+						<input type="password" name="password" class="form-control" placeholder="Password Baru">
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Konfirmasi Password Baru</label>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<img src="/assets/mobile/icons/users/password_2.png" />
+							</span>
+						</div>
+						<input type="password" name="password_confirm" class="form-control" placeholder="Konfirmasi Password">
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-block btn-danger">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<% end %>

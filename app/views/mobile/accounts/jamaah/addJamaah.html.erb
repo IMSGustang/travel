@@ -1,0 +1,376 @@
+<%= content_for :active_addjamaah do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Tambah Jamaah Umrah</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-add-jamaah">
+      <form class="form-costumes" action="/api/jamaah/seat" method="post" id="needs-validation" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="status_pemesan" id="status_pemesan" value="Y">
+        <input type="hidden" name="kode_produk" value="<%= params['kp'] %>">
+        <input type="hidden" name="kode_kantor" value="<%= params['kk'] %>">
+        <input type="hidden" name="bulan_berangkat" value="<%= @data['bulan_paket'] %>">
+
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header border-none" id="jamaah1">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#datajamaah1" aria-expanded="true" aria-controls="datajamaah1">
+                  Data Jamaah
+                </button>
+              </h5>
+            </div>
+            <div id="datajamaah1" class="collapse show" aria-labelledby="jamaah1" data-parent="#accordion">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="">Photo jamaah</label>
+                  <div class="kv-avatar text-center">
+                    <div class="file-loading">
+                      <input id="photo_jamaah" name="gambar" type="file" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Title jamaah</label>
+                  <select class="form-control" id="titlejamaah">
+                    <option value="Mr">Mr</option>
+                    <option value="Ms">Ms</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Nama lengkap jamaah <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Nomor Telepon Jamaah <span class="text-danger">*</span></label>
+                  <input type="number" name="telepon" class="form-control" maxlength="14" placeholder="" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Nomor Identitas (KTP) <span class="text-danger">*</span></label>
+                  <input type="number" name="ktp" class="form-control" maxlength="14" placeholder="" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Jenis kelamin <span class="text-danger">*</span></label>
+                  <select class="form-control" id="jeniskelamin">
+                    <option value="L">Laki-Laki</option>
+                    <option value="P">Perempuan</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Tempat lahir <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="" required>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-9 pr-1">
+                    <label>Tanggal lahir <span class="text-danger">*</span></label>
+                    <input type="text" name="tanggal_lahir" class="form-control" placeholder="">
+                  </div>
+                  <div class="col-3 pl-1">
+                    <label>Umur</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="jamaah2">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#datajamaah2" aria-expanded="false" aria-controls="datajamaah2">
+                  Data Passpor
+                </button>
+              </h5>
+            </div>
+            <div id="datajamaah2" class="collapse" aria-labelledby="jamaah2" data-parent="#accordion">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="">Photo passpor</label>
+                  <div class="kv-avatar text-center">
+                    <div class="file-loading">
+                      <input id="photo_passpor" name="gambar" type="file" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Nomor passpor</label>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                  <label>Tempat terbit passpor</label>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                  <label>Tanggal terbit passpor</label>
+                  <input type="text" name="tanggal_issued_pass" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                  <label>Tanggal expired passpor</label>
+                  <input type="text" name="tanggal_ex_pass" class="form-control" placeholder="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="jamaah3">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#datajamaah3" aria-expanded="false" aria-controls="datajamaah3">
+                  Data Mahrom
+                </button>
+              </h5>
+            </div>
+            <div id="datajamaah3" class="collapse" aria-labelledby="jamaah3" data-parent="#accordion">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Jamaah memiliki mahrom?</label>
+                  <select class="form-control" id="mahrom" name="mahrom">
+                    <option value="T" data-prefix="<span aria-hidden='true''></span>">
+                      Tidak
+                    </option>
+                    <option value="P" data-prefix="<span aria-hidden='true''></span>">
+                      Ya
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group" id="kode_booking">
+                  <label>Kode Booking Mahrom</label>
+                  <input type="text" name="" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                  <label>Jamaah Pernah Umrah Sebelumnya ?</label>
+                  <select class="form-control" id="PU" name="pernah_umrah">
+                    <option value="N">
+                      Tidak Pernah
+                    </option>
+                    <option value="Y">
+                      Pernah
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group" id="pernah">
+                  <label>Kapan</label>
+                  <input type="text" name="tanggal_umrah" class="form-control" placeholder="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="jamaah4">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#datajamaah4" aria-expanded="false" aria-controls="datajamaah4">
+                  Alamat Jamaah
+                </button>
+              </h5>
+            </div>
+            <div id="datajamaah4" class="collapse" aria-labelledby="jamaah3" data-parent="#accordion">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="abutours">Pilih provinsi</label>
+                  <div class="input-group">
+                    <select class="form-control" name="provinsi" id="province">
+                      <% @provinsi.each do |provinsis| %>
+                          <option value="<%= provinsis['province_id'] %>"><%= provinsis["province"] %></option>
+                      <% end %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Kabupaten/Kota</label>
+                  <select class="form-control" name="kota" id="kabkot">
+                    <option value="0" disabled>
+                      Pilih kab/kota...
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Kecamatan</label>
+                  <div class="input-group">
+                    <select class=" form-control" name="kecamatan" id="kec">
+                      <option value="0" disabled>
+                        Pilih kecamatan...
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Kelurahan</label>
+                  <input type="text" name="kelurahan" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                  <label>Alamat Lengkap Jamaah (Domisili)
+                    <span class="text-danger">*</span></label>
+                  <textarea class="form-control" rows="3" maxlength="300" name="alamat" required></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body card-body-none">
+            <div class="form-group">
+              <label>Keterangan</label>
+              <textarea class="form-control" rows="3" name="keterangan" maxlength="300"></textarea>
+            </div>
+
+            <table class="table mb-0">
+              <tr>
+                <td class="border-none">Biaya Asuransi Umur (17 - 45 Tahun)</td>
+                <td class="border-none" width="133">Rp 0</td>
+              </tr>
+
+              <tr>
+                <td>Visa Progresif</td>
+                <td width="133">Rp 0</td>
+              </tr>
+
+              <tr>
+                <th>Total Biaya</th>
+                <th width="133">
+                  Rp 0
+                </th>
+              </tr>
+            </table>
+          </div>
+
+          <div class="card-footer">
+            <a href="" class="btn btn-block btn-success">Simpan</a>
+          </div>
+        </div>
+      </form>
+    </div>
+<% end %>
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#photo_jamaah').fileinput({
+                overwriteInitial: true,
+                maxFileSize: 1000,
+                showClose: false,
+                showUpload: false,
+                showCaption: false,
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="ion-image"></i>',
+                removeIcon: '<i class="ion-close"></i>',
+                defaultPreviewContent: '<%= image_tag '/assets/no_images/no_package_1.png', :alt => 'Bukti transfer' %>',
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+
+            $('#photo_passpor').fileinput({
+                overwriteInitial: true,
+                maxFileSize: 1000,
+                showClose: false,
+                showUpload: false,
+                showCaption: false,
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="ion-image"></i>',
+                removeIcon: '<i class="ion-close"></i>',
+                defaultPreviewContent: '<%= image_tag '/assets/no_images/no_package_1.png', :alt => 'Bukti transfer' %>',
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+        });
+
+        $(document).ready(function () {
+            $('input[name="tanggal_issued_pass"], input[name="tanggal_ex_pass"], input[name="tanggal_lahir"], input[name="tanggal_umrah"] ').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                "singleDatePicker": true,
+                "autoApply": true,
+                "showDropdowns": true
+            });
+        });
+
+        $(function () {
+            $('#kode_booking').hide();
+            $('#mahrom').change(function () {
+                if ($('#mahrom').val() == 'P') {
+                    $('#kode_booking').show();
+                } else {
+                    $('#kode_booking').hide();
+                }
+            });
+        });
+
+        $(function () {
+            $('#pernah').hide();
+            $('#PU').change(function () {
+                if ($('#PU').val() == 'Y') {
+                    $('#pernah').show();
+                } else {
+                    $('#pernah').hide();
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#titlejamaah").select2({
+                theme: "bootstrap"
+            });
+
+            $("#jeniskelamin").select2({
+                theme: "bootstrap"
+            });
+
+            $("#mahrom").select2({
+                theme: "bootstrap"
+            });
+
+            $("#PU").select2({
+                theme: "bootstrap"
+            });
+
+            $("#province").select2({
+                theme: "bootstrap"
+            });
+
+            $("#kabkot").select2({
+                theme: "bootstrap"
+            });
+
+            $("#kec").select2({
+                theme: "bootstrap"
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            window.addEventListener("load", function () {
+                var form = document.getElementById("needs-validation");
+                form.addEventListener("submit", function (event) {
+                    if (form.checkValidity() == false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            }, false);
+        }());
+    </script>
+<% end %>

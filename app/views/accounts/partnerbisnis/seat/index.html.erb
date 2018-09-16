@@ -1,0 +1,188 @@
+<% content_for :head do %>
+    <title>Data Manifest | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Seat Umrah</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <ul class="nav tabs-voucher mb-2">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/pengaturan-seat') %>" href="/pengaturan-seat">
+                    Seat Umrah
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/riwayat-transfer-seat') %>" href="/riwayat-transfer-seat">
+                    History Transfer
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <div class="form-group mb-0">
+                    <h3 class="mb-0 text-success">
+                      <span id="valseat">...</span>
+                    </h3>
+                    <small>Jumlah Seat</small>
+                  </div>
+                </li>
+              </ul>
+              <!-- --------------------------------------------------- -->
+              <form method="post" id="needs-validation" novalidate>
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item">
+                    <div id="accordion30" role="tablist" class="accordion-seat mb-3">
+                      <% @total_seat = 0 %>
+                      <% if !@data.nil? %>
+                          <% @data.each do |item| %>
+                              <% @total_seat = @total_seat + item['booking'].count %>
+                              <div class="card">
+                                <div class="card-header" role="tab" id="headingOne">
+                                  <a data-toggle="collapse" href="#collapse<%= item['no_trans'] %>" aria-expanded="false" aria-controls="collapseOne">
+                                    <table class="table table-sm mb-0">
+                                      <tr>
+                                        <td class="dataseat_b" style="width: 222px">
+                                          <small class="text-uppercase">Nomor Invoice</small>
+                                          <h5 class="m-0"><%= item['no_trans'] %></h5>
+                                        </td>
+
+                                        <td class="dataseat_c">
+                                          <small class="text-uppercase">Nama Paket</small>
+                                          <h5 class="m-0 name-packet name-packet-line">
+                                            <%= item['nama_paket'].titlecase %>
+                                          </h5>
+                                        </td>
+
+                                        <td class="dataseat_d" style="width: 100px">
+                                          <small class="text-uppercase">Jumlah Seat</small>
+                                          <h5 class="m-0"><%= item['booking'].count %> seat</h5>
+                                        </td>
+
+                                        <td class="dataseat_a">
+                                          <div class="icons-arrow"></div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </a>
+                                </div>
+
+                                <div id="collapse<%= item['no_trans'] %>" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion30">
+                                  <div class="card-body p-0">
+                                    <table class="table table-hover table-seat">
+                                      <thead>
+                                      <tr>
+                                        <th class="bt-none">#</th>
+                                        <th class="bt-none">Kode Booking Seat</th>
+                                        <th class="bt-none">Keberangkatan</th>
+                                        <th class="bt-none">Tindakan</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <% @num = 0 %>
+                                      <% item['booking'].each do |sub_item| %>
+                                          <tr>
+                                            <td scope="row" width="20"><%= @num = @num + 1 %></td>
+                                            <td>
+                                              <p class="m-0">
+                                                <strong>
+                                                  <%= sub_item['kode_booking'] %>
+                                                </strong>
+                                              </p>
+                                            </td>
+                                            <td>
+                                              <p class="m-0">
+                                                <%= TimeFormat::month(sub_item['bulan_paket']) %>
+                                                <%= sub_item['tahun_paket'] %>
+                                              </p>
+                                            </td>
+                                            <td width="150">
+                                              <div class="btn-group" role="group" aria-label="data jamaah">
+                                                <a href="/add-jamaah/<%= sub_item['kode_booking'] %>?kp=<%= item['kode_produk'] %>&kk=<%= item['kode_kantor'] %>" class="btn btn-sm btn-success">
+                                                  Gunakan
+                                                </a>
+                                                <a href="transfer-seat/<%= sub_item['kode_booking'] %>" class="btn btn-sm btn-secondary">
+                                                  Transfer
+                                                </a>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                      <% end %>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  <div class="card-footer">
+                                    <table class="table table-sm mb-0">
+                                      <tr>
+                                        <td>
+                                          <a data-toggle="collapse" href="#collapse<%= item['no_trans'] %>" aria-expanded="false" aria-controls="collapseOne" class="btn btn-block btn-light">Tutup</a>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                          <% end %>
+                      <% else %>
+                          <div class="w-blank text-center p-5">
+                            <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'mx-auto d-block', :alt => '' %>
+                            <p class="mb-0">
+                              Maaf, Anda belum memiliki seat umrah
+                            </p>
+                          </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            window.addEventListener("load", function () {
+                var form = document.getElementById("needs-validation");
+                form.addEventListener("submit", function (event) {
+                    if (form.checkValidity() == false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            }, false);
+        }());
+
+        $('#valseat').html(<%= @total_seat %>);
+    </script>
+<% end %>

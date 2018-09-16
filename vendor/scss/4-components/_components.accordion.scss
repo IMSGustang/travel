@@ -1,0 +1,93 @@
+.accordion-kcp {
+  & .card {
+    & .card-header {
+      background: transparent;
+      border: none;
+      padding: 22px 12px;
+
+      & a {
+        & .table {
+          & td {
+            border: none;
+
+            & p {
+              font-size: 11px;
+              letter-spacing: .35px;
+              color: #919191;
+            }
+
+            & h5 {
+              font-size: 14px !important;
+              color: #212121;
+            }
+
+            & .name-packet {
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              position: relative;
+              overflow: hidden;
+              height: 16px !important;
+              max-height: 16px !important;
+              margin-bottom: 0;
+
+              &.name-packet-line {
+                overflow: hidden;
+                height: 16px;
+                text-transform: capitalize;
+                letter-spacing: -.5px;
+              }
+
+              &::after {
+                content: "";
+                text-align: right;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 25%;
+                background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, #fff));
+                background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #fff 95%);
+                background: -o-linear-gradient(left, rgba(255, 255, 255, 0), #fff 95%);
+                background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 95%);
+                height: 22px !important;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          text-decoration: none;
+          & .table {
+            & td {
+              & h5 {
+                color: $color-default !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & .card-body {
+      background: #f9f9f9;
+
+      & .table {
+        & th {
+          border-bottom: none !important;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: -.5px;
+        }
+
+        & td {
+          font-size: 14px;
+          letter-spacing: -.5px;
+
+          & .btn {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

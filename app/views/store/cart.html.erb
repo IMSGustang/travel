@@ -1,0 +1,146 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="c-souvenir-cart">
+      <div class="container">
+        <!-- --------------------------------------------------------------- -->
+        <ol class="breadcrumb border-bottom-0">
+          <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+          <li class="breadcrumb-item active">Keranjang</li>
+        </ol>
+        <!-- --------------------------------------------------------------- -->
+        <h6 class="card-title">
+          Keranjang Belanja
+        </h6>
+
+        <div class="row">
+          <div class="col-sm-8 pr-0">
+            <div class="card c-souvenir-cart-item mb-2">
+              <form name="" action="" method="post">
+                <!--<p class="lead p-3 text-center">-->
+                  <!--<small>-->
+                    <!--Keranjang masih kosong-->
+                  <!--</small>-->
+                <!--</p>-->
+                <table class="table table-bordered m-0">
+                  <!-- ------------------------------------- -->
+                  <tr class="alert alert-dismissible fade show" role="alert">
+                    <td>
+                      <div class="media">
+                        <%= image_tag 'store/1.jpg', :class => 'd-flex align-self-center mr-3' %>
+                        <div class="media-body">
+                          <p class="mb-1">Donec sed odio dui sed bui los thu...</p>
+
+                          <h6 class="lead">
+                            Rp 27.000,00
+                          </h6>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td width="200">
+                      <div class="form-group mt-3">
+                        <input id="qty" class="form-control form-control-sm" type="number" value="1" min="1" max="10" disabled/>
+                      </div>
+                    </td>
+
+                    <td width="55" class="text-center pl-0 pr-0">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">
+                  <i class="ion-ios-close-empty"></i>
+                </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <!-- ------------------------------------- -->
+                  <tr class="alert alert-dismissible fade show" role="alert">
+                    <td>
+                      <div class="media">
+                        <%= image_tag 'store/2.jpg', :class => 'd-flex align-self-center mr-3' %>
+                        <div class="media-body">
+                          <p class="mb-1">Donec sed odio dui sed bui los thu...</p>
+
+                          <h6 class="lead">
+                            Rp 27.000,00
+                          </h6>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td width="200">
+                      <div class="form-group mb-2">
+                        <input id="qty2" class="form-control form-control-sm" type="number" value="1" min="1" max="10" disabled/>
+                      </div>
+                    </td>
+
+                    <td width="55" class="text-center pl-0 pr-0">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">
+                          <i class="ion-ios-close-empty"></i>
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <!-- ------------------------------------- -->
+                  <tr>
+                    <td colspan="3">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <a href="/" class="btn btn-block btn-light">Kembali</a>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <a href="/data-pembelian" class="btn btn-block btn-danger">Bayar</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="card c-souvenir-cart-item">
+              <div class="card-body c-souvenir-cart-item-sidebar">
+                <h6 class="card-title">
+                  Jumlah bayar
+
+                  <span class="float-right">
+                Rp 0
+              </span>
+                </h6>
+
+                <h6 class="card-title">
+                  Biaya Pengiriman
+
+                  <span class="float-right">
+                Rp 0
+              </span>
+                </h6>
+
+                <hr class="my-4">
+
+                <h6 class="card-title">
+                  Total Pembayaran
+
+                  <span class="float-right">
+                Rp 0
+              </span>
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        $('#qty').bootstrapNumber();
+        $('#qty2').bootstrapNumber();
+    </script>
+<% end %>

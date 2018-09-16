@@ -1,0 +1,135 @@
+.data-login {
+  margin-top: 12px;
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+
+    & .card-header {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: none;
+      background: transparent;
+
+      & h5 {
+        font-size: 16px;
+        letter-spacing: -.5px;
+      }
+      & p {
+        font-size: 12px;
+        letter-spacing: -.5px;
+        opacity: .75;
+      }
+    }
+
+    & .card-body {
+      & .form-group {
+        margin-bottom: 10px;
+
+        & label {
+          font-size: 14px;
+          color: #000;
+          opacity: .75;
+          letter-spacing: -.5px;
+        }
+
+        & .input-group {
+          & .input-group-prepend {
+            & .input-group-text {
+              & svg {
+                position: absolute;
+                z-index: 10;
+                width: 16px;
+                margin-top: 8px;
+                margin-left: 10px;
+              }
+            }
+          }
+
+          & .form-control {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            border: 1px solid #e3e1e0;
+            font-size: 14px;
+            height: 40px;
+            padding-left: 36px;
+
+            &:hover {
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+              border: 1px solid #d3d1d0;
+            }
+          }
+        }
+
+        & p {
+          & a {
+            font-size: 12px;
+            letter-spacing: -.5px;
+          }
+        }
+
+        & .btn {
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-size: 14px;
+          letter-spacing: -.3px;
+          padding: 8px;
+        }
+      }
+
+      & .title-or {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: -.5px;
+        position: relative;
+
+        & span {
+          background: #ffffff;
+          padding: 2px 8px;
+          color: #888;
+          opacity: .75;
+          font-weight: bold;
+        }
+      }
+
+      & hr {
+        margin-top: -8px;
+      }
+
+      & .table {
+        & td {
+          border: none;
+          padding: 0 5px;
+
+          & .btn-social {
+            font-size: 14px;
+            & img {
+              max-width: 100%;
+              height: 20px;
+              margin: 0 5px;
+              margin-top: -3px;
+            }
+          }
+        }
+      }
+
+      & .title-register {
+        & p {
+          font-size: 12px;
+          letter-spacing: -.5px;
+          opacity: .5;
+        }
+        & a {
+          font-size: 12px;
+          letter-spacing: -.5px;
+        }
+      }
+    }
+  }
+}

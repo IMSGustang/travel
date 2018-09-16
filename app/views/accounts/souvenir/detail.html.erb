@@ -1,0 +1,182 @@
+<% content_for :head do %>
+    <title>Transaksi Umrah | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-0">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0">
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-user">
+                <%= render template: 'accounts/partials/bannerTop' %>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <div class="card c-dashboard-content mt-1 mb-3">
+                <div class="card-body c-dashboard-content__item">
+                  <table class="table table-transaksi mb-3">
+                    <tr>
+                      <td width="50%" class="text-left">
+                        <small class="text-uppercase">No Tagihan</small>
+                        <p class="m-0">
+                          <strong>DEP160908113</strong>
+                        </p>
+                      </td>
+                      <td width="50%" class="text-right">
+                        <small class="text-uppercase">Tanggal Transaksi</small>
+                        <p class="m-0">
+                          2016-09-08
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                  <table class="table table-transaksi mb-3">
+                    <tr>
+                      <th width="50%">
+                        <small class="text-uppercase">Ringkasan</small>
+                      </th>
+                      <th>
+                        <small class="text-uppercase">Detail</small>
+                      </th>
+                      <th class="text-right">
+                        <small class="text-uppercase">Harga</small>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <div class="media">
+                          <div class="media-body d-flex mb-1">
+                            <div class="img-product d-flex">
+                              <%= image_tag 'lib/store/store_2.jpg', :class => 'align-self-center img-small mr-3' %>
+                            </div>
+                            <p class="mb-0">
+                              Iphone 6s 64gb gold
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="m-0">
+                          <span class="mt-2">
+                            jumlah : 1
+                          </span>
+                        </p>
+                        <p class="m-0">
+                          <span class="mt-2">
+                            berat : 0.7kg
+                          </span>
+                        </p>
+                      </td>
+                      <td class="text-right">
+                        <p class="m-0">
+                          <span class="mt-2">
+                            Rp 3.000.000
+                          </span>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <div class="media">
+                          <div class="media-body d-flex mb-1">
+                            <div class="img-product d-flex">
+                              <%= image_tag 'lib/store/store_2.jpg', :class => 'align-self-center img-small mr-3' %>
+                            </div>
+                            <p class="mb-0">
+                              Iphone 6s 64gb gold
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="m-0">
+                          <span class="mt-2">
+                            jumlah : 1
+                          </span>
+                        </p>
+                        <p class="m-0">
+                          <span class="mt-2">
+                            berat : 0.7kg
+                          </span>
+                        </p>
+                      </td>
+                      <td class="text-right">
+                        <p class="m-0">
+                          <span class="mt-2">
+                            Rp 3.000.000
+                          </span>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                  </table>
+                  <table class="table table-transaksi mb-3">
+                    <tr>
+                      <td width="600">
+                        <p class="m-0">
+                          <strong>Alamat Tujuan (JNE - REGULER)</strong>
+                        </p>
+                        <p class="m-0">
+                          <strong>Abi Rafdi</strong>
+                          <br>
+                          <span style="font-size: 80%;">
+                            Jalan Buncit Raya no.143 gedung alika printing/ABUCORP lantai.4 (lokasi gedung tepat di samping PARAHITA)
+                            <br>
+                            Pancoran Jakarta Selatan, 12760
+                            <br>
+                            DKI Jakarta
+                            <br>
+                            Telp: 081283192312
+                          </span>
+                        </p>
+                      </td>
+                      <td class="text-right">
+                        <small class="text-uppercase">Ongkos Kirim</small>
+                        <p class="m-0">
+                          <span class="mt-2">
+                            9.000
+                          </span>
+                        </p>
+                      </td>
+                    </tr>
+                    </table>
+                    <div class="text-right mb-3">
+                      <p class="m-0">
+                        <small class="text-uppercase text-muted">Total Pembayaran : </small> <strong>RP 6.009.000</strong>
+                      </p>
+                    </div>
+                    <div class="text-left">
+                      <p class="m-0"> 
+                        <strong class="font-half mr-3 text-danger">2016-09-08 20:15 </strong> <small>Menunggu konfirmasi pembayaran</small>
+                      </p>
+                      <hr>
+                      <p class="m-0">
+                        <strong class="font-half mr-3 text-danger">2016-09-09 12:40 </strong> <small>Pembayaran telah diterima dan pesanan anda sedang diproses</small>
+                      </p>
+                      <hr>
+                      <p class="m-0">
+                        <strong class="font-half mr-3 text-danger">2016-09-09 16:20 </strong> <small>Pesanan dalam proses pengiriman kurir</small>
+                      </p>
+                      <hr>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<!-- --------------------------------------------------- -->

@@ -1,0 +1,260 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="p-services | p-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-8 pr-0">
+            <form name="" method="post" action="">
+              <div class="card c-form-partnerships">
+                <div class="card-body c-form-partnerships__item">
+                  <h4 class="card-title text-uppercase p-2">
+                    Lengkapi Data Dibawah Ini
+                  </h4>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Pilih Partnership</label>
+                      <select id="partner" name="partner">
+                        <option value="76023" title="Out of Stock" disabled>
+                          Pilih partnership...
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          AGEN GOLD
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          AGEN PLATINUM
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          MITRA
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Jumlah Pembayaran</label>
+                      <h3 class="mb-0 text-success">
+                        Rp 20.000.000
+                      </h3>
+                      <p class="mb-0">
+                        <small>
+                          <a href="#" class="card-link text-info" data-toggle="modal" data-target="#benefit">
+                            Lihat keuntungan anda <i class="icon-arrow-right32"></i>
+                          </a>
+                        </small>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-3 pr-0">
+                      <label class="col-form-label">Title</label>
+                      <select id="title" name="title">
+                        <option value="76023" title="Out of Stock" disabled>
+                          Pilih title...
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Tuan
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Nyonya
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Nona
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-9">
+                      <label class="col-form-label">Nama Lengkap</label>
+                      <input type="text" class="form-control" placeholder="Siapa nama lengkap mu ?">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Nomor Identitas (KTP)</label>
+                      <input type="text" class="form-control" placeholder="Berapa nomor KTP mu ?">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-4">
+                      <label class="col-form-label">Jenis Kelamin</label>
+                      <select id="jk" name="jk">
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Perempuan
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Laki - Laki
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="col-4 pl-0 pr-0">
+                      <label class="col-form-label">Tempat Lahir</label>
+                      <input type="text" class="form-control" placeholder="Dimana kamu lahir ?">
+                    </div>
+
+                    <div class="col-4">
+                      <label class="col-form-label">Tanggal Lahir</label>
+                      <input type="text" name="tgl_lahir" class="form-control" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Nomor Telepon</label>
+                      <input type="number" class="form-control" placeholder="Berapa nomor telepon kamu ?">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Email</label>
+                      <input type="email" class="form-control" placeholder="Apa nama email kamu ?">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-6 pr-0">
+                      <label class="col-form-label">Provinsi</label>
+                      <div class="input-group">
+                        <select class="js-example-placeholder-single form-control">
+                          <option value="jk">Jakarta</option>
+                          <option value="Makassar">Batulicin</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                      <label class="col-form-label">Kota/Kabupaten</label>
+                      <div class="input-group">
+                        <select class="js-example-placeholder-single form-control">
+                          <option value="jk">Jakarta</option>
+                          <option value="Makassar">Batulicin</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Kecamatan</label>
+                      <div class="input-group">
+                        <select class="js-example-placeholder-single form-control">
+                          <option value="jk">Jakarta</option>
+                          <option value="Makassar">Batulicin</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-4 pr-0">
+                      <label class="col-form-label">Kelurahan</label>
+                      <div class="input-group">
+                        <select class="js-example-placeholder-single form-control">
+                          <option value="jk">Jakarta</option>
+                          <option value="Makassar">Batulicin</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-4 pr-0">
+                      <label class="col-form-label">RT</label>
+                      <input type="text" class="form-control" placeholder="Berapa nomor RT anda ?">
+                    </div>
+                    <div class="col-4">
+                      <label class="col-form-label">RW</label>
+                      <input type="text" class="form-control" placeholder="Berapa nomor RW anda ?">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Alamat Lengkap</label>
+                      <textarea class="form-control" rows="3" placeholder="Alamat tempat tinggal anda sekarang ?"></textarea>
+                    </div>
+                  </div>
+
+                  <fieldset class="form-group row">
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input id="checkbox1" type="checkbox" value="1" name="checkbox" class="form-check-input">
+                        <label class="form-check-label" for="checkbox1">
+                          Saya sangat setuju dengan
+                          <a href="" class="card-link text-success" data-toggle="modal" data-target="#kemitraan">
+                            syarat & ketentuan yang berlaku
+                          </a>
+                          untuk menjadi partner bisnis abutours.com
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <a href="/pilih-metode-pembayaran" class="btn btn-block btn-success">Lanjutkan</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-4">
+            <div class="card | p-services__item | mb-2">
+              <%= image_tag 'lib/icon/subscribe-book.png', :class => 'card-img-top | d-flex | mx-auto', :alt => '' %>
+
+              <div class="card-body | p-services__item-b">
+                <p class="mb-0">
+                  Gratis download e-book <i>ayo bisnis umrah</i>
+                </p>
+                <a href="" class="mt-3 btn btn-outline-success">Download sekarang</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#partner').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#title').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#jk').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+
+            // select serarch
+            $(document).ready(function () {
+                $(".js-example-placeholder-single").select2({
+                    placeholder: ""
+                });
+            });
+
+            // daterange picker
+            $(document).ready(function () {
+                $('input[name="tgl_lahir"]').daterangepicker({
+                    "singleDatePicker": true,
+                    "autoApply": true,
+                    "showDropdowns": true
+                });
+            });
+        });
+    </script>
+<% end %>

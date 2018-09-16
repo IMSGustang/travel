@@ -1,0 +1,316 @@
+<% content_for :headpayments do %>
+    <title>Data Pengiriman Barang | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pembelian</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Konfirmasi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-formpemesanan">
+      <div class="container">
+        <div class="row">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <form action="" method="post">
+              <div class="card c-formpemesanan-item mb-1">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-0 mb-4">
+                    Alamat Pengiriman
+                  </p>
+
+                  <dl class="row">
+                    <dd class="col-12">
+                      Jl raya batulicin <br>
+                      Provinsi Kalimantan Selatan, Kab Tanah Bumbu, Kecamatan Kusan Hilir <br>
+                      Kode Pos 72273 <br>
+                      085338400440 <br>
+                      gustangkd@gmail.com
+                    </dd>
+
+                    <dd class="col-12">
+                      <a href="" class="card-link" data-toggle="modal" data-target="#address">
+                        Mau ganti alamat ?
+                      </a>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-1">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-2">
+                    Ringkasan Belanja
+                  </p>
+
+                  <form name="" action="" method="post">
+                    <table class="table table-flex m-0">
+                      <tr>
+                        <td>
+                          <%= image_tag 'store/1.jpg', :class => 'd-flex align-self-center mr-3' %>
+                        </td>
+
+                        <td>
+                          <div class="media">
+                            <div class="media-body p-0">
+                              <p class="mb-1">Donec sed odio dui sed bui los thu...</p>
+
+                              <div class="form-group mb-0">
+                                <input id="qty" class="form-control" type="number" value="1" min="1" max="10" disabled/>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td>
+                          Rp 200.000
+                        </td>
+                      </tr>
+                      <!-- ------------------------------------- -->
+                      <tr>
+                        <td>
+                          <div class="d-flex flex-column">
+                            <div class="mb-2">Jasa pengiriman</div>
+                            <div class="">
+                              <div class="form-group mb-0">
+                                <select class="form-control w-100" id="kurier">
+                                  <option value="JNE">JNE</option>
+                                  <option value="J&T">J&T</option>
+                                  <option value="POS">POS</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="d-flex flex-column">
+                            <div class="mb-3 text-right">Harga</div>
+                            <div class="text-right">
+                              <h3>Rp 0</h3>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- ------------------------------------- -->
+                      <tr>
+                        <td>
+                          <div class="d-flex flex-column">
+                            <div class="mb-2">Catatan</div>
+                            <div class="">
+                              <div class="form-group">
+                                <textarea class="form-control" rows="5" placeholder="Tulis catatan untuk kami, seperti : ukuran, warna atau jumlah pesanan anda..."></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-footer">
+                  <div class="row">
+                    <div class="col-7">
+                      <p class="text-muted mb-0">
+                        Total pembayaran
+                      </p>
+                      <span>
+                      Rp 300.000
+                    </span>
+                    </div>
+                    <div class="col-5">
+                      <a href="/pilih-metode-pembayaran" class="btn btn-lg btn-block btn-outline-secondary">Lanjutkan</a>
+                      <small class="form-text text-muted">Harga belum termasuk kode pembayaran</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- ------------------------------------- -->
+          <div class="col-4 pl-0 sticky">
+            <div class="card c-ringkasan theiaStickySidebar">
+              <div class="card-body c-ringkasan__item">
+                <h5 class="card-title c-ringkasan__title">
+                  Ringkasan Pesanan
+                </h5>
+
+                <dl class="row">
+                  <dt class="col-12 text-md-right voucher">
+                    <a href="#">Punya kode voucher ?</a>
+                  </dt>
+                  <dd class="col-12 c-voucher">
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="voucher" placeholder="Kode Voucher">
+                      <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">Gunakan</button>
+                      </span>
+                    </div>
+                  </dd>
+
+                  <dt class="col-6">Total Harga Paket</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 30.000.000
+                  </dd>
+
+                  <dt class="col-6">Administrasi</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 0
+                  </dd>
+                </dl>
+
+                <hr class="my-2">
+
+                <dl class="row">
+                  <dt class="col-6"><strong>Total Pembayaran</strong></dt>
+                  <dd class="col-6 text-md-right">
+                    <strong>
+                      Rp 30.000.000
+                    </strong>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <!-- ------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <div class="modal fade modal-pay" id="address" role="dialog" aria-labelledby="addressTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addressTitle"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="icon-cross2"></i></span>
+            </button>
+          </div>
+
+          <form>
+            <div class="modal-body">
+              <h5 class="mb-2">
+                Tambah Alamat
+              </h5>
+
+              <div class="form-group">
+                <label>Alamat Lengkap</label>
+                <textarea rows="4" class="form-control"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Provinsi</label>
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="icon-location3"></i>
+                  </span>
+                  <select class="js-example-placeholder-single form-control">
+                    <option selected disabled>Pilih provinsi...</option>
+                    <option value="KS">Kalimantan Selatan</option>
+                    <option value="DKI">DKI Jakarta</option>
+                    <option value="MKS">Makassar</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Kabupaten/Kota</label>
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="icon-location3"></i>
+                  </span>
+                  <select class="js-example-placeholder-single form-control">
+                    <option selected disabled>Pilih kab/kota...</option>
+                    <option value="DKI">Tanah Bumbu</option>
+                    <option value="MKS">Jakarta Selatan</option>
+                    <option value="MKS">Makassar</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Kecamatan</label>
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="icon-location3"></i>
+                  </span>
+                  <select class="js-example-placeholder-single form-control">
+                    <option selected disabled>Pilih kecamatan...</option>
+                    <option value="DKI">Batulicin</option>
+                    <option value="MKS">Mampang Prapatan</option>
+                    <option value="MKS">Ratulangi</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Kode Pos</label>
+                <input type="number" class="form-control" placeholder="">
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-block btn-success">Lanjutkan</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        // sticky scroll
+        $(document).ready(function () {
+            $('.sticky')
+                .theiaStickySidebar({
+                    additionalMarginTop: 10,
+                    additionalMarginBottom: 20
+                });
+        });
+
+        $(document).ready(
+            function () {
+                $(".voucher").click(function () {
+                    $(".c-voucher").toggle('speed,callback');
+                });
+            });
+
+        $(document).ready(function () {
+            $(".js-example-placeholder-single").select2({
+                placeholder: "Pilih"
+            });
+            $("#kurier").select2({
+                theme : 'bootstrap'
+            });
+        });
+
+        $('#qty').bootstrapNumber();
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>

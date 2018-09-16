@@ -1,0 +1,22 @@
+.c-alert-info {
+  font-size: 13px;
+}
+
+.alert {
+  & .alert-heading {
+    font-size: 14px !important;
+    font-weight: normal;
+  }
+
+  & p {
+    font-size: 12px;
+  }
+
+  &-warning {
+    background-color: #FFF6DA !important;
+
+    & hr {
+      border-top-color: #FFECB2 !important;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+.data-city {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    background-color: transparent;
+
+    & .card-body-image {
+      position: relative;
+      align-items: center;
+      width: 100%;
+      backface-visibility: hidden;
+      perspective: 1000px;
+      height: 218px !important;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+      background-color: #000000;
+
+      & img {
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        opacity: .75;
+        max-width: 100%;
+      }
+    }
+
+    & .card-img-overlay {
+      & .card-title {
+        text-transform: uppercase;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 4px 0;
+      }
+
+      & .card-text {
+        color: #ffffff;
+        font-size: 12px;
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+@import "bootstrap";
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+.c-errors {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, .75);
+  height: 100%;
+
+  &-item {
+    width: 100%;
+
+    & .card {
+      border: none;
+      &-body {
+
+        & .media {
+          align-items: center !important;
+        }
+
+        & .display-4 {
+          font-size: 40px;
+        }
+
+        & img {
+          max-width: 400px;
+        }
+
+        & h1 {
+          letter-spacing: 2px;
+          font-size: 30px !important;
+        }
+
+        & p {
+          letter-spacing: 1px;
+          font-size: 16px;
+
+          & a {
+            color: rgba(0, 0, 0, .75);
+            font-size: 16px;
+
+            &:hover {
+              color: #cb2d3e;
+            }
+          }
+        }
+      }
+
+      &.card-small {
+        & img {
+          max-width: 300px;
+        }
+
+        & .card-body {
+          & .display-4 {
+            font-size: 40px;
+          }
+
+          & h1 {
+            letter-spacing: 2px;
+            font-size: 24px !important;
+          }
+
+          & p {
+            letter-spacing: 1px;
+            font-size: 16px;
+
+            & a {
+              color: rgba(0, 0, 0, .75);
+              font-size: 16px;
+
+              &:hover {
+                color: #cb2d3e;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

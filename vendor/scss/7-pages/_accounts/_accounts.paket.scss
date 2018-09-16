@@ -1,0 +1,196 @@
+.c-dashboard-paket {
+  border: none;
+  & .c-dashboard-paket__item {
+    padding: 0;
+
+    & .table-paket {
+      margin: 0;
+      & td {
+        border: none;
+        vertical-align: middle;
+        & img {
+          max-width: 131px;
+          max-height: 131px;
+        }
+
+        &.c-paket__header {
+          background-color: $color-default;
+          border-top-left-radius: 2px;
+          -webkit-border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px;
+          -webkit-border-bottom-left-radius: 2px;
+          & .display-4 {
+            text-align: center;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 14px;
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+        }
+
+        &.c-paket__body {
+          padding-top: 0px;
+          padding-bottom: 0px;
+          padding-left: 0;
+
+          & .item-line {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            height: 45px !important;
+            max-height: 45px !important;
+            margin-bottom: 0;
+
+            &.item-link {
+              -webkit-transition: all .2s ease-out;
+              -o-transition: all .2s ease-out;
+              transition: all .2s ease-out;
+              overflow: hidden;
+              height: 45px;
+              text-transform: capitalize;
+              color: rgba(0, 0, 0, .75);
+              font-size: 14px;
+              font-weight: bold;
+              letter-spacing: -.5px;
+            }
+
+            &::after {
+              content: "";
+              text-align: right;
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              width: 25%;
+              background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+              background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+              background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+              background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+              height: 25px !important;
+            }
+          }
+
+          & .packet-city {
+            text-transform: capitalize;
+            color: #333333;
+            opacity: .55;
+            font-weight: normal !important;
+            font-size: 12px;
+            line-height: 14px;
+            margin-top: 5px !important;
+          }
+
+          & .media {
+            & h5 {
+              font-size: 18px !important;
+              font-weight: bold;
+              color: $color-default;
+            }
+          }
+
+          & p {
+            & i {
+              font-size: 14px;
+              padding: 0;
+              line-height: 0px;
+              color: $color-stars;
+              width: auto;
+              height: auto;
+              background-color: transparent;
+            }
+            & span {
+              font-size: 12px;
+            }
+          }
+        }
+
+        &.c-paket__footer {
+          background-color: #ffffff;
+          border-left: 1px solid #f3f1f0;
+          & a {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    & .paket-keagenan {
+      & .border-table {
+        border-top: 1px solid #f3f1f0;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        background: #f9f7f6;
+      }
+
+      & .media {
+        & h4 {
+          font-size: 18px !important;
+          font-weight: bold;
+          color: $color-default;
+        }
+      }
+
+      & span {
+        & .text-danger {
+          font-size: 14px;
+
+          &:focus {
+            color: #333333 !important;
+          }
+          &:active {
+            color: #333333 !important;
+          }
+        }
+      }
+
+      & .bg_accordion {
+        background: #f9f7f6;
+        padding: 0;
+
+        & .item {
+          background: #f9f7f6;
+
+          & .collapse {
+            p {
+
+            }
+          }
+        }
+      }
+    }
+
+    & .double {
+      position: absolute;
+      background: $color-default;
+      width: 121px;
+      margin: 0;
+      margin-top: -17px;
+    }
+
+    & p {
+      font-size: 14px;
+      text-align: justify;
+    }
+
+    & .description_text {
+      & p {
+        font-size: 13px !important;
+
+        & br {
+          display: block;
+          content: '';
+          margin: 8px 0;
+        }
+      }
+    }
+
+    & .form-check {
+      & .form-check-label {
+        font-size: 12px;
+        color: #686868;
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+<% content_for :head do %>
+    <title>Tukarkan Poin Anda | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Riwayat penukaran</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <ul class="nav tabs-voucher mb-2">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/tukar-poin') %>" href="/tukar-poin">Tukar Poin</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/transaksi-tukar-poin') %>" href="/transaksi-tukar-poin">
+                    Riwayat Tukar Poin
+                  </a>
+                </li>
+              </ul>
+              <!-- --------------------------------------------------- -->
+              <form action="" method="post">
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item">
+                    <% @data.each do |item| %>
+                      <table class="table table-transaksi">
+                        <tr>
+                          <th>
+                            <small class="text-uppercase">Nomor Transaksi</small>
+                            <p class="m-0">
+                              <strong>DEP160908113</strong>
+                            </p>
+                          </th>
+
+                          <th>
+                            <small class="text-uppercase">Jumlah</small>
+                            <p class="m-0">
+                              <%= item['pengajuan'] %> Poin
+                            </p>
+                          </th>
+
+                          <th>
+                            <small class="text-uppercase">Status</small>
+                            <p class="m-0 text-capitalize text-success">
+                              <%= item['status'] %>
+                            </p>
+                          </th>
+                        </tr>
+                      </table>
+                    <% end %>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+
+<% end %>

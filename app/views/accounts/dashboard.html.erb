@@ -1,0 +1,232 @@
+<% content_for :head do %>
+    <title>Abutours | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Ringkasan Akun</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user border-none">
+              <div class="card c-dashboard-side border-none">
+                <%= render template: 'accounts/partials/bannerTop' %>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+
+            <div class="row mt-2 mb-2">
+              <div class="col-6 pr-1">
+                <div class="card card-list">
+                  <div class="card-body">
+                    <a href="/pengaturan-seat">
+                      <div class="media">
+                        <div class="d-flex align-self-center mr-3">
+                          <div class="icons-lg icons-seat"></div>
+                        </div>
+                        <div class="media-body">
+                          <h1 class="mt-0 mb-0"><%= @jumlah_seat %></h1>
+                          <small class="text-muted text-uppercase">
+                            Jumlah Seat Yang Dimiliki
+                          </small>
+                        </div>
+                        <div class="d-flex ml-3 m-0">
+                          <i class="ion-ios-redo-outline"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 pl-1">
+                <div class="card card-list">
+                  <div class="card-body">
+                    <a href="/data-jamaah">
+                      <div class="media">
+                        <div class="d-flex align-self-center mr-3">
+                          <div class="icons-lg icons-jamaah"></div>
+                        </div>
+                        <div class="media-body">
+                          <h1 class="mt-0 mb-0"><%= @jumlah_jamaah %></h1>
+                          <small class="text-muted text-uppercase">
+                            Jumlah Jamaah Yang Dimiliki
+                          </small>
+                        </div>
+                        <div class="d-flex ml-3 m-0">
+                          <i class="ion-ios-redo-outline"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="row">
+              <%
+                @progressbar = 0
+                if @progress_profil['data']['email'] == 1
+                  @email = "text-success"
+                  @progressbar = @progressbar + 1
+                else
+                  @email = "text-danger"
+                end
+
+                if @progress_profil['data']['alamat'] == 1
+                  @alamat = "text-success"
+                  @progressbar = @progressbar + 1
+                else
+                  @alamat = "text-danger"
+                end
+
+                if @progress_profil['data']['handphone'] == 1
+                  @handphone = "text-success"
+                  @progressbar = @progressbar + 1
+                else
+                  @handphone = "text-danger"
+                end
+              %>
+              <% if @progressbar > 2
+                   col = 'col-12'
+                   colSm = 'col-12 pl-1 d-none'
+                 else
+                   col = 'col-8 pr-1'
+                   colSm = 'col-4 pl-1'
+                 end %>
+              <div class="<%= col %>">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="mb-3">Profil Saya</h2>
+                    <form class="">
+                      <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <p class="mb-0">
+                          <%= session[:account_nama_depan] %> <%= session[:account_nama_belakang] %>
+                        </p>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Tempat Tanggal Lahir</label>
+                        <p class="mb-0">
+                          <%= session[:account_detail][:tempat_lahir] %>
+                          <% if !session[:account_detail][:tanggal_lahir].nil? %>,
+                              <%= TimeFormat::indonesiaMonthAlphabet(session[:account_detail][:tanggal_lahir]) %>
+                          <% else %>
+                              Tidak ada tanggal lahir
+                          <% end %>
+                        </p>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <% if session[:account_jk] == 'L' %>
+                            <p class="mb-0">Laki - Laki</p>
+                        <% elsif session[:account_jk] == 'P' %>
+                            <p class="mb-0">Perempuan</p>
+                        <% else %>
+                            <p class="mb-0"> - </p>
+                        <% end %>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Nomor Identitas (KTP)</label>
+                        <p class="mb-0">
+                          <%= session[:account_ktp] %>
+                        </p>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Nomor Telepon</label>
+                        <p class="mb-0">
+                          <%= Number::indonesianFormatPhone(session[:account_telepon]) %>
+                        </p>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Nomor Telepon Rumah</label>
+                        <p class="mb-0">
+                          <%= session[:account_detail][:account_telepon] %>
+                        </p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="<%= colSm %>">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="mb-3">Lengkapi Akun Anda</h4>
+                    <% unless @progressbar > 2 %>
+                        <table class="table table-check">
+                          <tr>
+                            <td class="bt-none">
+                              <h6 class="">
+                                Lengkapi Akun
+                                <small class="float-right">
+                                  <%= @progressbar %> dari 3
+                                </small>
+                              </h6>
+                              <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <%= @progressbar * 100 / 3 %>%; height: 4px !important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <p class="mb-0 mt-2 pb-0 text-muted text-left">
+                                <small>
+                                  Lengkapi data anda terlebih dahulu untuk memulai transaksi
+                                </small>
+                              </p>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="bt-none">
+                              <a href="" class="<%= @email %>">
+                                <i class="ion-ios-checkmark"></i> Konfirmasi E-mail
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="bt-none">
+                              <a href="" class="<%= @alamat %>">
+                                <i class="ion-ios-checkmark"></i> Simpan Alamat
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="bt-none">
+                              <a class="<%= @handphone %>">
+                                <i class="ion-ios-checkmark"></i> Simpan Nomor Telepon
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>

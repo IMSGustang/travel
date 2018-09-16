@@ -1,0 +1,133 @@
+<%= content_for :active_home do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Beli Voucher Game di Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Nikmati harimu dengan bermain game
+        </h6>
+        <p class="mb-0">
+          Enjoy Your Day
+        </p>
+      </div>
+    </div>
+
+    <div class="data-products-evoucher pl-3 pr-3">
+      <div class="card card-body c-form-evoucher">
+        <form action="/voucher-game/detail" method="post">
+
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i data-feather="layers"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Voucher Game</label>
+                <select id="voucher" name="voucher" class="form-control w-100" onchange="cekHargaGame(this.value)">
+                  <option value="disabled" selected disabled> Pilih voucher
+                    <%= data.each do |row| %>
+                      <option value="<%= row['game'] %>">
+                        <%= row['game'] %>
+                      </option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i data-feather="more-horizontal"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Nominal</label>
+                <select id="nominalVoucherGame" name="nominal" class="form-control w-100" onchange="active(this.value, 'VoucherGame')">
+                  <option value="disabled" selected disabled> Pilih nominal
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="mb-3 mt-3" id="priceTagVoucherGame">
+            Rp 0
+          </h4>
+
+          <% if session[:acc_token] %>
+              <button type="submit" class="btn btn-block btn-danger">
+                Beli Sekarang
+              </button>
+          <% else %>
+              <a href="/abutours-login" class="btn btn-block btn-danger">
+                Beli Sekarang
+              </a>
+          <% end %>
+
+        </form>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#voucher").select2({
+                theme: "bootstrap"
+            });
+
+            $("#nominalVoucherGame").select2({
+                theme: "bootstrap"
+            });
+
+            val = $("#nominalVoucherGame").val();
+            nominal = $('#nominalVoucherGame');
+            nominal.html('');
+            $.get("/voucher-game/inquiry/" + val, function (data) {
+                nominal.html('');
+                $.each(data, function (i, value) {
+                    nominal.append("<option value='" + value.product_id + "' data-price='Rp " + value.harga + "'data-value='" + value.nominal + "'>" + value.voucher + ' - ' + value.nominal + ' - Rp ' + numberFormat(value.harga) + "</option>");
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function cekHargaGame(val) {
+            nominal = $('#nominalVoucherGame');
+            nominal.html('');
+            $.get("/voucher-game/inquiry-new/" + val, function (data) {
+                if (data.status == 200) {
+                    if (data['data'].length == 0) {
+                        alert('voucher game tidak tersedia');
+                    } else {
+                        nominal.html('');
+                        $.each(data['data'], function (i, value) {
+                            nominal.append("<option value='" + value.product_id + "' data-price='Rp " + numberFormat(value.harga) + "'data-value='" + value.nominal + "'>" + value.voucher + ' - ' + value.nominal + "</option>");
+                        });
+                        $('#priceTagVoucherGame').html($('#nominalVoucherGame').find("option:selected").data('price'));
+                        activeGame($("#nominalVoucherGame").val());
+                    }
+                } else {
+                    swal({
+                        text: 'Maaf, Mohon periksa kembali voucher Anda!',
+                        imageUrl: 'assets/lib/sticker/25.png',
+                        imageWidth: 100,
+                        animation: true,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
+        }
+
+        $('#nominalVoucherGame').on('change', function (e) {
+            $('#priceTagVoucherGame').html($(this).find("option:selected").data('price'));
+        });
+    </script>
+<% end %>

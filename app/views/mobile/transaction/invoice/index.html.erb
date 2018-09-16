@@ -1,0 +1,116 @@
+<%= content_for :headmobile do %>
+    <title>Invoice Pembelian | Best Travel Services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-invoice">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex mt-1 mb-3">
+            <div class="mr-auto">
+              <h5 class="text-uppercase mb-0">invoice</h5>
+              <p class="no_invoice mb-0">
+                <%= @data['kodeTransaksi'] %>
+              </p>
+            </div>
+
+            <div class="ml-auto">
+              <p class="date text-uppercase text-right mb-0">
+                <span>Date :</span> <%= VariableHelper::timeCleanParsing(@data['dataMain']['created_at']) %>
+              </p>
+              <p class="date text-uppercase text-right mb-0">
+                <span>Payment :</span> <%= @data['dataMain']['metode_pembayaran'] %>
+              </p>
+            </div>
+          </div>
+
+          <h6 class="text-uppercase text-right mb-0">
+            <span>Jumlah</span> <%= number_to_currency(@data['dataMain']['harga'].to_i, precision: 0 , unit: "Rp") %>
+          </h6>
+        </div>
+
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <header>Tagihan Kepada :</header>
+              <p class="mb-0">
+                <%= session['account_nama_depan'] + " " +session['account_nama_belakang'] %>
+
+                <span class="float-right">
+                  Telp <%= Number::indonesianFormatPhone(session['account_telepon']) %>
+                </span>
+              </p>
+            </li>
+
+            <li class="list-group-item">
+              <table class="table table-sm mb-0">
+                <tr>
+                  <td colspan="2">
+                    <header>Pembelian</header>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <p class="mb-0">
+                      <%= @data['namaProduk'] %>
+                    </p>
+                  </td>
+                  <td width="100">
+                    <p class="mb-0 text-right">
+                      <span><%= number_to_currency(@data['dataMain']['harga'].to_i, precision: 0 , unit: "Rp") %></span>
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <p class="mb-0 text-right">
+                      SubTotal
+                    </p>
+                  </td>
+                  <td width="100">
+                    <p class="mb-0 text-right">
+                      <span><%= number_to_currency(@data['dataMain']['harga'].to_i, precision: 0 , unit: "Rp") %></span>
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <p class="mb-0 text-right">
+                      PPN
+                    </p>
+                  </td>
+                  <td width="100">
+                    <p class="mb-0 text-right">
+                      <span>Rp 0</span>
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <p class="mb-0 text-right">
+                      Total
+                    </p>
+                  </td>
+                  <td width="100">
+                    <p class="mb-0 text-right">
+                      <span><%= number_to_currency(@data['dataMain']['harga'].to_i, precision: 0 , unit: "Rp") %></span>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+<% end %>
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

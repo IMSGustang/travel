@@ -1,0 +1,39 @@
+<%= content_for :headmobile do %>
+<title>Forgot Password</title>
+<% end %>
+<%= content_for :mobile do %>
+<div class="data-forgot-pass">
+	<div class="card">
+		<div class="card-header">
+			<h5 class="mb-1">
+			Lupa Password
+			</h5>
+			<p class="mb-1">
+				Butuh bantuan dengan password anda ?
+			</p>
+			<p class="mb-0">
+				Masukkan email / nomor telepon yang anda gunakan untuk mendaftar, kami akan membantu anda untuk melakukan RESET Password.
+			</p>
+		</div>
+		<div class="card-body">
+			<form action="/api/send-reset-password-number-otp" method="post">
+				<div class="form-group mb-3">
+					<label>Email / Nomor Telepon</label>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<img src="/assets/mobile/icons/users/telepon.png" />
+							</span>
+						</div>
+						<input type="number" name="nomor_telepon" class="form-control" placeholder="Nomor Telepon">
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-block btn-danger">Lanjutkan</button>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+<% end %>

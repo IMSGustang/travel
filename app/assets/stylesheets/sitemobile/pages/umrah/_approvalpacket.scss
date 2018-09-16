@@ -1,0 +1,46 @@
+.data-approval {
+  & .nav {
+    border-top: 4px solid #f5f5f5;
+    border-bottom: 1px solid #e3e1e0;
+    & .nav-item {
+      margin-bottom: -1px;
+      & .nav-link {
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        text-transform: uppercase;
+        font-size: 12px;
+        padding: 14px 0;
+        color: #333333;
+
+        &.active {
+          background: transparent;
+          border: 1px solid transparent;
+          border-bottom: 1px solid $color-default;
+          color: $color-default;
+        }
+      }
+    }
+  }
+
+  & .tab-content {
+    & .card {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: none;
+      height: 400px;
+      overflow: scroll;
+
+      &.card-body {
+        & .table {
+          & td, p, li {
+            border: none;
+            font-size: 14px;
+            text-align: justify;
+          }
+        }
+      }
+    }
+  }
+}

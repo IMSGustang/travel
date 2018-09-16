@@ -1,0 +1,106 @@
+<%= content_for :active_transaction_umrah do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Transaksi Umrah</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <%= render template: 'mobile/transaction/partials/mobileTabsTransactions' %>
+    <%= render template: 'mobile/transaction/partials/mobileSubtabsTransactions' %>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="tagihan" role="tabpanel" aria-labelledby="tagihan-tab">
+        <div class="data-transaction pt-3">
+          <% if !@data.nil? %>
+              <% @data.each do |item| %>
+                  <% if item['status_bayar'] != 'Lunas' %>
+                      <div class="card card-transaction">
+                        <a href="/pembayaran-umrah/<%= item['no_bukti'] %>">
+                          <div class="card-body">
+                            <table class="table table-sm mb-0">
+                              <tr>
+                                <td>
+                                  <p class="tglTransaction mb-0 text-right mb-2">
+                                    <%= TimeFormat::indonesian_day_name(item['tgl_trans']) %>
+                                    , <%= TimeFormat::indonesia(item['tgl_trans']) %>
+                                  </p>
+
+                                  <p class="noTransaction mb-0">
+                                    <span>No Transaksi</span> : <strong><%= item['no_trans'] %></strong>
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="mb-0">
+                                    <span class="badge badge-<%= item['sts_bayar'] == "Pending" ? "warning" : "danger" %>"><%= item['status_bayar'] %></span>
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </a>
+                      </div>
+                  <% end %>
+              <% end %>
+          <% else %>
+              <div class="w-blank text-center p-5">
+                <%= image_tag 'icon_blank/no_transaction.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                <p class="mb-0">
+                  Maaf, Anda belum memiliki transaksi
+                </p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+        <div class="data-transaction pt-3">
+          <% if !@data.nil? %>
+              <% @data.each do |item| %>
+                  <% if item['status_bayar'] == 'Lunas' %>
+                      <div class="card card-transaction">
+                        <a href="">
+                          <div class="card-body">
+                            <table class="table table-sm mb-0">
+                              <tr>
+                                <td>
+                                  <p class="tglTransaction text-right mb-2">
+                                    <%= TimeFormat::indonesian_day_name(item['tgl_trans']) %>, <%= TimeFormat::indonesia(item['tgl_trans']) %>
+                                  </p>
+
+                                  <p class="noTransaction mb-0">
+                                    <span>No Transaksi</span> : <strong><%= item['no_trans'] %></strong>
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="mb-0">
+                                    <span class="badge badge-success"><%= item['sts_bayar'] %></span>
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </a>
+                      </div>
+                  <% end %>
+              <% end %>
+          <% else %>
+              <div class="w-blank text-center p-5">
+                <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                <p class="mb-0 text-center">
+                  Maaf, Anda belum memiliki transaksi
+                </p>
+              </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+<% end %>

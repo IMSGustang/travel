@@ -1,0 +1,122 @@
+<%= content_for :active_costs do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Daftar Penambahan Biaya</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Daftar Tagihan Penambahan Biaya
+        </h6>
+      </div>
+    </div>
+
+    <div class="seat-penambahanbiaya">
+      <div class="data-transaction">
+        <div id="accordioncosts">
+          <div class="card card-transaction">
+            <a class="collapsed" data-toggle="collapse" data-target="#2" aria-expanded="false" aria-controls="2">
+              <div class="card-body">
+                <table class="table table-sm mb-0">
+                  <tr>
+                    <td>
+                      <p class="jmlseat mb-0 text-right mb-2">
+                        10 seat
+                      </p>
+
+                      <p class="noTransaction mb-0">
+                        <span>No Invoice</span> : <strong>TMP-CNM-8691801124058</strong>
+                      </p>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p class="mb-0">
+                        <span class="badge badge-light">lihat detail</span>
+                        <span class="float-right"><i data-feather="chevron-down"></i></span>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </a>
+            <div id="2" class="collapse" data-parent="#accordioncosts">
+              <div class="card-body p-2">
+                <table class="table table-seatcost mb-0">
+                  <thead>
+                  <tr class="table-light">
+                    <th>#</th>
+                    <th>Booking</th>
+                    <th>Keberangkatan</th>
+                    <th>Biaya</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>MT680</td>
+                    <td>Jan 2018</td>
+                    <td>
+                      <a href=""><i data-feather="play"></i></a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-transaction">
+            <a class="collapsed" data-toggle="collapse" data-target="#3" aria-expanded="false" aria-controls="3">
+              <div class="card-body">
+                <table class="table table-sm mb-0">
+                  <tr>
+                    <td>
+                      <p class="jmlseat mb-0 text-right mb-2">
+                        10 seat
+                      </p>
+
+                      <p class="noTransaction mb-0">
+                        <span>No Invoice</span> : <strong>TMP-CNM-8691801124058</strong>
+                      </p>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p class="mb-0">
+                        <span class="badge badge-light">lihat detail</span>
+                        <span class="float-right"><i data-feather="chevron-down"></i></span>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </a>
+            <div id="3" class="collapse" data-parent="#accordioncosts">
+              <div class="card-body p-2">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(function () {
+            $("#tgl_invoice").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 1
+            });
+        });
+    </script>
+<% end %>

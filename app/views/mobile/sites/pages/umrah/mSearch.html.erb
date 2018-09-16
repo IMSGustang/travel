@@ -1,0 +1,193 @@
+<%= content_for :headmobile do %>
+    <title>Abutours | Best Travel Services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Cari paket umrah pilihan mu
+        </h6>
+        <p class="mb-0">
+          Semua Bisa Umrah
+        </p>
+      </div>
+    </div>
+
+    <div class="data-search data-overlap">
+      <div class="data-form">
+        <form action="/paket-umrah" method="get">
+          <div class="form-group">
+            <label>Kota keberangkatan</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i data-feather="map-pin"></i>
+              </span>
+              <select id="kota" name="kota" class="form-control">
+                <option value="">Semua kota</option>
+                <% if @data_pre_search %>
+                    <% @kota = @data_pre_search['kota'] %>
+                    <% @kota.each do |data| %>
+                        <optgroup label="<%= data['name'].titlecase %>">
+                          <% @kantor = data['kota'] %>
+                          <% @kantor.each do |kantor| %>
+                              <option value="<%= kantor['kdkantor'] %>"><%= kantor['namakantor'].titlecase %></option>
+                          <% end %>
+                        </optgroup>
+                    <% end %>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Paket umrah</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i data-feather="book-open"></i>
+              </span>
+              <select id="jenispaket" name="jenispaket" class="form-control">
+                <option value="">Semua paket</option>
+                <% if @data_pre_search %>
+                    <% @bulan = @data_pre_search['jnspaket'] %>
+                    <% @bulan.each do |data| %>
+                        <option value="<%= data['name'] %>"></option>
+                    <% end %>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Tahun keberangkatan</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i data-feather="calendar"></i>
+              </span>
+              <select id="tahun" name="tahun" class="form-control">
+                <option value="">Semua tahun</option>
+                <% if @data_pre_search %>
+                    <% @bulan = @data_pre_search['bulan'] %>
+                    <% @bulan.each do |data| %>
+                        <option value="<%= data['bulan'] %>"><%= data['name'] %></option>
+                    <% end %>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Bulan keberangkatan</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i data-feather="calendar"></i>
+              </span>
+              <select id="bulan" name="bulan" class="form-control">
+                <option value="">Semua bulan</option>
+                <% if @data_pre_search %>
+                    <% @tahun = @data_pre_search['tahun'] %>
+                    <% @tahun.each do |data| %>
+                        <option value="<%= data['tahun'] %>"><%= data['tahun'] %></option>
+                    <% end %>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-danger">
+              Cari Paket
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="data-recomended">
+      <div class="card-header">
+        <h6 class="m-0">
+          Umrah Terpopuler di Indonesia
+        </h6>
+      </div>
+      <div class="line-border"></div>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <a href="/paket-umrah/CNM,MPG/paket-umrah-di-kota-jakarta-selatan" class="data-city">
+              <div class="card mt-2 mb-2">
+                <div class="card-body-image">
+                  <%= image_tag '/assets/destination_categories/jakarta.png', :class => 'card-img', :alt => '' %>
+                </div>
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Jakarta</h5>
+                  <p class="card-text">
+                    Lihat paket tersedia
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="/paket-umrah/BJG,DAY,HRM,PET/paket-umrah-di-kota-makassar" class="data-city">
+              <div class="card mt-2 mb-2">
+                <div class="card-body-image">
+                  <%= image_tag '/assets/destination_categories/makassar.png', :class => 'card-img', :alt => '' %>
+                </div>
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Makassar</h5>
+                  <p class="card-text">
+                    Lihat paket tersedia
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="/paket-umrah/SBY,SUB/paket-umrah-di-kota-surabaya" class="data-city">
+              <div class="card mt-2 mb-2">
+                <div class="card-body-image">
+                  <%= image_tag '/assets/destination_categories/surabaya.png', :class => 'card-img', :alt => '' %>
+                </div>
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Bandung</h5>
+                  <p class="card-text">
+                    Lihat paket tersedia
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="swiper-pagination" id="swiper-pagination"></div>
+      </div>
+    </div>
+
+<% end %>
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#kota").select2({
+                theme: "bootstrap"
+            });
+            $("#jenispaket").select2({
+                theme: "bootstrap"
+            });
+            $("#tahun").select2({
+                theme: "bootstrap"
+            });
+            $("#bulan").select2({
+                theme: "bootstrap"
+            });
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            slidesPerView: 2,
+            paginationClickable: true,
+            spaceBetween: 0
+        });
+    </script>
+<% end %>

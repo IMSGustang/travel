@@ -1,0 +1,17 @@
+.e-title {
+  margin: 12px 0;
+  & .e-title-item {
+    & span {
+      background-color: #ffffff;
+      padding: 5px 10px;
+      padding-left: 0;
+      font-size: 14px;
+      letter-spacing: -.5px;
+      position: relative;
+    }
+  }
+
+  & hr {
+    margin-top: -16px;
+  }
+}

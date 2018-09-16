@@ -1,0 +1,226 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Data Nomor Telepon</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-edit-alamat">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex">
+            <div class="mr-auto">
+              <small class="text-muted">
+                Nomor telepon
+              </small>
+            </div>
+            <div class="p-0">
+              <small>
+                <%= @user_detail['user']['telepon']%>
+              </small>
+
+              <button type="button" class="btn btnEdit btn-sm btn-danger ml-2"><i class="ion-ios-compose"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Change Number-->
+      <div class="modal fade" id="dlgChangeNumber" role="dialog" aria-labelledby="OTP1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content modal-lg">
+            <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+            </button>
+            <form id="gantiNomor" name="gantiNomor" method="post" action="/api/change-number" class="needs-validation" novalidate>
+              <div class="modal-body p-4">
+                <div class="form-group row m-0 justify-content-center">
+                  <div class="col-10">
+                    <p>
+                      Masukkan nomor ponsel baru
+                    </p>
+                    <table class="table table-flex">
+                      <tr>
+                        <td>
+                          <input type="text" id="new_number" name="new_number" class="kode form-control form-control-sm text-center text-uppercase" maxlength="15" required>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="6" class="pt-3">
+                          <p class="card-text text-center mt-12">
+                            Pastikan nomor lama anda masih aktif dan bisa menerima sms.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="6" class="pt-3">
+                          <button type="submit" id="submitChange" class="btn btn-sm btn-block btn-danger">Kirim</button>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!--End Change-->
+      <!--Confirm Number-->
+      <div class="modal fade" id="dlgChangeNumberOTP" role="dialog" aria-labelledby="OTP2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content modal-lg">
+            <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+            </button>
+            <form id="gantiNomorOtp" name="gantiNomorOtp" method="post" action="/api/confirm-change-number" class="needs-validation1" novalidate>
+              <div class="modal-body p-4">
+                <div class="card-body">
+                  <div class="form-group">
+                    <p>
+                      Masukan kode verifikasi
+                    </p>
+                    <table class="table table-sm mb-0">
+                      <tbody>
+                      <tr>
+                        <td><input type="text" id="otp1" class="form-control kode text-uppercase" minLength="1" maxLength="1" required/></td>
+                        <td><input type="text" id="otp2" class="form-control kode text-uppercase" minLength="1" maxLength="1" required/></td>
+                        <td><input type="text" id="otp3" class="form-control kode text-uppercase" minLength="1" maxLength="1" required/></td>
+                        <td><input type="text" id="otp4" class="form-control kode text-uppercase" minLength="1" maxLength="1" required/></td>
+                        <td><input type="text" id="otp5" class="form-control kode text-uppercase" minLength="1" maxLength="1" required/></td>
+                        <td><input type="text" id="otp6" class="form-control kode text-uppercase" minLength="1" maxLength="1" required/></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="form-group">
+                    <p class="text-center mb-0">
+                      Tidak menerima kode ?
+                    </p>
+                    <p class="text-center mb-0">
+                      <a id="resendOtp" href="#" class="text-center text-danger">
+                        Kirim ulang kode
+                      </a>
+                    </p>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-sm btn-block btn-danger">Kirim</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!--End Confirm-->
+    </div>
+<% end %>
+
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $( ".txtOnly" ).keypress(function(e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+
+            $.autotab({ tabOnSelect: true });
+            $('.kode').autotab('filter', 'kode');
+
+            $(".btnEdit").click(function(){
+                $('#dlgChangeNumber').modal('show');
+            });
+
+            $("#gantiNomor").on("submit", function( event ) {
+                $form = $(this).get(0);
+
+                data = $('#gantiNomor').serialize();
+                event.preventDefault();
+                if ($form.checkValidity()) {
+                    $("#submitChange").attr('disabled', true);
+                    $.post( $form.action, data, function( result ) {
+                        if (result.status == 200) {
+                            if (result.otp == true) {
+                                $('#dlgChangeNumber').modal('hide');
+                                $('#dlgChangeNumberOTP').modal('show');
+                            }
+                        } else {
+                            $("#submitChange").attr('disabled', false);
+                            swal({
+                                type: 'error',
+                                text: result.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    });
+                }
+                $form.classList.add("was-validated");
+            });
+
+            $("#gantiNomorOtp").on("submit", function( event ) {
+                event.preventDefault();
+                $form = $(this).get(0);
+                $otp = $('#otp1').val() + $('#otp2').val() + $('#otp3').val() + $('#otp4').val() + $('#otp5').val() + $('#otp6').val();
+
+                data = {
+                    new_number: $('#new_number').val(),
+                    kode_otp: $otp
+                }
+
+                if ($form.checkValidity()) {
+                    $.post( $form.action, data, function( result ) {
+                        if (result.status == 200) {
+                            swal({
+                                text: result.message,
+                                timer: 2000,
+                                showConfirmButton: false,
+                                type: "success",
+                                button: false
+                            });
+                            $('#dlgChangeNumberOTP').modal('hide');
+                            $('#telepon').val($('#new_number').val());
+                        } else {
+                            swal({
+                                text: result.message,
+                                timer: 2000,
+                                showConfirmButton: false,
+                                type: "error",
+                                button: false
+                            });
+                        }
+                    })
+                }
+                $form.classList.add("was-validated");
+            });
+
+            $("#resendOtp").on("click", function( event ) {
+                event.preventDefault();
+                $.get( '/api/change-number-resend-otp?_=' + Math.random(), function( result ) {
+                    if (result.status == 200) {
+                        swal({
+                            text: result.message,
+                            timer: 2000,
+                            showConfirmButton: false,
+                            button: false,
+                            type: "success"
+                        });
+                    } else {
+                        swal({
+                            text: result.message,
+                            timer: 2000,
+                            showConfirmButton: false,
+                            type: "error",
+                            button: false
+                        });
+                    }
+                })
+            });
+        });
+    </script>
+<% end %>

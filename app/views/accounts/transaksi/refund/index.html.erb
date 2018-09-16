@@ -1,0 +1,145 @@
+<% content_for :head do %>
+    <title>Refund Saya | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Refund saya</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <h3 class="mt-3">
+              Refund Saya
+            </h3>
+            <div class="c-bg-white-accounts">
+              <form method="post" id="needs-validation" novalidate>
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item">
+                    <div id="accordion" role="tablist" class="accordion-seat mb-3">
+                      <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                          <a data-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapseOne">
+                            <div class="d-flex justify-content-between">
+                              <div class="p-1" style="width: 200px">
+                                <small class="text-uppercase">Nomor Refund</small>
+                                <h5 class="m-0">RF888990000</h5>
+                              </div>
+
+                              <div class="p-1" style="width: 200px">
+                                <small class="text-uppercase">Tanggal Pengajuan</small>
+                                <h5 class="m-0">
+                                  20 Februari 2018
+                                </h5>
+                              </div>
+
+                              <div class="p-1">
+                                <small class="text-uppercase">Nama Paket</small>
+                                <h5 class="m-0 name-packet name-packet-line">
+                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda esse excepturi harum incidunt ipsam, iure
+                                </h5>
+                              </div>
+
+                              <div class="p-1" style="width: 200px">
+                                <small class="text-uppercase">Status</small>
+                                <h6 class="m-0 text-uppercase text-warning">
+                                  Sedang Diproses
+                                </h6>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+
+                        <div id="collapse" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                          <div class="card-body">
+                            <div class="card-group">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h3 class="mb-0">Detail Permohonan Refund</h3>
+                                  <small>Nomor Refund</small>
+                                  <p>
+                                    RF000999
+                                  </p>
+                                  <small>Tanggal Pengajuan</small>
+                                  <p>
+                                    24 Feb 2018
+                                  </p>
+                                  <small>Status Refund</small>
+                                  <p class="text-uppercase text-warning">
+                                    sedang proses
+                                  </p>
+                                </div>
+                              </div>
+
+                              <div class="card">
+                                <div class="card-body">
+                                  <h3 class="mb-0">Detail Seat Anda</h3>
+                                  <small>Nomor Invoice</small>
+                                  <p>
+                                    ABU000999
+                                  </p>
+                                  <small>Nama Paket</small>
+                                  <p>
+                                    UMRAH PROMO UMMAT DESEMBER JANUARI 20172018 9 HARI QUAD
+                                  </p>
+                                  <small>Jumlah Seat</small>
+                                  <p class="text-uppercase">
+                                    11
+                                  </p>
+                                  <small>Nama Agen/Jamaah</small>
+                                  <p class="text-uppercase">
+                                    Gustang
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <table class="table table-sm mb-0">
+                              <tr>
+                                <td>
+                                  <a data-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapseOne" class="btn btn-block btn-light">Tutup</a>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

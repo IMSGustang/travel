@@ -1,0 +1,54 @@
+<%= content_for :active_home do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Beli Token Listrik di Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Detail pembelian token listrik
+        </h6>
+        <%= image_tag 'lib/icon/tagihan.svg', :class => 'mx-auto d-block', :alt => '' %>
+      </div>
+    </div>
+
+    <div class="data-detail-evoucher overlap-data">
+      <form action="/token-listrik/beli" method="post">
+        <div class="card">
+          <div class="card-body">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="hidden" name="id_pelanggan" value="<%= idPelanggan %>">
+            <input type="hidden" name="ref_id" value="<%= data['ref_id'] %>">
+            <input type="hidden" name="nominal" value="<%= nominal %>">
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Provider <span class="float-right"><%= data['data']['nama'] %> - <%= data['data']['tarif'] %>
+                /<%= data['data']['daya'] %></span>
+              </li>
+              <li class="list-group-item">
+                Nominal
+                <span class="float-right">Rp <%= number_with_delimiter(nominal.to_i + data['data']['admin'].to_i) %></span>
+              </li>
+              <li class="list-group-item">
+                No Meteran <span class="float-right"><%= idPelanggan %></span>
+              </li>
+              <li class="list-group-item list-group-item-price">
+                Harga Bayar
+                <span class="float-right">Rp <%= number_with_delimiter(nominal.to_i + data['data']['admin'].to_i) %></span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-block btn-outline-danger">Lanjutkan</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+<% end %>

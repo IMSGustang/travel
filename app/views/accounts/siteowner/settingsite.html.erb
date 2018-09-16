@@ -1,0 +1,320 @@
+<% content_for :head do %>
+    <title>Pengaturan Site Ownerships | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Pengaturan site</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <form action="/api/pengaturan-site" name="formToko" method="post" enctype="multipart/form-data">
+              <!-- --------------------------------------------------- -->
+              <div class="c-bg-white-accounts mt-0">
+                <div class="card c-dashboard-content c-settings-logo">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td class="ts-1">
+                        <div class="form-group mb-0 text-center">
+                          <div class="kv-avatar">
+                            <div class="file-loading">
+                              <input id="logo" name="logo" type="file">
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <div class="input-group">
+                            <span class="input-group-addon"><%= request.protocol %></span>
+                            <input class="form-control form-control-sm" name="brand" id="brand" value="<%= @data['brand'] %>">
+                            <span class="input-group-addon">.<%= request.domain %></span>
+                            <a id="previewToko" class="btn btn-primary" href="#" data-url="<%= request.domain %>" data-protocol="<%= request.protocol %>">Preview</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="c-bg-white-accounts mt-2">
+                <div class="card c-dashboard-content c-settings-logo">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td class="ts-1">
+                        <div class="form-group mb-0">
+                          <label>Domain alias</label>
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <input class="form-control" rows="3" name="domain_alias" value="<%= @data['domain_alias'] %>">
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <div class="c-bg-white-accounts mt-2">
+                <div class="card c-dashboard-content c-settings-logo">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td class="ts-1">
+                        <div class="form-group mb-0">
+                          <label>Tagline Site</label>
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <textarea class="form-control" rows="3" name="tagline"><%= @data['tagline'].html_safe if @data && @data['tagline'] %></textarea>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="c-bg-white-accounts mt-2">
+                <div class="card c-dashboard-content c-settings-logo">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td class="ts-1">
+                        <div class="form-group mb-0">
+                          <label>Mengenai Site</label>
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <textarea class="form-control" rows="3" name="tentang_kami"><%= @data['tentang_kami'].html_safe if @data && @data['tentang_kami'] %></textarea>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <div class="c-bg-white-accounts mt-2">
+                <div class="card c-dashboard-content c-settings-logo">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td class="ts-banner">
+                        <div class="form-group mb-0 text-center">
+                          <div class="kv-avatar">
+                            <div class="file-loading">
+                              <input id="banner" name="banner" type="file" value="<%= @data['brand'] %>">
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <div class="c-bg-white-accounts mt-2">
+                <div class="card c-dashboard-content c-settings-logo">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <label>Nama Perusahaan</label>
+                          <input type="text" class="form-control" name="nama_perusahaan" value="<%= @data['nama_perusahaan'] %>">
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <label>NPWP</label>
+                          <input type="text" class="form-control" name="npwp" value="<%= @data['npwp'] %>">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <label>Situ (Perusahaan)</label>
+                          <input type="text" class="form-control" name="situ" value="<%= @data['situ'] %>">
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <label>Siup (Perusahaan)</label>
+                          <input type="text" class="form-control" name="siup" value="<%= @data['siup'] %>">
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <div class="c-bg-white-accounts mt-2">
+                <div class="card c-dashboard-content c-settings-logo">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td class="ts-2" width="500">
+                        <div class="form-group mb-0">
+                          <label>Provinsi</label>
+                            <select class="js-example-placeholder-single form-control" name="provinsi" id="province">
+                              <option selected="" value="<%= @data['provinsi_id'] %>"><%= @data["province"] %></option>
+                              <% @provinsi.each do |provinsis| %>
+                                  <option value="<%= provinsis['province_id'] %>"><%= provinsis["province"] %></option>
+                              <% end %>
+                            </select>
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <label>Kab/kota</label>
+                          <select class="js-example-placeholder-single form-control jxkabkot" name="kabkot" id="kabkot">
+                            <option selected="" value="<%= @data['kabkot_id'] %>"><%= @data['city'] %></option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <label>Kecamatan</label>
+                          <div class="input-group appnd-kec">
+                            <select class="js-example-placeholder-single form-control jxkec" name="kecamatan" id="kec">
+                              <option selected="" value="<%= @data['kecamatan_id'] %>"><%= @data["subdistrict_name"] %></option>
+                            </select>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <label>Kelurahan</label>
+                          <input name="kelurahan" type="text" class="form-control" value="<%= @data['kelurahan'] %>">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="ts-2" colspan="2">
+                        <div class="form-group mb-0">
+                          <label>Alamat Lengkap (Domisili)</label>
+                          <textarea name="alamat" class="form-control" rows="3" name="info" value="<%= @data['alamat_perusahaan'] %>"><%= @data['alamat_perusahaan'] %></textarea>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <div class="c-bg-white-accounts mt-2">
+                <div class="card c-dashboard-content c-settings-logo">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td class="ts-2" width="500">
+                        <div class="form-group mb-0">
+                          <button type="reset" class="btn btn-block btn-light">Kembali</button>
+                        </div>
+                      </td>
+                      <td class="ts-2">
+                        <div class="form-group mb-0">
+                          <button type="submit" class="btn btn-block btn-success">Simpan</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </form>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-example-placeholder-single").select2({
+                placeholder: "Pilih alamat . . ."
+            });
+
+            $('#province').change(function(){
+              $('#kabkot > *').remove();
+              $.get( "/app/lokasi/kabkot", { id: $('#province').val() } ).done(function( r_data ) {
+                $('#select2-kabkot-results').remove();
+                console.log(r_data);
+                var datac = $.map(
+                  r_data
+                , function (obj) {
+                  obj.id = obj.id || obj.city_id;
+                  obj.text = obj.text || obj.city_name + " - " + obj.type;
+
+                  return obj;
+                  console.log(obj);
+                });
+
+                $("#kabkot").select2({
+                    data: datac
+                });
+                console.log($('#kabkot').val());
+              });
+
+            });
+        });
+
+        $(document).ready(function () {
+            $("#banner").fileinput({
+                overwriteInitial: true,
+                maxFileSize: 2000,
+                showClose: false,
+                showUpload: false,
+                showCaption: false,
+//                showBrowse: false,
+//                showRemove: false,
+                browseOnZoneClick: true,
+
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="ion-ios-camera-outline"></i>',
+                removeIcon: '<i class="ion-ios-close-empty"></i>',
+                defaultPreviewContent: '<img src="<%= @data && @data['banner'] ? @data['banner']['url'] : 'assets/lib/icon/C3.png' %>" /><h6 class="text-muted">Pilih banner blog travel anda</h6>',
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+            $("#logo").fileinput({
+                overwriteInitial: true,
+                maxFileSize: 2000,
+                showClose: false,
+                showUpload: false,
+                showCaption: false,
+//                showBrowse: false,
+//                showRemove: false,
+                browseOnZoneClick: true,
+
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="ion-ios-camera-outline"></i>',
+                removeIcon: '<i class="ion-ios-close-empty"></i>',
+                defaultPreviewContent: '<img src="<%= @data && @data['logo'] ? @data['logo']['url'] : 'assets/lib/icon/C3.png' %>" /><h6 class="text-muted">Pilih logo anda</h6>',
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+            $("#previewToko").click(function(e) {
+                e.preventDefault();
+                var url = $(this).data('protocol') + $("#brand").val() + '.' + $(this).data('url');
+                window.open(url, '_blank');
+            });
+
+        });
+    </script>
+
+<% end %>

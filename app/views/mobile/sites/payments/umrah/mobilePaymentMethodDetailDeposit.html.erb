@@ -1,0 +1,117 @@
+<%= content_for :headmobile do %>
+    <title>Detail Metode Pembayaran</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-tagihan-payment-method">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-sm mb-0">
+            <tbody>
+            <tr>
+              <td>
+                <small>Total Tagihan Anda</small>
+                <h5 class="mb-0">
+                  <%= number_to_currency(@paket['harga_jual'] - @voucher, precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                </h5>
+              </td>
+
+              <td width="120" class="text-right">
+                <a class="card-link" data-toggle="collapse" href="#linkdetailtagihan" role="button" aria-expanded="false" aria-controls="linkdetailtagihan">
+                  Lihat Tagihan <i class="ion-ios-arrow-down"></i>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="collapse" id="linkdetailtagihan">
+        <div class="card card-collapse">
+          <div class="card-body">
+            <table class="table table-sm mb-0">
+              <tbody>
+              <tr>
+                <td>
+                  Subtotal
+                </td>
+                <td width="150">
+                  <%= number_to_currency(@paket['harga_jual'] - @voucher, precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  Tagihan
+                </th>
+                <th width="150">
+                  <%= number_to_currency(@paket['harga_jual'] - @voucher, precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                </th>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!%= react_component 'mobilePaymentMethodDetail' %>
+    <div class="data-payment-method-detail">
+      <div class="card">
+        <div class="card-header">
+          <%= link_to "Ganti Metode Pembayaran", :back, :class => "btn btn-sm btn-block btn-outline-danger" %>
+        </div>
+        <div class="card-body">
+          <table class="table table-sm mb-0">
+            <tbody>
+            <tr>
+              <td>
+                <p class="text-left mb-0">
+                  Deposit
+                </p>
+              </td>
+              <td width="140" class="text-right">
+                <small>Sisa saldo anda</small>
+                <p class="text-info mb-0">
+                  <%= number_to_currency(session[:account_saldo], precision: 0, unit: "Rp ") %>
+                </p>
+              </td>
+            </tr>
+            <% if session[:account_saldo] < (@paket['harga_jual'] - @voucher) %>
+                <tr>
+                  <th>
+                    <p class="text-left mb-0">
+                      Saldo Tidak Mencukupi
+                    </p>
+                  </th>
+                  <th width="140">
+                  </th>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="data-navbar-price  fixed-bottom">
+      <nav class="navbar navbar-price navbar-light">
+            <span class="navbar-brand">
+                <table class="table table-sm mb-0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <% if session[:account_saldo] < (@paket['harga_jual'] - @voucher) %>
+                            <a href="/tambah-saldo-abupay" class="btn btn-block btn-danger">Topup Sekarang</a>
+                            <% else %>
+                            <a href="/api/transaksi/paket?p=<%=params['p']%>&kk=<%=params['kk']%>&mb=Abupay&type=<%=params['type']%>&mtd=ABUPAY&th=<%=params['th']%>&bln=<%=params['bln']%>" class="btn btn-block btn-danger">Bayar Sekarang</a>
+                            <% end %>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </span>
+      </nav>
+    </div>
+<% end %>

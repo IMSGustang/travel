@@ -1,0 +1,49 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Data Bank</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-edit-alamat">
+        <% if !@data.nil? %>
+            <% @data.each do |row| %>
+                <div class="card">
+                    <form class="form">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="mr-auto">
+                                    <span><%= row['nama_bank'] %></span>
+                                </div>
+                                <div class="p-0">
+                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ion-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/edit-data-bank/<%= row['kode_bank'] %>">Ubah data</a>
+                                        <a class="dropdown-item" href="#">Hapus</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="mb-0">
+                                <%= row['atas_nama'] %>
+                            </p>
+                            <p class="mb-0">
+                                <%= row['no_rekening'] %>
+                            </p>
+
+                        </div>
+                    </form>
+                </div>
+            <% end %>
+        <% end %>
+
+        <!-- link add bank -->
+        <a href="/tambah-data-bank" class="btn btn-addBank btn-danger">
+            <i class="ion-plus-round"></i>
+        </a>
+    </div>
+<% end %>

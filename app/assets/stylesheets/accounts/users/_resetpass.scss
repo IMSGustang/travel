@@ -1,0 +1,102 @@
+.data-forgot-pass, .data-otp-pass, .data-reset-pass {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+
+    & .card-header {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: none;
+      background: transparent;
+
+      & h5 {
+        font-size: 16px;
+        letter-spacing: -.5px;
+      }
+      & p {
+        font-size: 12px;
+        letter-spacing: -.5px;
+        opacity: .75;
+      }
+    }
+
+    & .card-body {
+      & .form-group {
+        & label {
+          font-size: 12px;
+          opacity: .5;
+          letter-spacing: -.5px;
+          margin-bottom: 0 !important;
+        }
+        & .input-group {
+          & .input-group-prepend {
+            & .input-group-text {
+              & img {
+                max-width: 100%;
+                height: 40px;
+              }
+            }
+          }
+
+          & .form-control {
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            border: none;
+            border-bottom: 1px solid #d3d1d0;
+            font-size: 14px;
+            height: 36px;
+
+            &:hover {
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+            }
+          }
+        }
+
+        & p {
+          & a {
+            font-size: 12px;
+            letter-spacing: -.5px;
+          }
+        }
+
+        & .btn {
+          font-size: 14px;
+          letter-spacing: -.5px;
+        }
+      }
+
+      & .table {
+        & td {
+          border: none;
+          & .form-control {
+            text-align: center;
+            &:focus {
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.data-otp-pass {
+  & .card {
+    & .card-body {
+      & .form-group {
+        & p {
+          font-size: 12px;
+          letter-spacing: -.5px;
+        }
+      }
+    }
+  }
+}

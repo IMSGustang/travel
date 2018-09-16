@@ -1,0 +1,245 @@
+<% content_for :head do %>
+    <title>Data Manifest | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Seat Umrah</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <form id="transferSeat" name="transferSeat" method="post" action="/api/transfer-seat" novalidate>
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item">
+                    <div class="form-group row">
+                      <div class="col-12">
+                        <h6 class="mt-0 mb-1 text-uppercase">
+                          Transfer Seat
+                        </h6>
+                      </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group row">
+                      <div class="col-4">
+                        <label>Kode Booking Seat</label>
+                        <input type="hidden" id="no_transaksi" name="no_transaksi" class="form-control" value="<%= @data['no_trans'] if @data.present? %>" readonly>
+                        <input type="text" id="kode_booking" name="kode_booking" class="form-control" value="<%= @data['kode_booking'] if @data.present? %>" readonly>
+                      </div>
+                      <div class="col-4">
+                        <label>Bulan Keberangkatan</label>
+                        <input type="text" name="bulan" class="form-control" value="<%= TimeFormat::month(@data['bulan_paket']) if @data.present? %>" readonly>
+                      </div>
+                      <div class="col-4">
+                        <label>Tahun Keberangkatan</label>
+                        <input type="number" name="tahun" class="form-control" value="<%= @data['tahun_paket'] if @data.present? %>" readonly>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-12">
+                        <label>Transfer Ke</label>
+                        <input type="text" class="form-control" id="nomor_partnerships" name="nomor_partnerships" placeholder="ID Agen atau Mitra" required>
+                        <div class="invalid-feedback">
+                          ID Agen atau Mitra tidak terdaftar
+                        </div>
+                        <small class="form-text text-muted">
+                          Masukkan nomor agen atau mitra yang akan di transferkan seat
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="form-group row mt-5">
+                      <div class="col-6">
+                        <a href="/pengaturan-seat" class="btn btn-block btn-outline-secondary">Batalkan</a>
+                      </div>
+                      <div class="col-6">
+                        <!--<button class="btn btn-block btn-danger" data-toggle="modal" data-target="#OTP" <%= @data.nil? ? "disabled" : "" %>>Transfer</button>-->
+                        <button class="btn btn-block btn-danger" <%= @data.nil? ? "disabled" : "" %>>Transfer</button>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <div class="modal fade" id="OTP" role="dialog" aria-labelledby="OTP" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+          <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+          </button>
+          <form id="confirmTransfer" name="confirmTransfer" method="post" action="/api/confirm-transfer-seat" class="needs-validation1" novalidate>
+            <div class="modal-body p-4">
+              <div class="form-group row m-0 justify-content-center">
+                <div class="col-10">
+                  <p>
+                    Masukkan kode verifikasi
+                  </p>
+                  <table class="table table-flex">
+                    <tr>
+                      <td>
+                        <input type="text" id="otp1" name="otp1" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp2" name="otp2" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp3" name="otp3" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp4" name="otp4" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp5" name="otp5" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp6" name="otp6" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="6" class="pt-3">
+                        <p class="card-text text-center mt-12">
+                          Tidak terima kode? <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="6" class="pt-3">
+                        <button type="submit" class="btn btn-sm btn-block btn-danger">Kirim</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------------------------------------- -->
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+
+        $(function () {
+            $.autotab({ tabOnSelect: true });
+            $('.kode').autotab('filter', 'kode');
+            $("#transferSeat").on("submit", function( event ) {
+                $form = $(this).get(0);
+                data = $('#transferSeat').serialize();
+                event.preventDefault();
+                if ($form.checkValidity()) {
+                    $.post( $form.action, data, function( result ) {
+                        if (result.status == 200) {
+                            if (result.otp == true) {
+                                $('#OTP').modal('show');
+                            } else {
+
+                            }
+                        } else {
+                            swal({
+                                title: result.message,
+                                timer: 2000,
+                                showConfirmButton: false,
+                                icon: "error",
+                                button: false
+                            });
+                        }
+                    })
+                }
+                $form.classList.add("was-validated");
+            });
+
+            $("#confirmTransfer").on("submit", function( event ) {
+                event.preventDefault();
+                $form = $(this).get(0);
+                $otp = $('#otp1').val() + $('#otp2').val() + $('#otp3').val() + $('#otp4').val() + $('#otp5').val() + $('#otp6').val();
+
+                data = {
+                    no_transaksi: $('#no_transaksi').val(),
+                    kode_booking: $('#kode_booking').val(),
+                    kode_otp: $otp
+                }
+
+                if ($form.checkValidity()) {
+                    $.post( $form.action, data, function( result ) {
+                        if (result.status == 200) {
+                            swal({
+                                title: result.message,
+                                timer: 2000,
+                                showConfirmButton: false,
+                                type: "success",
+                                button: false
+                            });
+                            window.location.href = '/riwayat-transfer-seat';
+                        } else {
+                            swal({
+                                title: result.message,
+                                timer: 2000,
+                                showConfirmButton: false,
+                                type: "error",
+                                button: false
+                            });
+                        }
+                    })
+                }
+                $form.classList.add("was-validated");
+            });
+
+            $("#resendOtp").on("click", function( event ) {
+                event.preventDefault();
+                $.get( '/api/trasfer-seat-resend-otp?_=' + Math.random(), function( result ) {
+                    if (result.status == 200) {
+                      swal({
+                          title: result.message,
+                          timer: 2000,
+                          type: "success",
+                          showConfirmButton: false,
+                          button: false
+                      });
+                    } else {
+                      swal({
+                          title: result.message,
+                          timer: 2000,
+                          showConfirmButton: false,
+                          type: "error",
+                          button: false
+                      });
+                    }
+                })
+            });
+        });
+    </script>
+<% end %>

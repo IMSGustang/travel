@@ -1,0 +1,63 @@
+.c-payment {
+  position: relative;
+  z-index: 10;
+
+  .navbar {
+    background-color: #ffffff;
+    //border-bottom: 1px solid #f3f1f0;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    &-brand {
+      & i {
+        font-size: 18px;
+        margin: 6px 0;
+      }
+
+      & img {
+        height: 55px;
+        padding: 4px;
+        margin-top: -2px;
+      }
+    }
+
+    &-nav {
+      flex-direction: row;
+      -ms-flex-direction: row;
+      -webkit-flex-direction: row;
+
+      & .nav-item {
+        &.active {
+          & .nav-link {
+            color: #1d3557;
+          }
+        }
+      }
+
+      & .nav-link {
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -ms-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        font-size: 14px;
+        color: #b7b7b7;
+
+        &-steps {
+          &::after {
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            height: 1px;
+            width: 22px;
+            margin: 0 18px;
+            background: #b7b7b7;
+          }
+        }
+      }
+    }
+  }
+}

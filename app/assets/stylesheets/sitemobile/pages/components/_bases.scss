@@ -1,0 +1,42 @@
+html, body {
+  position: relative;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+  &:active {
+    text-decoration: none;
+  }
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.border-0 {
+  border: none !important;
+}
+
+.none-border {
+  border: 0 !important;
+  box-shadow: none !important;
+  background-clip: unset !important;
+}
+
+.w-blank {
+  background: transparent;
+  & img {
+    max-width: 100%;
+    height: 220px;
+  }
+
+  & p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    opacity: .7;
+  }
+}

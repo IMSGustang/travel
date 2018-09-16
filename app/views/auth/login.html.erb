@@ -1,0 +1,102 @@
+<%= content_for :headlogister do %>
+    <title>Abutours | Silahkan Masuk</title>
+<% end %>
+
+<%= content_for :logister do %>
+    <section class="c-auth">
+      <!-- ---------------------------------------------- -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-faded pt-4 justify-content-center">
+        <a class="navbar-brand" href="/">
+          <%= image_tag 'logo/logo_new.png' %>
+        </a>
+      </nav>
+      <!-- ---------------------------------------------- -->
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-sm-8 col-md-6 col-lg-4">
+            <!-- ---------------------------------------------- -->
+            <div class="card-title text-left pt-3 pb-3 pl-0 mb-0 mt-3">
+              Hallo, Silahkan Login
+            </div>
+            <!-- ---------------------------------------------- -->
+            <p class="card-text mb-3">
+              Belum punya akun? <a href="/abutours-registers" class="text-success">Daftar disini</a>
+            </p>
+            <!-- ---------------------------------------------- -->
+            <form id="needs-validation" method="post" action="/api/login" novalidate>
+              <input type="hidden" name="afb" id="afb">
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i data-feather="phone-forwarded"></i></span>
+                  <input type="number" name="no_telepon" class="form-control" id="validationCustom01" placeholder="No telepon" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i data-feather="unlock"></i></span>
+                  <input type="password" name="password" class="form-control" id="validationCustom02" placeholder="Password" required>
+                  <a class="hide-password">show</a>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <p class="m-0 p-0 text-left">
+                  <span class="form-text text-muted">
+                    Anda lupa password? <a href="/app/reset-password-number" class="card-link text-danger">reset password</a>
+                  </span>
+                </p>
+              </div>
+              <button class="btn btn-block btn-success" type="submit">Login</button>
+            </form>
+            <!-- ---------------------------------------------- -->
+            <div class="separator mb-3 mt-3">
+              <span class="separator-text">
+                or
+              </span>
+            </div>
+            <!-- ---------------------------------------------- -->
+            <p class="mb-2">
+              <a href="auth/facebook" class="btn btn-block btn-secondary" id="authfb">
+                <%= image_tag 'lib/icon/fb-logo.png' %>
+                Masuk dengan facebook
+              </a>
+            </p>
+            <!-- ---------------------------------------------- -->
+            <p class="m-0">
+              <a href="auth/google_oauth2" class="btn btn-block btn-secondary" id="authgplus">
+                <%= image_tag 'lib/icon/gg-logo.png' %>
+                Masuk dengan google
+              </a>
+            </p>
+            <!-- ---------------------------------------------- -->
+          </div>
+        </div>
+      </div>
+      <!-- ---------------------------------------------- -->
+    </section>
+
+    <script type="text/javascript">
+      // $(document).ready(function(){
+      //   if ("<%= @data %>" == 'fails') {
+      //     swal({
+      //       title: "Username atau password salah",
+      //       timer: 2000,
+      //       showConfirmButton: false,
+      //       type: "error",
+      //       button: false,
+      //     });
+      //   }
+      // });
+
+      new Fingerprint2().get(function(result, components){
+        $('#afb').val(result);
+        var _link1 = $("#authgplus").attr('href')
+        var _link2 = $("#authfb").attr('href')
+        $("#authgplus").attr('href', _link1 + '?fp=' + result);
+        $("#authfb").attr('href', _link2 + '?fp=' + result);
+      });
+
+      feather.replace()
+    </script>
+<% end %>

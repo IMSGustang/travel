@@ -1,0 +1,199 @@
+<% if session[:acc_token] %>
+<% else %>
+    <div class="alert alert-warning alert-dismissible fade show mb-0 download_apps" role="alert">
+      <a href="http://onelink.to/abutours" target="_blank">
+        <p class="mb-0">
+          Download apps abutours sekarang!
+        </p>
+      </a>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">
+      <i data-feather="x"></i>
+    </span>
+      </button>
+    </div>
+<% end %>
+
+<nav class="navbar navbar-expand-lg navbar-top">
+  <button id="sidenav-toggle" class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="icon-paragraph-left3"></span>
+  </button>
+
+  <a class="navbar-brand" href="/">
+    <%= image_tag 'logo/logo_new.png', :height => '18px' %>
+  </a>
+
+  <% if session[:acc_token] %>
+      <a href="/accounts/dashboard" class="navbar-toggler navbar-toggler-right navbar-toggler-user">
+        <i data-feather="user"></i>
+      </a>
+  <% else %>
+      <a href="/abutours-login" class="navbar-toggler navbar-toggler-right navbar-toggler-user">
+        <i data-feather="log-in"></i>
+      </a>
+  <% end %>
+</nav>
+
+<button id="navbar-close" class="btn btn-outline-secondary navbar-toggler-close" style="display: none;" type="button"></button>
+
+<nav id="nav" class="sidenav" data-sidenav data-sidenav-toggle="#sidenav-toggle">
+  <% if session[:acc_token] %>
+  <% else %>
+      <div class="sidenav-brand sidenav-brand-login">
+        <table class="table table-sm mb-0">
+          <tr>
+            <td>
+              <a href="/abutours-login" class="btn btn-block btn-outline-secondary">Login</a>
+            </td>
+            <td>
+              <a href="/abutours-registers" class="btn btn-block btn-light">Daftar</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+  <% end %>
+
+  <ul class="sidenav-menu">
+    <!--<li>-->
+    <!--<a href="javascript:;" data-sidenav-dropdown-toggle class="">-->
+    <!--<span class="sidenav-link-icon">-->
+    <!--<i class="icon-bookmark3"></i>-->
+    <!--</span>-->
+    <!--<span class="sidenav-link-title">Layanan</span>-->
+    <!--<span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>-->
+    <!--<i class="icon-arrow-down32"></i>-->
+    <!--</span>-->
+    <!--<span class="sidenav-dropdown-icon" data-sidenav-dropdown-icon>-->
+    <!--<i class="icon-arrow-up32"></i>-->
+    <!--</span>-->
+    <!--</a>-->
+
+    <!--<ul class="sidenav-dropdown" data-sidenav-dropdown>-->
+    <!--<li><a href="">Paket Umrah</a></li>-->
+    <!--<li><a href="">Paket Haji</a></li>-->
+    <!--<li><a href="">Cari Ustad</a></li>-->
+    <!--</ul>-->
+    <!--</li>-->
+    <li>
+      <a href="/penambahan-biaya" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="file-text"></i>
+        </span>
+        <span class="sidenav-link-title">Cara Penambahan Biaya</span>
+      </a>
+    </li>
+    <li>
+      <a href="/faq" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="help-circle"></i>
+        </span>
+        <span class="sidenav-link-title">Bantuan</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidenav-header p-0 mt-2 mb-2"></div>
+
+  <ul class="sidenav-menu">
+    <li>
+      <a href="/umrah" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="users"></i>
+        </span>
+        <span class="sidenav-link-title">Umrah</span>
+      </a>
+    </li>
+    <li>
+      <a href="/haji" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="users"></i>
+        </span>
+        <span class="sidenav-link-title">Haji</span>
+      </a>
+    </li>
+    <li>
+      <a href="/beli-pulsa" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="smartphone"></i>
+        </span>
+        <span class="sidenav-link-title">Beli Pulsa</span>
+      </a>
+    </li>
+    <li>
+      <a href="/beli-paketdata" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="wifi"></i>
+        </span>
+        <span class="sidenav-link-title">Paket Internet</span>
+      </a>
+    </li>
+    <li>
+      <a href="/beli-tokenlistrik" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="zap"></i>
+        </span>
+        <span class="sidenav-link-title">Token Listrik</span>
+      </a>
+    </li>
+    <li>
+      <a href="/beli-vouchergame" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="life-buoy"></i>
+        </span>
+        <span class="sidenav-link-title">Voucher Game</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidenav-header p-0 mt-2 mb-2"></div>
+
+  <ul class="sidenav-menu">
+    <li>
+      <a href="/about-us" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="award"></i>
+        </span>
+        <span class="sidenav-link-title">Tentang Abutours</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/blog" class="">
+        <span class="sidenav-link-icon">
+          <i data-feather="file-text"></i>
+        </span>
+        <span class="sidenav-link-title">Blog</span>
+      </a>
+    </li>
+    <% if session[:acc_token] %>
+        <li>
+          <a href="/pembayaran-umrah" class="">
+            <span class="sidenav-link-icon"><i data-feather="bar-chart-2"></i></span>
+            <span class="sidenav-link-title">Pembelian</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/pengaturan-akun-profile" class="">
+            <span class="sidenav-link-icon"><i data-feather="settings"></i></span>
+            <span class="sidenav-link-title">Pengaturan Akun</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/informasi" class="">
+            <span class="sidenav-link-icon"><i data-feather="bell"></i></span>
+            <span class="sidenav-link-title">Notifikasi</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/app/logout">
+            <span class="sidenav-link-icon"><i data-feather="log-out"></i></span>
+            <span class="sidenav-link-title">Keluar</span>
+          </a>
+        </li>
+    <% end %>
+  </ul>
+</nav>

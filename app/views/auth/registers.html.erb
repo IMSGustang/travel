@@ -1,0 +1,107 @@
+<%= content_for :headlogister do %>
+    <title>Abutours | Silahkan Daftar</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/1.5.1/fingerprint2.min.js"></script>
+<% end %>
+
+<%= content_for :logister do %>
+    <section class="c-auth">
+      <!-- ---------------------------------------------- -->
+      <nav class="navbar navbar-light bg-faded pt-4 justify-content-center">
+        <a class="navbar-brand" href="/">
+          <%= image_tag 'logo/logo_new.png' %>
+        </a>
+      </nav>
+      <!-- ---------------------------------------------- -->
+      <div class="container">
+        <div class="card-title text-center pt-3 pb-1 pl-0 mb-1 mt-3">
+          Hallo, Daftar Akun abutours Sekarang
+        </div>
+        <!-- ---------------------------------------------- -->
+        <p class="card-text text-center mb-3">
+          Sudah punya akun? <a href="/abutours-login" class="text-success">Login disini</a>
+        </p>
+        <!-- ---------------------------------------------- -->
+
+        <div class="row align-items-center">
+          <div class="col-5">
+            <!-- ---------------------------------------------- -->
+            <p class="mb-2">
+              <a href="/auth/facebook" class="btn btn-block btn-secondary" id="authfb">
+                <%= image_tag 'lib/icon/fb-logo.png' %>
+                Daftar dengan facebook
+              </a>
+            </p>
+            <!-- ---------------------------------------------- -->
+            <p class="m-0">
+              <a href="/auth/google_oauth2" class="btn btn-block btn-secondary" id="authgplus">
+                <%= image_tag 'lib/icon/gg-logo.png' %>
+                Daftar dengan google
+              </a>
+            </p>
+            <!-- ---------------------------------------------- -->
+          </div>
+          <div class="col-2">
+            <div class="d-flex mx-auto">
+              <div class="item-line"></div>
+              <div class="or">or</div>
+            </div>
+          </div>
+          <div class="col-5">
+            <!-- ---------------------------------------------- -->
+            <form id="needs-validation" method="post" action="/api/register" novalidate>
+              <input type="hidden" name="afb" id="afb">
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i data-feather="user"></i></span>
+                  <input type="text" name="nama" class="form-control" id="validationCustom01" placeholder="Nama lengkap" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i data-feather="phone-forwarded"></i></span>
+                  <input type="number" name="telepon" class="form-control" id="validationCustom02" placeholder="No telepon" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i data-feather="mail"></i></span>
+                  <input type="text" name="email" class="form-control" id="validationCustom04" placeholder="E-mail" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i data-feather="lock"></i></span>
+                  <input type="password" name="password" class="form-control" id="validationCustom03" placeholder="Password" required>
+                  <a class="hide-password">show</a>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-block btn-success">Daftar</button>
+                <small class="form-text text-muted text-left mt-2">
+                  Dengan klik daftar, kamu telah menyetujui Aturan Penggunaan dan Kebijakan Privasi dari
+                  abutours.com
+                </small>
+              </div>
+            </form>
+            <!-- ---------------------------------------------- -->
+          </div>
+        </div>
+      </div>
+      <!-- ---------------------------------------------- -->
+    </section>
+    <script type="text/javascript">
+        new Fingerprint2().get(function (result, components) {
+            $('#afb').val(result);
+            var _link1 = $("#authgplus").attr('href')
+            var _link2 = $("#authfb").attr('href')
+            $("#authgplus").attr('href', _link1 + '?fp=' + result);
+            $("#authfb").attr('href', _link2 + '?fp=' + result);
+        });
+
+        feather.replace()
+    </script>
+<% end %>

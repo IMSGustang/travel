@@ -1,0 +1,25 @@
+.c-try {
+  & .card-title {
+    font-size: 16px;
+
+    & a {
+      & .badge {
+        border: 1px solid #f3f1f0;
+        padding: 8px 14px;
+        background-color: #ffffff;
+        font-size: 14px;
+        color: rgba(0, 0, 0, .8);
+        font-weight: normal;
+        margin: 3px;
+      }
+
+      &:hover {
+        text-decoration: none;
+
+        & .badge {
+          background-color: #f9f7f6;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+<%= content_for :headmobile do %>
+    <title>Metode Pembayaran</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <%= react_component 'mobileNavbarPaymentMethod' %>
+    <div class="data-tagihan-payment-method">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-sm mb-0">
+            <tbody>
+            <tr>
+              <td>
+                <small>Total Tagihan Anda</small>
+                <h5 class="mb-0">
+                  IDR <%= number_with_delimiter(data['dataMain']['nominal_transfer']) %>
+                </h5>
+              </td>
+
+              <td width="120" class="text-right">
+                <a class="card-link" data-toggle="collapse" href="#linkdetailtagihan" role="button" aria-expanded="false" aria-controls="linkdetailtagihan">
+                  Lihat Tagihan <i class="ion-ios-arrow-down"></i>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="collapse" id="linkdetailtagihan">
+        <div class="card card-collapse">
+          <div class="card-body">
+            <table class="table table-sm mb-0">
+              <tbody>
+              <tr>
+                <td>
+                  Subtotal
+                </td>
+                <td width="150">
+                  IDR <%= number_with_delimiter(data['dataMain']['nominal_transfer']) %>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  Tagihan
+                </th>
+                <th width="150">
+                  IDR <%= number_with_delimiter(data['dataMain']['nominal_transfer']) %>
+                </th>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="data-payment-method">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">
+            Pilih Metode Pembayaran
+          </h5>
+        </div>
+
+        <div class="card-body">
+          <table class="table table-sm mb-0">
+            <tbody>
+            <% if dataMethod['data']['v3']['available'] == true %>
+            <tr>
+              <td>
+                <a href="/evoucher/beli/<%= data['dataMain']['kode_transaksi'] %>/ABUPAY">
+                  <div class="media">
+                    <img src="/assets/mobile/icons/deposit.png" class="align-self-center mr-3"/>
+                    <div class="media-body">
+                      <h5 class="mb-0">Deposit</h5>
+                      <p class="mb-0"><%= number_to_currency(session[:account_saldo], precision: 0, unit: 'IDR ') %></p>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="ion-ios-arrow-thin-right"></i>
+                    </div>
+                  </div>
+                </a>
+              </td>
+            </tr>
+            <% end %>
+            <% if dataMethod['data']['v1']['available'] == true %>
+                <% if !bank.empty? %>
+                    <tr>
+                      <td style="border-bottom: none;">
+                        <a href="/evoucher/beli/<%= data['dataMain']['kode_transaksi'] %>/TRANSFER">
+                          <div class="media">
+                            <img src="/assets/mobile/icons/deposit.png" class="align-self-center mr-3"/>
+                            <div class="media-body">
+                              <h5 class="mb-0">Bank Transfer</h5>
+                              <p class="mb-0">
+                                Via Teller, ATM atau Mobile Banking
+                              </p>
+                            </div>
+                            <div class="align-self-center">
+                              <i class="ion-ios-arrow-thin-right"></i>
+                            </div>
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                <% end %>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<% end %>

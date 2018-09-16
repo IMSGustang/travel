@@ -1,0 +1,35 @@
+.w-breadcrumb {
+  background-color: #f5f5f5 !important;
+  //border-bottom: 1px solid #e3e1e0;
+}
+
+.breadcrumb {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid #e3e1e0;
+  background: transparent;
+  padding: 12px 0;
+  margin-bottom: 0px;
+
+  &-item {
+    & a {
+      font-size: 12px;
+      color: rgba(0, 0, 0, .5);
+      text-transform: capitalize;
+      letter-spacing: 1px;
+    }
+    &.active {
+      font-size: 12px;
+      line-height: 26px;
+      color: rgba(0, 0, 0, .35);
+      text-transform: capitalize;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ' | ' !important;
+  color: rgba(0, 0, 0, .5);
+}

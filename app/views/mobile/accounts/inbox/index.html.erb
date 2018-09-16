@@ -1,0 +1,99 @@
+<%= content_for :active_inbox do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Notification | Best Travel Services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-title-inbox">
+      <div class="card card-body">
+        Inbox
+      </div>
+    </div>
+
+    <div class="data-inbox pt-3">
+      <% if @informasi %>
+          <% first = true %>
+          <% @informasi.each do |info| %>
+              <div class="card card-inbox">
+                <a data-toggle="collapse" href="#desc<%= info['id'] %>" role="button" aria-expanded="false" aria-controls="desc<%= info['id'] %>">
+                  <div class="card-body">
+                    <table class="table table-sm mb-0">
+                      <tr>
+                        <td>
+                          <p class="namaInbox namaInbox-line mb-0">
+                            <%= info['judul'].titlecase %>
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="tglInbox mb-0">
+                            <%= TimeFormat::indonesia(info['tanggal']) %>
+
+                            <span class="float-right">
+                              <i data-feather="eye"></i>
+                            </span>
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </a>
+              </div>
+
+              <div class="collapse" id="desc<%= info['id'] %>" style="margin-top: -8px">
+                <div class="card card-collapse">
+                  <div class="card-body">
+                    <h5 class="mb-2">
+                      <%= info['judul'] %>
+                    </h5>
+                    <%= info['teks'].html_safe %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+
+      <% else %>
+          <div class="card card-inbox">
+            <div class="card-body">
+              <p class="mb-0">
+                <small>Belum ada inbox</small>
+              </p>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(function () {
+            $("a[id^='list-notif-']").each(function (e) {
+                $(this).click(function () {
+                    $ini = $(this);
+                    if ($ini.data('read') == '0') {
+                        $.ajax({
+                            type: 'POST',
+                            url: "informasi/update_status",
+                            data: {id: $(this).data('id')},
+                            dataType: 'json',
+                            success: function (data) {
+                                $ini.data('read', '1');
+                                if (parseInt(data.notifikasi.unread) > 0) {
+                                    $("#badge-unread-count").html(data.notifikasi.unread);
+                                } else {
+                                    $("#badge-unread-count").html('');
+                                }
+                                var idna = "#read-status-" + $ini.data('id');
+                                $(idna).html('SUDAHMI');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+<% end %>

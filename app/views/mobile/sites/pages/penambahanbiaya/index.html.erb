@@ -1,0 +1,169 @@
+<%= content_for :active_penambahan do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Simulasi penambahan biaya | best travel services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Simulasi Penambahan Biaya
+        </h6>
+        <p class="mb-0">
+          Lebih mudah beribadah bersama abutours
+        </p>
+      </div>
+    </div>
+
+    <div class="data-products-evoucher pl-3 pr-3">
+      <div class="card card-body c-form-evoucher">
+        <form  action="" method="post">
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i class="ion-ios-glasses-outline"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Nomor Invoice</label>
+                <input type="text" name="" class="form-control" disabled placeholder="XXX-XXX-XXX">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i class="ion-ios-list-outline"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Tanggal Transaksi</label>
+                <input type="text" class="form-control" id="tgl_invoice" disabled placeholder="Tanggal transaksi"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <small class="form-text text-info text-center">
+              Mohon maaf, untuk sementara dalam proses migrasi data!
+            </small>
+          </div>
+
+          <button type="submit" class="btn btn-block btn-danger">
+            Cari
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="data-desc-simulasi">
+      <div class="card">
+        <div class="card-header">
+          <h1>
+            Berapa Biaya Yang Harus Saya Tambah?
+          </h1>
+          <div class="card-header__overlap">
+            abutours
+          </div>
+        </div>
+        <div class="card-body">
+          <dl class="row">
+            <dt class="col-12">
+            <div class="number__overlap">
+              1
+            </div>
+            <%= image_tag 'lib/icon/services_mitra.png', :class => 'mx-auto d-block'%>
+            </dt>
+
+            <dd class="col-12">
+              <blockquote class="blockquote">
+                <p class="mb-2">
+                  Untuk jamaah & agen abutours jika menambah biaya paket sebesar :
+                </p>
+                <footer class="blockquote-footer">
+                  <i class="ion-ios-plus-empty"></i>&nbsp;&nbsp; Rp 5 Juta untuk wilayah A Jakarta
+                </footer>
+                <footer class="blockquote-footer">
+                  <i class="ion-ios-plus-empty"></i>&nbsp;&nbsp; Rp 6 Juta untuk wilayah B Makassar
+                </footer>
+                <footer class="blockquote-footer">
+                  <i class="ion-ios-plus-empty"></i>&nbsp;&nbsp; Rp 7 Juta untuk wilayah C Kendari
+                </footer>
+                <footer class="blockquote-footer">
+                  Dan mengajak 2(dua) jamaah baru dengan harga paket Rp 21 juta (langsung berangkat dengan jamaah
+                  lama). <br>
+                  Jamaah lama berhak mendapatkan bonus 1(satu) voucher potongan harga paket umrah senilai 5
+                  juta/voucher.
+                </footer>
+              </blockquote>
+            </dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-12">
+            <div class="number__overlap-right">
+              2
+            </div>
+            <%= image_tag 'lib/icon/services_mitra.png', :class => 'mx-auto d-block'%>
+            </dt>
+
+            <dd class="col-12">
+              <blockquote class="blockquote">
+                <p class="mb-0">
+                  Untuk jamaah & agen abutours jika menambah biaya paket sebesar :
+                </p>
+                <footer class="blockquote-footer">
+                  <i class="ion-ios-plus-empty"></i>&nbsp;&nbsp; Rp 9 Juta untuk wilayah A Jakarta
+                </footer>
+                <footer class="blockquote-footer">
+                  <i class="ion-ios-plus-empty"></i>&nbsp;&nbsp; Rp 10 Juta untuk wilayah B Makassar
+                </footer>
+                <footer class="blockquote-footer">
+                  <i class="ion-ios-plus-empty"></i>&nbsp;&nbsp; Rp 11 Juta untuk wilayah C Kendari
+                </footer>
+                <footer class="blockquote-footer">
+                  Dan mengajak 1(satu) jamaah baru dengan harga paket Rp 21 juta (langsung berangkat dengan jamaah
+                  lama). <br>
+                  Jamaah lama berhak mendapatkan bonus 2(dua) voucher potongan harga paket umrah senilai 5
+                  juta/voucher.
+                </footer>
+              </blockquote>
+            </dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-12">
+            <div class="number__overlap">
+              3
+            </div>
+            <%= image_tag 'lib/icon/services_mitra.png', :class => 'mx-auto d-block'%>
+            </dt>
+
+            <dd class="col-12">
+              <blockquote class="blockquote">
+                <footer class="blockquote-footer">
+                  Jika jamaah & agen yang telah mendaftar dan tak mengajak jamaah baru maka
+                  wajib membayar Rp 15 juta dan berhak mendapatkan bonus voucher umrah 3 lembar
+                  dengan nilai per voucher Rp 5 juta
+                </footer>
+              </blockquote>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(function () {
+            $("#tgl_invoice").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 1
+            });
+        });
+    </script>
+<% end %>

@@ -1,0 +1,37 @@
+<%= content_for :active_blog do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Blog abutours</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-blog-detail">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="m-0 pb-2">
+            <%= data['judul'] %>
+          </h1>
+
+          <p class="text-muted mb-0 pb-0">
+            abutours <%= TimeFormat::indonesia(data['tanggal']) %> <%= data['nama_subkategori'] %>
+          </p>
+        </div>
+
+        <div class="card-body pt-0">
+          <%= image_tag data['tumbnail'], :class => 'card-img-top | d-flex | mx-auto mb-2', :alt => '', :onerror => "this.onerror=null;this.src='assets/no_images/no_package_1.png';" %>
+
+          <div class="desc">
+            <%= data['artikel'].html_safe %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

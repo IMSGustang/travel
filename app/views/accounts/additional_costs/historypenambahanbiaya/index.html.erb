@@ -1,0 +1,330 @@
+<% content_for :head do %>
+    <title>History Penambahan Biaya | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">History pembahan biaya</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="additional-cost">
+              <h4 class="title-cost mt-3 mb-0">
+                History Penambahan Biaya
+              </h4>
+
+              <div id="accordioncost">
+                <% if !@data['data'].nil? %>
+                <% @data['data'].each do |item|%>
+                <div class="card">
+                  <div class="card-header" id="cost1">
+                    <table class="table table-sm mb-0">
+                      <tr>
+                        <td class="cos1">
+                          <span>Nomor Invoice</span>
+                          <p class="mb-0"><%= item['no_trans_v1']%></p>
+                        </td>
+
+                        <td class="cos2 text-center">
+                          <span>Kode Booking</span>
+                          <p class="mb-0"><%= item['kode_booking'] %></p>
+                        </td>
+
+                        <td class="cos1 text-center">
+                          <span>Status Transaksi</span>
+                          <p class="mb-0">
+                            <span class="badge badge-danger text-white"><%= item['status_bayar'] %></span>
+                          </p>
+                        </td>
+
+                        <td class="cos3">
+                          <span>Nominal Penambahan Biaya</span>
+                          <p class="name-packet nama-packet-line font-weight-bold mb-0">
+                            <%= number_to_currency(item['harga_bayar'], precision: 0, unit: "Rp ") rescue ""%>
+                          </p>
+                        </td>
+
+                        <td class="cos4">
+                          <button class="btn btn-block btn-sm btn-outline-danger collapsed" data-toggle="collapse" data-target="#<%= item['no_trans'] %>" aria-expanded="true" aria-controls="<%= item['no_trans'] %>">
+                            Lihat
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <div id="<%= item['no_trans'] %>" class="collapse" aria-labelledby="cost1" data-parent="#accordioncost">
+                    <div class="card-body">
+                      <table class="table mb-0">
+                        <thead>
+                        <tr class="table-light">
+                          <th scope="col" class="text-center">Status Pembayaran</th>
+                          <th scope="col" class="text-center">Status Jamaah Pertama</th>
+                          <th scope="col" class="text-center">Status Jamaah Kedua</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td class="text-center">
+                            <% if item['sts_bayar'] == 'Pending'%>
+                              <p class="mb-0">
+                                <span class="badge badge-danger text-white"><%= item['status_bayar'] %></span>
+                              </p>
+                            <% elsif item['sts_bayar'] == 'Waiting'%>
+                              <p class="text-muted mb-1">
+                                Mohon, konfirmasi pembayaran anda
+                              </p>
+                              <a href="" class="btn btn-sm btn-danger">
+                                Konfirmasi Pembayaran
+                              </a>
+                            <% end %>
+                          </td>
+                          <% if item['detail_tambahan'].count == 1%>
+                            <td class="cos1 text-center">
+                              <% if !item['detail_tambahan'][0]['no_trans_umrah'].nil? %>
+                                <p class="mb-0">
+                                  <span class="badge badge-danger text-white"><%= item['detail_tambahan'][0]['status'] %></span>
+                                </p>
+                                <% if item['detail_tambahan'][0]['status'] == 'Approve'%>
+                                <p class="font-weight-bold">
+                                  <%= item['detail_tambahan'][0]['no_trans_umrah'] %>
+                                </p>
+                                <% end %>
+                              <% else %>
+                                <p class="text-muted mb-1">
+                                Mohon, konfirmasi jamaah anda
+                                </p>
+                                <a href="" class="btn btn-sm btn-danger">
+                                  Konfirmasi
+                                </a>
+                              <% end %>
+                            </td>
+                          <td class="text-center">
+                            <span class="text-success"><i data-feather="user-check"></i></span>
+                          </td>
+                          <% elsif item['detail_tambahan'].count == 2%>
+                          <td class="text-center">
+                            <% if !item['detail_tambahan'][0]['no_trans_umrah'].nil? %>
+                              <p class="mb-0">
+                                <span class="badge badge-danger text-white"><%= item['detail_tambahan'][0]['status'] %></span>
+                              </p>
+                              <% if item['detail_tambahan'][0]['status'] == 'Approve'%>
+                              <p class="font-weight-bold">
+                                <%= item['detail_tambahan'][0]['no_trans_umrah'] %>
+                              </p>
+                              <% end %>
+                            <% else %>
+                              <p class="text-muted mb-1">
+                              Mohon, konfirmasi jamaah anda
+                              </p>
+                              <a href="" class="btn btn-sm btn-danger">
+                                Konfirmasi
+                              </a>
+                            <% end %>
+                          </td>
+                          <td class="text-center">
+                            <% if !item['detail_tambahan'][1]['no_trans_umrah'].nil? %>
+                              <p class="mb-0">
+                                <span class="badge badge-danger text-white"><%= item['detail_tambahan'][1]['status'] %></span>
+                              </p>
+                              <% if item['detail_tambahan'][1]['status'] == 'Approve'%>
+                              <p class="font-weight-bold">
+                                <%= item['detail_tambahan'][1]['no_trans_umrah'] %>
+                              </p>
+                              <% end %>
+                            <% else %>
+                              <p class="text-muted mb-1">
+                              Mohon, konfirmasi jamaah anda
+                              </p>
+                              <a href="" class="btn btn-sm btn-danger">
+                                Konfirmasi
+                              </a>
+                            <% end %>
+                          </td>
+                          <% end %>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+                <% end %>
+                <div class="card">
+                  <div class="card-header" id="cost2">
+                    <table class="table table-sm mb-0">
+                      <tr>
+                        <td class="cos1">
+                          <span>Nomor Invoice</span>
+                          <p class="mb-0">ABU-JGJ-7751712089932</p>
+                        </td>
+
+                        <td class="cos2 text-center">
+                          <span>Kode Booking</span>
+                          <p class="mb-0">M96TC</p>
+                        </td>
+
+                        <td class="cos1 text-center">
+                          <span>Status Transaksi</span>
+                          <p class="mb-0">
+                            <span class="badge badge-success text-white">Sukses</span>
+                          </p>
+                        </td>
+
+                        <td class="cos3">
+                          <span>Nominal Penambahan Biaya</span>
+                          <p class="name-packet nama-packet-line font-weight-bold mb-0">
+                            Rp 15,000,000
+                          </p>
+                        </td>
+
+                        <td class="cos4">
+                          <button class="btn btn-block btn-sm btn-outline-danger collapsed" data-toggle="collapse" data-target="#targetcost2" aria-expanded="false" aria-controls="targetcost2">
+                            Lihat
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div id="targetcost2" class="collapse" aria-labelledby="cost2" data-parent="#accordioncost">
+                    <div class="card-body">
+                      <table class="table mb-0">
+                        <thead>
+                        <tr class="table-light">
+                          <th scope="col" class="text-center">Status Pembayaran</th>
+                          <th scope="col" class="text-center">Status Jamaah Pertama</th>
+                          <th scope="col" class="text-center">Status Jamaah Kedua</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td class="text-center">
+                            <span class="text-success"><i data-feather="user-check"></i></span>
+                          </td>
+                          <td class="text-center">
+                            <span class="text-success"><i data-feather="user-check"></i></span>
+                          </td>
+                          <td class="text-center">
+                            <span class="text-success"><i data-feather="user-check"></i></span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="cost3">
+                    <table class="table table-sm mb-0">
+                      <tr>
+                        <td class="cos1">
+                          <span>Nomor Invoice</span>
+                          <p class="mb-0">ABU-JGJ-7751712089932</p>
+                        </td>
+
+                        <td class="cos2 text-center">
+                          <span>Kode Booking</span>
+                          <p class="mb-0">M96TC</p>
+                        </td>
+
+                        <td class="cos1 text-center">
+                          <span>Status Transaksi</span>
+                          <p class="mb-0">
+                            <span class="badge badge-danger text-white">Pending</span>
+                          </p>
+                        </td>
+
+                        <td class="cos3">
+                          <span>Nominal Penambahan Biaya</span>
+                          <p class="name-packet nama-packet-line font-weight-bold mb-0">
+                            Rp 15,000,000
+                          </p>
+                        </td>
+
+                        <td class="cos4">
+                          <button class="btn btn-block btn-sm btn-outline-danger collapsed" data-toggle="collapse" data-target="#targetcost3" aria-expanded="false" aria-controls="targetcost3">
+                            Lihat
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div id="targetcost3" class="collapse" aria-labelledby="cost3" data-parent="#accordioncost">
+                    <div class="card-body">
+                      <table class="table mb-0">
+                        <thead>
+                        <tr class="table-light">
+                          <th scope="col" class="text-center">Status Pembayaran</th>
+                          <th scope="col" class="text-center">Status Jamaah Pertama</th>
+                          <th scope="col" class="text-center">Status Jamaah Kedua</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td class="text-center">
+                            <p class="text-muted mb-1">
+                              Mohon, konfirmasi pembayaran anda
+                            </p>
+                            <a href="" class="btn btn-sm btn-danger">
+                              Konfirmasi Pembayaran
+                            </a>
+                          </td>
+
+                          <td class="text-center">
+                            <p class="text-muted mb-1">
+                              Mohon, konfirmasi jamaah anda
+                            </p>
+                            <a href="" class="btn btn-sm btn-danger">
+                              Konfirmasi
+                            </a>
+                          </td>
+
+                          <td class="text-center">
+                            <p class="text-muted mb-1">
+                              Nomor Transaksi jamaah anda
+                            </p>
+                            <p class="font-weight-bold">
+                              ABU-JGJ-7751712089932
+                            </p>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

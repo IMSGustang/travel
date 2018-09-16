@@ -1,0 +1,103 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Edit Data Alamat</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-edit-alamat">
+      <div class="card">
+        <form class="form" method="post" action="/api/alamat-update">
+          <div class="card-body">
+            <table class="table table-sm mb-0">
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label for="">Atas Nama</label>
+                    <input type="text" name="nama" class="form-control" placeholder="" value="<%= @user_detail['user']['nama_depan'] %> <%= @user_detail['user']['nama_belakang']%>">
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label for="">Alamat Lengkap</label>
+                    <textarea class="form-control" name="alamat" rows="3"><%= @user_detail['detail']['alamat'] %></textarea>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label for="abutours">Provinsi</label>
+                    <select class="form-control" name="id_provinsi" id="province">
+                      <option selected="" value="<%= @provinsi_detail['province_id'] %>"><%= @provinsi_detail["province"] %></option>
+                      <% @provinsi.each do |provinsi|%>
+                        <option value="<%= provinsi['province_id'] %>"><%= provinsi['province'] %></option>
+                      <% end %>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label for="abutours">Kabupaten</label>
+                    <select class="form-control" name="id_kabkot" id="kabkot">
+                      <option selected="" value="<%= @kabkot_detail['city_id'] %>"><%= @kabkot_detail["city_name"] %></option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label for="abutours">Kecamatan</label>
+                    <select class="form-control" name="id_kecamatan" id="kec">
+                      <option selected="" value="<%= @kecamatan_detail['subdistrict_id'] %>"><%= @kecamatan_detail["subdistrict_name"] %></option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label for="">Kode Pos</label>
+                    <input type="text" name="" class="form-control" placeholder="">
+                  </div>
+                </td>
+              </tr> -->
+            </table>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-block btn-danger">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#province").select2({
+                theme: 'bootstrap'
+            });
+
+            $("#kabkot").select2({
+                theme: 'bootstrap'
+            });
+
+            $("#kec").select2({
+                theme: 'bootstrap'
+            });
+        });
+    </script>
+<% end %>

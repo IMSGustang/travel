@@ -1,0 +1,84 @@
+<%= content_for :active_home do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Beli Token Listrik di Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Jangan biarkan gelap menghantui mu
+        </h6>
+        <p class="mb-0">
+          Enjoy Your Day
+        </p>
+      </div>
+    </div>
+
+    <div class="data-products-evoucher pl-3 pr-3">
+      <div class="card card-body c-form-evoucher">
+        <form  action="/token-listrik/detail" method="post">
+
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i data-feather="zap"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Nomor Meteran</label>
+                <input type="text" name="id_pelanggan" class="form-control" placeholder="XXX-XXX-XXX" onkeyup="cekHarga(this.value, 'TokenListrik')">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i data-feather="more-horizontal"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Nominal</label>
+                <select id="nominalTokenListrik" name="nominal" class="form-control" onchange="active(this.value, 'TokenListrik')">
+                  <option value="0" selected disabled> Pilih nominal
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="mb-3 mt-3" id="priceTagTokenListrik">
+            Rp 0
+          </h4>
+
+          <% if session[:acc_token] %>
+              <button type="submit" class="btn btn-block btn-danger disabled" disabled id="btnTokenListrik">
+                Beli Sekarang
+              </button>
+          <% else %>
+              <a href="/abutours-login" class="btn btn-block btn-danger disabled" disabled id="btnTokenListrik">
+                Beli Sekarang
+              </a>
+          <% end %>
+
+        </form>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#nominalTokenListrik").select2({
+                theme: "bootstrap"
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#nominalTokenListrik').on('change', function (e) {
+            $('#priceTagTokenListrik').html($(this).find("option:selected").data('price'));
+        });
+    </script>
+<% end %>

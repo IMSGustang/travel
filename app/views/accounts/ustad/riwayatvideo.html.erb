@@ -1,0 +1,74 @@
+<% content_for :head do %>
+    <title>Ustad | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-sm-3 pr-0">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-sm-9 pl-1">
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-user">
+                <%= render template: 'accounts/partials/bannerTop' %>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <h5 class="card-title text-center mb-2 mt-4">
+                Upload Video
+              </h5>
+              <ul class="nav justify-content-center tabs-voucher mb-2">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/upload-video') %>" href="/upload-video">Upload Video</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/riwayat-video') %>" href="/riwayat-video">Riwayat Video</a>
+                </li>
+              </ul>
+              <!-- --------------------------------------------------- -->
+              <% (1..6).each do |i| %>
+                  <div class="card c-dashboard-paket mt-1">
+                    <div class="card-body c-dashboard-paket__item">
+                      <table class="table table-paket">
+                        <tr>
+                          <td class="c-paket__body">
+                            <div class="media">
+                              <%= image_tag 'lib/cover/packet_1.png', :class => 'd-flex align-self-center mr-3', :alt => '' %>
+                              <div class="media-body pt-2">
+                                <p class="item-link item-line">
+                                  Promo umrah amanah 9 hari januari 2019 quad (pemberangkatan makassar) pesawat qatar
+                                  airlines
+                                  hotel mekkah
+                                </p>
+
+                                <p class="mb-0 mt-3 text-right">
+                                  <small class="text-muted">Aug 1, 2017</small>
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+
+                          <td width="100" class="c-paket__footer">
+                            <a href="#" class="btn btn-block btn-danger">Hapus</a>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>

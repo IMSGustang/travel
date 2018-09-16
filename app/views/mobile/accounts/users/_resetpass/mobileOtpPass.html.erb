@@ -1,0 +1,53 @@
+<%= content_for :headmobile do %>
+<title>OTP Password</title>
+<% end %>
+<%= content_for :mobile do %>
+<div class="data-otp-pass">
+	<div class="card">
+		<div class="card-header">
+			<h5 class="mb-1">
+			Konfirmasi Kode Keamanan
+			</h5>
+			<p class="mb-0">
+				Kami telah mengirimkan kode keamanan RESET password akun anda ke nomor <br/>
+				+62 82 345 *** 401
+			</p>
+		</div>
+		<div class="card-body">
+			<form method="post" action="/api/confirm-otp">
+				<div class="form-group">
+					<table class="table table-sm mb-0">
+						<tbody>
+							<tr>
+								<td><input name="number[]" type="text" class="form-control kode text-uppercase" minLength={1} maxLength={1} /></td>
+								<td><input name="number[]" type="text" class="form-control kode text-uppercase" minLength={1} maxLength={1} /></td>
+								<td><input name="number[]" type="text" class="form-control kode text-uppercase" minLength={1} maxLength={1} /></td>
+								<td><input name="number[]" type="text" class="form-control kode text-uppercase" minLength={1} maxLength={1} /></td>
+								<td><input name="number[]" type="text" class="form-control kode text-uppercase" minLength={1} maxLength={1} /></td>
+								<td><input name="number[]" type="text" class="form-control kode text-uppercase" minLength={1} maxLength={1} /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="form-group">
+					<p class="text-center mb-0">
+						Tidak menerima kode ?
+					</p>
+					<p class="text-center mb-0">
+						<a href="" class="text-center text-danger">
+							Kirim ulang kode
+						</a>
+					</p>
+				</div>
+				<div class="form-group">
+					<!-- <a href="/m/reset-pass" class="btn btn-block btn-danger">
+						Konfirmasi
+					</a> -->
+					<button type="submit" class="btn btn-block btn-danger">Konfirmasi</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+<% end %>

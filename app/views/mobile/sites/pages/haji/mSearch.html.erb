@@ -1,0 +1,150 @@
+<%= content_for :headmobile do %>
+    <title>Abutours | Best Travel Services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Cari paket haji pilihan mu
+        </h6>
+        <p class="mb-0">
+          Lebih dari sekedar nikmatnya ibadah
+        </p>
+      </div>
+    </div>
+
+    <div class="data-search data-overlap">
+      <div class="data-form">
+        <form action="/paket-haji" method="get">
+          <div class="form-group">
+            <label>Kota keberangkatan</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i data-feather="map-pin"></i>
+              </span>
+              <select id="kota" name="kota" class="form-control">
+                <option value="">Pilih kota keberangkatan</option>
+                <% @search['data']['kota'].each do |item| %>
+                    <optgroup label="<%= item['name'] %>">
+                      <% item['kota'].each do |sub_item| %>
+                          <option value="<%= sub_item['kdkantor'] %>"><%= sub_item['namakantor'].titleize %></option>
+                      <% end %>
+                    </optgroup>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Paket haji</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i data-feather="book-open"></i>
+              </span>
+              <select id="jenispaket" name="jenispaket" class="form-control">
+                <option value="">Semua paket</option>
+                <% @search['data']['jnspaket'].each do |item| %>
+                    <option value="<%= item['name'] %>"><%= item['name'] %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Tahun keberangkatan</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i data-feather="calendar"></i>
+              </span>
+              <select id="tahun" name="tahun" class="form-control">
+                <option value="">Pilih tahun keberangkatan</option>
+                <% @search['data']['tahun'].each do |item| %>
+                    <option value="<%= item['tahun'] %>"><%= item['tahun'] %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-danger">
+              Cari Paket
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="data-recomended pt-0">
+      <div class="card-header">
+        <h6 class="m-0">
+          Solusi Untuk Semua Ibadah Haji
+        </h6>
+      </div>
+      <div class="line-border"></div>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <% if !@paket_haji_list.nil? %>
+            <% @paket_haji_list.each do |items|%>
+              <div class="swiper-slide">
+                <a href="/paket-haji/<%= items['kode_produk']%>/<%= items['kdkantor']%>/<%= items['tahun']%>/<%= items['bulan']%>/<%= items['nama_seo']%>" class="data-products">
+                  <div class="card mt-2 mb-2">
+                    <div class="card-body-image">
+                      <%= image_tag !items['gambar'].nil? ? items['gambar'] : 'no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '' %>
+                    </div>
+                    <div class="card-body">
+                      <p class="packet-rate mb-0">
+                        <!--Active Star-->
+                        <% (1..items['rating']).each do |star|%>
+                          <i class="ion-android-star"></i>
+                        <% end %>
+                        <!--End-->
+                        <!--Non Active Star-->
+                        <%(1..5-items['rating']).each do |star|%>
+                          <i class="ion-android-star-outline"></i>
+                        <% end %>
+                        <!--End-->
+                      </p>
+                      <div class="name-packet name-packet-line">
+                        <h3 class="price-packet mb-1">
+                          <%= number_to_currency(items['harga_jual'], precision: 0, unit: "#{items['tipe_curr']}")%>
+                        </h3>
+                        <%= items['nama'].titlecase%>
+                      </div>
+                      <h6 class="card-text packet-city m-0">
+                        Kota <%= items['kota'].titlecase %>, <%= items['kantor'].titlecase %>
+                      </h6>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+          <!--Kondisi jika data kosong-->
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#kota").select2({
+                theme: "bootstrap"
+            });
+            $("#jenispaket").select2({
+                theme: "bootstrap"
+            });
+            $("#tahun").select2({
+                theme: "bootstrap"
+            });
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 2,
+            paginationClickable: true,
+            spaceBetween: 0
+        });
+    </script>
+<% end %>

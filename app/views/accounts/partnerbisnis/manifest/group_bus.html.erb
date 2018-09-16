@@ -1,0 +1,247 @@
+<% content_for :head do %>
+    <title>Data Manifest | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-0">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0">
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-user">
+                <%= render template: 'accounts/partials/bannerTop' %>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <h5 class="card-title text-center mb-2 mt-4 ml-4">
+                Data Manifest
+              </h5>
+              <ul class="nav justify-content-center tabs-voucher mb-2">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/manifest-bus') %>" href="/manifest-bus">Group Bus</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/manifest-hotel') %>" href="/manifest-hotel">Group Hotel</a>
+                </li>
+              </ul>
+              <!-- --------------------------------------------------- -->
+              <form action="" method="post">
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item">
+                    <table id="datajamaah" class="table" cellspacing="0">
+                      <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Nama Group</th>
+                        <th>Jadwal Berangkat</th>
+                        <th>Qty</th>
+                        <th>Tindakan</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Tauhid</td>
+                        <td>Januari 2019</td>
+                        <td>20</td>
+                        <td>
+                          <div class="btn-group" role="group" aria-label="manifest jamaah">
+                            <a href="#manifestjamaah" class="text-success mr-3" data-toggle="modal" data-target="#manifestjamaah"><i class="icon-file-eye"></i></a>
+                            <a href="#tambahgroup" class="text-info mr-3" data-toggle="modal" data-target="#tambahgroup"><i class="icon-file-plus"></i></a>
+                            <a href="#hapus" class="hapus_jamaah text-danger"><i class="icon-cross2"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <div class="modal fade" id="manifestjamaah" tabindex="-1" role="dialog" aria-labelledby="manifestjamaahlabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+          <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+          </button>
+          <form method="post">
+            <div class="modal-body p-4">
+              <h5 class="mb-4">
+                Detil Group
+              </h5>
+              <table class="table table-jamaah">
+                <tr>
+                  <td rowspan="30" width="100">
+                    <%= image_tag 'lib/icon/03.png', :class => 'img-rounded', :width => '50px' %>
+                  </td>
+                  <td class="pb-0">
+                    <small>Nama Group</small>
+                    <p class="m-0">
+                      Tauhid
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="pb-0">
+                    <small>Bulan Keberangkatan</small>
+                    <p class="m-0">
+                      Januari
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="pb-0">
+                    <small>Tahun Keberangkatan</small>
+                    <p class="m-0">
+                      2020
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="pb-0">
+                    <small>Jumlah Hari</small>
+                    <p class="m-0">
+                      9 Hari
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="pb-0">
+                    <small>Kategori</small>
+                    <p class="m-0">
+                      Promo
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="pb-0">
+                    <small>QTY</small>
+                    <p class="m-0">
+                      20 Jamaah
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="pb-0">
+                    <small>Sisa</small>
+                    <p class="m-0">
+                      100 Jamaah
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------------------------------------- -->
+    <div class="modal fade" id="tambahgroup" tabindex="-1" role="dialog" aria-labelledby="tambahgroup" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+          <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+          </button>
+          <form method="post">
+            <div class="modal-body p-4">
+              <h5 class="mb-4">
+                Tambah Group Bus
+              </h5>
+              <div class="form-group row">
+                <label class="col-3 col-form-label text-right">Nama Group</label>
+                <div class="col-9">
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-3 col-form-label text-right">Bulan Keberangkatan</label>
+                <div class="col-9">
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-3 col-form-label text-right">Tahun Keberangkatan</label>
+                <div class="col-9">
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-3 col-form-label text-right">Jumlah Hari</label>
+                <div class="col-9">
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-3 col-form-label text-right">Kategori</label>
+                <div class="col-9">
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-3 col-form-label text-right">QTY</label>
+                <div class="col-9">
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-3 col-form-label text-right">Sisa</label>
+                <div class="col-9">
+                  <input type="text" class="form-control" placeholder="" value="44" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-block btn-info">Tambah</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datajamaah').DataTable();
+        });
+
+        document.querySelector('.hapus_jamaah').onclick = function () {
+            swal({
+                title: "Hapus Data Manifest Jamaah!",
+                text: "lanjutkan jika anda ingin menghapus data manifest jamaah anda. . .",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true
+            }, function () {
+                setTimeout(function () {
+                    swal({
+                        title: "Terima Kasih",
+                        text: "Data manifest jamaah anda berhasil terhapus!",
+                    });
+                }, 2000);
+            });
+        };
+    </script>
+<% end %>

@@ -1,0 +1,146 @@
+<% content_for :head do %>
+    <title>Riwayat Transfer Seat | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Seat Umrah</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <ul class="nav tabs-voucher mb-2">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/pengaturan-seat') %>" href="/pengaturan-seat">Seat Umrah</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/riwayat-transfer-seat') %>" href="/riwayat-transfer-seat">History Transfer</a>
+                </li>
+              </ul>
+              <!-- --------------------------------------------------- -->
+              <form action="" method="post">
+                <% if @data %>
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item">
+                    <% @data.each do |item| %>
+                    <table class="table table-transaksi mb-3">
+                      <tr>
+                        <th>
+                          <small class="text-uppercase">Kode Booking Seat</small>
+                          <p class="m-0">
+                            <strong><%= item['kode_booking'] %></strong>
+                          </p>
+                        </th>
+
+                        <th>
+                          <small class="text-uppercase">Tujuan</small>
+                          <p class="m-0">
+                            <%= item['kode_pelanggan'] %>
+                          </p>
+                        </th>
+
+                        <th>
+                          <small class="text-uppercase">Status</small>
+                          <p class="m-0 text-success text-capitalize">
+                            <%= item['is_confirmed'] == 'Y' ? 'Berhasil' : 'Menunggu Konfirmasi OTP' %>
+                          </p>
+                        </th>
+
+                        <th>
+                          <a href="#<%= item['kode_transfer'] %>" class="btn btn-block btn-outline-success btn-sm text-capitalize" data-toggle="collapse" aria-expanded="false" aria-controls="lihat">
+                            Lihat
+                          </a>
+                        </th>
+                      </tr>
+
+                      <tr>
+                        <td colspan="4" class="p-0">
+                          <div class="collapse" id="<%= item['kode_transfer'] %>">
+                            <div class="card card-body border-none">
+                              <div class="row">
+                                <div class="col-6 pl-2">
+                                  <div class="d-flex flex-column">
+                                    <small class="text-uppercase">Ringkasan</small>
+                                    <p class="text-capitalize">
+                                      Kode transfer: <%= item['kode_transfer'] %><br/>
+                                      Tujuan: <%= item['nama_pelanggan'] %> (<%= item['kode_pelanggan'] %>)
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="col-6 pl-2">
+                                  <div class="d-flex flex-column">
+                                    <small class="text-uppercase">Tanggal Transfer</small>
+                                    <p class="text-capitalize">
+                                      <%= TimeFormat::indonesia(item['tanggal_transfer']) %>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                    <% end %>
+                  </div>
+                </div>
+
+                <!-- --------------------------------------------------- -->
+                <nav aria-label="Page navigation">
+                  <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item">
+                      <%= @page[:link_prev].html_safe %>
+                    </li>
+                    <% @page[:html].each do |page| %>
+                        <%= page.html_safe %>
+                    <% end %>
+                    <li class="page-item">
+                      <%= @page[:link_next].html_safe %>
+                    </li>
+                    </li>
+                  </ul>
+                </nav>
+                <!-- --------------------------------------------------- -->
+                <% else %>
+                    <div class="w-blank text-center p-5">
+                      <%= image_tag 'icon_blank/no_transaction.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                      <p class="mb-0">
+                        Maaf, Anda belum memiliki transaksi
+                      </p>
+                    </div>
+                <% end %>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+<script type="text/javascript">
+
+</script>
+<% end %>

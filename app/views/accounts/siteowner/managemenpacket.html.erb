@@ -1,0 +1,119 @@
+<% content_for :head do %>
+    <title>Manajemen Paket | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Managemen Paket</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <h3>Manajemen Paket</h3>
+            <!-- --------------------------------------------------- -->
+            <% if !@data.nil? %>
+                <% @data['data'].each do |item| %>
+                    <!-- get sisa_seat -->
+                    <% @seat = Api::Account::OwnershipController.getInfoseat(api_url, session[:acc_token], item['no_trans'])['data']['sisa_seat']%>
+                    <!-- End -->
+                    <!--End-->
+                    <div class="c-bg-white-accounts c-management__packet">
+                      <div class="card c-dashboard-content c-management__packet-item mt-0 mb-0">
+                        <div class="card-body c-dashboard-content__item c-management__packet-item--body p-0">
+                          <table class="table table-manajemen_packet">
+                            <tr>
+                              <td>
+                                <small>No. Invoice</small>
+                              </td>
+                              <td>
+                                <small>Nama Paket <%= @ayam%></small>
+                              </td>
+                              <td>
+                                <small>Jumlah Pax(Seat)</small>
+                              </td>
+                              <td class="tm-3" rowspan="2">
+                                <% if @seat == 0 %>
+                                    <a class="btn btn-block btn-lg btn-danger">
+                                      <i class="ion-close-round"></i> Seat habis
+                                    </a>
+                                <% else %>
+                                    <a href="/create-packet/<%= item['no_trans'] %>" class="btn btn-block btn-lg btn-success">
+                                      <i class="ion-paper-airplane"></i> Publish
+                                    </a>
+                                <% end %>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="no-invoice">
+                                <h3 class="mb-0">
+                                  <%= item['no_trans'] %>
+                                </h3>
+                              </td>
+                              <td class="tm-1">
+                                <h3 class="mb-0">
+                                  <%= item['nama_paket'] %>
+                                </h3>
+                              </td>
+                              <td class="tm-2">
+                                <h3 class="mb-0">
+                                  <%= @seat %>
+                                </h3>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+                <!-- --------------------------------------------------- -->
+                <nav aria-label="Page navigation" class="mt-5">
+                  <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item">
+                      <%= @data['page']['link_prev'].html_safe %>
+                    </li>
+                    <% @data['page']['html'].each do |page| %>
+                        <%= page.html_safe %>
+                    <% end %>
+                    <li class="page-item">
+                      <%= @data['page']['link_next'].html_safe %>
+                    </li>
+                  </ul>
+                </nav>
+                <!-- --------------------------------------------------- -->
+            <% else %>
+                <div class="w-blank text-center p-5">
+                  <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'mx-auto d-block', :alt => '' %>
+                  <p class="mb-0">
+                    Maaf! Anda belum memiliki seat, mohon lakukan pembelian paket umrah terlebih dahulu.
+                  </p>
+                </div>
+            <% end %>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+<% end %>

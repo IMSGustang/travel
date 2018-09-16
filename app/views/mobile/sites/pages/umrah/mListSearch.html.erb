@@ -1,0 +1,387 @@
+<%= content_for :active_home do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Abutours | Best Travel Services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-list-search">
+      <ul class="nav nav-pills nav-fill nav-filters">
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#urutkan">
+            <i class="ion-android-options mr-2"></i> Urutkan
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#pencarian">
+            Ganti Pencarian <i class="ion-android-search ml-2"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="data-search m-0 p-2 text-center">
+      <span class="badge badge-pill badge-dark">
+        <%= !params[:kota] || params[:kota] == "" ? "Semua Kota" : params[:kota] %>
+      </span>
+      <span class="badge badge-pill badge-dark">
+        <%= !params[:paket] || params[:paket] == "" ? "Semua Paket" : params[:paket] %>
+      </span>
+      <span class="badge badge-pill badge-dark">
+        <%= !params[:bulan] || params[:bulan] == "" ? "Semua Bulan" : params[:bulan] %>
+      </span>
+      <span class="badge badge-pill badge-dark">
+        <%= !params[:tahun] || params[:tahun] == "" ? "Semua Tahun" : params[:tahun] %>
+        </span>
+    </div>
+
+    <div class="data-list-products">
+      <div class="container-fluid">
+        <div class="row pl-1 pr-1">
+          <% if @data != nil %>
+              <% @data.each do |item| %>
+                  <div class="col-6 pl-1 pr-1">
+                    <a href="/detil-paket/<%= item['kode_produk'] %>/<%= item['kdkantor'] %>/<%= item['tahun'] %>/<%= item['bulan'] %>/<%= item['nama_seo'].downcase %>" class="data-products">
+                      <div class="card mt-2 mb-2">
+                        <div class="card-body-image">
+                          <% if item['gambar'] && !item['gambar'].nil? %>
+                              <%= image_tag item['gambar'], :class => 'images-product d-flex align-self-center mr-3', :alt => '', onerror: 'this.error=null;this.src="/assets/logo/logo.png"' %>
+                          <% else %>
+                              <%= image_tag 'no_images/no_package_1.png', :class => 'images-product mx-auto d-block', :alt => '', onerror: 'this.error=null;this.src="/assets/logo/logo.png"' %>
+                          <% end %>
+                        </div>
+                        <div class="card-body">
+                          <p class="packet-rate mb-0">
+                            <% item['rating'] > 0 ? rating = item['rating'] : 0 %>
+                            <% (0..(rating-1)).each do |r| %>
+                                <i class="ion-android-star"></i>
+                            <% end %>
+                            <% (0..(4-rating)).each do |r| %>
+                                <i class="ion-android-star-outline"></i>
+                            <% end %>
+                          </p>
+                          <div class="name-packet name-packet-line">
+                            <h3 class="price-packet mb-1">
+                              <%= number_to_currency(item['harga_jual'], precision: 0, unit: "Rp ") %>
+                            </h3>
+                            <%= item['nama'].titlecase %>
+                          </div>
+                          <h6 class="card-text packet-city m-0">
+                            Kota <%= item['kota'].titlecase %> - <%= item['kantor'].titlecase %>
+                          </h6>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+              <% end %>
+              <div class="col-12 p-0">
+                <nav aria-label="Page navigation" class="gPagination mt-3 mb-3">
+                  <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item">
+                      <%= @page['link_prev'].html_safe %>
+                    </li>
+                    <% @page['html'].each do |page| %>
+                        <%= page.html_safe %>
+                    <% end %>
+                    <li class="page-item">
+                      <%= @page['link_next'].html_safe %>
+                    </li>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+          <% else %>
+              <div class="text-center" style="background: #fff;padding: 30px">
+                <%= image_tag 'lib/sticker/19.png', :class => 'mx-auto d-block', :style => 'max-width: 100%;height: 100px' %>
+                <p class="mb-0">
+                  Maaf untuk sementara paket umrah belum tersedia
+                </p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal data-modal fade" id="urutkan" tabIndex="-1" role="dialog"
+         aria-labelledby="urutkan"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+          <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon-cross2"></i></span>
+          </button>
+          <form action="/paket-umrah" method="get">
+            <div class="modal-body">
+              <div class="form-group">
+                <table class="table table-sm table-flex">
+                  <tbody>
+                  <tr>
+                    <td colSpan="2">
+                      <p class="m-0">
+                        Urutkan Harga
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="custom-control custom-radio">
+                        <input id="radio1" name="price" type="radio"
+                               class="custom-control-input" value="desc"/>
+                        <span class="custom-control-indicator"></span>
+                        <span
+                        class="custom-control-description">Harga Tertinggi</span>
+                      </label>
+                    </td>
+
+                    <td>
+                      <label class="custom-control custom-radio">
+                        <input type="radio" id="price" name="radio"
+                               class="custom-control-input" value="asc"/>
+                        <span class="custom-control-indicator"></span>
+                        <span
+                        class="custom-control-description">Harga Terendah</span>
+                      </label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colSpan="2">
+                      <hr/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colSpan="2">
+                      <p class="m-0">
+                        Jenis Paket
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="custom-control custom-radio">
+                        <input id="radio0" name="radio" type="radio"
+                               class="custom-control-input"/>
+                        <span class="custom-control-indicator"></span>
+                        <span
+                        class="custom-control-description">Promo</span>
+                      </label>
+                    </td>
+                    <td>
+                      <label class="custom-control custom-radio">
+                        <input id="radio1" name="radio" type="radio"
+                               class="custom-control-input"/>
+                        <span class="custom-control-indicator"></span>
+                        <span
+                        class="custom-control-description">Reguler</span>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="custom-control custom-radio">
+                        <input id="radio2" name="radio" type="radio"
+                               class="custom-control-input"/>
+                        <span class="custom-control-indicator"></span>
+                        <span
+                        class="custom-control-description">Plus Aqsa</span>
+                      </label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colSpan="2">
+                      <hr/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="2">
+                      <p class="m-0">
+                        Berdasarkan Tahun
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="custom-control custom-radio">
+                        <input id="radio" name="radio" type="radio"
+                               class="custom-control-input"/>
+                        <span class="custom-control-indicator"></span>
+                        <span
+                        class="custom-control-description">2018</span>
+                      </label>
+                    </td>
+                    <td>
+                      <label class="custom-control custom-radio">
+                        <input id="radio1" name="radio" type="radio"
+                               class="custom-control-input"/>
+                        <span class="custom-control-indicator"></span>
+                        <span
+                        class="custom-control-description">2019</span>
+                      </label>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <table class="table table-sm">
+                <tbody>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-outline-light" data-dismiss="modal"
+                            aria-label="Close">
+                      Batal
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn btn-block btn-danger">Terapkan</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal data-modal fade" id="pencarian" tabIndex="-1" role="dialog"
+         aria-labelledby="urutkan"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+          <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon-cross2"></i></span>
+          </button>
+          <form method="get" action="/paket-umrah">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Pilih kota</label>
+                <div class="input-group">
+                  <select id="kotafilter" name="kota"
+                          class="form-control">
+                    <option value=""> Semua kota</option>
+                    <% if @data_pre_search %>
+                        <% @kota = @data_pre_search['kota'] %>
+                        <% @kota.each do |data| %>
+                            <optgroup label="<%= data['name'].titlecase %>">
+                              <% @kantor = data['kota'] %>
+                              <% @kantor.each do |kantor| %>
+                                  <% if params[:kota] == kantor['kdkantor'] %>
+                                      <option value="<%= kantor['kdkantor'] %>" selected><%= kantor['namakantor'].titlecase %></option>
+                                  <% else %>
+                                      <option value="<%= kantor['kdkantor'] %>"><%= kantor['namakantor'].titlecase %></option>
+                                  <% end %>
+                              <% end %>
+                            </optgroup>
+                        <% end %>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Jenis paket</label>
+                <div class="input-group">
+                  <select id="jenisfilter" name="paket"
+                          class="form-control">
+                    <option value=""> Semua paket</option>
+                    <% if @data_pre_search %>
+                        <% @bulan = @data_pre_search['jnspaket'] %>
+                        <% @bulan.each do |data| %>
+                            <% if params[:paket] == data['name'] %>
+                                <option value="<%= data['name'] %>" selected><%= data['name'] %></option>
+                            <% else %>
+                                <option value="<%= data['name'] %>"><%= data['name'] %></option>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Tahun keberangkatan</label>
+                <div class="input-group">
+                  <select id="tahunfilter" name="tahun"
+                          class="form-control">
+                    <option value=""> Semua tahun</option>
+                    <% if @data_pre_search %>
+                        <% @tahun = @data_pre_search['tahun'] %>
+                        <% @tahun.each do |data| %>
+                            <% if params[:tahun] == data['tahun'] %>
+                                <option value="<%= data['tahun'] %>" selected><%= data['tahun'] %></option>
+                            <% else %>
+                                <option value="<%= data['tahun'] %>"><%= data['tahun'] %></option>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Bulan keberangkatan</label>
+                <div class="input-group">
+                  <select id="bulanfilter" name="bulan"
+                          class="form-control">
+                    <option value=""> Semua bulan</option>
+                    <% if @data_pre_search %>
+                        <% @bulan = @data_pre_search['bulan'] %>
+                        <% @bulan.each do |data| %>
+                            <% if params[:bulan] == data['bulan'] %>
+                                <option value="<%= data['bulan'] %>" selected><%= data['name'] %></option>
+                            <% else %>
+                                <option value="<%= data['bulan'] %>"><%= data['name'] %></option>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <table class="table table-sm">
+                <tbody>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-outline-light" data-dismiss="modal"
+                            aria-label="Close">
+                      Batal
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn btn-block btn-danger">Terapkan</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+<% end %>
+<%= content_for :mobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#kotafilter").select2({
+                theme: "bootstrap"
+            });
+            $("#jenisfilter").select2({
+                theme: "bootstrap"
+            });
+            $("#tahunfilter").select2({
+                theme: "bootstrap"
+            });
+            $("#bulanfilter").select2({
+                theme: "bootstrap"
+            });
+        });
+    </script>
+<% end %>

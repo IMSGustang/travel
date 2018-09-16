@@ -1,0 +1,100 @@
+<%= content_for :active_costs do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Pengajuan Transaksi</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Pengajuan Claim Transaksi
+        </h6>
+        <p class="mb-0">
+          Claim nomor transaksi anda untuk melakukan pengajuan penambahan biaya
+        </p>
+      </div>
+    </div>
+
+    <div class="data-products-evoucher pl-3 pr-3">
+      <div class="card card-body c-form-evoucher">
+        <form action="" method="post">
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i class="ion-ios-glasses-outline"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Nomor Invoice</label>
+                <input type="text" name="" class="form-control" placeholder="XXX-XXX-XXX">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i class="ion-ios-list-outline"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Tanggal Transaksi</label>
+                <input type="text" class="form-control" id="tgl_invoice" placeholder="Tanggal transaksi"/>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-block btn-danger">
+            Cari
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="data-history-claim">
+      <div class="data-transaction">
+        <h6 class="pl-3">History Claim Transaksi</h6>
+
+        <div class="card card-transaction">
+          <div class="card-body">
+            <table class="table table-sm mb-0">
+              <tr>
+                <td>
+                  <p class="tglTransaction mb-0 text-right mb-2">
+                    sabtu , 12-01-2018
+                  </p>
+
+                  <p class="noTransaction mb-0">
+                    <span>No Invoice</span> : <strong>TMP-CNM-8691801124058</strong>
+                  </p>
+                  <p class="noTransaction mb-0">
+                    <span>Tgl Transaksi</span> : <strong>10/02/2017</strong>
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p class="mb-0">
+                    <span class="badge badge-success">Sukses</span>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(function () {
+            $("#tgl_invoice").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 1
+            });
+        });
+    </script>
+<% end %>

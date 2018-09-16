@@ -1,0 +1,214 @@
+.c-invoice {
+  background-color: #f9f7f6;
+
+  & .card {
+    border: 1px solid #f3f1f0;
+    &-invoice__pemesanan {
+
+      & .card-header {
+        background-color: transparent;
+        border-bottom: 1px solid #e3e1e0;
+        padding-top: 16px;
+        padding-bottom: 16px;
+
+        & .table {
+          margin: 0;
+          & td {
+            border: none;
+            padding: 0;
+
+            & h3 {
+              margin: 0;
+              font-weight: 500;
+              margin-top: 4px;
+            }
+            & img {
+              max-width: 100%;
+              height: 24px;
+            }
+          }
+        }
+      }
+
+      &-item {
+        & .card-title {
+          &-h4 {
+            text-align: center;
+            font-size: 18px;
+            color: #181818;
+            text-transform: uppercase;
+          }
+
+          &-h6 {
+            text-align: center;
+            font-size: 14px;
+            color: #484848;
+            text-transform: uppercase;
+          }
+        }
+
+        & .card-text {
+          text-align: center;
+          font-size: 14px;
+          color: #484848;
+        }
+
+        & .waktu-pembayaran {
+          margin: 0 auto;
+
+          .ds-white {
+            text-align: center;
+            margin: 0 auto;
+            width: 202px;
+
+            .ds-element-value {
+              font-size: 20px;
+              line-height: 22px;
+              color: #333;
+              font-weight: normal !important;
+            }
+
+            .ds-element-title {
+              font-size: 12px;
+              opacity: .75;
+            }
+          }
+        }
+
+        & .alert {
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          border: 1px dashed #e3e1e0;
+          background: #f9f7f6;
+          padding: 30px 15px;
+
+          & .card-text {
+            font-size: 16px;
+          }
+
+          & .card-title {
+            font-size: 26px;
+            color: #5cb85c;
+            padding-bottom: 15px;
+          }
+
+          & .card-text-info {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            background-color: #fff;
+            padding: 14px;
+            color: #333;
+
+            span {
+              font-size: 12px;
+              color: #666;
+            }
+
+            //&::after{
+            //  border-bottom: 10px solid #fff;
+            //  border-top: 10px solid transparent;
+            //  border-left: 10px solid transparent;
+            //  border-right: 10px solid transparent;
+            //  -webkit-transition: ease-in-out all .3s;
+            //  -moz-transition: ease-in-out all .3s;
+            //  -ms-transition: ease-in-out all .3s;
+            //  -o-transition: ease-in-out all .3s;
+            //  transition: ease-in-out all .3s;
+            //  content: '';
+            //  display: block;
+            //  position: absolute;
+            //  width: 0;
+            //  height: 0;
+            //  right: 33%;
+            //  bottom: 185px;
+            //}
+          }
+        }
+
+        & hr {
+          width: 100%;
+        }
+
+        & .table {
+          margin: 0;
+          td {
+            vertical-align: middle;
+            font-size: 14px;
+            padding: 14px 0;
+
+            img {
+              -webkit-border-radius: 3px;
+              -moz-border-radius: 3px;
+              border-radius: 3px;
+              height: 30px;
+            }
+
+            & .nameRek {
+              color: #989898;
+              font-size: 14px;
+            }
+
+            & .numberRek {
+              color: #181818;
+              font-size: 16px;
+            }
+
+            & p {
+              margin-bottom: 0;
+              font-size: 11px;
+              text-transform: uppercase;
+              opacity: .75;
+            }
+          }
+        }
+
+        & dl {
+          & dd {
+            //border-bottom: 1px solid #f3f1f0;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+
+            opacity: .85;
+            font-size: 13px;
+
+            & .title {
+              font-size: 12px;
+              text-transform: uppercase;
+              color: #989898;
+              font-weight: normal;
+              margin-bottom: 0;
+
+              &-harga {
+                font-size: 20px;
+              }
+            }
+
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+          & dt {
+            font-size: 15px;
+          }
+        }
+      }
+
+      & .card-footer {
+        background-color: transparent;
+        border-top: 1px solid #e3e1e0;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        & .table {
+          margin: 0;
+          & th, td {
+            border: none;
+            padding: 0;
+
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+<%= content_for :active_transaction do %> active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Detail Transaksi</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-detail-transaction">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-sm mb-0">
+                    <tr>
+                        <td width="130">
+                            No Transaksi
+                        </td>
+                        <th>
+                            <%= @data['no_trans'] %>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td width="130">
+                            Nama Paket
+                        </td>
+                        <th>
+                            <%= @data['nama_paket'] %>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td width="130">
+                            Tanggal Pembelian
+                        </td>
+                        <th>
+                            <%= TimeFormat::indonesia(@data['tgl_trans']) %>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-footer">
+                <table class="table table-sm mb-0">
+                    <tr>
+                        <td>
+                            <small>Sisa Pembayaran</small>
+                            <h6 class="mb-0"><%= number_to_currency(@data['sisabayar'], precision: 0, unit: "Rp ") %></h6>
+                        </td>
+                        <td>
+                            <% if @data['status_bayar'] != 'Lunas' %>
+                                <a href="" class="btn btn-block btn-danger">Bayar</a>
+                            <% end %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                Riwayat Pembayaran
+            </h5>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="data-detail-riwayat-transaction">
+        <div class="card card-riwayatPembayaran mb-2">
+            <div class="card-body pt-2 pb-2 pl-3 pr-3">
+                <p class="card-text mb-1">
+                    <small>Last payment 1 days ago</small>
+                </p>
+
+                <h6 class="mb-0">
+                    #TR5678HUI
+
+                    <span class="float-right">
+              Rp 1,000,000
+            </span>
+                </h6>
+
+                <p class="card-text text-right mt-1 mb-0">
+            <span class="text-capitalize text-danger">
+              Menunggu Konfirmasi Pembayaran
+            </span>
+                </p>
+            </div>
+
+            <% if @data['status_bayar'] != 'Lunas' %>
+                <div class="card-footer">
+                    <a href="/konfirmasi-pembayaran/<%= @data['no_trans'] %>" class="btn btn-sm btn-outline-danger btn-block">Konfirmasi</a>
+                </div>
+            <% end %>
+
+        </div>
+
+        <div class="card card-riwayatPembayaran mb-2">
+            <div class="card-body pt-2 pb-2 pl-3 pr-3">
+                <p class="card-text mb-1">
+                    <small>Last payment 3 week ago</small>
+                </p>
+
+                <h6 class="mb-0">
+                    #TR5678HUI
+
+                    <span class="float-right">
+              Rp 20,000,000
+            </span>
+                </h6>
+
+                <p class="card-text text-right mt-1 mb-0">
+            <span class="text-capitalize text-info">
+              Menunggu Verifikasi
+            </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="card card-riwayatPembayaran mb-2">
+            <div class="card-body pt-2 pb-2 pl-3 pr-3">
+                <p class="card-text mb-1">
+                    <small>Last payment 5 week ago</small>
+                </p>
+
+                <h6 class="mb-0">
+                    #TR5678HUI
+
+                    <span class="float-right">
+              Rp 20,000,000
+            </span>
+                </h6>
+
+                <p class="card-text text-right mt-1 mb-0">
+            <span class="text-capitalize text-success">
+              Berhasil
+            </span>
+                </p>
+            </div>
+        </div>
+    </div>
+<% end %>

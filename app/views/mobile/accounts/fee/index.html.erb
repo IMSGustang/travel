@@ -1,0 +1,222 @@
+<%= content_for :active_poin do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Fee Anda</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-poin">
+      <div class="card">
+        <div class="card-body">
+          <p class="mb-0 text-center">fee anda</p>
+          <h1 class="display-4 text-center mb-0">
+            Rp <%= number_with_delimiter(session[:account_fee]) %>
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav nav-pills nav-justified tabs-poin pt-0" id="myTab" role="tablist">
+      <a class="nav-item nav-link active" id="fee-tab" data-toggle="tab" href="#fee" role="tab" aria-controls="fee" aria-selected="true">
+        Pencairan Fee
+      </a>
+
+      <a class="nav-item nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false">
+        History Pencairan
+      </a>
+    </nav>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="fee" role="tabpanel" aria-labelledby="fee-tab">
+        <div class="data-penukaran pt-3">
+          <div class="card card-penukaran">
+            <% if session[:account_fee] != 0 %>
+                <div class="card-body p-3">
+                  <div class="form-group">
+                    <label>Jumlah pencairan</label>
+                    <input type="text" name="nominal" class="form-control" value="Rp <%= number_with_delimiter(session[:account_fee]) %>" readonly>
+                    <small class="form-text text-muted">
+                      Jumlah pencairan fee sesuai dengan jumlah fee anda.
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <label>Tipe pencairan</label>
+                    <select id="tipepencairan" name="metode" onchange="chooseMethod(this.value)" class="form-control">
+                      <option value="0" disabled>
+                        Pilih tipe pencairan
+                      </option>
+                      <option value="deposit">
+                        Tambah Ke Deposit
+                      </option>
+                      <option value="transfer">
+                        Transfer Ke Rekening
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="display: none;" id="panelBank">
+                    <label>Pilih Bank</label>
+                    <div class="row">
+                      <div class="col-9 pr-1">
+                        <select id="bank" name="bank" class="form-control">
+                          <option value="0" disabled>
+                            Silahkan Pilih
+                          </option>
+                          <% dataBank.each do |row| %>
+                              <option value="<%= row['kode_bank'] %>">
+                                <%= row['nama_bank'] %> - <%= row['atas_nama'] %> - <%= row['no_rekening'] %>
+                              </option>
+                          <% end %>
+                        </select>
+                      </div>
+
+                      <div class="col-3 pl-1">
+                        <a href="/tambah-data-bank" class="btn btn-block btn-sm btn-danger" role="button">
+                          <i data-feather="file-plus"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <small class="form-text text-muted" id="noteBank">
+                      Silahkan buat data bank terlebih dahulu
+                    </small>
+                  </div>
+                </div>
+
+                <div class="card-footer">
+                  <table class="table table-sm mb-0">
+                    <tr>
+                      <td>
+                        <a href="" class="btn btn-block btn-light">Kembali</a>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-block btn-danger" id="btnNext" onclick="asp()" <%= session[:account_fee] == 0 ? 'disabled="true"' : '' %>>Kirim</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+            <% else %>
+                <div class="card-body p-3">
+                  <small class="form-text text-center">
+                    Anda belum mempunyai fee
+                  </small>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+        <div class="data-penukaran pt-3">
+          <% if data.empty? %>
+              <div class="card card-penukaran">
+                <div class="card-body p-3">
+                  <small class="form-text text-center">
+                    Anda belum pernah melakukan pencairan
+                  </small>
+                </div>
+              </div>
+          <% else %>
+              <% data.each do |row| %>
+                  <div class="card card-penukaran">
+                    <div class="card-body">
+                      <table class="table table-sm mb-0">
+                        <tr>
+                          <td>
+                            <p class="tglpoin text-right mb-0">
+                              <%= TimeFormat::indonesia(row['pengajuan_at']) %>
+                            </p>
+
+                            <p class="nopoin mb-0">
+                              <span>No Transaksi</span> : <strong><%= row['kode_pengajuan_fee'] %></strong>
+                            </p>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <p class="mb-0">
+                              <% if row['status'] == 'pending' %>
+                                <span class="badge badge-success">
+                                  Menunggu Approval
+                                </span>
+                              <% elsif row['status'] == 'approve' %>
+                                <span class="badge badge-success">
+                                  Berhasil
+                                </span>
+                              <% else %>
+                                <span class="badge badge-success">
+                                  Menunggu Approval
+                                </span>
+                              <% end %>
+
+                              <span class="float-right">
+                                Rp <%= number_with_delimiter(row['nominal']) %>
+                              </span>
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tipepencairan").select2({
+                theme: "bootstrap"
+            });
+
+            $("#bank").select2({
+                theme: "bootstrap"
+            });
+        });
+
+        $(".txtOnly").keypress(function (e) {
+            var key = e.keyCode;
+            if (key >= 48 && key <= 57) {
+                e.preventDefault();
+            }
+        });
+
+        $.autotab({tabOnSelect: true});
+        $('.kode').autotab('filter', 'kode');
+
+        $('#btnNext').click(function () {
+            $('#slide-1').fadeOut(0);
+            $('#slide-2').fadeIn(500);
+        });
+
+        function asp() {
+            all();
+        }
+
+        function chooseMethod(val) {
+            panelBank = $("#panelBank");
+            if (val == "deposit") {
+                panelBank.css("display", "none");
+            } else {
+                <% if dataBank.empty? %>
+                $("#noteBank").show();
+                $("#btnNext").addClass("disabled");
+                $("#btnNext").attr("disabled");
+                <% else %>
+                <% if session[:account_fee] == 0 %>
+                $("#noteBank").hide();
+                <% else %>
+                $("#noteBank").hide();
+                $("#btnNext").removeClass("disabled");
+                $("#btnNext").removeAttr("disabled");
+                <% end %>
+                <% end %>
+                panelBank.css("display", "block");
+            }
+        }
+    </script>
+<% end %>

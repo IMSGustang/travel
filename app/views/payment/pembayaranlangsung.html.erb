@@ -1,0 +1,153 @@
+<% content_for :headpayments do %>
+    <title>Metode Pembayaran Langsung</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pembelian</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Selesai</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment-item">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <h5 class="card-title mt-3">
+              Rp300.000
+
+              <small class="float-right">
+                <a href="" class="card-link" data-toggle="modal" data-target="#detiltagihan">
+                  <i class="icon-stack"></i> Detil belanja
+                </a>
+              </small>
+            </h5>
+
+            <div class="card mb-2">
+              <div class="card-body">
+                <div class="container p-0">
+                  <form>
+                    <div class="form-group row">
+                      <div class="col-12">
+                        <label class="col-form-label">Pembayaran</label>
+                        <select id="kantor" name="kantor">
+                          <option value="76023" title="Out of Stock" disabled>Pilih kantor</option>
+                          <option data-prefix="<span aria-hidden='true' class='icon-office'></span>">
+                            Kantor Pusat Makassar
+                          </option>
+                          <option data-prefix="<span aria-hidden='true' class='icon-office'></span>">
+                            Kantor Pusat Batulicin
+                          </option>
+                        </select>
+                        <small class="form-text text-muted">
+                          Pilih kantor terdekat dari tempat anda untuk memudahkan pembayaran
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-12">
+                        <label class="col-form-label">Nama Bank Anda</label>
+                        <select id="bank" name="bank">
+                          <option value="76023" title="Out of Stock" disabled>Pilih Bank</option>
+                          <option data-prefix="<span aria-hidden='true' class='icon-wallet'></span>">
+                            MANDIRI
+                          </option>
+                          <option data-prefix="<span aria-hidden='true' class='icon-wallet'></span>">
+                            BRI
+                          </option>
+                        </select>
+                        <small class="form-text text-muted">
+                          Pilih rekening bank sesuai buku tabungan anda
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-12">
+                        <label class="col-form-label">Nomor Rekening</label>
+                        <input type="number" class="form-control" placeholder="">
+                        <small class="form-text text-muted">
+                          Masukkan nomor rekening sesuai dengan rekening bank anda
+                        </small>
+                      </div>
+                    </div>
+
+                    <fieldset class="form-group row">
+                      <div class="col-12">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                            Option one is this and that&mdash;be sure to include why it's great
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <div class="form-group row">
+                      <div class="col-6">
+                        <a href="/pilih-metode-pembayaran" class="btn btn-block btn-secondary">Kembali</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="/tagihan-pembayaran" class="btn btn-block btn-success">Bayar</a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------- -->
+<% end %>
+<!-- ------------------------------------- -->
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Kota keberangkatan
+            $('#kantor').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | Best Travel Services');
+                }
+            });
+
+            // Jenis paket
+            $('#bank').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | Best Travel Services');
+                }
+            });
+
+            // tahun paket
+            $('#tahun').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | Best Travel Services');
+                }
+            });
+        });
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>
+<!-- ------------------------------------- -->

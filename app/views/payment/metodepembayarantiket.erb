@@ -1,0 +1,102 @@
+<% content_for :headpayments do %>
+    <title>Pilih Metode Pembayaran | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pemesan</a>
+            </li>
+            <!-- <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Input Data Jamaah</a>
+            </li> -->
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Konfirmasi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment-item">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <h3 class="card-title mt-3">
+              <%= number_to_currency(@data['harga'], precision: 0, unit: "Rp ") %>
+            </h3>
+            
+           <% if session[:account_saldo] < @data['harga'] %>
+              Saldo anda tidak mencukupi, <a href="/tambah-saldo-abupay">topup disini</a>
+            <% end %>
+            <div class="card mb-2">
+              <ul class="list-group list-group-flush metode-pembayaran">
+                <li class="list-group-item">
+                  <a href="/metode-pembayaran-abupay?type=tiket&fi=<%= params['fi'] %>&rfi=<%= params['rfi'] %>&kt=<%= params['kt']%>" class="card-link"><!-- <a href="/api/transaksi/tiket?mt=3&kb=&kt=<%= @data['kode_transaksi'] %>" class="card-link"> -->
+                    <div class="media">
+                      <%= image_tag 'logo/abupay.png', :class => 'd-flex align-self-center mr-3', :alt => '' %>
+                      <div class="media-body">
+                        <h5 class="mt-2 mb-0">
+                          AbuPay/Deposit
+
+                          <p class="float-right text-capitalize text-muted mb-0">
+                            Lanjutkan <i class="icon-arrow-right32"></i>
+                          </p>
+                        </h5>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card mb-2">
+              <div class="card-header c-h-title text-muted">
+                Bank Transfer
+              </div>
+              <% @bank.each do |item| %>
+              <% @gambar = Bank::abutours(item['kdbank'])['image']%>
+              
+              <ul class="list-group list-group-flush metode-pembayaran">
+                <li class="list-group-item">
+                  <a href="/api/transaksi/tiket?mt=1&kb=<%= item['kdbank'] %>&kt=<%= @data['kode_transaksi'] %>&fi=<%= params['fi'] %>" class="card-link">
+                    <div class="media">
+                      <%= image_tag @gambar, :class => 'd-flex align-self-center mr-3', :alt => '' %>
+                      <div class="media-body">
+                        <h5 class="mt-2 mb-0">
+                          Bank <%= item['nama'] %>
+
+                          <p class="float-right text-capitalize text-muted mb-0">
+                            Lanjutkan  <i class="icon-arrow-right32"></i>
+                          </p>
+                        </h5>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------- -->
+<% end %>
+
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+<% end %>

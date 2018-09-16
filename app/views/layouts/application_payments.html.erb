@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="js csstransforms supports csstransforms3d">
+<head>
+  <%= yield :headpayments %>
+  <%= favicon_link_tag 'logo/favicon.png' %>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+  <meta name="description" content="Abu Tours & Travel Umrah memberikan jaminan transaksi aman, fasilitas dan pelayanan ibadah yang lebih baik untuk perjalanan umroh maupun haji anda. Kami Tumbuh dari Kepercayaan Anda, lebih dari sekedar nikmatnya beribadah."/>
+  <meta name="author" content="PT Amanah Bersama Ummat"/>
+
+  <meta property="og:title" content="abutours.com - lebih dari sekedar nikmatnya ibadah"/>
+  <meta property="og:description" content="abutours.com - semua bisa umrah bersama kami"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.abutours.com"/>
+  <meta property="og:image" content="https://www.abutours.com/abutours/logo/favicon.png"/>
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application', type: 'text/javascript'  %>
+
+  <% if Rails.env.production? %>
+
+      <!-- Google Tag Manager -->
+      <script>(function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({
+              'gtm.start':
+                  new Date().getTime(), event: 'gtm.js'
+          });
+          var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src =
+              'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-5HKZP56');</script>
+      <!-- End Google Tag Manager -->
+
+  <% end %>
+</head>
+<body style="min-width: 1120px !important">
+<!-- --------------------------------------------------- -->
+<%= yield :payments %>
+<!-- ------------- modal detil tagihan -------------------------------------- -->
+<div class="modal fade modal-pay" id="detiltagihan" tabindex="-1" role="dialog" aria-labelledby="detiltagihanTitle"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detiltagihanTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="icon-cross2"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="mb-2">
+          Ringkasan Tagihan
+        </h5>
+
+        <table class="table">
+          <tr>
+            <td>
+              <p class="mb-1">
+                Jam Tangan Pria Skmei 1219 Black Digital Led Mens...
+              </p>
+              <p class="mb-1">
+                1 x 200.000
+              </p>
+            </td>
+
+            <td class="text-right">
+              <p class="mb-1">
+                Rp 200.000
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <p class="mb-1">
+                Biaya Pengiriman
+              </p>
+              <p class="mb-1">
+                1 x 20.000
+              </p>
+            </td>
+
+            <td class="text-right">
+              <p class="mb-1">
+                Rp 20.000
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              <p class="mb-1">
+                Total tagihan
+              </p>
+            </th>
+
+            <th class="text-right">
+              <p class="mb-1">
+                Rp 220.000
+              </p>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------------- -->
+</body>
+<%= javascript_include_tag 'application' %>
+<%= yield :footpayments %>
+<script type="text/javascript">
+  if (<%= !flash[:status].nil? ? flash[:status] : false %>) {
+        if ("<%= @res %>" == 'success') {
+            swal({
+                text: '<%= flash[:message] %>',
+                imageUrl: './assets/lib/sticker/36.png',
+                imageHeight: 96,
+                timer: 3000,
+                onOpen: function () {
+                    swal.showLoading()
+                }
+            });
+        }
+    }
+    if (<%= !flash[:status].nil? ? flash[:status] : false %>) {
+        if ("<%= @res %>" == 'fails') {
+            swal({
+                text: '<%= flash[:message] %>',
+                imageUrl: './assets/lib/sticker/17.png',
+                imageHeight: 96,
+                timer: 3000,
+                onOpen: function () {
+                    swal.showLoading()
+                }
+            });
+        }
+    }
+</script>
+</html>

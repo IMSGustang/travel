@@ -1,0 +1,175 @@
+<% content_for :head do %>
+    <title>Tagihan Evoucher | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Tagihan</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts mt-0">
+              <div class="card c-dashboard-content mt-0 mb-3">
+                <div class="card-body c-dashboard-content__item">
+                  <div class="card card-invoice__pemesanan mb-2 mt-2">
+                    <div class="card-block card-invoice__pemesanan-item">
+                      <h4 class="card-title card-title-h4 mt-2">
+                        Tagihan Pembayaran <strong>#Abu78y6</strong>
+                      </h4>
+
+                      <h6 class="card-title card-title-h6 mb-3">
+                        Mohon Segera Selesaikan Pembayaran anda
+                      </h6>
+                      <!-- ---------------------------------------- -->
+                      <p class="card-text text-center">
+                        Transfer dana anda sebelum tanggal <strong>31 Mei 2017 14:04</strong>
+                      </p>
+                      <!-- ---------------------------------------- -->
+                      <p class="card-text text-center mt-5 mb-2">
+                        sisa waktu pembayaran
+                      </p>
+                      <!-- ---------------------------------------- -->
+                      <div class="waktu-pembayaran">
+                        <span class="countdown"></span>
+                      </div>
+                      <!-- ---------------------------------------- -->
+                      <div class="row">
+                        <div class="offset-sm-2 col-sm-8">
+                          <div class="alert alert-warning mt-5 mb-5" role="alert">
+                            <p class="card-text pt-2">
+                              Jumlah yang harus dibayar
+                            </p>
+
+                            <h5 class="card-title text-center mt-2 mb-2">
+                              <strong>
+                                Rp 300.000
+                              </strong>
+                            </h5>
+
+                            <p class="card-text card-text-info mb-2">
+                              Harap transfer sesuai jumlah pembayaran hingga tiga digit terakhir.
+                              <br>
+                              <span>
+                            Jika jumlah yang ditransfer tidak sesuai, proses verifikasi pembayaran Anda dapat terhambat.
+                        </span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ---------------------------------------- -->
+                      <p class="card-text text-center mb-3">
+                        Pembayaran dapat dilakukan ke salah satu rekening a/n PT Amanah Bersama Ummat berikut
+                        ini:
+                      </p>
+                      <!-- ---------------------------------------- -->
+                      <div class="row">
+                        <div class="offset-sm-3 col-sm-6">
+                          <table class="table">
+                            <tr>
+                              <td>
+                                <%= image_tag 'lib/payment-icon/MANDIRI.png', :alt => '' %>
+                              </td>
+                              <td>
+                                <p class="nameRek mb-1 mt-2 text-right">
+                                  Bank MANDIRI, Jakarta
+                                </p>
+                                <p class="numberRek mb-1 text-right">
+                                  15200 777 54444
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <%= image_tag 'lib/payment-icon/BRI.png', :alt => '' %>
+                              </td>
+                              <td>
+                                <p class="nameRek mb-1 mt-2 text-right">
+                                  Bank BRI, Jakarta
+                                </p>
+                                <p class="numberRek mb-1 text-right">
+                                  15200 777 54444
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <%= image_tag 'lib/payment-icon/BNI.png', :alt => '' %>
+                              </td>
+                              <td>
+                                <p class="nameRek mb-1 mt-2 text-right">
+                                  Bank BNI, Jakarta
+                                </p>
+                                <p class="numberRek mb-1 text-right">
+                                  15200 777 54444
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <%= image_tag 'lib/payment-icon/BCA.png', :alt => '' %>
+                              </td>
+                              <td>
+                                <p class="nameRek mb-1 mt-2 text-right">
+                                  Bank BCA, Jakarta
+                                </p>
+                                <p class="numberRek mb-1 text-right">
+                                  15200 777 54444
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card card-invoice__pemesanan mb-3">
+                    <div class="card-block card-invoice__pemesanan-item">
+                      <h4 class="card-title card-title-h4 mb-3">
+                        Ringkasan Pembelian
+                      </h4>
+
+                      <dl class="row">
+                        <dd class="col-12">
+                          <p class="title">Nomor Transaksi</p>
+                          Abu53672
+                        </dd>
+
+                        <dd class="col-12">
+                          <p class="title">Nama Paket</p>
+                          Label nama
+                        </dd>
+
+                        <dd class="col-12">
+                          <p class="title">Harga</p>
+                          <h5>Rp 300.000</h5>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<!-- --------------------------------------------------- -->

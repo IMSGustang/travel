@@ -1,0 +1,97 @@
+<div class="card-body c-dashboard-side__item banner pt-3 pb-3">
+  <div class="col-12 pl-0 pr-0">
+    <table class="table mb-0">
+      <tr>
+        <td>
+          <a onclick="showModal();" href="/tambah-saldo-abupay">
+            <div class="media">
+              <div class="d-flex align-self-center mr-2">
+                <div class="icons-md icons-deposit"></div>
+              </div>
+              <div class="media-body">
+                <p class="mb-0">Deposit (Rp)</p>
+                <h5 class="mt-1">
+                  <strong><%= number_to_currency(session['account_saldo'], precision: 0, unit: " ") %></strong>
+                </h5>
+              </div>
+            </div>
+          </a>
+        </td>
+
+        <td>
+          <a onclick="showModal();" href="/saldo-priority">
+            <div class="media">
+              <div class="d-flex align-self-center mr-2">
+                <div class="icons-md icons-cashback"></div>
+              </div>
+              <div class="media-body">
+                <p class="mb-0">CashBack (Rp)</p>
+                <h5 class="mt-1">
+                  <strong><%= number_to_currency(session[:saldoPriority], precision: 0, unit: " ") %></strong>
+                </h5>
+              </div>
+            </div>
+          </a>
+        </td>
+
+        <td>
+          <div class="media">
+            <div class="d-flex align-self-center mr-2">
+              <div class="icons-md icons-cashbacksaldo"></div>
+            </div>
+            <div class="media-body">
+              <p class="mb-0">Saldo CashBack (Rp)</p>
+              <h5 class="mt-1">
+                <strong><%= number_to_currency(session[:limitSaldoPriority], precision: 0, unit: " ") %></strong>
+              </h5>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="media">
+            <div class="d-flex align-self-center mr-2">
+              <div class="icons-md icons-poin"></div>
+            </div>
+            <div class="media-body">
+              <p class="mb-0">Poin</p>
+              <h5 class="mt-1">
+                <strong><%= session[:account_poin] %></strong>
+              </h5>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- --------------------------------------------------------------- -->
+</div>
+<!-- --------------------------------------------------- -->
+<% content_for :foot do %>
+    <!-- --------------------------------------------------- -->
+    <script type="text/javascript">
+        function showModal() {
+            var delay = function (ms) {
+                return new Promise(function (r) {
+                    setTimeout(r, ms)
+                })
+            };
+
+            var time = 2000;
+            delay(time)
+                .then(function () {
+                    $('body').loadingModal('destroy');
+                });
+
+            $('body').loadingModal({
+                position: 'auto',
+                text: 'Loading',
+                color: '#fff',
+                opacity: '0.5',
+                backgroundColor: 'rgb(0, 0, 0)',
+                animation: 'fadingCircle'
+            });
+        }
+    </script>
+    <!-- --------------------------------------------------- -->
+<% end %>

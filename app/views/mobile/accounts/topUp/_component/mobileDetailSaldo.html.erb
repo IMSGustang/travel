@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <table class="table table-sm mb-0">
+      <tr>
+        <td>
+          <small>Total Deposit</small>
+          <h6 class="mb-0">
+            Rp <%= number_to_currency(session['account_saldo'], precision: 0, unit: " ") %>
+          </h6>
+        </td>
+        <td width="100">
+          <a href="#" data-toggle="modal" data-target="#formtopup" class="btn btn-block btn-danger">
+            Top Up
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-footer">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <div class="d-flex">
+          <h6 class="mb-0 mr-auto text-uppercase">Cashback</h6>
+          <h6 class="mb-0">Rp <%= number_to_currency(session[:saldoPriority], precision: 0, unit: " ") %></h6>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="d-flex">
+          <h6 class="mb-0 mr-auto text-uppercase">Saldo Cashback</h6>
+          <h6 class="mb-0">Rp <%= number_to_currency(session[:limitSaldoPriority], precision: 0, unit: " ") %></h6>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

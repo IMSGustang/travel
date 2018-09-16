@@ -1,0 +1,114 @@
+<% content_for :head do %>
+    <title>Transaksi AbuPay/Deposit | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">History Transaksi</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <ul class="nav tabs-voucher mb-2">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/tambah-saldo-abupay') %>" href="/tambah-saldo-abupay">TopUp
+                    Abupay/Deposit</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/transaksi-abupay') %>" href="/transaksi-abupay">Riwayat
+                    Transaksi</a>
+                </li>
+              </ul>
+              <!-- --------------------------------------------------- -->
+              <% if !@data.nil? %>
+              <div class="card c-dashboard-content mt-1 mb-3">
+                <div class="card-body c-dashboard-content__item">
+                  <% @data.each do |item| %>
+                      <table class="table table-transaksi">
+                        <tr>
+                          <th width="151">
+                            <small class="text-uppercase">Nomor Tagihan</small>
+                            <p class="m-0">
+                              <strong><%= item['kode_transaksi'] %></strong>
+                            </p>
+                          </th>
+
+                          <th width="131">
+                            <small class="text-uppercase">Jumlah</small>
+                            <p class="m-0">
+                              <%= number_to_currency(item['kredit'], precision: 0, unit: "Rp ") %>
+                            </p>
+                          </th>
+
+                          <th>
+                            <small class="text-uppercase">Statuss</small>
+                            <p class="m-0 text-danger text-capitalize">
+                              <% if item['status_pembayaran'] == 'order'
+                                   status = 'Menunggu Pembayaran'
+                                elsif item['status_pembayaran'] == 'confirm'
+                                  status = 'Menunggu Approval'
+                                elsif item['status_pembayaran'] == 'success'
+                                  status = 'Sukses'
+                                elsif item['status_pembayaran'] == 'rejected'
+                                  status = 'Ditolak'
+                              end %>
+                              <%= status %>
+                            </p>
+                          </th>
+
+                          <th width="131">
+                            <small class="text-uppercase">Tanggal</small>
+                            <p class="m-0">
+                              <%= TimeFormat::indonesia(item['created_at']) %>
+                            </p>
+                          </th>
+
+                          <th width="101">
+                            <% if item['status_pembayaran'] == 'order' %>
+                            <a href="/konfirmasi-pembayaran/<%= item['kode_transaksi'] %>?type=deposit" class="btn btn-block btn-sm btn-warning">Konfirmasi</a>
+                            <% end %>
+                          </th>
+                        </tr>
+                      </table>
+                  <% end %>
+                </div>
+              </div>
+              <% else %>
+              <!-- --------------------------------------------------- -->
+              <div class="card c-dashboard-content mt-1 mb-3">
+                <div class="card-body c-dashboard-content__item">
+                  <div class="w-blank text-center p-5">
+                    <%= image_tag 'icon_blank/no_transaction.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                    <p class="mb-0">
+                      Maaf, Anda belum memiliki transaksi
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+        </div>
+      </div>
+    </section>
+<% end %>

@@ -1,0 +1,100 @@
+<%= content_for :active_otp do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>OTP</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-otp">
+      <div class="card">
+        <div class="card-body">
+          <form id="otpForm" method="post" action="" class="needs-validation1" novalidate>
+            <input type="hidden" name="kode_transaksi" value="<%= data['kodeTransaksi'] %>">
+            <div class="form-group">
+              <p>
+                Masukkan kode verifikasi
+              </p>
+              <table class="table table-sm mb-0">
+                <tr>
+                  <td>
+                    <input type="text" id="otp1" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp2" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp3" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp4" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp5" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp6" name="otp[]" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="6" class="pt-3">
+                    <p class="card-text text-center mt-12">
+                      Tidak terima kode ?
+                      <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="6" class="pt-3">
+                    <a onclick="nextPaid()" class="btn btn-block btn-danger">Kirim</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+<% end %>
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $.autotab({tabOnSelect: true});
+        $('.kode').autotab('filter', 'kode');
+
+        function nextPaid() {
+            $.ajax({
+                url: "/api/deposit/otp",
+                type: "get",
+                data: $("#otpForm").serialize(),
+                beforeSend: function () {
+                    swal({title: "Mohon Tunggu", text: "Proses sedang berlangsung", showConfirmButton: false});
+                },
+                success: function (data) {
+                    if (data.status == 200) {
+                        swal({
+                            title: "Sukses!",
+                            text: "Berhasil melakukan pembayaran",
+                            type: "success",
+                            showConfirmButton: false
+                        });
+                        location.href = "/evoucher/beli/<%= data['kodeTransaksi'] %>/invoice"
+                    } else {
+                        sweetAlert("Mohon Maaf...", data.message, "error");
+                    }
+                },
+                error: function (xhr, thrownError, err) {
+                    if (err != 'Internal Server Error') {
+                        if (err == 'Timeout') {
+                            sweetAlert("Mohon Maaf...", "Koneksi terputus, Coba Lagi", "error");
+                        }
+                        sweetAlert("Mohon Maaf...", err, "error");
+                    } else {
+                        sweetAlert("Mohon Maaf...", "Terjadi kesalahan", "warning");
+                    }
+                }
+            });
+        }
+    </script>
+<% end %>

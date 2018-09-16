@@ -1,0 +1,269 @@
+<% content_for :headpayments do %>
+    <title>Metode Pembayaran Transfer</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pembelian</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Selesai</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment-item">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <form method="post" action="/api/transaksi/paket?p=<%= params['p'] %>&kk=<%= params['kk'] %>&mb=<%= params['mb'] %>&type=<%= params['type'] %>&mtd=TRANSFER">
+              <div class="card mt-2">
+                <ul class="list-group list-group-flush metode-pembayaran">
+                  <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-body">
+                        <h5 class="mt-3 mb-3">
+                          Jumlah Deposit Anda
+                        </h5>
+                      </div>
+                      <div class="d-flex ml-3">
+                        <h3 class="mb-0 mt-3">
+                          <%= number_to_currency(session[:account_saldo], precision: 0, unit: "Rp ") %>
+                        </h3>
+                      </div>
+                    </div>
+                  </li>
+
+                  <% if @paket['type'] == 'tiket' %>
+                      <% if @paket['flight_type'] == 'two_ways' %>
+                          <li class="list-group-item">
+                            <div class="row justify-content-center">
+                              <div class="col-10">
+                                <div class="media">
+                                  <% @paket['berangkat'].each do |item| %>
+                                      <% if item['gambar'] && !item['gambar'].nil? %>
+                                          <%= image_tag item['gambar'], :class => 'd-flex align-self-center mr-4', :alt => '', :style => 'height: 151px;' %>
+                                      <% else %>
+                                          <%= image_tag 'no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '' %>
+                                      <% end %>
+                                  <% end %>
+                                  <div class="media-body">
+                                    <h5 class="lead text-uppercase mt-2 mb-2">Detail Pembelian</h5>
+
+                                    <p class="mb-0 mt-3">
+                                      <%= @paket['berangkat_nama'] %>
+                                    </p>
+
+                                    <!-- <h5 class="mt-4">
+                                <p class="mb-1 text-muted">
+                                  <small>Harga Bayar</small>
+                                </p>
+                                <%= number_to_currency(@paket['harga'], precision: 0, unit: "Rp ") %>
+                              </h5> -->
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="row justify-content-center">
+                              <div class="col-10">
+                                <div class="media">
+                                  <% @paket['pulang'].each do |item| %>
+                                      <%= image_tag item['gambar'], :class => 'd-flex align-self-center mr-4', :alt => '', :style => 'height: 151px;' %>
+                                  <% end %>
+                                  <div class="media-body">
+                                    <h5 class="lead text-uppercase mt-2 mb-2">Detail Pembelian</h5>
+
+                                    <p class="mb-0 mt-3">
+                                      <%= @paket['pulang_nama'] %>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="row justify-content-center">
+                              <h5 class="mt-4">
+                                <p class="mb-1 text-muted">
+                                  <small>Harga Bayar</small>
+                                </p>
+                                <%= number_to_currency(@paket['harga'], precision: 0, unit: "Rp ") %>
+                              </h5>
+                            </div>
+                          </li>
+                      <% else %>
+                          <li class="list-group-item">
+                            <div class="row justify-content-center">
+                              <div class="col-10">
+                                <div class="media">
+                                  <% if @paket['gambar'] && !@paket['gambar'].nil? %>
+                                      <%= image_tag @paket['gambar'], :class => 'd-flex align-self-center mr-4', :alt => '', :style => 'height: 171px;' %>
+                                  <% else %>
+                                      <%= image_tag 'no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '', :style => 'height: 171px !important;' %>
+                                  <% end %>
+                                  <div class="media-body">
+                                    <h5 class="lead text-uppercase mt-2 mb-2">Detail Pembelian</h5>
+
+                                    <p class="mb-0 mt-3">
+                                      <%= @paket['nama'] %>
+                                    </p>
+
+                                    <h5 class="mt-4">
+                                      <p class="mb-1 text-muted">
+                                        <small>Harga Bayar</small>
+                                      </p>
+                                      <%= number_to_currency(@paket['harga_jual'], precision: 0, unit: "Rp ") %>
+                                    </h5>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                      <% end %>
+                  <% else %>
+                      <li class="list-group-item">
+                        <div class="row justify-content-center">
+                          <div class="col-10">
+                            <div class="media">
+                              <% if @paket['gambar'] && !@paket['gambar'].nil? %>
+                                  <%= image_tag @paket['gambar'], :class => 'd-flex align-self-center mr-4', :alt => '', :style => 'height: 171px !important;' %>
+                              <% else %>
+                                  <%= image_tag 'no_images/no_package_1.png', :class => 'mx-auto d-block', :alt => '', :style => 'height: 171px !important;' %>
+                              <% end %>
+                              <div class="media-body">
+                                <h5 class="lead text-uppercase mt-2 mb-2">Detail Pembelian</h5>
+
+                                <p class="mb-0 mt-3">
+                                  <%= @paket['nama'] %>
+                                </p>
+
+                                <h5 class="mt-4">
+                                  <p class="mb-1 text-muted">
+                                    <small>Harga Bayar</small>
+                                  </p>
+                                  <%= number_to_currency(@paket['harga_jual'], precision: 0, unit: "Rp ") %>
+                                </h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                  <% end %>
+                </ul>
+              </div>
+
+              <div class="card p-3 mb-2 mt-1">
+                <div class="row">
+                  <div class="col-6">
+                    <% if params['type'] == 'tiket' %>
+                      <a href="/pilih-metode-pembayaran/tiket?fi=<%= params[:fi] %>&rfi=<%= params[:rfi] %>&kt=<%= params[:kt] %>" class="btn btn-block btn-secondary">Kembali</a>
+                    <% else %>
+                      <a href="<%= request.referrer %>" class="btn btn-block btn-secondary">Kembali</a>
+                    <% end %>
+                  </div>
+                  <div class="col-6">
+                    <% if params['type'] == 'tiket' %>
+                        <a href="/api/transaksi/tiket?mt=3&kb=&kt=<%= params['kt'] %>" class="btn btn-block btn-success">Bayar</a>
+                    <% else %>
+                        <a href="/api/transaksi/paket?p=<%= params['p'] %>&kk=<%= params['kk'] %>&mb=Abupay&type=<%= params['type'] %>&mtd=ABUPAY&th=<%= params['th'] %>&bln=<%= params['bln'] %>" class="btn btn-block btn-success">Bayar</a>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------- -->
+<% end %>
+<!-- ------------------------------------- -->
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <div class="modal fade" id="abupayOTP" role="dialog" aria-labelledby="abupayOTP" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+          <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+          </button>
+          <form id="gantiNomorOtp" name="gantiNomorOtp" method="post" action="/api/confirm-change-number" class="needs-validation1" novalidate>
+            <div class="modal-body p-4">
+              <div class="form-group row m-0 justify-content-center">
+                <div class="col-10">
+                  <p>
+                    Masukkan kode verifikasi
+                  </p>
+                  <table class="table table-flex">
+                    <tr>
+                      <td>
+                        <input type="text" id="otp1" name="otp1" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp2" name="otp2" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp3" name="otp3" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp4" name="otp4" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp5" name="otp5" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp6" name="otp6" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="6" class="pt-3">
+                        <p class="card-text text-center mt-12">
+                          Tidak terima kode ? <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="6" class="pt-3">
+                        <button type="submit" class="btn btn-sm btn-block btn-danger">Kirim</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        $(".txtOnly").keypress(function (e) {
+            var key = e.keyCode;
+            if (key >= 48 && key <= 57) {
+                e.preventDefault();
+            }
+        });
+
+        $.autotab({tabOnSelect: true});
+        $('.kode').autotab('filter', 'kode');
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>
+<!-- ------------------------------------- -->

@@ -1,0 +1,509 @@
+<% content_for :headpayments do %>
+    <title>Form Pemesanan Paket Abutours | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pemesan</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Input Data Jamaah</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Konfirmasi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-formpemesanan">
+      <div class="container">
+        <div class="row">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <form action="" method="post" id="needs-validation" novalidate>
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <h4 class="card-title mt-0 mb-4 text-uppercase text-muted">
+                    Data Pemesan
+                  </h4>
+                  <div class="form-group row">
+                    <div class="col-4">
+                      <label class="col-form-label">Title</label>
+                      <select id="cong" name="title" class="form-control" disabled="">
+                        <option value="T" data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                          Tuan
+                        </option>
+                        <option value="Ny" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nyonya
+                        </option>
+                        <option value="N" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Nona
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="col-8">
+                      <label class="col-form-label">Nama Lengkap</label>
+                      <input type="text" class="form-control txtOnly" id="valid01" placeholder="" value="<%= @data['user']['nama_depan'] %> <%= @data['user']['nama_belakang'] %>" disabled="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Email</label>
+                      <input type="email" class="form-control" id="valid02" name="email" placeholder="" value="<%= @data['user']['email'] %>" disabled="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-7">
+                      <label class="col-form-label">Nomor Identitas(KTP)</label>
+                      <input type="number" minlength="16" maxlength="16" class="form-control" id="valid03" placeholder="" value="<%= @data['user']['ktp'] %>" disabled="">
+                    </div>
+                    <div class="col-5">
+                      <label class="col-form-label">Nomor Telepon</label>
+                      <input type="number" class="form-control" id="valid04" name="nomorTelepon" placeholder="" value="<%= Number::indonesianFormatPhone(@data['user']['telepon']) %>" disabled="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <label class="col-form-label">Tempat Lahir</label>
+                      <input type="text" class="form-control txtOnly" id="valid07" placeholder="" value="<%= @data['detail']['tempat_lahir'] %>" disabled="">
+                    </div>
+                    <div class="col-6">
+                      <label class="col-form-label">Tanggal Lahir</label>
+                      <input type="date" class="form-control" id="valid05" placeholder="" value="<%= @data['detail']['tanggal_lahir'] %>" disabled="">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Alamat Lengkap</label>
+                      <textarea id="valid06" class="form-control" rows="3" disabled><%= @data['detail']['alamat'] %></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <span class="input-group-btn float-right">
+                        <button id="edit" class="btn btn-info" type="button" style="width: 100px">Edit</button>
+                      </span>
+                      <span class="input-group-btn float-right">
+                        <button id="simpan" class="btn btn-info" type="button" style="width: 100px; display: none;" onclick="PemesananInformasiPaket()">Simpan</button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <p class="small justify">Untuk data lainnya silahkan lengkapi di menu input data jamaah di
+                        Dashboard agen/mitra atau silahkan jamaah datangi kantor cabang abutours.com terdekat untuk
+                        melengkapi data jamaah dengan membawa berkas asli seperti:</p>
+                      <ol class="small" style="-webkit-padding-start: 15px;">
+                        <li>Pasport</li>
+                        <li>Kartu Keluarga</li>
+                        <li>Buku Nikah (bagi yang sudah menikah</li>
+                        <li>KTP</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% if @jumlah_voucher_tersedia > 0 %>
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <h5 class="card-title">
+                    Punya Kode Voucher ?
+                  </h5>
+                  <ul class="list-unstyled daftar-produk m-0">
+                    <li class="daftar-produk__item align-items-stretch border-none">
+                      <div class="form-group row" id="b2">
+                        <div class="col-8">
+                          <div class="input-group">
+                            <input type="text" class="form-control" name="kodeVoucher" placeholder="Masukan kode voucher..." aria-label="Masukan kode voucher..." onchange="chechVoucher(this)" required>
+                          </div>
+                        </div>
+
+                        <div class="col-4">
+                          <table class="table table-flex">
+                            <tr>
+                              <td class="border-none p-0">
+                                <button onclick="appendText()" class="btn btn-block btn-light text-success" type="button">
+                                  <i class="icon-file-plus"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div id="code"></div>
+                      <div class="form-group mb-0">
+                        <div class="row justify-content-md-center">
+                          <div class="col-6">
+                            <button class="btn btn-block btn-info" type="button" id="voucher-uv" data-allow='<%= @jumlah_voucher_tersedia %>' data-price="<%= @paket['harga_jual'].to_i %>">Gunakan</button>
+                          </div>
+                        </div>
+                        <div class="form-group mb-0">
+                        <div class="row justify-content-md-center">
+                          <div class="col-6">
+                            <div id="voucher-response"></div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <% end %>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <h5 class="card-title text-uppercase text-muted">
+                    Ringkasan Pembelian
+                  </h5>
+                  <ul class="list-unstyled daftar-produk">
+                    <li class="media daftar-produk__item d-flex align-items-stretch">
+                      <div class="media-body daftar-produk__item-header">
+                        <%= image_tag !@paket['gambar'].nil? ? @paket['gambar'] : "", :class => 'd-flex', :alt => '' %>
+                      </div>
+
+                      <div class="media-body daftar-produk__item-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item list-group-item__nm-paket">
+                            <p class="item-link item-line">
+                              <%= @paket['nama'] %>
+                            </p>
+                          </li>
+
+                          <li class="list-group-item list-group-item__hr-paket">
+                            <%= number_to_currency(@paket['harga_jual'], precision: 0, unit: "#{!@paket['tipe_curr'].nil? ? @paket['tipe_curr'] : "Rp "} ") %>
+                          </li>
+
+                          <li class="list-group-item list-group-item__fa-paket">
+                            <i class="icon-star-full2"></i>
+                            <i class="icon-star-full2"></i>
+                            <i class="icon-star-full2"></i>
+                            <i class="icon-star-full2"></i>
+                            <i class="icon-star-empty3"></i>
+                            <span class="ml-1">Fasilitas</span>
+                          </li>
+
+                          <li class="list-group-item list-group-item__kb-paket">
+                            Tahun keberangkatan <%= @tahun %>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="media-body daftar-produk__item-footer">
+                        <p class="mb-0">
+                          <span>Travel terpercaya</span><br>
+                          abutours.com
+                        </p>
+
+                        <p class="mb-0">
+                          <span>Lama Umrah</span><br>
+                          <%= @hari %> Hari
+                        </p>
+
+                        <p class="mb-0">
+                          <span>Jenis Paket</span><br>
+                          <%= @paket['jenis_paket'] %>
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- ------------------------------------- -->
+          <div class="col-4 pl-0 sticky">
+            <div class="card c-ringkasan theiaStickySidebar">
+              <div class="card-body c-ringkasan__item">
+                <h6 class="card-title c-ringkasan__title text-uppercase text-muted">
+                  Ringkasan Pesanan
+                </h6>
+
+                <dl class="row">
+                  <dt class="col-6">Total Harga Paket</dt>
+                  <dd class="col-6 text-md-right" id="total-harga-paket">
+                    <%= number_to_currency(@paket['harga_jual'], precision: 0, unit: "#{!@paket['tipe_curr'].nil? ? @paket['tipe_curr'] : "Rp "} ") %>
+                  </dd>
+
+                  <dt class="col-6">Potongan Voucher</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp <span id="ptvc">0</span>
+                  </dd>
+
+                  <dt class="col-6">Administrasi</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 0
+                  </dd>
+
+                  <dt class="col-6">PPN</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 0
+                  </dd>
+                </dl>
+
+                <hr class="my-2">
+
+                <dl class="row">
+                  <dt class="col-6"><strong>Total Pembayaran</strong></dt>
+                  <dd class="col-6 text-md-right">
+                    <strong id="total-pembayaran">
+                      <%= number_to_currency(@paket['harga_jual'], precision: 0, unit: "#{!@paket['tipe_curr'].nil? ? @paket['tipe_curr'] : "Rp "} ") %>
+                    </strong>
+                  </dd>
+                </dl>
+              </div>
+              <% if @paket[:status] == false %>
+                  <div class="col-12 mb-2">
+                    <a href="/pilih-metode-pembayaran?p=<%= params['id_produk'] %>&kk=<%= params['kk'] %>&type=<%= params['type'] %>&th=<%= params['th'] %>&bln=<%= params['bln'] %>" id="lanjutPembayaran" class="btn btn-lg btn-block btn-danger disabled text-uppercase" onclick="">Pesan Sekarang</a>
+                  </div>
+              <% else %>
+                  <div class="col-12 mb-2">
+                    <a href="/pilih-metode-pembayaran?p=<%= params['id_produk'] %>&kk=<%= params['kk'] %>&type=<%= params['type'] %>&th=<%= params['th'] %>&bln=<%= params['bln'] %>" id="lanjutPembayaran" class="btn btn-lg btn-block btn-danger text-uppercase" onclick="">Pesan Sekarang</a>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+          <!-- ------------------------------------- -->
+        </div>
+      </div>
+    </section>
+    <div style="display: none;" id="dumpkv"></div>
+    <!-- ------------------------------------- -->
+<% end %>
+
+<% content_for :footpayments do %>
+
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        // sticky scroll
+        $(document).ready(function () {
+            $('.sticky')
+                .theiaStickySidebar({
+                    additionalMarginTop: 10,
+                    additionalMarginBottom: 20
+                });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lanjutPembayaran").on('click', function (e) {
+
+                if ($('#valid03').val() == "") {
+                    $('#valid03').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid03').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid01').val() == "") {
+                    $('#valid01').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid01').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid02').val() == "") {
+                    $('#valid02').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid02').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid04').val() == "") {
+                    $('#valid04').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid04').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid05').val() == "") {
+                    $('#valid05').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid05').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid06').val() == "") {
+                    $('#valid06').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid06').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid07').val() == "") {
+                    $('#valid07').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid07').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#simpan").on('click', function (e) {
+                e.preventDefault();
+                if ($('#valid03').val() == "") {
+                    $('#valid03').css('border-color', 'red');
+                } else {
+                    $('#valid03').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid01').val() == "") {
+                    $('#valid01').css('border-color', 'red');
+                } else {
+                    $('#valid01').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid02').val() == "") {
+                    $('#valid02').css('border-color', 'red');
+                } else {
+                    $('#valid02').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid04').val() == "") {
+                    $('#valid04').css('border-color', 'red');
+                } else {
+                    $('#valid04').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid05').val() == "") {
+                    $('#valid05').css('border-color', 'red');
+                } else {
+                    $('#valid05').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid06').val() == "") {
+                    $('#valid06').css('border-color', 'red');
+                } else {
+                    $('#valid06').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid07').val() == "") {
+                    $('#valid07').css('border-color', 'red');
+                } else {
+                    $('#valid07').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".voucher").click(function () {
+                    $(".c-voucher").toggle('speed,callback');
+                });
+            });
+
+        $(document).ready(function () {
+            $('#title').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | Best Travel Services');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#edit").click(function () {
+                $("#edit").hide();
+
+            });
+            $("#edit").click(function () {
+                $("#simpan").show();
+            });
+            $("#simpan").click(function () {
+                $("#edit").show();
+            });
+            $("#simpan").click(function () {
+                $("#simpan").hide();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#edit').click(function () {
+                $('select, input[type=text],input[type=email],input[type=number],input[type=date],textarea').not("[name=nomorTelepon]").attr('disabled', false);
+                $("#cong").attr('disabled', false);
+            });
+            $('#simpan').click(function () {
+                $('select, input[type=text],input[type=email],input[type=number],input[type=date],textarea').not("[name=masukanVoucher]").attr('disabled', true);
+                $("#cong").attr('disabled', true);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        function appendText() {
+          var allow = $("#code").children().length + 2
+          if (allow <= $('#voucher-uv').attr('data-allow')) {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            console.log(text);
+            var txt1 = `<div class="form-group row" id="` + text + `">
+                        <div class="col-8">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Masukan kode voucher..." aria-label="Masukan kode voucher..." onchange="chechVoucher(this)" required>
+                          </div>
+                        </div>
+
+                        <div class="col-4">
+                          <table class="table table-flex">
+                            <tr>
+                            <td class="border-none p-0">
+                            <button type="button" class="btn btn-block btn-light text-danger" id="hapus" data-toggle="tooltip" data-html="true" data-placement="top" title="Hapus" onclick="removeDiv('#` + text + `')">
+                              <i class="icon-cross2"></i>
+                            </button>
+                            </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>`
+            $("#code").append(txt1);
+          }
+        }
+
+        $('#total-harga-paket').html() - "10000";
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".txtOnly").keypress(function (e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+
+            window.addEventListener('load', function() {
+                var form = document.getElementById('needs-validation');
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>

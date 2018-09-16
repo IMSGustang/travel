@@ -1,0 +1,174 @@
+<% content_for :headpayments do %>
+    <title>Form Pemesanan Tiket Abutours | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pemesan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Konfirmasi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-formpemesanan">
+      <div class="container">
+        <div class="row">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <form action="" method="post" id="submit-tiket" novalidate>
+              
+              <h4 class="card-title mt-2 mb-3">
+                Data Pemesan yang Dapat Dihubungi
+              </h4>
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <div class="form-group row">
+                    <div class="col-4">
+                        <label class="col-form-label">Title</label>
+                        <select class="dewasa" name="contitle">
+                            <option value="Mr" title="Out of Stock" disabled>Pilih title...</option>
+                            <option value="Mr" data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                              Tuan
+                            </option>
+                            <option value="Ms" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                              Nona
+                            </option>
+                            <option value="Mrs" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                              Nyonya
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-8">
+                        <label class="col-12 col-form-label">Nama Lengkap</label>
+                      <input type="text" name="connama" class="form-control" id="" placeholder="" value="" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <label class="col-form-label">Email</label>
+                      <input type="email" name="conemail" class="form-control" id="" placeholder="" value="" required>
+                    </div>
+                    <div class="col-6">
+                      <label class="col-form-label">No. Handphone</label>
+                      <input type="number" name="conphone" class="form-control" id="" placeholder="" value="" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% @tiket.each do |item| %>
+                <%= item[:total] %>
+              <h4 class="card-title mt-2 mb-3">
+                <%= item[:data][0][:html].html_safe %>
+              </h4>
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <div class="form-group row">
+                  <% (1..item[:total] - 1).each do |i| %>
+                    <div class="col-<%= item[:data][i][:html_col] %>">
+                      <label class="col-form-label"><%= item[:data][i][:name] %></label>
+                        <%= item[:data][i][:html].html_safe %>
+                    </div>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </form>
+          </div>
+          <!-- ------------------------------------- -->
+          <!-- ------------------------------------- -->
+        </div>
+      </div>
+    </section>
+    <!-- ------------------------------------- -->
+<% end %>
+
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        // sticky scroll
+        $(document).ready(function () {
+            $('.sticky')
+                .theiaStickySidebar({
+                    additionalMarginTop: 10,
+                          additionalMarginBottom  : 80
+                });
+
+        });
+
+        $(document).ready(function () {
+            $('.timepicker').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                "singleDatePicker": true,
+                "autoApply": true,
+                "showDropdowns": true
+            });
+        });
+
+        $(document).ready(function () {
+            $('.prettydrop').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#anak').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#bayi').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".txtOnly").keypress(function (e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var form = document.getElementById('submit-tiket');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>

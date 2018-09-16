@@ -1,0 +1,87 @@
+.table-pesanan {
+  margin: 0;
+  & td {
+    border: none;
+    vertical-align: middle;
+  }
+
+  & .pc-1 {
+    width: 80px;
+    padding: 0;
+    & .img-rounded {
+      max-width: 100%;
+      height: 100px;
+      -webkit-border-radius: 2px !important;
+      -moz-border-radius: 2px !important;
+      border-radius: 2px !important;
+    }
+  }
+
+  & .pc-2 {
+    & small {
+      text-transform: uppercase;
+      opacity: .5;
+    }
+
+    & h3 {
+      font-size: 14px !important;
+      text-transform: uppercase;
+    }
+
+    & p {
+      font-size: 10px;
+      opacity: .75;
+    }
+  }
+
+  & .pc-3 {
+    width: 131px;
+    small {
+      text-transform: uppercase;
+      opacity: .5;
+    }
+
+    & p {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: normal !important;
+    }
+  }
+
+  & .pc-4 {
+    width: 131px;
+    & .btn {
+      font-size: 14px;
+    }
+  }
+
+  & .pc-5 {
+    & .card {
+      border: none;
+      & .card-body {
+        padding: 12px;
+
+        & .table {
+          margin: 0;
+          & td {
+            &.td-1 {
+              & small {
+                text-transform: uppercase;
+                opacity: .5;
+              }
+
+              & img {
+                max-width: 100%;
+                height: 100px;
+              }
+
+              & p {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

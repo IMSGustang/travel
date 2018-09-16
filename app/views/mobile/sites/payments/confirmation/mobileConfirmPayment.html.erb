@@ -1,0 +1,132 @@
+<%= content_for :headmobile do %>
+    <title>Konfirmasi Pembayaran</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-confirm-transaction">
+        <% if params['type'] == 'deposit' %>
+            <form action="/api/transaksi/konfirmasi/abupay" method="post" enctype="multipart/form-data" id="needs-validation" novalidate>
+        <% elsif params['type'] == 'tiket' %>
+            <form action="/api/transaksi/konfirmasi/tiket" method="post" enctype="multipart/form-data" id="needs-validation" novalidate>
+        <% else %>
+            <form action="/api/transaksi/konfirmasi" method="post" enctype="multipart/form-data" id="needs-validation" novalidate>
+        <% end %>
+        <input type="hidden" name="type" value="<%= params['type'] %>">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-sm mb-0">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="">Bukti Transfer</label>
+                                <div class="kv-avatar text-center">
+                                    <div class="file-loading">
+                                        <input id="bkt_transfer" name="gambar" type="file" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="" class="mb-0">Nomor Transaksi</label>
+                                <input type="text" name="no_transaksi" class="form-control" value="<%= @data['no_trans'] %>" readonly>
+                                <input type="hidden" name="no_bayar" value="<%= @data['no_bukti'] %>">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="" class="mb-0">Tanggal Transaksi</label>
+                                <input type="text" name="tgl_transaksi" class="form-control" value="<%= TimeFormat::indonesia(@data['tgl_trans']) %>" readonly>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="" class="mb-0">Metode Pembayaran</label>
+                                <input type="text" name="metode_pembayaran" class="form-control" value="<%= @data['metodebayar'] %>" readonly>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="" class="mb-0">Bank Tujuan</label>
+                                <% if !@bank[0].nil? %>
+                                    <input type="text" name="" id="" class="form-control" value="<%= @bank[0]['nama'] %> <%= @bank[0]['norekening'] %>" readonly>
+                                    <input type="hidden" name="kode_bank" value="<%= @data['kdbank'] %>">
+                                <% else %>
+                                    <input type="text" name="" id="" class="form-control" value="Data tidak ditemukan" readonly>
+                                <% end %>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="" class="mb-0">Jumlah Transaksi</label>
+                                <input type="text" name="jumlah" class="form-control" value="<%= number_to_currency(@data['harga_bayar'].to_i, precision: 0, unit: "Rp ") %>" readonly>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="" class="mb-0">Jumlah Pembayaran</label>
+                                <input type="text" name="jumlah" class="form-control" id="nominalT" value="" placeholder="Rp 0" required>
+                                <small class="form-text">Masukkan nominal transfer pembayaran anda</small>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-sm btn-block btn-danger">Konfirmasi</button>
+            </div>
+        </div>
+        </form>
+        </form>
+        </form>
+    </div>
+<% end %>
+
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#bkt_transfer").fileinput({
+                overwriteInitial: true,
+                maxFileSize: 1000,
+                showClose: false,
+                showUpload: false,
+                showCaption: false,
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="ion-image"></i>',
+                removeIcon: '<i class="ion-close"></i>',
+                defaultPreviewContent: '<%= image_tag '/assets/no_images/no_package_1.png', :alt => 'Bukti transfer' %>',
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+
+            $('#nominalT').maskMoney({prefix: 'Rp ', thousands: ',', decimal: ',', precision: 0});
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            window.addEventListener("load", function () {
+                var form = document.getElementById("needs-validation");
+                form.addEventListener("submit", function (event) {
+                    if (form.checkValidity() == false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            }, false);
+        }());
+    </script>
+<% end %>

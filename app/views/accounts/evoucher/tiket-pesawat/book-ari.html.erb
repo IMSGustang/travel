@@ -1,0 +1,429 @@
+<% content_for :headpayments do %>
+    <title>Form Pemesanan Tiket Abutours | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <%= image_tag 'logo/logo.png' %>
+                </a>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link nav-link-steps" href="#">Data Pemesan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Konfirmasi</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <% if !@info_flight['departures'].nil? %>
+        <section class="c-formpemesanan">
+            <div class="container">
+                <div class="row">
+                    <!-- ------------------------------------- -->
+                    <div class="col-8">
+                        <form action="/api/tiket/order?fi=<%= @info_flight['departures']['flight_id'] %>&rfi=<%= params['rfi'] %>" method="post" id="submit-tiket" novalidate>
+
+                            <h4 class="card-title mt-2 mb-3">
+                                Data Pemesan yang Dapat Dihubungi
+                            </h4>
+                            <div class="card c-formpemesanan-item mb-3">
+                                <div class="card-body c-formpemesanan-item-block">
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label class="col-form-label">Title</label>
+                                            <select class="dewasa" name="contitle">
+                                                <option value="Mr" title="Out of Stock" disabled>Pilih title...</option>
+                                                <option value="Mr" data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                                                    Tuan
+                                                </option>
+                                                <option value="Ms" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                                                    Nona
+                                                </option>
+                                                <option value="Mrs" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                                                    Nyonya
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-8">
+                                            <label class="col-12 col-form-label">Nama Lengkap</label>
+                                            <input type="text" name="connama" class="form-control" id="" placeholder="" value="" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-6">
+                                            <label class="col-form-label">Email</label>
+                                            <input type="email" name="conemail" class="form-control" id="" placeholder="" value="" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="col-form-label">No. Handphone</label>
+                                            <input type="number" name="conphone" class="form-control" id="" placeholder="" value="" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <% @info_flight['required'].each do |key, value| %>
+                                    <% kategori = value['category'] %>
+                                    <% tipe = value['type'] %>
+                                    <% isi = value['mandatory'] %>
+                                    <% label = value['FieldText'] %>
+                                    <!--<!%= key %> dengan kategori <!%= value['category'] %> dan isi <!%= value %>-->
+                                    <% if isi == 1 %>
+                                        <% if tipe == "textbox" %>
+                                            <div class="col-6">
+                                                <label class="col-form-label"><%= label %></label>
+                                                <input type="text" class="form-control" name="<%= key %>" id="" placeholder="" value="" data-kategori="<%= kategori %>">
+                                            </div>
+                                        <% elsif tipe == "combobox" %>
+                                            <div class="col-6">
+                                                <label class="col-form-label"><%= label %></label>
+                                                <select class="dewasa" name="<%= key %>">
+                                                    <option value="Mr" title="Out of Stock" disabled>Pilih title...
+                                                    </option>
+                                                    <% resource = value['resource'] %>
+                                                    <% if resource.kind_of?(Array) %>
+                                                        <% value['resource'].each do |rowCombo| %>
+                                                            <option value="<%= rowCombo['name'] %>" data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                                                                <%= rowCombo['name'] %>
+                                                            </option>
+                                                        <% end %>
+                                                    <% end %>
+                                                </select>
+                                            </div>
+                                        <% elsif tipe == "datetime" %>
+                                            <div class="col-6">
+                                                <label class="col-form-label"><%= label %></label>
+                                                <input type="date" class="form-control" name="<%= key %>" id="" placeholder="" value="" data-kategori="<%= kategori %>">
+                                            </div>
+                                        <% elsif tipe == "separator" || tipe == "text" %>
+                                            <div class="col-12">
+                                                <h4 class="card-title mt-2 mb-3">
+                                                    <%= label %>
+                                                </h4>
+                                                <input type="hidden" class="form-control" name="<%= key %>" id="" placeholder="" value="" data-kategori="<%= kategori %>">
+                                            </div>
+                                        <% else %>
+                                            <div class="col-6">
+                                                <label class="col-form-label"><%= label %></label>
+                                                <input type="text" class="form-control" name="<%= key %>" id="" placeholder="" value="tipe tidak ditemukan" data-kategori="<%= kategori %>">
+                                            </div>
+                                        <% end %>
+                                    <% end %>
+                                <% end %>
+                            </div>
+
+                            <h4 class="card-title mt-2 mb-0">
+                                Rincian Harga
+                            </h4>
+                            <p style="font-size: 12px !important;">
+                                Maskapai tetap dapat meng-update harga. <br>
+                                Harga final akan Anda dapatkan di halaman Konfirmasi Pembayaran.
+                            </p>
+                            <div class="card c-formpemesanan-item mb-3">
+                                <div class="card-body c-formpemesanan-item-block">
+                                    <dl class="row">
+                                        <dt class="col-6">Total Harga Tiket</dt>
+                                        <dd class="col-6 text-md-right" id="total-harga-paket">
+                                            <strong>
+                                                <% if !@info_flight['returns'].nil? %>
+                                                    <%= number_to_currency(@info_flight['departures']['price_value'].to_i + @info_flight['returns']['price_value'].to_i, precision: 0, unit: "Rp ") %>
+                                                <% else %>
+                                                    <%= number_to_currency(@info_flight['departures']['price_value'], precision: 0, unit: "Rp ") %>
+                                                <% end %>
+                                            </strong>
+                                        </dd>
+
+                                        <dt class="col-6">Administrasi</dt>
+                                        <dd class="col-6 text-md-right">
+                                            <strong>
+                                                Rp 0
+                                            </strong>
+                                        </dd>
+
+                                        <dt class="col-6">PPN</dt>
+                                        <dd class="col-6 text-md-right">
+                                            <strong>
+                                                Rp 0
+                                            </strong>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="card-footer">
+                                    <dl class="row">
+                                        <dt class="col-6"><strong>Total Pembayaran</strong></dt>
+                                        <dd class="col-6 text-md-right text-danger">
+                                            <strong id="total-pembayaran">
+                                                <% if !@info_flight['returns'].nil? %>
+                                                    <%= number_to_currency(@info_flight['departures']['price_value'].to_i + @info_flight['returns']['price_value'].to_i, precision: 0, unit: "Rp ") %>
+                                                <% else %>
+                                                    <%= number_to_currency(@info_flight['departures']['price_value'], precision: 0, unit: "Rp ") %>
+                                                <% end %>
+                                            </strong>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- ------------------------------------- -->
+                    <div class="col-4 pl-0 sticky">
+                        <div class="card c-ringkasan theiaStickySidebar">
+                            <div class="card-body c-ringkasan__item">
+                                <h4 class="card-title c-ringkasan__title mb-0">
+                                    Penerbangan pergi
+                                </h4>
+                                <small class="text-muted">
+                                    <%= @info_flight['departures']['departure_flight_date_str'] %>
+                                </small>
+
+                                <% @info_flight['departures']['flight_infos']['flight_info'].each do |item| %>
+                                    <% if item['transit_arrival_text_city'] != "" %>
+                                        <div class="alert alert-secondary">
+                                            Transit Selama <%= item['transit_arrival_text_time'] %>
+                                            di <%= item['departure_city_name'] %>
+                                        </div>
+                                    <% end %>
+                                    <table class="table table-flex">
+                                        <tr>
+                                            <td class="border-top-0 pt-0 pb-0">
+                                                <%= image_tag item['img_src'], :class => 'rounded d-inline', :alt => '' %>
+                                                /
+                                                <small class="text-muted">
+                                                    <%= item['airlines_name'] %>
+                                                    - <%= item['flight_number'] %>
+                                                </small>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="border-top-0">
+                                                <ul>
+                                                    <li><span></span>
+                                                        <div>
+                                                            <div class="title">
+                                                                <table class="table table-flex">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <%= item['simple_departure_time'] %> <br>
+                                                                            <p class="mb-0">
+                                                                                <%= item['string_departure_date'] %>
+                                                                            </p>
+                                                                            <h6 class="mb-0 text-uppercase">
+                                                                                <%= item['departure_city_name'] + " (#{item['departure_city']})" %>
+                                                                            </h6>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="info">
+                                                                <i class="icon-airplane3 mr-2"></i><%= item['duration_hour'] + " " + item['duration_minute'] %>
+                                                            </div>
+
+                                                            <div class="title">
+                                                                <table class="table table-flex">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <%= item['simple_arrival_time'] %> <br>
+                                                                            <p class="mb-0">
+                                                                                <%= item['string_arrival_date'] %>
+                                                                            </p>
+                                                                            <h6 class="mb-0 text-uppercase">
+                                                                                <%= item['arrival_city_name'] + " (#{item['arrival_city']})" %>
+                                                                            </h6>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <!-- --------------------------------------------------------------- -->
+                                    </table>
+                                <% end %>
+                            </div>
+                            <% if !@info_flight['returns'].nil? %>
+                                <div class="card-body c-ringkasan__item">
+                                    <h4 class="card-title c-ringkasan__title mb-0">
+                                        Penerbangan pulang
+                                    </h4>
+                                    <small class="text-muted">
+                                        <%= @info_flight['returns']['departure_flight_date_str'] %>
+                                    </small>
+
+                                    <% @info_flight['returns']['flight_infos']['flight_info'].each do |item| %>
+                                        <% if item['transit_arrival_text_city'] != "" %>
+                                            <div class="alert alert-secondary">
+                                                Transit Selama <%= item['transit_arrival_text_time'] %>
+                                                di <%= item['departure_city_name'] %>
+                                            </div>
+                                        <% end %>
+                                        <table class="table table-flex">
+                                            <tr>
+                                                <td class="border-top-0 pt-0 pb-0">
+                                                    <%= image_tag item['img_src'], :class => 'rounded d-inline', :alt => '' %>
+                                                    /
+                                                    <small class="text-muted">
+                                                        <%= item['airlines_name'] %>
+                                                        - <%= item['flight_number'] %>
+                                                    </small>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="border-top-0">
+                                                    <ul>
+                                                        <li><span></span>
+                                                            <div>
+                                                                <div class="title">
+                                                                    <table class="table table-flex">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <%= item['simple_departure_time'] %><br>
+                                                                                <p class="mb-0">
+                                                                                    <%= item['string_departure_date'] %>
+                                                                                </p>
+                                                                                <h6 class="mb-0 text-uppercase">
+                                                                                    <%= item['departure_city_name'] + " (#{item['departure_city']})" %>
+                                                                                </h6>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="info">
+                                                                    <i class="icon-airplane3 mr-2"></i><%= item['duration_hour'] + " " + item['duration_minute'] %>
+                                                                </div>
+
+                                                                <div class="title">
+                                                                    <table class="table table-flex">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <%= item['simple_arrival_time'] %> <br>
+                                                                                <p class="mb-0">
+                                                                                    <%= item['string_arrival_date'] %>
+                                                                                </p>
+                                                                                <h6 class="mb-0 text-uppercase">
+                                                                                    <%= item['arrival_city_name'] + " (#{item['arrival_city']})" %>
+                                                                                </h6>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <!-- --------------------------------------------------------------- -->
+                                        </table>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                            <div class="col-12 mb-2">
+                                <button type="submit" id="lanjutPembayaran" class="btn btn-lg btn-block btn-danger" onclick="">Lanjutkan</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ------------------------------------- -->
+                </div>
+            </div>
+        </section>
+    <% else %>
+        <div class="w-blank text-center p-5">
+            <%= image_tag 'icon_blank/no_ticket.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+            <p class="mb-0">
+                Maaf, Penerbangan sudah tidak tersedia! Mohon lakukan pemesanan ulang.
+            </p>
+        </div>
+    <% end %>
+    <!-- ------------------------------------- -->
+<% end %>
+
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        // sticky scroll
+        $(document).ready(function () {
+            $('.sticky')
+                .theiaStickySidebar({
+                    additionalMarginTop: 10,
+                    additionalMarginBottom: 80
+                });
+
+        });
+
+        $(document).ready(function () {
+            $('.timepicker').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                "singleDatePicker": true,
+                "autoApply": true,
+                "showDropdowns": true
+            });
+        });
+
+        $(document).ready(function () {
+            $('.dewasa').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#anak').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#bayi').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".txtOnly").keypress(function (e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var form = document.getElementById('submit-tiket');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>

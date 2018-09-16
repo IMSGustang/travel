@@ -1,0 +1,112 @@
+<% content_for :head do %>
+    <title>Deposit | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">TopUp</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <ul class="nav tabs-voucher mb-2">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/tambah-saldo-abupay') %>" href="/tambah-saldo-abupay">TopUp
+                    Abupay/Deposit</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/transaksi-abupay') %>" href="/transaksi-abupay">Riwayat
+                    Transaksi</a>
+                </li>
+              </ul>
+              <!-- --------------------------------------------------- -->
+              <form class="form-costumes" action="/api/transaksi/abupay" method="post">
+                <div class="card c-dashboard-content mt-1 mb-0">
+                  <div class="card-body c-dashboard-content__item">
+                    <div class="form-group row">
+                      <div class="col-5">
+                        <label>Nominal TopUp</label>
+                        <input type="text" class="form-control" id="nominaltopup" name="nominal" placeholder="Min topUp 50,000">
+                      </div>
+                      <div class="col-7">
+                        <label>Bank Tujuan</label>
+                        <select id="bank" name="bank">
+                          <option value="0" disabled>
+                            Pilih bank...
+                          </option>
+                          <% @abutours_bank.each do |item| %>
+                          <% bank = Bank::abutours(item['kdbank'])%>
+                          <option data-prefix="<img src='assets/<%= bank['image']%>' class='icon-bank'>" data-suffix="<small><%= bank['nama']%></small>" value="<%= item['kdbank'] %>">
+                            <%= bank['norekening'] %>
+                          </option>
+                          <% end %>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-6">
+                        <label>Metode Pembayaran</label>
+                        <select id="metodepembayaran" name="abupay">
+                          <option value="0" disabled>
+                            Pilih metode pembayaran...
+                          </option>
+                          <option data-prefix="<span aria-hidden='true'></span>">
+                            Bank Transfer
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="col-6">
+                        <button type="submit" class="btn btn-block btn-danger mt-32">Lanjutkan</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bank').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#metodepembayaran').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+
+            $('#nominaltopup').maskMoney({prefix: 'Rp ', thousands: ',', decimal: ',', precision: 0});
+        });
+    </script>
+<% end %>

@@ -1,0 +1,35 @@
+.pay-footer {
+  background-color: #f9f7f6 !important;
+  border-top: 1px solid #e3e1e0;
+  padding-top: 12px;
+  & .navbar {
+    background-color: transparent;
+    border: none;
+    & .media {
+      width: 100%;
+      & img {
+        height: 25px;
+      }
+
+      & .media-body {
+        padding-top: 2px;
+
+        & p {
+          font-size: 14px;
+          color: rgba(0, 0, 0, .5);
+        }
+
+        & a {
+          & i {
+            color: #686868;
+            font-size: 16px;
+
+            &:hover {
+              color: #989898;
+            }
+          }
+        }
+      }
+    }
+  }
+}

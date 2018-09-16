@@ -1,0 +1,79 @@
+.c-management__packet {
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important;
+
+  & .c-management__packet-item {
+    -webkit-border-radius: 4px !important;
+    -moz-border-radius: 4px !important;
+    border-radius: 4px !important;
+
+    & .c-management__packet-item--body {
+      padding: 20px 4px !important;
+
+      .table-manajemen_packet {
+        & td {
+          border: none;
+          padding-top: 0;
+          padding-bottom: 0;
+
+          & small {
+            text-transform: uppercase;
+            font-size: 11px !important;
+          }
+        }
+
+        & .no-invoice {
+          width: 200px;
+          & h3 {
+            font-size: 14px !important;
+            line-height: 20px;
+          }
+        }
+
+        & .tm-1 {
+          & h3 {
+            font-size: 14px !important;
+            line-height: 20px;
+          }
+        }
+
+        & .tm-2 {
+          width: 131px;
+          & h3 {
+            font-size: 14px !important;
+            line-height: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+          }
+        }
+
+        & .tm-3 {
+          width: 131px;
+          & .btn {
+            font-weight: 500;
+          }
+        }
+      }
+
+      & .form-group {
+        & label {
+          opacity: 1 !important;
+          font-weight: 500;
+          color: #333333 !important;
+          text-transform: uppercase;
+          font-size: 12px;
+        }
+        & .form-control {
+          -webkit-border-radius: 2px !important;
+          -moz-border-radius: 2px !important;
+          border-radius: 2px !important;
+        }
+      }
+    }
+  }
+}
+
+.btn-back {
+  font-size: 14px;
+}

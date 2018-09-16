@@ -1,0 +1,96 @@
+<%= content_for :headmobile do %>
+    <title>Persetujuan Pembelian Paket</title>
+<% end %>
+
+<%= content_for :mobile do %>
+<div class="data-approval">
+  <ul class="nav nav-pills nav-fill nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="syarat-tab" data-toggle="tab" href="#syarat" role="tab"
+      aria-controls="syarat" aria-selected="true">Syarat & Ketentuan</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" id="informasi-tab" data-toggle="tab" href="#informasi" role="tab"
+      aria-controls="informasi" aria-selected="false">Informasi Visa</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="syarat" role="tabpanel" aria-labelledby="syarat-tab">
+      <div class="card card-body">
+        <table class="table table-sm mb-0">
+          <tbody>
+            <tr>
+              <td>1.</td>
+              <td>
+                <%= @data['sk'].html_safe %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="informasi" role="tabpanel" aria-labelledby="informasi-tab">
+      <div class="card card-body">
+        <table class="table table-sm mb-0">
+          <tbody>
+            <tr>
+              <td>1.</td>
+              <td>
+                <%= @data['info_visa'].html_safe %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="data-navbar-price  fixed-bottom">
+  <nav class="navbar navbar-price navbar-light">
+    <span class="navbar-brand">
+      <table class="table table-sm mb-0">
+        <tbody>
+          <tr>
+            <td>
+              <small>Harga bayar</small>
+              <h5 class="mb-0">
+                Rp30,000,000
+              </h5>
+            </td>
+            <td width="150">
+              <a href="/form-pemesanan-paket/<%= kode %>?kk=<%= params['kk'] %>&th=<%= params['th'] %>&bln=<%= params['bln'] %>&lu=<%= params['lu'] %>&type=umrah-single" class="btn btn-block btn-danger">Lanjutkan</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </span>
+  </nav>
+</div>
+
+<div class="data-navbar-price  fixed-bottom">
+  <nav class="navbar navbar-price navbar-light">
+    <span class="navbar-brand">
+      <table class="table table-sm mb-0">
+        <tbody>
+        <tr>
+          <td>
+            <small>Harga bayar</small>
+            <h5 class="mb-0">
+              Rp30,000,000
+            </h5>
+          </td>
+          <td width="150">
+            <a href="/form-pemesanan-paket/<%= kode %>?kk=<%= params['kk'] %>&th=<%= params['th'] %>&bln=<%= params['bln'] %>&lu=<%= params['lu'] %>&type=umrah-single" class="btn btn-block btn-danger">Lanjutkan</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </span>
+  </nav>
+</div>
+
+<% end %>

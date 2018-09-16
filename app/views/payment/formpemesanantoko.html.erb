@@ -1,0 +1,410 @@
+<% content_for :headpayments do %>
+    <title>Form Pemesanan Paket Abutours | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pemesan</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Input Data Jamaah</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Konfirmasi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-formpemesanan">
+      <div class="container">
+        <div class="row">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <form action="/app/ownership/pemesanan/<%= params[:kode_paket]%>" method="post" id="needs-validation" novalidate>
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <h4 class="card-title mt-0 mb-4 text-uppercase text-muted">
+                    Data Pemesan
+                  </h4>
+                  <div class="form-group row">
+                    <div class="col-8">
+                      <label class="col-form-label">Nama Lengkap</label>
+                      <input name="nama" type="text" class="form-control txtOnly" id="valid01" placeholder="" value="" readonly="true">
+                    </div>
+
+                    <div class="col-4">
+                      <label class="col-form-label">Jenis Kelamin</label>
+                      <select id="cong" name="jk" class="form-control" readonly>
+                        <option value="L" data-prefix="<span aria-hidden='true' class='icon-man'></span>">
+                          Laki - Laki
+                        </option>
+                        <option value="P" data-prefix="<span aria-hidden='true' class='icon-woman'></span>">
+                          Perempuan
+                        </option>
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Email</label>
+                      <input type="email" class="form-control" id="valid02" name="email" value="" readonly="true">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-4">
+                      <label class="col-form-label">Nomor Identitas(KTP)</label>
+                      <input name="ktp" type="number" minlength="16" maxlength="16" class="form-control" id="valid03" value="" readonly="true">
+                    </div>
+                    <div class="col-4">
+                      <label class="col-form-label">Nomor Telepon</label>
+                      <input type="number" class="form-control" id="valid04" name="telepon" value="" readonly="true">
+                    </div>
+                    <div class="col-4">
+                      <label class="col-form-label">Tanggal Lahir</label>
+                      <input type="text" class="form-control" name="tgl_lahir" id="valid05" value="" readonly="true">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Alamat Lengkap</label>
+                      <textarea name="alamat" id="valid06" class="form-control" maxlength="300" rows="3" readonly="true"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label class="col-form-label">Catatan</label>
+                      <textarea name="catatan" id="valid08" class="form-control" rows="3" maxlength="300" readonly="true"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <span class="input-group-btn float-right">
+                        <button id="edit" class="btn btn-info" type="button" style="width: 100px">Edit</button>
+                      </span>
+                      <span class="input-group-btn float-right">
+                        <button id="simpan" class="btn btn-info" type="button" style="width: 100px; display: none;" >Simpan</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <h5 class="card-title text-uppercase text-muted">
+                    Ringkasan Pembelian
+                  </h5>
+                  <ul class="list-unstyled daftar-produk">
+                    <li class="media daftar-produk__item d-flex align-items-stretch border-none">
+                      <div class="media-body daftar-produk__item-header">
+                        <%= image_tag 'lib/cover/PRD775171116.png', :class => 'd-flex', :alt => '' %>
+                      </div>
+
+                      <div class="media-body daftar-produk__item-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item list-group-item__nm-paket">
+                            <p class="item-link item-line">
+                              <%= @data['nama_paket'] %>
+                            </p>
+                          </li>
+
+                          <li class="list-group-item list-group-item__hr-paket">
+                            <%= number_to_currency(@data['harga_jual'], precision: 0, unit: "Rp ") %>
+                          </li>
+
+                          <li class="list-group-item list-group-item__kb-paket">
+                            Tahun keberangkatan <%= @data['tahun'] %>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="media-body daftar-produk__item-footer">
+                        <p class="mb-0">
+                          <span>Travel terpercaya</span><br>
+                          <%= params[:nama_toko] %>
+                        </p>
+
+                        <p class="mb-0">
+                          <span>Lama Umrah</span><br>
+                          9 Hari
+                        </p>
+
+                        <p class="mb-0">
+                          <span>Jenis Paket</span><br>
+                          <%= @data_detail['jenis_paket']%>
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- ------------------------------------- -->
+          <div class="col-4 pl-0 sticky">
+            <div class="card c-ringkasan theiaStickySidebar">
+              <div class="card-body c-ringkasan__item">
+                <h6 class="card-title c-ringkasan__title text-uppercase text-muted">
+                  Ringkasan Pesanan
+                </h6>
+
+                <dl class="row">
+                  <dt class="col-6">Total Harga Paket</dt>
+                  <dd class="col-6 text-md-right" id="total-harga-paket">
+                    <%= number_to_currency(@data['harga_jual'], precision: 0, unit: "Rp ") %>
+                  </dd>
+
+                  <dt class="col-6">PPN</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 0
+                  </dd>
+                </dl>
+
+                <hr class="my-2">
+
+                <dl class="row">
+                  <dt class="col-6"><strong>Total Pembayaran</strong></dt>
+                  <dd class="col-6 text-md-right">
+                    <strong id="total-pembayaran">
+                      <%= number_to_currency(@data['harga_jual'], precision: 0, unit: "Rp ") %>
+                    </strong>
+                  </dd>
+                </dl>
+              </div>
+
+              <div class="col-12 mb-2">
+                <a href="#" id="lanjutPembayaran" class="btn btn-lg btn-block btn-danger text-uppercase" onclick="">
+                  Pesan Sekarang
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- ------------------------------------- -->
+        </div>
+      </div>
+    </section>
+    <div style="display: none;" id="dumpkv"></div>
+    <!-- ------------------------------------- -->
+<% end %>
+
+<% content_for :footpayments do %>
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[name="tgl_lahir"]').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                "singleDatePicker": true,
+                "autoApply": true,
+                "showDropdowns": true
+            });            
+        });
+
+        // sticky scroll
+        $(document).ready(function () {
+            $('.sticky')
+                .theiaStickySidebar({
+                    additionalMarginTop: 10,
+                    additionalMarginBottom: 20
+                });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lanjutPembayaran").on('click', function (e) {
+                if ($('#valid03').val() == "") {
+                    $('#valid03').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid03').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid01').val() == "") {
+                    $('#valid01').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid01').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid02').val() == "") {
+                    $('#valid02').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid02').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid04').val() == "") {
+                    $('#valid04').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid04').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid05').val() == "") {
+                    $('#valid05').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid05').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid08').val() == "") {
+                    $('#valid08').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid08').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid06').val() == "") {
+                    $('#valid06').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid06').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid07').val() == "") {
+                    $('#valid07').css('border-color', 'red');
+                    e.preventDefault();
+                } else {
+                    $('#valid07').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+
+                if ($('#valid01').val() != "" && $('#valid02').val() != "" && $('#valid03').val() != "" && $('#valid04').val() != "" && $('#valid05').val() != "" && $('#valid06').val() != "" && $('#valid07').val() != "" && $('#valid08').val()) {
+                  $('form').submit();
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#simpan").on('click', function (e) {
+                e.preventDefault();
+                if ($('#valid03').val() == "") {
+                    $('#valid03').css('border-color', 'red');
+                } else {
+                    $('#valid03').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid01').val() == "") {
+                    $('#valid01').css('border-color', 'red');
+                } else {
+                    $('#valid01').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid02').val() == "") {
+                    $('#valid02').css('border-color', 'red');
+                } else {
+                    $('#valid02').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid04').val() == "") {
+                    $('#valid04').css('border-color', 'red');
+                } else {
+                    $('#valid04').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid05').val() == "") {
+                    $('#valid05').css('border-color', 'red');
+                } else {
+                    $('#valid05').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid06').val() == "") {
+                    $('#valid06').css('border-color', 'red');
+                } else {
+                    $('#valid06').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid07').val() == "") {
+                    $('#valid07').css('border-color', 'red');
+                } else {
+                    $('#valid07').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+                if ($('#valid08').val() == "") {
+                    $('#valid08').css('border-color', 'red');
+                } else {
+                    $('#valid08').css('border-color', 'rgba(0, 0, 0, 0.15)');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".voucher").click(function () {
+                    $(".c-voucher").toggle('speed,callback');
+                });
+            });
+
+        $(document).ready(function () {
+            $('#title').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | Best Travel Services');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#edit").click(function () {
+                $("#edit").hide();
+
+            });
+            $("#edit").click(function () {
+                $("#simpan").show();
+            });
+            $("#simpan").click(function () {
+                $("#edit").show();
+            });
+            $("#simpan").click(function () {
+                $("#simpan").hide();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#edit').click(function () {
+                $('select, input[type=text],input[type=email],input[type=number],input[type=date],textarea').attr('readonly', false);
+                $("#cong").attr('readonly', false);
+            });
+            $('#simpan').click(function () {
+                $('select, input[type=text],input[type=email],input[type=number],input[type=date],textarea').not("[name=masukanVoucher]").attr('readonly', true);
+                $("#cong").attr('readonly', true);
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".txtOnly").keypress(function (e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var form = document.getElementById('needs-validation');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>

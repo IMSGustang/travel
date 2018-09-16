@@ -1,0 +1,88 @@
+@media (min-width: 50px) {
+  .card-columns {
+    column-count: 5;
+    display: flex;
+    margin: 0 -10px;
+
+    & .card {
+      width: 100% !important;
+      margin: 0 10px;
+
+      & .card-body-image {
+        height: 202px !important;
+      }
+
+      & .card-body {
+        background: #ffffff;
+        position: relative;
+        padding: 12px;
+        height: 90px !important;
+
+        & .name-product {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          position: relative;
+          overflow: hidden;
+          height: 25px !important;
+          max-height: 25px !important;
+          margin-bottom: 0;
+
+          &.name-product-line {
+            overflow: hidden;
+            height: 25px;
+            text-transform: capitalize;
+            color: rgba(0, 0, 0, .75);
+            font-size: 14px;
+            font-weight: normal;
+            letter-spacing: -.5px;
+          }
+
+          &::after {
+            content: "";
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 25%;
+            background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+            background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+            background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+            height: 22px !important;
+          }
+        }
+
+        & .price-packet {
+          -webkit-transition: all .2s ease-out;
+          -o-transition: all .2s ease-out;
+          transition: all .2s ease-out;
+          text-transform: capitalize;
+          font-weight: normal;
+          font-size: 18px !important;
+          color: $color-default;
+        }
+
+        & .packet-city {
+          text-transform: capitalize;
+          color: #333333;
+          opacity: .75;
+          font-weight: normal !important;
+          font-size: 12px;
+          line-height: 14px;
+          margin-top: 5px !important;
+        }
+
+        & .packet-rate {
+          color: $color-stars;
+          font-size: 13px;
+          margin-bottom: 5px;
+
+          & i {
+            font-size: 17px;
+          }
+        }
+      }
+    }
+  }
+}

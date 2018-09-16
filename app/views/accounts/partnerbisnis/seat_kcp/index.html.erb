@@ -1,0 +1,143 @@
+<% content_for :head do %>
+    <title>Data Seat KCP | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Seat Umrah (KCP)</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user mb-2">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <h4 class="mt-4 text-muted">
+              Seat Umrah KCP (Kantor Cabang Pembantu)
+            </h4>
+            <!-- --------------------------------------------------- -->
+            <ul class="nav tabs-voucher">
+              <li class="nav-item">
+                <a class="nav-link <%= active_class('/pengaturan-seat-kcp') %>" href="/pengaturan-seat-kcp">Seat Umrah
+                  KCP</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= active_class('/history-penggunaan-seat-kcp') %>" href="/history-penggunaan-seat-kcp">
+                  History Penggunaan KCP
+                </a>
+              </li>
+            </ul>
+            <!-- --------------------------------------------------- -->
+            <div id="accordion" role="tablist" class="accordion-kcp mb-3 mt-2">
+              <% @total_seat = 0 %>
+              <% if !@data.nil? %>
+                  <% @data.each do |item| %>
+                      <div class="card mb-2">
+                        <div class="card-header" role="tab" id="headingOne">
+                          <a data-toggle="collapse" href="#collapse<%= item['no_trans'] %>" aria-expanded="false" aria-controls="collapseOne">
+                            <table class="table table-sm mb-0">
+                              <tbody>
+                              <tr>
+                                <td width="222">
+                                  <p class="text-uppercase mb-0">Nomor Invoice</p>
+                                  <h5 class="m-0">
+                                    <%= item['no_trans'] %>
+                                  </h5>
+                                </td>
+
+                                <td>
+                                  <p class="text-uppercase mb-0">Nama Paket</p>
+                                  <h5 class="m-0 name-packet name-packet-line">
+                                    <%= item['nama_paket'].titlecase %>
+                                  </h5>
+                                </td>
+
+                                <td width="100">
+                                  <p class="text-uppercase mb-0">Jumlah Seat</p>
+                                  <h5 class="m-0"><%= item['booking'].count %> seat</h5>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </a>
+                        </div>
+
+                        <div id="collapse<%= item['no_trans'] %>" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                          <div class="card-body p-0">
+                            <table class="table mb-0">
+                              <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Kode Booking Seat</th>
+                                <th>Keberangkatan</th>
+                                <th>Tindakan</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <% @num = 0 %>
+                              <% item['booking'].each do |sub_item| %>
+                                  <tr>
+                                    <td scope="row" width="10">1</td>
+                                    <td>
+                                      <p class="m-0">
+                                        <%= sub_item['kode_booking'] %>
+                                      </p>
+                                    </td>
+                                    <td>
+                                      <p class="m-0">
+                                        <%= TimeFormat::month(sub_item['bulan_paket']) %>
+                                        <%= sub_item['tahun_paket'] %>
+                                      </p>
+                                    </td>
+                                    <td width="150">
+                                      <div class="btn-group" role="group" aria-label="data jamaah">
+                                        <a href="/pengaturan-seat-markup/<%= sub_item['kode_booking'] %>/<%= item['kode_produk'] %>/<%= item['kode_kantor'] %>" class="btn btn-sm btn-outline-secondary">
+                                          Gunakan
+                                        </a>
+                                      </div>
+                                    </td>
+                                  </tr>
+                              <% end %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                  <% end %>
+              <% else %>
+                  <div class="w-blank text-center p-5">
+                    <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'mx-auto d-block', :alt => '' %>
+                    <p class="mb-0">
+                      Maaf, Anda belum memiliki seat umrah
+                    </p>
+                  </div>
+              <% end %>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+    </script>
+<% end %>

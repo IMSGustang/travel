@@ -1,0 +1,68 @@
+@import "icomoon";
+@import "ionicons";
+@import "sprites";
+@import "bootstrap";
+
+@import "sitemobile/colours";
+
+@import "sitemobile/plugins/swiper";
+@import "sitemobile/plugins/select2";
+@import "sitemobile/plugins/select2.themes";
+@import "sitemobile/plugins/ui-datepicker";
+@import "sitemobile/plugins/datarangepicker";
+//@import "sitemobile/plugins/doubledaterangepicker";
+@import "sitemobile/plugins/uploadImages";
+@import "sitemobile/plugins/sweetalert";
+@import "sitemobile/plugins/lightbox";
+
+@import "sitemobile/pages/components/bases";
+@import "sitemobile/pages/components/modals";
+@import "sitemobile/pages/components/pagination";
+@import "sitemobile/pages/components/heading";
+
+@import "sitemobile/partials/navbar";
+@import "sitemobile/pages/home";
+@import "sitemobile/pages/abouts";
+@import "sitemobile/pages/blog";
+@import "sitemobile/pages/helps";
+@import "sitemobile/pages/penambahanbiaya";
+
+@import "sitemobile/pages/products/Cproducts";
+@import "sitemobile/pages/products/Cproductscity";
+@import "sitemobile/pages/products/Cproductsdetails";
+
+@import "sitemobile/pages/umrah/searchpacket";
+@import "sitemobile/pages/umrah/listsearchpacket";
+@import "sitemobile/pages/umrah/approvalpacket";
+
+@import "sitemobile/pages/evoucher/app";
+@import "sitemobile/pages/evoucher/detailsbuy";
+
+// accounts users scss
+@import "accounts/users/login";
+@import "accounts/users/registers";
+@import "accounts/users/resetpass";
+
+// payments scss
+@import "sitemobile/payments/partials/mobileNavbarPayments";
+@import "sitemobile/payments/umrah/datapemesan";
+@import "sitemobile/payments/umrah/methodpayments";
+@import "sitemobile/payments/umrah/paymentbill";
+
+// accounts dashboard users
+@import "accounts/components/form";
+@import "accounts/dashboard/_profile/dataprofile";
+@import "accounts/dashboard/_profile/editprofile";
+@import "accounts/seatumrah/apps";
+@import "accounts/jamaah/addjamaah";
+@import "accounts/jamaah/daftarjamaah";
+@import "accounts/topup/datatopUp";
+@import "accounts/poin/apps";
+@import "accounts/voucher/apps";
+@import "accounts/inbox/apps";
+@import "accounts/OTP/apps";
+@import "accounts/invoice/apps";
+@import "accounts/additionalcosts/claim";
+
+@import "transactions/tabsTransactions";
+

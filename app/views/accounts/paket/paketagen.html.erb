@@ -1,0 +1,129 @@
+<% content_for :head do %>
+    <title>Paket Agen | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Paket Keagenan</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user c-dashboard-user-small">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <% if !@data.nil? %>
+                <% @data.each do |item| %>
+                    <div class="c-bg-white-accounts mt-2">
+                      <div class="card c-dashboard-paket">
+                        <div class="card-body c-dashboard-paket__item">
+                          <table class="table table-paket paket-keagenan m-0">
+                            <tr>
+                              <td class="c-paket__body">
+                                <div class="media">
+                                  <%= image_tag !item['gambar'].nil? ? item['gambar'] : "", :class => 'd-flex align-self-center mr-3', :alt => '' %>
+                                  <div class="media-body">
+                                    <p class="item-link item-line mt-3">
+                                      <%= item['nama'].titlecase %>
+                                    </p>
+
+                                    <h4 class="mt-1 mb-1"><%= number_to_currency(item['harga_jual'], precision: 0, unit: "Rp ") %></h4>
+
+                                    <p class="card-text packet-city m-0">
+                                      <small class="text-muted">Kota <%= item['kantor'].titlecase %> -
+                                        Zona <%= item['zona'].titlecase %></small>
+                                    </p>
+                                  </div>
+                                </div>
+                              </td>
+
+                              <td width="100" class="c-paket__footer">
+                                <a href="/syarat-ketentuan/<%= item['kode_produk'] %>?type=kemitraan&kk=<%= item['kdkantor'] %>&th=<%= item['tahun'] %>&bln=<%= item['bulan'] %>&lu=<%= item['durasi'] %>" class="btn btn-block btn-danger">
+                                  Upgrade Akun
+                                </a>
+                                <a href="#<%= item['kode_produk'] %><%= item['kdkantor'] %><%= item['tahun'] %><%= item['bulan'] %>" data-toggle="collapse" aria-expanded="false" aria-controls="<%= item['kode_produk'] %>" class="btn btn-block btn-outline-success">
+                                  Keuntungan <i class="ion-ios-arrow-down"></i>
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="bg_accordion" colspan="2">
+                                <div class="collapse" id="<%= item['kode_produk'] %><%= item['kdkantor'] %><%= item['tahun'] %><%= item['bulan'] %>">
+                                  <p class="mb-3 p-3" style="font-size: 12px">
+                                    <%= item['benefit'] %>
+                                  </p>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+                <!-- --------------------------------------------------- -->
+                <nav aria-label="Page navigation" class="mt-1">
+                  <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item">
+                      <%= @page[:link_prev].html_safe %>
+                    </li>
+                    <% @page[:html].each do |page| %>
+                        <%= page.html_safe %>
+                    <% end %>
+                    <li class="page-item">
+                      <%= @page[:link_next].html_safe %>
+                    </li>
+                  </ul>
+                </nav>
+            <% else %>
+                <div class="w-blank text-center p-5">
+                  <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'mx-auto d-block', :alt => '' %>
+                  <p class="mb-0">
+                    Maaf, Kuota paket keagenan telah habis!
+                  </p>
+                </div>
+            <% end %>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#kota').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#bulan').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#tahun').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+        });
+    </script>
+<% end %>

@@ -1,0 +1,140 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Deposit</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-topUp">
+      <%= render template: 'mobile/accounts/topUp/_component/mobileDetailSaldo' %>
+
+      <div class="card-header">
+        <h5 class="mb-0">
+          History Transaksi
+        </h5>
+        <hr/>
+      </div>
+
+      <% if !@data.nil? %>
+          <% @data.each do |item| %>
+              <div class="card gCard-transaction">
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <div class="d-flex">
+                      <h6 class="mb-0 mr-auto">
+                        Penambahan saldo
+                        <br><span class="text-danger pt-1">#<%= item['kode_transaksi'] %></span>
+                      </h6>
+                      <h6 class="mb-0">+ <%= number_to_currency(item['kredit'], precision: 0, unit: "Rp ") %></h6>
+                    </div>
+
+                    <footer class="blockquote-footer mt-2">
+                      <%= TimeFormat::indonesia(item['created_at']) %>
+                      <span class="badge badge-info float-right">
+                        <% if item['status_pembayaran'] == 'order'
+                             status = 'Menunggu Pembayaran'
+                           elsif item['status_pembayaran'] == 'confirm'
+                             status = 'Menunggu Approval'
+                           elsif item['status_pembayaran'] == 'success'
+                             status = 'Sukses'
+                           elsif item['status_pembayaran'] == 'rejected'
+                             status = 'Ditolak'
+                           end %>
+                        <%= status %>
+                      </span>
+                    </footer>
+
+                    <% if item['status_pembayaran'] == 'order' %>
+                        <a href="/konfirmasi-pembayaran/<%= item['kode_transaksi'] %>?type=deposit" class="btn btn-block btn-sm btn-warning mt-3">Konfirmasi</a>
+                    <% end %>
+                  </blockquote>
+                </div>
+              </div>
+          <% end %>
+      <% else %>
+          <p class="text-center">
+            Maaf, Anda belum memiliki transaksi
+          </p>
+      <% end %>
+    </div>
+
+    <div class="modal fade" id="formtopup" role="dialog" aria-labelledby="formtopup" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+          <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon-cross2 text-danger"></i></span>
+          </button>
+          <form action="/api/transaksi/abupay" method="post">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Nominal TopUp</label>
+                <input type="text" class="form-control" id="nominaltopup" name="nominal" placeholder="Min topUp 50,000">
+              </div>
+
+              <div class="form-group">
+                <label>Bank Tujuan</label>
+                <select id="bank" class="form-control" name="bank">
+                  <option value="0" disabled>
+                    Pilih bank abutours
+                  </option>
+                  <option value="MANDIRI-ABUTOURS-COM">
+                    1520077754444 (MANDIRI)
+                  </option>
+                  <option value="BNI-ABUTOURS-COM">
+                    7811422444 (BNI)
+                  </option>
+                  <option value="BCA-ABUTOURS-COM">
+                    2907774411 (BCA)
+                  </option>
+                  <option value="BRI-ABUTOURS-COM">
+                    34301001216307 (BRI)
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Metode Pembayaran</label>
+                <select id="metodepembayaran" class="form-control" name="abupay">
+                  <option value="0" disabled>
+                    Pilih metode pembayaran...
+                  </option>
+                  <option value="bank_transfer">
+                    Bank Transfer
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <table class="table table-sm mb-0">
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-light" data-dismiss="modal" aria-label="Close">Batal</button>
+                  </td>
+                  <td>
+                    <button type="submit" class="btn btn-block btn-danger">Lanjutkan</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bank').select2({
+                theme: "bootstrap"
+            });
+            $('#metodepembayaran').select2({
+                theme: "bootstrap"
+            });
+
+            $('#nominaltopup').maskMoney({prefix: 'Rp ', thousands: ',', decimal: ',', precision: 0});
+        });
+    </script>
+<% end %>

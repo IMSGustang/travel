@@ -1,0 +1,689 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="_landing | c-cover-head">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <!--<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>-->
+          <!--<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag 'lib/cover/abucover.png', :class => 'd-block w-100', :alt => '' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="_landing | w-abu-fitur pb-5">
+      <div class="container">
+        <div class="card-group row ml-0 mr-0">
+          <div class="card c-fitur-side col-2 p-0">
+            <ul class="nav flex-column nav-pills" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="packet-tab" data-toggle="tab" href="#packet" role="tab" aria-controls="packet" aria-selected="true">
+                  <%= image_tag 'lib/ui-icon/line/pesawat.png', :class => 'abu-icon' %> Paket Umrah
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="ticket-tab" data-toggle="tab" href="#ticket" role="tab" aria-controls="ticket" aria-selected="false">
+                  <%= image_tag 'lib/ui-icon/line/tiket_3.png', :class => 'abu-icon' %> Tiket Pesawat
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pulsa-tab" data-toggle="tab" href="#pulsa" role="tab" aria-controls="pulsa" aria-selected="false">
+                  <%= image_tag 'lib/ui-icon/line/pulsa.png', :class => 'abu-icon' %> Beli Pulsa
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="false">
+                  <%= image_tag 'lib/ui-icon/line/tiket_3.png', :class => 'abu-icon' %> Paket Data
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tokenlistrik-tab" data-toggle="tab" href="#tokenlistrik" role="tab" aria-controls="tokenlistrik" aria-selected="false">
+                  <%= image_tag 'lib/ui-icon/line/token_2.png', :class => 'abu-icon' %> Token Listrik
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="voucher-tab" data-toggle="tab" href="#voucher" role="tab" aria-controls="voucher" aria-selected="false">
+                  <%= image_tag 'lib/ui-icon/line/game_2.png', :class => 'abu-icon' %> Voucher Game
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="card c-fitur-content col-10 p-0">
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="packet" role="tabpanel" aria-labelledby="packet-tab">
+                <div class="card-body">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Kota Keberangkatan</label>
+                          <select id="kota" name="kota">
+                            <option value="disabled" disabled>
+                              Kota keberangkatan...
+                            </option>
+                            <option value="" data-prefix="<span aria-hidden='true'></span>">
+                              Semua Kota
+                            </option>
+                            <% if !@cabang.nil? %>
+                                <% @cabang.each do |item| %>
+                                    <option value="<%= item['kdkantor'] %>" data-prefix="<span aria-hidden='true'></span>">
+                                      <%= item['kota'] %>
+                                    </option>
+                                <% end %>
+                            <% else %>
+                            <% end %>
+                          </select>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Jenis Paket</label>
+                          <select id="paket" name="tahun">
+                            <option value="disabled" disabled>
+                              Tahun Keberangkatan...
+                            </option>
+                            <option value="" data-prefix="<span aria-hidden='true'></span>">
+                              Semua Tahun
+                            </option>
+                            <option data-prefix="<span aria-hidden='true'></span>">
+                              2018
+                            </option>
+                            <option data-prefix="<span aria-hidden='true'></span>">
+                              2019
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Tahun Keberangkatan</label>
+                          <select id="tahun" name="bulan">
+                            <option value="disabled" disabled>
+                              Bulan keberangkatan...
+                            </option>
+                            <option value="" data-prefix="<span aria-hidden='true'></span>">
+                              Semua Bulan
+                            </option>
+                            <option value="01" data-prefix="<span aria-hidden='true'></span>">
+                              Januari
+                            </option>
+                            <option value="02" data-prefix="<span aria-hidden='true'></span>">
+                              Februari
+                            </option>
+                            <option value="03" data-prefix="<span aria-hidden='true'></span>">
+                              Maret
+                            </option>
+                            <option value="04" data-prefix="<span aria-hidden='true'></span>">
+                              April
+                            </option>
+                            <option value="05" data-prefix="<span aria-hidden='true'></span>">
+                              Mei
+                            </option>
+                            <option value="06" data-prefix="<span aria-hidden='true'></span>">
+                              Juni
+                            </option>
+                            <option value="07" data-prefix="<span aria-hidden='true'></span>">
+                              Juli
+                            </option>
+                            <option value="08" data-prefix="<span aria-hidden='true'></span>">
+                              Agustus
+                            </option>
+                            <option value="09" data-prefix="<span aria-hidden='true'></span>">
+                              September
+                            </option>
+                            <option value="10" data-prefix="<span aria-hidden='true'></span>">
+                              Oktober
+                            </option>
+                            <option value="11" data-prefix="<span aria-hidden='true'></span>">
+                              November
+                            </option>
+                            <option value="12" ata-prefix="<span aria-hidden='true'></span>">
+                              Desember
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="3">
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2">
+                              <button type="submit" class="btn btn-block btn-danger pr-4 pl-4">
+                                <i class="icon-search4 mr-2"></i>
+                                Cari Paket
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3">
+                        <p class="m-0">
+                          <small class="text-muted">
+                            * Harga paket umrah berbeda di setiap kota
+                          </small>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="ticket" role="tabpanel" aria-labelledby="ticket-tab">
+                <div class="card-body">
+                  <table class="table table-ticket table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Kota Asal</label>
+                          <select name="kota1" class="js-example-placeholder-single form-control" id="kota1">
+                            <option value="1" disabled>Kota Asal</option>
+                            <option value="3">Jakarta</option>
+                            <option value="2">Makassar</option>
+                            <option value="4">Ambon</option>
+                            <option value="5">Jayapura</option>
+                          </select>
+                        </div>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-portal btn-sm btn-success" id="tombol">
+                          <i class="ion-arrow-swap"></i>
+                        </button>
+                        <div class="form-group">
+                          <label>Kota Tujuan</label>
+                          <select name="kota2" class="js-example-placeholder-single form-control" id="kota2">
+                            <option value="1" disabled>Kota Tujuan</option>
+                            <option value="2">Makassar</option>
+                            <option value="3">Jakarta</option>
+                            <option value="4">Ambon</option>
+                            <option value="5">Jayapura</option>
+                          </select>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="popover-markup" style="width: 100%">
+                          <div class="trigger form-group" triggers="focus">
+                            <label>Jumlah Penumpang</label>
+                            <input type="text" name="passanger-info" id="passanger-info" class="form-control" value="Dewasa 1, Anak 0, Bayi 0" readonly>
+                            <input type="hidden" name="passengers" id="passengers" class="form-control d-none" value="1" disabled>
+                            <input type="hidden" name="dewasa" id="rAdult" class="form-control d-none" disabled>
+                            <input type="hidden" name="anak" id="rChild" class="form-control d-none" disabled>
+                            <input type="hidden" name="bayi" id="rInfant" class="form-control d-none" disabled>
+                          </div>
+
+                          <div class="content d-none">
+                            <div class="form-group">
+                              <label><strong>Dewasa</strong>
+                                <small> (Umur +17 Tahun)</small>
+                              </label>
+                              <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                    </span>
+                                <input type="text" disabled name="adult" id="adult" class="form-control" value="1" max=9 min=1>
+                                <span class="input-group-btn">
+                                      <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label><strong>Anak - Anak</strong>
+                                <small> (Umur 3 - 17 Tahun)</small>
+                              </label>
+                              <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                    </span>
+                                <input type="text" disabled name="child" id="child" class="form-control" value="0" max=9 min=0>
+                                <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label><strong>Bayi</strong>
+                                <small> (Umur 1 - 2 Tahun)</small>
+                              </label>
+                              <div class="input-group number-spinner">
+                                  <span class="input-group-btn">
+                                      <a class="btn btn-outline-secondary" data-dir="dwn"><span class="ion-minus-round text-danger"></span></a>
+                                  </span>
+                                <input type="text" disabled name="infant" id="infant" class="form-control" value="0" max=9 min=0>
+                                <span class="input-group-btn">
+                                        <a class="btn btn-outline-secondary" data-dir="up"><span class="ion-plus-round text-success"></span></a>
+                                    </span>
+                              </div>
+                            </div>
+                            <a class="btn btn-outline-secondary btn-block demise">Selesai</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Tanggal Berangkat</label>
+                          <input type="text" name="tanggal_berangkat" class="form-control" id="sekalijalan" placeholder="Tanggal Berangkat">
+                        </div>
+                      </td>
+                      <td style="display: block">
+                        <!--<label class="custom-control custom-checkbox">-->
+                          <!--<input type="checkbox" name="checkbox" class="custom-control-input" value="double">-->
+                          <!--<span class="custom-control-indicator"></span>-->
+                          <!--<span class="custom-control-description">Pulang Pergi</span>-->
+                        <!--</label>-->
+                        <!--<div class="form-group d-none" id="PP">-->
+                          <!--<input type="text" name="tanggal_pulang" class="form-control" id="pulangpergi" placeholder="Tanggal Pulang">-->
+                        <!--</div>-->
+                      </td>
+                      <td class="d-block">
+                        <div class="form-group" style="margin-top: 30px">
+                          <button type="submit" class="btn btn-block btn-danger pr-4 pl-4">
+                            <i class="icon-search4 mr-2"></i>
+                            Cari Tiket
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="pulsa" role="tabpanel" aria-labelledby="pulsa-tab">
+                <div class="card-body">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Nomor Handphone</label>
+                          <input type="text" class="form-control" placeholder="">
+                          <small id="" class="form-text text-muted">Pastikan nomor handphone anda terisi dengan benar.
+                          </small>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Nominal</label>
+                          <input type="text" class="form-control" placeholder="">
+                          <small id="" class="form-text text-muted">We'll never share your email with anyone else.
+                          </small>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2">
+                              <button type="submit" class="btn btn-block btn-danger pr-4 pl-4">
+                                Beli Sekarang
+                              </button>
+                            </div>
+                            <div class="p-2">
+                              <h1 class="mb-0">Rp 10,000</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group">
+                          <%= image_tag 'lib/ui-icon/provider/axis.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/bolt.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/indosat_ooredoo.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/smartfren.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/telkomsel.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/three.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/xl_axiata.png', :class => 'img-rounded' %>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="data-tab">
+                <div class="card-body">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Nomor Handphone</label>
+                          <input type="text" class="form-control" placeholder="">
+                          <small id="" class="form-text text-muted">Pastikan nomor handphone anda terisi dengan benar.
+                          </small>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Nominal</label>
+                          <input type="text" class="form-control" placeholder="">
+                          <small id="" class="form-text text-muted">We'll never share your email with anyone else.
+                          </small>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2">
+                              <button type="submit" class="btn btn-block btn-danger pr-4 pl-4">
+                                Beli Sekarang
+                              </button>
+                            </div>
+                            <div class="p-2">
+                              <h1 class="mb-0">Rp 10,000</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group">
+                          <%= image_tag 'lib/ui-icon/provider/axis.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/bolt.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/indosat_ooredoo.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/smartfren.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/telkomsel.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/three.png', :class => 'img-rounded' %>
+                          <%= image_tag 'lib/ui-icon/provider/xl_axiata.png', :class => 'img-rounded' %>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="tokenlistrik" role="tabpanel" aria-labelledby="tokenlistrik-tab">
+                <div class="card-body">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Nomor Meteran</label>
+                          <input type="text" class="form-control" placeholder="">
+                          <small id="" class="form-text text-muted">Pastikan nomor handphone anda terisi dengan benar.
+                          </small>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Nominal</label>
+                          <input type="text" class="form-control" placeholder="">
+                          <small id="" class="form-text text-muted">We'll never share your email with anyone else.
+                          </small>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2">
+                              <button type="submit" class="btn btn-block btn-danger pr-4 pl-4">
+                                Beli Sekarang
+                              </button>
+                            </div>
+                            <div class="p-2">
+                              <h1 class="mb-0">Rp 10,000</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="voucher" role="tabpanel" aria-labelledby="voucher-tab">
+                <div class="card-body">
+                  <table class="table table-sm">
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <label>Voucher Game</label>
+                          <input type="text" class="form-control" placeholder="">
+                          <small id="" class="form-text text-muted">Pastikan nomor handphone anda terisi dengan benar.
+                          </small>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Nominal</label>
+                          <input type="text" class="form-control" placeholder="">
+                          <small id="" class="form-text text-muted">We'll never share your email with anyone else.
+                          </small>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group text-right">
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2">
+                              <button type="submit" class="btn btn-block btn-danger pr-4 pl-4">
+                                Beli Sekarang
+                              </button>
+                            </div>
+                            <div class="p-2">
+                              <h1 class="mb-0">Rp 10,000</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-example-placeholder-single").select2({
+                placeholder: ""
+            });
+        });
+
+        $(document).ready(function () {
+            // Kota keberangkatan
+            $('#kota').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+
+            // Jenis paket
+            $('#paket').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+
+            // tahun paket
+            $('#tahun').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('input[name=checkbox]').change(function () {
+                if ($(this).prop("checked")) {
+                    setTimeout(function () {
+                        $('#PP').fadeIn('slow');
+                        $('#PP').removeClass('d-none');
+                    }, 200);
+                } else {
+                    setTimeout(function () {
+                        $('#PP').fadeOut('slow');
+                        $('#PP').addClass('d-none');
+                    }, 200);
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        var typeText = {
+            adult: {
+                singular: 'Dewasa', plural: 'Dewasa'
+            },
+            child: {
+                singular: 'Anak', plural: 'Anak'
+            },
+            infant: {
+                singular: 'Bayi', plural: 'Bayi'
+            }
+        }
+
+        $('.popover-markup > .trigger').popover({
+            container: "body",
+            html: true,
+            placement: 'top',
+
+            content: function () {
+                return $(this).parent().find('.content').html();
+            }
+        });
+
+        // open popover & inital value in form
+        var passengers = [1, 0, 0];
+        $('.popover-markup > .trigger').click(function (e) {
+            e.stopPropagation();
+            $(".popover-body input").each(function (i) {
+                $(this).val(passengers[i]);
+            });
+        });
+
+        // close popover
+        $(document).click(function (e) {
+            if ($(e.target).is('.demise')) {
+                $('.popover-markup > .trigger').popover('hide');
+            }
+        });
+
+        // store form value when popover closed
+        $popover.on('hide.bs.popover', function () {
+            $(".popover-body input").each(function (i, val) {
+                passengers[i] = $(this).val();
+//                    console.log($("#adult").val());
+//                    console.log($("#child").val());
+//                    console.log($("#infant").val());
+                console.log(val);
+                console.log(passengers[i]);
+
+
+                dewasa = $('#rAdult');
+                anak = $('#rChild');
+                bayi = $('#rInfant');
+
+                dewasa.val($('#adult').val());
+                anak.val($('#child').val());
+                bayi.val($('#infant').val());
+
+            });
+        });
+
+        // spinner(+-btn to change value) & total to parent input
+        $(document).on('click', '.number-spinner a', function () {
+            var btn = $(this),
+                input = btn.closest('.number-spinner').find('input'),
+                total = $('#passengers').val(),
+                oldValue = input.val().trim();
+            adult = $('#adult').val();
+
+            if (btn.attr('data-dir') == 'up') {
+                if (oldValue < input.attr('max')) {
+                    oldValue++;
+                    total++;
+                }
+            } else {
+                if (oldValue > input.attr('min')) {
+                    oldValue--;
+                    total--;
+                }
+            }
+
+            $('#passengers').val(total);
+
+            input.val(oldValue);
+
+            passangerInfoText = [];
+            $(".popover-body > input").each(function (i) {
+                if (this.value > 0) {
+                    passangerInfoText.push(typeText[this.id][this.value > 1 ? 'plural' : 'singular'] + ': ' + this.value);
+                }
+            });
+            $('#passanger-info').val(passangerInfoText.join(', '))
+        });
+        $(".popover-markup > .trigger").popover('hide');
+    </script>
+
+    <script type="text/javascript">
+        // daterange numberMonth
+        $(function () {
+            $("#sekalijalan").datepicker({
+                showOtherMonths: true,
+                numberOfMonths: 2
+            });
+
+            $("#pulangpergi").datepicker({
+                showOtherMonths: true,
+                numberOfMonths: 2
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $("#tombol").click(function (e) {
+            var asal = $('#kota1').val();
+            var tujuan = $('#kota2').val();
+            $('#kota1').val(tujuan).trigger('change');
+            $('#kota2').val(asal).trigger('change');
+        });
+
+        $('#tombol2').click(function () {
+            var $departures = $('#kota1 option');
+            var $arrivals = $('#kota2 option');
+
+            /* Store the selected values */
+            var departure = $('#kota1 option:checked').text();
+            var arrival = $('#kota2 option:checked').text();
+
+            /* Swap the option lists */
+            $('#kota1').append($departures);
+            $('#koat2').append($arrivals);
+
+            /* Re-set the selected values */
+            $('#kota1 option:contains(' + departure + ')').prop('selected', true);
+            $('#kota2 option:contains(' + arrival + ')').prop('selected', true);
+        });
+    </script>
+<% end %>

@@ -1,0 +1,139 @@
+<% content_for :head do %>
+    <title>Pengajuan Transaksi | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Pengajuan transaksi</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="data-pengajuan">
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="text-center">
+                    Pengajuan Claim Transaksi
+                  </h2>
+                  <p class="text-center">
+                    Claim Nomor Transaksi anda untuk melakukan pengajuan penambahan biaya
+                  </p>
+                </div>
+                <div class="card-body">
+                  <div class="card card-body form-pengajuan">
+                    <form action="/api/maklumat/pengajuan" method="post">
+                      <div class="form-group row mb-0">
+                        <div class="col-6 pr-1">
+                          <div class="search-invoice">
+                            <div class="search-invoice-images">
+                              <i data-feather="file-text"></i>
+                            </div>
+                            <div class="search-invoice-group">
+                              <label>Nomor invoice</label>
+                              <input name="no_trans" type="text" class="form-control" placeholder="Masukkan no invoice transaksi anda"/>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 pl-1">
+                          <div class="search-invoice">
+                            <div class="search-invoice-images">
+                              <i data-feather="calendar"></i>
+                            </div>
+                            <div class="search-invoice-group">
+                              <label>Tanggal Transaksi</label>
+                              <input name=tgl_trans type="text" class="form-control" id="tgl_invoice" placeholder="Masukkan tanggal transaksi anda"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row mt-3 mb-0">
+                        <div class="col-12">
+                          <button type="submit" class="btn btn-block btn-danger text-uppercase">Cari</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="history-pengajuan mt-2">
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="mb-4">History Claim Transaksi</h3>
+                  <table id="historypengajuan" class="table" cellspacing="0">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Nomor Invoice</th>
+                      <th>Tanggal Transaksi</th>
+                      <th>Tanggal Pengajuan</th>
+                      <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @no = 0 %>
+                    <% @data_maklumat_penambahan_biaya.each do |item| %>
+                    <tr>
+                      <td><%= @no = @no+1 %></td>
+                      <td><%= item['no_trans'] %></td>
+                      <td><%= TimeFormat::indonesiaMonthAlphabet(item['detail_transaksi']['tgltrans']) %></td>
+                      <td><%= TimeFormat::indonesiaMonthAlphabet(item['tgl_request']) %></td>
+                      <td>
+                        <% if /approve/i =~ item['status'] %>
+                          <span class="badge badge-success">Berhasil</span>
+                        <% elsif /pending/i =~ item['status'] %>
+                          <span class="badge badge-warning">Menunggu</span>
+                        <% elsif /reject/ =~ item['status']%>
+                          <span class="badge badge-danger">Ditolak</span>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(function () {
+            $("#tgl_invoice").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 1
+            });
+        });
+
+        $(document).ready(function () {
+            $('#historypengajuan').DataTable();
+        });
+    </script>
+<% end %>

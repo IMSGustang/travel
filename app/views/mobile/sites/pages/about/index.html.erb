@@ -1,0 +1,27 @@
+<%= content_for :active_abouts do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Tentang Kami</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-abouts">
+      <div class="card">
+        <div class="card-header">
+          <%= @about_us ? @about_us['judul'].titlecase : 'Semua Bisa Umrah' %>
+        </div>
+        <%= image_tag @about_us ? @about_us['tumbnail'] : 'lib/cover/cabang.png', :class => 'mx-auto d-block' %>
+        <div class="card-body">
+          <%= @about_us ? @about_us['artikel'].html_safe : '' %>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

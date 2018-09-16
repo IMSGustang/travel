@@ -1,0 +1,85 @@
+.tabs-settings {
+  border-bottom: 1px solid #e3e1e0 !important;
+  & .nav-item {
+    & .nav-link {
+      &.active {
+        border-bottom: 1px solid #CC334D !important;
+      }
+    }
+  }
+}
+
+.c-settings-logo {
+  & .table {
+    & td {
+      border: none;
+      padding: 14px;
+      vertical-align: middle;
+    }
+
+    & .ts-banner {
+      & .kv-avatar {
+        display: block;
+        & .file-input {
+          display: block;
+        }
+      }
+    }
+
+    & .ts-1 {
+      width: 111px;
+
+      & .form-group {
+        & .file-preview {
+          width: 111px;
+          max-width: 111px;
+          height: 111px;
+          max-height: 111px;
+          overflow: auto;
+          position: relative;
+          display: flex;
+          align-items: center;
+          display: block;
+
+          & .file-default-preview {
+            & img {
+              max-width: 100%;
+              -webkit-border-radius: 4px !important;
+              -moz-border-radius: 4px !important;
+              border-radius: 4px !important;
+              max-height: 60px;
+            }
+          }
+        }
+      }
+    }
+
+    & .ts-2 {
+      & .form-group {
+        & .input-group {
+          & .input-group-addon {
+            position: relative;
+            border: 1px solid #e3e1e0;
+            background: #f3f1f0;
+            border-right: none;
+            padding: 10px;
+            font-size: 14px;
+          }
+        }
+
+        & .form-control {
+          font-size: 14px;
+        }
+      }
+    }
+
+    & .ts-3 {
+      width: 191px;
+
+      & .btn {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+}

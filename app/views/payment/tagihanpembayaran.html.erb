@@ -1,0 +1,158 @@
+<% content_for :headpayments do %>
+    <title>Ringkasan Tagihan Pembayaran</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg navbar-toggleable">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pembelian</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Selesai</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-invoice pt-0">
+      <div class="container">
+        <div class="row justify-content-center">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <h4 class="card-title text-uppercase mt-5 text-left">
+              Selesaikan Pembayaran Sebelum
+            </h4>
+            <div class="card card-invoice__pemesanan mb-3">
+              <div class="card-body card-invoice__pemesanan-item">
+                <!-- ---------------------------------------- -->
+                <p class="card-text text-center mb-3">
+                  Hari Ini
+                </p>
+                <!-- ---------------------------------------- -->
+                <div class="waktu-pembayaran">
+                  <span class="countdown"></span>
+                </div>
+                <!-- ---------------------------------------- -->
+                <p class="card-text text-center mt-3">
+                  Transfer dana anda sebelum tanggal
+                  <span class="text-warning">
+                    <%= VariableHelper::timeCleanParsing(@data['limit_pembayaran']) %>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <h4 class="card-title text-uppercase mt-5 text-left">
+              Mohon Transfer Ke :
+            </h4>
+            <div class="card card-invoice__pemesanan mb-3">
+              <div class="card-header">
+                <table class="table">
+                  <tr>
+                    <td>
+                      <h3>
+                        Bank <%= Bank::abutours(params['mb'])['nama'] %>
+                      </h3>
+                    </td>
+                    <td>
+                      <%= image_tag Bank::abutours(params['mb'])['image'], :class => 'float-right' %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="card-body card-invoice__pemesanan-item">
+                <dl class="row">
+                  <dd class="col-sm-3">Nomor Rekening: </dd>
+                  <dt class="col-sm-9"><%= Bank::abutours(params['mb'])['norekening'] %></dt>
+
+                  <dd class="col-sm-3">Nama Penerima: </dd>
+                  <dt class="col-sm-9">PT Amanah Bersama Ummat </dt>
+                </dl>
+              </div>
+              <div class="card-footer">
+                <table class="table">
+                  <tr>
+                    <td width="202" class="lead">Jumlah Transfer:</td>
+                    <th class="text-warning lead">
+                      <%= number_to_currency(@data['hargabayar'].to_i + @data['kode_unik'].to_i, precision: 0 , unit: "#{!@data['tipecurr'].nil? ? @data['tipecurr'] : "Rp"} ") %>
+                    </th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <h4 class="card-title text-uppercase mt-5 text-left">
+              Ringkasan Pembelian
+            </h4>
+            <div class="card card-invoice__pemesanan mb-3">
+              <div class="card-body card-invoice__pemesanan-item">
+                <table class="table">
+                  <tr>
+                    <td>
+                      <p class="title">Nomor Transaksi</p>
+                      #<%= @data['notrans'] %>
+                    </td>
+
+                    <td>
+                      <p class="title">Nama Paket</p>
+                      <%= @data['namapaket'] %>
+                    </td>
+
+                    <td>
+                      <p class="title">Harga</p>
+                      <h5><%= number_to_currency(@data['hargabayar'].to_i, precision: 0 , unit: "#{!@data['tipecurr'].nil? ? @data['tipecurr'] : "Rp"} ") %></h5>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="card card-invoice__pemesanan mb-3">
+              <div class="card-body card-invoice__pemesanan-item">
+                <h4 class="card-title card-title-h4 mb-3 text-left">
+                  Anda Sudah Membayar ?
+                </h4>
+
+                <p>
+                  Setelah melakukan pembayaran, mohon konfirmasi pembayaran anda untuk mempercepat proses
+                  verifikasi.
+                </p>
+
+                <a href="/konfirmasi-pembayaran/<%= @data['notrans'] %>" target="_blank" class="btn btn-outline-success">
+                  Konfirmasi Pembayaran
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- --------------------------------------------------- -->
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :footpayments do %>
+    <!-- --------------------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- --------------------------------------------------- -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('.countdown').dsCountDown({
+                endDate: new Date("<%= VariableHelper::timeCleanParsing(@data['limit_pembayaran']) %>")
+            });
+        });
+    </script>
+    <!-- --------------------------------------------------- -->
+<% end %>
+<!-- --------------------------------------------------- -->

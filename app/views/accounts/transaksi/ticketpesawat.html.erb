@@ -1,0 +1,967 @@
+<% content_for :head do %>
+<title>Transaksi Tiket Pesawat | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :abutours do %>
+<section class="c-dashboard">
+  <div class="container">
+    <div class="row">
+      <!-- --------------------------------------------------- -->
+      <div class="col-3 pr-4 sticky">
+        <div class="card c-dashboard-side pb-5">
+          <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+            <%= render template: 'accounts/partials/sidebar' %>
+          </div>
+        </div>
+      </div>
+      <!-- --------------------------------------------------- -->
+      <div class="col-9 pl-0 pr-2 ml-15">
+        <div class="_landing | w-breadcrumb">
+          <ol class="breadcrumb border-bottom-0">
+            <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+            <li class="breadcrumb-item active">Pembelian Tiket Pesawat</li>
+          </ol>
+        </div>
+        <!-- --------------------------------------------------- -->
+        <div class="card c-dashboard-user">
+          <%= render template: 'accounts/partials/bannerTop' %>
+        </div>
+        <!-- --------------------------------------------------- -->
+        <%= render template: 'accounts/partials/navigasi_pembayaran' %>
+        <!-- --------------------------------------------------- -->
+        <div class="c-bg-white-accounts mt-0">
+          <ul class="nav tabs-voucher mb-2">
+            <li class="nav-item">
+              <a class="nav-link <%= active_class('/transaksi-tiket') %>" href="/transaksi-tiket">
+                Daftar Pembelian
+              </a>
+            </li>
+            <li class="nav-item">
+              <div class="form-group mb-0">
+                <select id="urutkan" name="filter" onchange="filterPembelianTiket(this)">
+                  <option value="" <%= params[:filter] == "" ? 'selected' : '' %> data-prefix="<span aria-hidden='true'></span>">
+                  Semua Transaksi
+                  </option>
+                  <option value="order" <%= params[:filter]== 'order' ? 'selected' : '' %> data-prefix="<span aria-hidden='true'></span>">
+                    Menunggu Pembayaran
+                  </option>
+                  <option value="checkout" <%= params[:filter]=='checkout' ? 'selected' : '' %> data-prefix="<span aria-hidden='true'></span>">
+                    Menunggu Verifikasi
+                  </option>
+                  <option value="success" <%= params[:filter]=='success' ? 'selected' : '' %> data-prefix="<span aria-hidden='true'></span>">
+                    Sukses
+                  </option>
+        </select>
+      </div>
+    </li>
+  </ul>
+  <!-- --------------------------------------------------- -->
+  
+  <% if !@data.nil? %>
+  <div class="card c-dashboard-content mt-1 mb-3">
+    <div class="card-body c-dashboard-content__item">
+      <table class="table table-sm">
+        <% @data.each do |item| %>
+          <% if !item['ppob_pesawat'].nil? %>
+          <% @item_pesawat = item['ppob_pesawat'][0] %>
+          <tr>
+            <td class="ticket-transaksi">
+              <table class="table mb-1">
+                <tbody>
+                  <tr>
+                    <td class="tr-flight">
+                      <small class="text-uppercase">Kota Asal</small>
+                      <h3 class="mb-0">JAM BERANGKAT</h3>
+                      <p class="m-0">
+                        <%= !@item_pesawat.nil? ? @item_pesawat['departure_city_name'] : "" %>
+                      </p>
+                    </td>
+                    <td class="tr-border">
+                      <h3 class="mb-2">Durasi</h3>
+                      <div></div>
+                    </td>
+                    <td class="tr-flight">
+                      <small class="text-uppercase">Kota Tujuan</small>
+                      <h3 class="mb-0">JAM TIBA</h3>
+                      <p class="m-0">
+                        <%= !@item_pesawat.nil? ? @item_pesawat['arrival_city_name'] : "" %>
+                      </p>
+                    </td>
+                    <td class="tr-2">
+                      <small class="text-uppercase">Harga</small>
+                      <p class="m-0">
+                        <%= number_to_currency(!@item_pesawat.nil? ? @item_pesawat['price'] : "0", precision: 0, unit: "Rp ") %>
+                      </p>
+                    </td>
+                    <td class="tr-4" rowspan="2">
+                      <% if item['status_pembayaran'] != 'success' && item['status_pembayaran'] != 'expired'%>
+                        <% if item['metode_pembayaran'].nil? %>
+                          <a href="/pilih-metode-pembayaran/tiket?fi=&rfi=&kt=" class="btn btn-sm btn-block btn-danger mb-1">Konfirmasi</a>
+                        <% elsif item['metode_pembayaran'] == 'BANK TRANSFER' %>
+                          <a href="/konfirmasi-pembayaran/<%= item['kode_transaksi']%>?type=tiket" class="btn btn-sm btn-block btn-danger mb-1">Konfirmasi</a>
+                        <% elsif item['metode_pembayaran'] == 'DEPOSIT'%>
+                          <a href="/metode-pembayaran-abupay?type=tiket&fi=<%= item['ppob_pesawat'][0]['flight_id'] rescue "" %>&rfi=<%= item['ppob_pesawat'][1]['flight_id'] rescue "" %>&kt=<%= item['kode_transaksi']%>" class="btn btn-sm btn-block btn-danger mb-1">Konfirmasi</a>
+                        <% end %>
+                      <% end %>
+                      <% if item['status_pembayaran'] == 'success'%>
+                      <a href="#ringkasan<%= item['kode_transaksi']%>" class="btn btn-block btn-outline-success btn-sm text-capitalize" data-toggle="collapse" aria-expanded="false" aria-controls="lihat">
+                        E-Tiket
+                      </a>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% #if item['data']['status_pembayaran'] == 'order'
+                      #status = 'Belum memilih metode pembayaran'
+                     #elsif item['data']['status_pembayaran'] == 'checkout'
+                       #status = 'Menunggu konfirmasi pembayaran'
+                     #elsif item['data']['status_pembayaran'] == 'confirm'
+                       #status = 'Menunggu Approval'
+                     #elsif item['data']['status_pembayaran'] == 'success'
+                       #status = 'Berhasil'
+                     #else
+                       #status = 'Menunggu konfirmasi pembayaran'
+                     #end
+                  %>
+                  <tr>
+                    <td class="tr-5" colspan="4">
+                      <p class="m-0 text-uppercase">
+                        status terakhir : <%= item['status_pembayaran_caption'] %>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" class="p-0">
+                      <div class="collapse" id="ringkasan<%= item['kode_transaksi']%>">
+                        <div class="card card-body border-none">
+                          <p class="text-right">
+                            <%
+                            if item['ppob_pesawat'].count == 1
+                              type = 'depart'
+                            end
+                            %>
+                            <a href="/e-ticket/pdf/<%=item['kode_transaksi']%>-<%=type%>-<%=Digest::MD5.hexdigest(item['ppob_pesawat'][0]['order_id'])%>.pdf" class="btn btn-success">Cetak E-Tiket</a>
+                          </p>
+                          
+                          <div class="w-content">
+                            <div style="background: #f9f7f6;min-height: 100%;">
+                              <div class="w-content-body">
+                                <div style="margin: 0 auto;width: 90%;min-height: 100%;height: 100%;background: #fff;margin-top: 20px;">
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-head">
+                                    <div style="display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;padding: 0px 30px;border-bottom: 1px solid #f3f1f0;">
+                                      <div style="-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;padding: 15px 0;">
+                                        <h3 style="margin: 4px 0;text-transform: uppercase">
+                                        E-Tiket / <span style="opacity: .75">E-Ticket</span>
+                                        </h3>
+                                        <p style="margin: 4px 0;font-size: 14px;opacity: .75;">
+                                          Itinerary & Receipt
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-time">
+                                    <div style="display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;padding: 0px 30px;">
+                                      <div style="-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;padding: 15px 0;">
+                                        <p style="margin: 5px 0;font-size: 11px;opacity: .75;text-transform: uppercase;">
+                                          Kode Booking
+                                        </p>
+                                        <h1 style="margin-top: 10px;margin-bottom: 0;font-weight: 600;color: #CC334D;">
+                                        <%= item['ppob_pesawat'][0]['booking_code'] rescue "" %>
+                                        </h1>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-ticket">
+                                    <div style="padding: 0px 30px;">
+                                      <p style="margin: 4px 0;margin-bottom: 15px;font-size: 10px;letter-spacing: .7px;text-transform: uppercase;">
+                                        Waktu Penerbangan
+                                        : <%= item['ppob_pesawat'][0]['flight_date'] rescue "" %>
+                                      </p>
+                                      <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #CC334D;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                                        <thead>
+                                          <tr>
+                                            <td style="padding: 15px 5px;vertical-align: middle;min-width: 131px;">
+                                              <%= image_tag "#{item['ppob_pesawat'][0]['order_foto'] rescue ''}" , :style => 'max-width: 100%;max-height: 80px;margin: 0;padding: 0;' %>
+                                              <p style="text-transform: uppercase;font-size: 10px;margin: 5px 0px;opacity: .7">
+                                                <%= item['ppob_pesawat'][0]['airlines_name'] rescue ""%>
+                                                - <%= item['ppob_pesawat'][0]['flight_number'] rescue "" %>
+                                              </p>
+                                              <p style="text-transform: uppercase;font-size: 10px;margin: 5px 0px;opacity: .7">
+                                                <%= item['ppob_pesawat'][0]['order_name'] %>
+                                              </p>
+                                            </td>
+                                            <td style="padding: 15px 5px;vertical-align: middle;min-width: 515px;width: 100%;">
+                                              <div class="timeline">
+                                                <style scoped>
+                                                ul.line-ticket::before {
+                                                content: '';
+                                                height: 100%;
+                                                width: 1px;
+                                                background-color: #CC334D;
+                                                position: absolute;
+                                                top: 0;
+                                                left: 14px;
+                                                z-index: 0;
+                                                }
+                                                </style>
+                                                <ul class="line-ticket" style="padding: 0 6px;
+                                                  margin: 0;
+                                                  list-style: none;
+                                                  position: relative">
+                                                  <li>
+                                                    <div style="display: inline-block;
+                                                      margin: 21px 3px;
+                                                      vertical-align: top;
+                                                      width: 12px;
+                                                      height: 12px;
+                                                      box-sizing: border-box;
+                                                      -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;
+                                                      background: #ffffff;
+                                                      z-index: 1;
+                                                      position: relative;
+                                                      border: 1px solid #CC334D;">
+                                                    </div>
+                                                    <div class="time" style="width: 10%;
+                                                      font-size: 13px;
+                                                      font-weight: bold;
+                                                      display: inline-block;
+                                                      margin: 16px 0;
+                                                      vertical-align: top;
+                                                      padding-top: 0.25em;">
+                                                      Time <%= TimeFormat::getUTCTime(item['ppob_pesawat'][0]['departure_time']) %>
+                                                    </div>
+                                                    <div class="desc" style="width: 50%;
+                                                      display: inline-block;
+                                                      margin: 1em 0;
+                                                      vertical-align: top;
+                                                      ">
+                                                      <h3 style="font-size: 0.9em;
+                                                      font-weight: 400;
+                                                      line-height: 20px;
+                                                      margin: 0;">
+                                                      <%= item['ppob_pesawat'][0]['departure_city_name'] rescue "" %>
+                                                      </h3>
+                                                      <h5 style="margin: 0;
+                                                      font-size: 0.7em;
+                                                      opacity: .7;
+                                                      font-weight: 400;">
+                                                      <%= item['ppob_pesawat'][0]['departure_airport_name'] rescue "" %>
+                                                      </h5>
+                                                    </div>
+                                                  </li>
+                                                  <li>
+                                                    <div style="display: inline-block;
+                                                      margin: 21px 3px;
+                                                      vertical-align: top;
+                                                      width: 12px;
+                                                      height: 12px;
+                                                      box-sizing: border-box;
+                                                      -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;
+                                                      background: #CC334D;
+                                                      z-index: 1;
+                                                      position: relative;
+                                                      border: 1px solid #ffffff;">
+                                                    </div>
+                                                    <div class="time" style="width: 10%;
+                                                      font-size: 13px;
+                                                      font-weight: bold;
+                                                      display: inline-block;
+                                                      margin: 16px 0;
+                                                      vertical-align: top;
+                                                      padding-top: 0.25em;">
+                                                      Time <%= TimeFormat::getUTCTime(item['ppob_pesawat'][0]['arrival_time']) %>
+                                                    </div>
+                                                    <div class="desc" style="width: 50%;
+                                                      display: inline-block;
+                                                      margin: 1em 0;
+                                                      vertical-align: top;">
+                                                      <h3 style="font-size: 0.9em;
+                                                      font-weight: 400;
+                                                      line-height: 20px;
+                                                      margin: 0;">
+                                                      <%= item['ppob_pesawat'][0]['arrival_city_name'] rescue "" %>
+                                                      </h3>
+                                                      <h5 style="margin: 0;
+                                                      font-size: 0.7em;
+                                                      opacity: .7;
+                                                      font-weight: 400;">
+                                                      <%= item['ppob_pesawat'][0]['arrival_airport_name'] rescue "" %>
+                                                      </h5>
+                                                    </div>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        </thead>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-items">
+                                    <div style="padding: 0 30px">
+                                      <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #CC334D;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                                        <tr>
+                                          <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px;">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <%= image_tag 'lib/ui-icon/eticket/check.png',
+                                              :style => 'max-width: 100%;
+                                              height: 33px;
+                                              -ms-flex-item-align: center!important;
+                                              align-self: center!important;
+                                              vertical-align: midlle;
+                                              opacity: .75;
+                                              margin-right: 10px;' %>
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;">
+                                                  Tunjukkan e-tiket ini dan identitas para penumpang
+                                                  dibawah ini saat check-in
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <%= image_tag 'lib/ui-icon/eticket/check_in.png',
+                                              :style => 'max-width: 100%;
+                                              height: 33px;
+                                              -ms-flex-item-align: center!important;
+                                              align-self: center!important;
+                                              vertical-align: midlle;
+                                              opacity: .75;
+                                              margin-right: 10px;' %>
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;">
+                                                  Check-in <strong>paling lambat 90 Menit</strong>
+                                                  sebelum jadwal keberangkatan
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px;">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <%= image_tag 'lib/ui-icon/eticket/times.png',
+                                              :style => 'max-width: 100%;
+                                              height: 33px;
+                                              -ms-flex-item-align: center!important;
+                                              align-self: center!important;
+                                              vertical-align: midlle;
+                                              opacity: .75;
+                                              margin-right: 10px;' %>
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;">
+                                                  Waktu tertera adalah waktu bandara setempat
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-passangers">
+                                    <div style="padding: 0 30px;min-height: 353px;">
+                                      <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #e3e1e0;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                                        <thead>
+                                          <tr>
+                                            <th colspan="4" style="padding: 15px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 10px;
+                                              text-align: left;
+                                              opacity: .7;
+                                              text-transform: uppercase;
+                                              width: 100%;">
+                                              Daftar Penumpang
+                                            </th>
+                                          </tr>
+                                          <tr>
+                                            <th style="padding: 5px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 13px;
+                                              text-align: left;
+                                              min-width: 33px;">
+                                              No. <br>
+                                              <span style="opacity: .5">
+                                                No.
+                                              </span>
+                                            </th>
+                                            <th style="padding: 5px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 13px;
+                                              text-align: left;
+                                              min-width: 272px;">
+                                              Passanger(s) <br>
+                                              <span style="opacity: .5">
+                                                Penumpang
+                                              </span>
+                                            </th>
+                                            <th style="padding: 5px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 13px;
+                                              text-align: left;
+                                              min-width: 131px;">
+                                              Ticket Type <br>
+                                              <span style="opacity: .5">
+                                                Jenis Tiket
+                                              </span>
+                                            </th>
+                                            <th style="padding: 5px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 13px;
+                                              width: 100%;
+                                              text-align: left;">
+                                              Baggage <br>
+                                              <span style="opacity: .5">
+                                                Bagasi
+                                              </span>
+                                            </th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <%= item['ppob_pesawat_detail']%>
+                                          <% no = 0%>
+                                          <% penumpang = Api::Account::TiketPesawatController.historyTiket(session[:acc_token], session[:tiket], params[:filter], item['kode_transaksi']) %>
+                                          <% penumpang['ppob_pesawat_detail'].each do |passenger|%>
+                                            <tr>
+                                              <td style="padding: 5px 5px;
+                                                /*vertical-align: top;*/
+                                                /*font-weight: 500;*/
+                                                /*font-size: 13px;*/
+                                                /*opacity: .5;*/
+                                                text-align: left;">
+                                                <%= no = no + 1%>
+                                              </td>
+                                              <td style="padding: 5px 5px;
+                                                /*vertical-align: top;*/
+                                                /*font-weight: 500;*/
+                                                /*font-size: 13px;*/
+                                                text-align: left;">
+                                                <%= passenger['first_name'].to_s + " " + passenger['last_name'].to_s%>
+                                              </td>
+                                              <td style="padding: 5px 5px;
+                                                /*vertical-align: top;*/
+                                                /*font-weight: 500;*/
+                                                /*font-size: 13px;*/
+                                                text-align: left;">
+                                                <%= passenger['type'] %>
+                                              </td>
+                                              <td style="padding: 5px 5px;
+                                                /*vertical-align: top;*/
+                                                /*font-weight: 500;*/
+                                                /*font-size: 13px;*/
+                                                text-align: left;">
+                                                <%= passenger['check_in_baggage'] %>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-footer">
+                                    <div style="padding: 0 30px">
+                                      <table cellpadding="0" cellspacing="0" style="border-top: 4px solid #f3f1f0;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                                        <tr>
+                                          <td style="vertical-align: middle;padding: 20px 5px;min-width: 272px;">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <%= image_tag 'logo/bestravel.png',
+                                              :style => 'max-width: 100%;
+                                              height: 30px;
+                                              -ms-flex-item-align: center!important;
+                                              align-self: center!important;
+                                              vertical-align: midlle;
+                                              opacity: .75;
+                                              margin-right: 10px;' %>
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;">
+                                                  Customer service abutours <br>
+                                                  (021) 227 93 555
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          <td style="vertical-align: middle;padding: 20px 5px;text-align: right;width: 100%">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;text-align: right;opacity: .5">
+                                                  Best travel service
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        
+                        <div class="card card-body border-none">
+                          <p class="text-right">
+                            
+                            <a href="/e-ticket/pdf/<%=item['kode_transaksi']%>.pdf" class="btn btn-success">Cetak E-Tiket</a>
+                          </p>
+                          <%if  item['ppob_pesawat'].count > 1 %>
+                          <div class="w-content">
+                            <div style="background: #f9f7f6;min-height: 100%;">
+                              <div class="w-content-body">
+                                <div style="margin: 0 auto;width: 90%;min-height: 100%;height: 100%;background: #fff;margin-top: 20px;">
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-head">
+                                    <div style="display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;padding: 0px 30px;border-bottom: 1px solid #f3f1f0;">
+                                      <div style="-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;padding: 15px 0;">
+                                        <h3 style="margin: 4px 0;text-transform: uppercase">
+                                        E-Tiket / <span style="opacity: .75">E-Ticket</span>
+                                        </h3>
+                                        <p style="margin: 4px 0;font-size: 14px;opacity: .75;">
+                                          Itinerary & Receipt
+                                        </p>
+                                      </div>
+                                      <div style="-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;text-align: right;">
+                                        <div style="background: #CC334D;display: inline-block;position: absolute;padding: 20px 10px;margin-left: -90px;">
+                                          <%= image_tag 'logo/logo_w.png', :style => 'max-width: 100%;max-height: 70px;margin: 0;padding: 0;' %>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-time">
+                                    <div style="display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;padding: 0px 30px;">
+                                      <div style="-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;padding: 15px 0;">
+                                        <p style="margin: 5px 0;font-size: 11px;opacity: .75;text-transform: uppercase;">
+                                          Kode Booking
+                                        </p>
+                                        <h1 style="margin-top: 10px;margin-bottom: 0;font-weight: 600;color: #CC334D;">
+                                        <%= item['ppob_pesawat'][1]['booking_code'] rescue "" %>
+                                        </h1>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-ticket">
+                                    <div style="padding: 0px 30px;">
+                                      <p style="margin: 4px 0;margin-bottom: 15px;font-size: 10px;letter-spacing: .7px;text-transform: uppercase;">
+                                        Waktu Penerbangan
+                                        : <%= item['ppob_pesawat'][1]['flight_date'] rescue "" %>
+                                      </p>
+                                      <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #CC334D;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                                        <thead>
+                                          <tr>
+                                            <td style="padding: 15px 5px;vertical-align: middle;min-width: 131px;">
+                                              <%= image_tag "#{item['ppob_pesawat'][1]['order_foto'] rescue ''}" , :style => 'max-width: 100%;max-height: 80px;margin: 0;padding: 0;' %>
+                                              <p style="text-transform: uppercase;font-size: 10px;margin: 5px 0px;opacity: .7">
+                                                <%= item['ppob_pesawat'][1]['airlines_name'] rescue ""%>
+                                                - <%= item['ppob_pesawat'][1]['flight_number'] rescue "" %>
+                                              </p>
+                                            </td>
+                                            <td style="padding: 15px 5px;vertical-align: middle;min-width: 515px;width: 100%;">
+                                              <div class="timeline">
+                                                <style scoped>
+                                                ul.line-ticket::before {
+                                                content: '';
+                                                height: 100%;
+                                                width: 1px;
+                                                background-color: #CC334D;
+                                                position: absolute;
+                                                top: 0;
+                                                left: 14px;
+                                                z-index: 0;
+                                                }
+                                                </style>
+                                                <ul class="line-ticket" style="padding: 0 6px;
+                                                  margin: 0;
+                                                  list-style: none;
+                                                  position: relative">
+                                                  <li>
+                                                    <div style="display: inline-block;
+                                                      margin: 21px 3px;
+                                                      vertical-align: top;
+                                                      width: 12px;
+                                                      height: 12px;
+                                                      box-sizing: border-box;
+                                                      -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;
+                                                      background: #ffffff;
+                                                      z-index: 1;
+                                                      position: relative;
+                                                      border: 1px solid #CC334D;">
+                                                    </div>
+                                                    <div class="time" style="width: 10%;
+                                                      font-size: 13px;
+                                                      font-weight: bold;
+                                                      display: inline-block;
+                                                      margin: 16px 0;
+                                                      vertical-align: top;
+                                                      padding-top: 0.25em;">
+                                                      Time
+                                                    </div>
+                                                    <div class="desc" style="width: 50%;
+                                                      display: inline-block;
+                                                      margin: 1em 0;
+                                                      vertical-align: top;
+                                                      ">
+                                                      <h3 style="font-size: 0.9em;
+                                                      font-weight: 400;
+                                                      line-height: 20px;
+                                                      margin: 0;">
+                                                      <%= item['ppob_pesawat'][1]['departure_city_name'] rescue "" %>
+                                                      </h3>
+                                                      <h5 style="margin: 0;
+                                                      font-size: 0.7em;
+                                                      opacity: .7;
+                                                      font-weight: 400;">
+                                                      <%= item['ppob_pesawat'][1]['departure_airport_name'] rescue "" %>
+                                                      </h5>
+                                                    </div>
+                                                  </li>
+                                                  <li>
+                                                    <div style="display: inline-block;
+                                                      margin: 21px 3px;
+                                                      vertical-align: top;
+                                                      width: 12px;
+                                                      height: 12px;
+                                                      box-sizing: border-box;
+                                                      -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;
+                                                      background: #CC334D;
+                                                      z-index: 1;
+                                                      position: relative;
+                                                      border: 1px solid #ffffff;">
+                                                    </div>
+                                                    <div class="time" style="width: 10%;
+                                                      font-size: 13px;
+                                                      font-weight: bold;
+                                                      display: inline-block;
+                                                      margin: 16px 0;
+                                                      vertical-align: top;
+                                                      padding-top: 0.25em;">
+                                                      Time
+                                                    </div>
+                                                    <div class="desc" style="width: 50%;
+                                                      display: inline-block;
+                                                      margin: 1em 0;
+                                                      vertical-align: top;">
+                                                      <h3 style="font-size: 0.9em;
+                                                      font-weight: 400;
+                                                      line-height: 20px;
+                                                      margin: 0;">
+                                                      <%= item['ppob_pesawat'][1]['arrival_city_name'] rescue "" %>
+                                                      </h3>
+                                                      <h5 style="margin: 0;
+                                                      font-size: 0.7em;
+                                                      opacity: .7;
+                                                      font-weight: 400;">
+                                                      <%= item['ppob_pesawat'][1]['arrival_airport_name'] rescue "" %>
+                                                      </h5>
+                                                    </div>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        </thead>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-items">
+                                    <div style="padding: 0 30px">
+                                      <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #CC334D;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                                        <tr>
+                                          <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px;">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <%= image_tag 'lib/ui-icon/eticket/check.png',
+                                              :style => 'max-width: 100%;
+                                              height: 33px;
+                                              -ms-flex-item-align: center!important;
+                                              align-self: center!important;
+                                              vertical-align: midlle;
+                                              opacity: .75;
+                                              margin-right: 10px;' %>
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;">
+                                                  Tunjukkan e-tiket ini dan identitas para penumpang
+                                                  dibawah ini saat check-in
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <%= image_tag 'lib/ui-icon/eticket/check_in.png',
+                                              :style => 'max-width: 100%;
+                                              height: 33px;
+                                              -ms-flex-item-align: center!important;
+                                              align-self: center!important;
+                                              vertical-align: midlle;
+                                              opacity: .75;
+                                              margin-right: 10px;' %>
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;">
+                                                  Check-in <strong>paling lambat 90 Menit</strong>
+                                                  sebelum jadwal keberangkatan
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px;">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <%= image_tag 'lib/ui-icon/eticket/times.png',
+                                              :style => 'max-width: 100%;
+                                              height: 33px;
+                                              -ms-flex-item-align: center!important;
+                                              align-self: center!important;
+                                              vertical-align: midlle;
+                                              opacity: .75;
+                                              margin-right: 10px;' %>
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;">
+                                                  Waktu tertera adalah waktu bandara setempat
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-passangers">
+                                    <div style="padding: 0 30px;min-height: 353px;">
+                                      <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #e3e1e0;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                                        <thead>
+                                          <tr>
+                                            <th colspan="4" style="padding: 15px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 10px;
+                                              text-align: left;
+                                              opacity: .7;
+                                              text-transform: uppercase;
+                                              width: 100%;">
+                                              Daftar Penumpang
+                                            </th>
+                                          </tr>
+                                          <tr>
+                                            <th style="padding: 5px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 13px;
+                                              text-align: left;
+                                              min-width: 33px;">
+                                              No. <br>
+                                              <span style="opacity: .5">
+                                                No.
+                                              </span>
+                                            </th>
+                                            <th style="padding: 5px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 13px;
+                                              text-align: left;
+                                              min-width: 272px;">
+                                              Passanger(s) <br>
+                                              <span style="opacity: .5">
+                                                Penumpang
+                                              </span>
+                                            </th>
+                                            <th style="padding: 5px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 13px;
+                                              text-align: left;
+                                              min-width: 131px;">
+                                              Ticket Type <br>
+                                              <span style="opacity: .5">
+                                                Jenis Tiket
+                                              </span>
+                                            </th>
+                                            <th style="padding: 5px 5px;
+                                              vertical-align: top;
+                                              font-weight: 500;
+                                              font-size: 13px;
+                                              width: 100%;
+                                              text-align: left;">
+                                              Baggage <br>
+                                              <span style="opacity: .5">
+                                                Bagasi
+                                              </span>
+                                            </th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <%= item['ppob_pesawat_detail']%>
+                                          <% no = 0%>
+                                          <% penumpang = Api::Account::TiketPesawatController.historyTiket(session[:acc_token], session[:tiket], params[:filter], item['kode_transaksi']) %>
+                                          <% penumpang['ppob_pesawat_detail'].each do |passenger|%>
+                                            <tr>
+                                              <td style="padding: 5px 5px;
+                                                /*vertical-align: top;*/
+                                                /*font-weight: 500;*/
+                                                /*font-size: 13px;*/
+                                                /*opacity: .5;*/
+                                                text-align: left;">
+                                                <%= no = no + 1%>
+                                              </td>
+                                              <td style="padding: 5px 5px;
+                                                /*vertical-align: top;*/
+                                                /*font-weight: 500;*/
+                                                /*font-size: 13px;*/
+                                                text-align: left;">
+                                                <%= passenger['first_name'].to_s + " " + passenger['last_name'].to_s%>
+                                              </td>
+                                              <td style="padding: 5px 5px;
+                                                /*vertical-align: top;*/
+                                                /*font-weight: 500;*/
+                                                /*font-size: 13px;*/
+                                                text-align: left;">
+                                                <%= passenger['type'] %>
+                                              </td>
+                                              <td style="padding: 5px 5px;
+                                                /*vertical-align: top;*/
+                                                /*font-weight: 500;*/
+                                                /*font-size: 13px;*/
+                                                text-align: left;">
+                                                <%= passenger['check_in_baggage'] %>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                  <div class="w-content-footer">
+                                    <div style="padding: 0 30px">
+                                      <table cellpadding="0" cellspacing="0" style="border-top: 4px solid #f3f1f0;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                                        <tr>
+                                          <td style="vertical-align: middle;padding: 20px 5px;min-width: 272px;">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <%= image_tag 'logo/bestravel.png',
+                                              :style => 'max-width: 100%;
+                                              height: 30px;
+                                              -ms-flex-item-align: center!important;
+                                              align-self: center!important;
+                                              vertical-align: midlle;
+                                              opacity: .75;
+                                              margin-right: 10px;' %>
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;">
+                                                  Customer service abutours <br>
+                                                  (021) 227 93 555
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          <td style="vertical-align: middle;padding: 20px 5px;text-align: right;width: 100%">
+                                            <div style="display: -ms-flexbox;
+                                              display: flex;
+                                              -ms-flex-align: start;
+                                              align-items: flex-start;">
+                                              <div style="-ms-flex: 1;
+                                                flex: 1;">
+                                                <p style="margin: 4px 0;font-size: 12px;text-align: right;opacity: .5">
+                                                  Best travel service
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- ---------------------------------------- -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <% else%>
+  <div class="w-blank text-center p-5">
+    <%= image_tag 'lib/icon/services_mitra.png', :class => 'mx-auto d-block', :alt => '' %>
+    <p class="mb-0">
+      Maaf, Paket produk yang anda cari tidak tersedia!
+    </p>
+  </div>
+  <% end %>
+</div>
+<!-- --------------------------------------------------- -->
+</div>
+<!-- --------------------------------------------------- -->
+</div>
+</div>
+</section>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :foot do %>
+<script type="text/javascript">
+$(document).ready(function () {
+$('#urutkan').prettyDropdown({
+afterLoad: function () {
+console.log('abutours.com | best travel services');
+}
+});
+});
+</script>
+<% end %>

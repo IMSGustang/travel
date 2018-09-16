@@ -1,0 +1,104 @@
+<%= content_for :headmobile do %>
+    <title>Detail Metode Pembayaran</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-tagihan-payment-method">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-sm mb-0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <small>Total Tagihan Anda</small>
+                            <h5 class="mb-0">
+                                <%= number_to_currency(@paket['harga_jual'] - @voucher, precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                            </h5>
+                        </td>
+
+                        <td width="120" class="text-right">
+                            <a class="card-link" data-toggle="collapse" href="#linkdetailtagihan" role="button" aria-expanded="false" aria-controls="linkdetailtagihan">
+                                Lihat Tagihan <i class="ion-ios-arrow-down"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="collapse" id="linkdetailtagihan">
+            <div class="card card-collapse">
+                <div class="card-body">
+                    <table class="table table-sm mb-0">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Subtotal
+                            </td>
+                            <td width="150">
+                                <%= number_to_currency(@paket['harga_jual'] - @voucher, precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                Tagihan
+                            </th>
+                            <th width="150">
+                                <%= number_to_currency(@paket['harga_jual'] - @voucher, precision: 0, unit: @paket['tipe_curr'] ? @paket['tipe_curr'] + ' ' : 'IDR ') %>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-payment-method-detail-transfer">
+        <div class="card">
+            <div class="card-header">
+                <%= link_to "Ganti Metode Pembayaran", :back, :class => "btn btn-sm btn-block btn-outline-danger" %>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-sm mb-0">
+                    <tbody>
+                    <tr>
+                        <th>
+                            Pilih Bank Tujuan Transfer :
+                        </th>
+                    </tr>
+                    <% @bank.each do |item| %>
+                        <% if(item['nama'] == 'Mandiri' || item['nama'] == 'Mandiri USD') %>
+                            <% @gambar = 'lib/payment-icon/MANDIRI.png' %>
+                        <% elsif item['nama'] == 'BNI' || item['nama'] == 'BNI USD'%>
+                            <% @gambar = 'lib/payment-icon/BNI.png' %>
+                        <% elsif item['nama'] == 'BRI' || item['nama'] == 'BRI USD'%>
+                            <% @gambar = 'lib/payment-icon/BRI.png' %>
+                        <% elsif item['nama'] == 'BCA' || item['nama'] == 'BCA USD'%>
+                            <% @gambar = 'lib/payment-icon/BCA.png' %>
+                        <% end %>
+                    <tr>
+                        <td>
+                          <a href="/api/transaksi/paket?p=<%=params['p']%>&kk=<%=params['kk']%>&type=<%=params['type']%>&mb=<%=item['kdbank']%>&mtd=TRANSFER&th=<%=params['th']%>&bln=<%=params['bln']%>" class="w-100">
+                            <div class="media">
+                              <%= image_tag @gambar, :class => 'align-self-center' %>
+                              <div class="media-body">
+                                <%= item['nama'] %> - <%= item['norekening'] %>
+                              </div>
+                              <div class="align-self-center">
+                                <i class="ion-ios-arrow-thin-right"></i>
+                              </div>
+                            </div>
+                          </a>
+                        </td>
+                    </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<% end %>

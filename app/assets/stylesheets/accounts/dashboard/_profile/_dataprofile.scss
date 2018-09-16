@@ -1,0 +1,301 @@
+.data-picture-users {
+  & .navbar {
+    & .navbar-brand {
+      font-size: 16px;
+      letter-spacing: -.5px;
+    }
+  }
+
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-body {
+      & .media {
+        & .media-images {
+          width: 100px;
+          height: 100px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          background: #f5f5f5;
+          overflow: hidden;
+
+          & img {
+            width: 100%;
+          }
+        }
+
+        & .media-body {
+          & h5 {
+            font-size: 16px;
+            letter-spacing: -.5px;
+          }
+
+          & p {
+            font-size: 11px;
+            letter-spacing: -.5px;
+            opacity: .7;
+          }
+
+          & .table {
+            & td {
+              border: none;
+              border-right: 1px solid #e3e1e0;
+              padding: 0;
+
+              &:last-child {
+                border-right: none;
+              }
+            }
+
+            & .level-users, .referal {
+              & small {
+                font-size: 8px;
+                text-transform: uppercase;
+                opacity: .7;
+              }
+              & p {
+                opacity: 1;
+                letter-spacing: -.5px;
+                font-weight: bold;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.data-data-progressbar {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & a.card-link {
+      font-size: 12px;
+      letter-spacing: -.5px;
+      color: #333333;
+
+      & .card-body {
+        & .table {
+          & td {
+            border: none;
+            padding: 0;
+            vertical-align: middle;
+
+            & small {
+              text-transform: capitalize;
+              font-size: 12px;
+              letter-spacing: -.5px;
+              opacity: .7;
+            }
+
+            & i {
+              font-size: 14px;
+              position: relative;
+              top: 8px;
+              color: $color-default;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & .card-collapse {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-body {
+      padding: 5px 20px;
+      & .table {
+        & td {
+          border: none;
+          font-size: 12px;
+          padding: 8px 0;
+          letter-spacing: -.5px;
+        }
+
+        & th {
+          border: none;
+          border-top: 1px dashed #e3e1e0;
+          padding: 8px 0;
+          font-size: 12px;
+          letter-spacing: -.5px;
+        }
+      }
+    }
+  }
+}
+
+.data-myFiture {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-body {
+      & .table {
+        & td {
+          border-bottom: 1px dashed #e3e1e0;
+          padding: 0;
+
+          & a {
+            font-size: 14px;
+            color: #333333;
+            letter-spacing: -.5px;
+
+            & i {
+              margin-left: 10px;
+              color: $color-default;
+            }
+
+            & svg {
+              top: 8px;
+              position: relative;
+            }
+          }
+
+          & .table {
+            & tr {
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              & td {
+                -webkit-box-flex: 1;
+                -webkit-flex: 1 1 100%;
+                -ms-flex: 1 1 100%;
+                flex: 1 1 100%;
+                display: flex;
+                border: none;
+
+                & a {
+                  margin: 0 auto;
+                  margin-bottom: 2px;
+                  border: 1px solid #e3e1e0;
+                  -webkit-border-radius: 100%;
+                  -moz-border-radius: 100%;
+                  border-radius: 100%;
+                  display: block;
+                  width: 60px;
+                  height: 60px;
+                  padding: 8px;
+
+                  &.badge-seat {
+                    border-color: #fdcb6e;
+                    & svg {
+                      color: #fdcb6e;
+                    }
+                  }
+
+                  &.badge-jamaah {
+                    border-color: #00cec9;
+                    & svg {
+                      color: #00cec9;
+                    }
+                  }
+
+                  &.badge-fee {
+                    border-color: #74b9ff;
+                    & svg {
+                      color: #74b9ff;
+                    }
+                  }
+
+                  &.badge-voucher {
+                    border-color: #a29bfe;
+                    & svg {
+                      color: #a29bfe;
+                    }
+                  }
+                }
+
+                & p {
+                  font-size: 13px;
+                  letter-spacing: -.5px;
+                  font-weight: 500;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.data-myManifest {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-body {
+      & .table {
+        & td {
+          border: none;
+          border-bottom: 1px dashed #e3e1e0;
+          padding: 6px 0;
+          & a {
+            display: inline-flex;
+            font-size: 14px;
+            color: #212121;
+            letter-spacing: -.5px;
+            width: 100%;
+            line-height: 30px;
+
+            & svg {
+              width: 18px;
+              margin-right: 10px;
+              margin-top: 3px;
+              opacity: .75;
+            }
+          }
+
+          &.border-none {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.data-logOut {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-body {
+      & .btn {
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+$color-default        : #e85257;
+$color-default-hover  : #FF5A5F;
+
+$color-green          : #76D269;
+$color-green-hover    : #067F1D;
+
+$color-stars          : #fa9600;
+
+$color-dark-one       : #333333;
+$color-dark-two       : #4D4D4D;
+
+.text-danger {
+  color: $color-default !important;
+
+  &:hover {
+    color: $color-default-hover !important;
+  }
+}

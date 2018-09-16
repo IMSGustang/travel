@@ -1,0 +1,169 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="_landing | c-cover-head">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag 'https://ecs7.tokopedia.net/img/banner/2017/10/5/5253715/5253715_c119e7f5-d9a0-4e28-9043-a8bf37624800.jpg', :class => 'd-block w-100', :alt => '' %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag 'https://ecs7.tokopedia.net/img/banner/2017/10/1/5253715/5253715_045d88bd-82e2-446e-90c5-87e39386adfa.jpg.webp', :class => 'd-block w-100', :alt => '' %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag 'https://ecs7.tokopedia.net/img/banner/2017/10/1/5253715/5253715_bb5c9ed1-c92a-4290-a751-1f65f6992987.jpg', :class => 'd-block w-100', :alt => '' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="_landing | w-search">
+      <div class="container">
+        <div class="c-dashboard">
+          <div class="c-bg-white-accounts">
+            <ul class="nav tabs-voucher mb-2">
+              <li class="nav-item">
+                <a class="nav-link <%= active_class('/evoucher/pulsa') %>" href="/evoucher/pulsa">
+                  Beli Pulsa
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= active_class('/evoucher/paketdata') %>" href="/evoucher/paketdata">
+                  Paket Data
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= active_class('/evoucher/tokenlistrik') %>" href="/evoucher/tokenlistrik">
+                  Token Listrik
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= active_class('/evoucher/vouchergame') %>" href="/evoucher/vouchergame">
+                  Voucher Game
+                </a>
+              </li>
+              <!--<li class="nav-item">-->
+              <!--<a class="nav-link <%= active_class('/bpjs-kesehatan') %>" href="/bpjs-kesehatan">-->
+              <!--Bpjs Kesehatan-->
+              <!--</a>-->
+              <!--</li>-->
+            </ul>
+            <!-- --------------------------------------------------- -->
+            <form action="/pulsa/detail" method="post">
+              <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+              <div class="card c-dashboard-content mt-1 mb-0">
+                <div class="card-body c-dashboard-content__item">
+                  <div class="form-group row">
+                    <div class="col-7">
+                      <label>Nomor Telepon</label>
+                      <input type="text" name="msisdn" class="form-control" value="" placeholder="" id="msisdn" onkeyup="cekHarga(this.value)">
+                    </div>
+
+                    <div class="col-5">
+                      <label>Nominal</label>
+                      <select id="nominals" name="nominal" class="form-control" onchange="ubahHarga()">
+                        <option value="0" disabled>
+                          Pilih nominal...
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Rp 10.000
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Rp 20.000
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Rp 5.000
+                        </option>
+                        <option data-prefix="<span aria-hidden='true'></span>">
+                          Rp 100.000
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <label>Harga Bayar</label>
+                      <h5 class="ml-2" id="priceTag">
+                        Rp 10.000
+                      </h5>
+                    </div>
+
+                    <div class="col-6">
+                      <button class="btn btn-block btn-danger mt-3">Bayar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="_landing | c-about">
+      <div class="container">
+        <h1 class="lead text-center mb-5">
+          Mengapa Beli Pulsa di Abutours <strong>Lebih Asik ?</strong>
+        </h1>
+        <div class="row">
+          <div class="card-group">
+            <div class="card | c-about__item">
+              <%= image_tag 'lib/icon/hargaterjamin.png', :class => 'mx-auto d-block', :alt => '' %>
+              <div class="card-body | c-about__item-b">
+                <p class="card-text | a-text">
+                  BUTUH ISI PULSA CEPAT YANG TERPERCAYA? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet, dolor dolores
+                  doloribus dolorum et eum excepturi explicabo illum iure modi necessitatibus obcaecati odio perferendis
+                  quos sequi temporibus, vel voluptate.
+                </p>
+              </div>
+            </div>
+
+            <div class="card | c-about__item">
+              <%= image_tag 'lib/icon/teknologimutakhir.png', :class => 'mx-auto d-block', :alt => '' %>
+              <div class="card-body | c-about__item-b">
+                <p class="card-text | a-text">
+                  HARGA TERJAMIN MURAH Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet, dolor
+                  dolores doloribus dolorum et eum excepturi explicabo illum iure modi necessitatibus obcaecati odio
+                  perferendis quos sequi temporibus, vel voluptate.
+                </p>
+              </div>
+            </div>
+
+            <div class="card | c-about__item">
+              <%= image_tag 'lib/icon/tidakrepot.png', :class => 'mx-auto d-block', :alt => '' %>
+              <div class="card-body | c-about__item-b">
+                <p class="card-text | a-text">
+                  TIDAK PERLU ANTRI KETIKA BELI PULSA Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet, dolor
+                  dolores doloribus dolorum et eum excepturi explicabo illum iure modi necessitatibus obcaecati odio
+                  perferendis quos sequi temporibus, vel voluptate.
+                </p>
+              </div>
+            </div>
+
+            <div class="card | c-about__item">
+              <%= image_tag 'lib/icon/travelumrahterbesar.png', :class => 'mx-auto d-block', :alt => '' %>
+              <div class="card-body | c-about__item-b">
+                <p class="card-text | a-text">
+                  PULSA ONLINE 24 JAM SETIAP HARINYA Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet, dolor
+                  dolores doloribus dolorum et eum excepturi explicabo illum iure modi necessitatibus obcaecati odio
+                  perferendis quos sequi temporibus, vel voluptate.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :foot do %>
+
+<% end %>

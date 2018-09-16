@@ -1,0 +1,76 @@
+<%= content_for :headmobile do %>
+    <title>Detail produk</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <%= render template: 'mobile/transaction/partials/back_bar', locals: { back_title: 'Detail Paket Umrah', back_url: "/paket-umrah"} %>
+
+    <div class="data-images-detail mb-3">
+      <div class="card text-white">
+        <%= image_tag 'no_images/no_package_1.png', :class => 'card-img', :alt => '' %>
+        <div class="card-img-overlay">
+          <h5 class="card-title">
+            Souvenir Umrah Original Madinah
+          </h5>
+        </div>
+      </div>
+
+      <table class="table table-sm mb-0">
+        <tbody>
+        <tr>
+          <td>
+            <h4 class="mb-0">
+              Rp20,000
+            </h4>
+          </td>
+          <td>
+            <a href="/abutours-login" class="btn btn-lg btn-block btn-danger">Beli</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--detail-->
+    <div class="data-paket-detail">
+      <ul class="nav nav-pills nav-fill nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="ringkasanproduk-tab" data-toggle="tab" href="#ringkasanproduk" role="tab"
+             aria-controls="ringkasanproduk" aria-selected="true">Ringkasan Produk</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="ringkasanproduk" role="tabpanel"
+             aria-labelledby="syarat-tab">
+          <div id="accordion" role="tablist">
+            <% count = 0 %>
+            <% @data['su'].each do |item| %>
+                <% count = count + 1 %>
+                <div class="card">
+                  <div class="card-header" role="tab" id="heading-<%= item['name'].parameterize %>">
+                    <h5 class="data-title mb-0">
+                      <a class="accordion-collapse" data-toggle="collapse" href="#<%= item['name'].parameterize %>"
+                         role="button"
+                         aria-expanded="false" aria-controls="<%= item['name'].parameterize %>">
+                        <%= item['name'] %>
+                      </a>
+                    </h5>
+                  </div>
+
+                  <div id="<%= item['name'].parameterize %>" class="collapse <%= count == 1 ? "show" : "" %>" role="tabpanel"
+                       aria-labelledby="heading-<%= item['name'].parameterize %>" data-parent="#accordion">
+                    <div class="card-body">
+                      <% item['teks'].each do |teks| %>
+                          <p class="m-0">
+                            <%= teks['teks'] %>
+                          </p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

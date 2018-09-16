@@ -1,0 +1,47 @@
+<%= content_for :head do %>
+    <title>abutours.com | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="p-about | p-2">
+      <div class="container">
+        <div class="row | pl-3 | pr-3">
+          <div class="col-8 | p-1">
+            <div class="card | p-about__item | c-middle">
+              <div class="card-body | p-about__item-b | pl-5 pr-5 pt-5">
+                <h1 class="display-5 h-title m-0 | text-uppercase">
+                  <%= @about_us ? @about_us['judul'].titlecase : 'Semua Bisa Umrah' %>
+                </h1>
+              </div>
+
+              <%= image_tag @about_us ? @about_us['tumbnail'] : 'lib/cover/cabang.png', :class => 'mx-auto d-block mt-2 mb-2' %>
+
+              <div class="card-body | p-about__item-b | pl-5 pr-5 pb-5">
+                <p class="card-text">
+                  <%= @about_us ? @about_us['artikel'].html_safe : '' %>
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4 | p-1">
+            <div class="card | p-about__item | mb-2">
+              <%= image_tag 'lib/icon/subscribe-book.png', :class => 'card-img-top | d-flex | mx-auto', :alt => '' %>
+
+              <div class="card-body | p-about__item-b">
+                <p class="mb-0">
+                  Gratis download e-book <i>ayo bisnis umrah</i>
+                </p>
+                <a href="" class="mt-3 btn btn-outline-success">Download sekarang</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :foot do %>
+
+<% end %>

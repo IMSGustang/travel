@@ -1,0 +1,708 @@
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:20:36 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (90.4ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.5ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 5077ms (Views: 120.2ms)
+Started GET "/auth/facebook?fp=001aa815a6bda48a60332d0fd8a01598" for 127.0.0.1 at 2018-01-27 18:20:54 +0700
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:21:45 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (68.1ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.5ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.7ms)
+Completed 200 OK in 3960ms (Views: 91.3ms)
+Started POST "/api/login" for 127.0.0.1 at 2018-01-27 18:22:09 +0700
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"afb"=>"001aa815a6bda48a60332d0fd8a01598", "no_telepon"=>"085213247455", "password"=>"[FILTERED]"}
+RenewToken ''
+Redirected to http://localhost:3000/accounts/dashboard
+Completed 302 Found in 6103ms
+Started GET "/accounts/dashboard" for 127.0.0.1 at 2018-01-27 18:22:16 +0700
+Processing by AccountsController#dashboard as HTML
+RenewToken '4e670f9d51f86ebc80d88b45b30cc4f6e8a56b706782cf62207a70718bfb1581'
+Authentication > 4e670f9d51f86ebc80d88b45b30cc4f6e8a56b706782cf62207a70718bfb1581
+  Rendering accounts/dashboard.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (1.8ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (1.1ms)
+  Rendered accounts/dashboard.html.erb within layouts/application (9.9ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.2ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.4ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.6ms)
+Completed 200 OK in 572ms (Views: 32.1ms)
+Started GET "/app/logout" for 127.0.0.1 at 2018-01-27 18:22:54 +0700
+Processing by Api::Auth::AuthController#removeAndRevoke as HTML
+RenewToken '4e670f9d51f86ebc80d88b45b30cc4f6e8a56b706782cf62207a70718bfb1581'
+Redirected to http://localhost:3000/
+Completed 302 Found in 153ms
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:22:54 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (60.8ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.1ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 8081ms (Views: 79.1ms)
+Started GET "/abutours-registers" for 127.0.0.1 at 2018-01-27 18:23:08 +0700
+Processing by AuthController#registers as HTML
+RenewToken ''
+  Rendering auth/registers.html.erb within layouts/application_logister
+  Rendered auth/registers.html.erb within layouts/application_logister (1.3ms)
+Completed 200 OK in 30ms (Views: 10.2ms)
+Started GET "/abutours-login" for 127.0.0.1 at 2018-01-27 18:23:11 +0700
+Processing by AuthController#login as HTML
+RenewToken ''
+  Rendering auth/login.html.erb within layouts/application_logister
+  Rendered auth/login.html.erb within layouts/application_logister (0.9ms)
+Completed 200 OK in 26ms (Views: 8.0ms)
+Started GET "/auth/facebook?fp=001aa815a6bda48a60332d0fd8a01598" for 127.0.0.1 at 2018-01-27 18:23:14 +0700
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:23:49 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (78.1ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.3ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.8ms)
+Completed 200 OK in 4046ms (Views: 102.1ms)
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:24:47 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (63.3ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.1ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 3823ms (Views: 81.7ms)
+Started POST "/api/login" for 127.0.0.1 at 2018-01-27 18:24:57 +0700
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"afb"=>"001aa815a6bda48a60332d0fd8a01598", "no_telepon"=>"081381811281", "password"=>"[FILTERED]"}
+RenewToken ''
+Redirected to http://localhost:3000/accounts/dashboard
+Completed 302 Found in 1190ms
+Started GET "/accounts/dashboard" for 127.0.0.1 at 2018-01-27 18:24:58 +0700
+Processing by AccountsController#dashboard as HTML
+RenewToken '0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167'
+Authentication > 0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167
+  Rendering accounts/dashboard.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (1.6ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (1.0ms)
+  Rendered accounts/dashboard.html.erb within layouts/application (8.3ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.1ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.4ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 647ms (Views: 28.1ms)
+Started GET "/tambah-saldo-abupay" for 127.0.0.1 at 2018-01-27 18:25:06 +0700
+Processing by AccountsController#topup as HTML
+RenewToken '0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167'
+Authentication > 0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167
+  Rendering accounts/abupay/index.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (5.8ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (2.3ms)
+  Rendered accounts/abupay/index.html.erb within layouts/application (19.7ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (2.5ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (3.3ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (1.3ms)
+Completed 200 OK in 345ms (Views: 68.4ms)
+Started GET "/pulsa" for 127.0.0.1 at 2018-01-27 18:25:08 +0700
+Processing by PpobPulsaController#index as HTML
+RenewToken '0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167'
+Authentication > 0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167
+  Rendering accounts/evoucher/pulsa/inquiry.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (33.5ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (2.8ms)
+  Rendered accounts/evoucher/pulsa/inquiry.html.erb within layouts/application (52.1ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (3.4ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (2.9ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (2.0ms)
+Completed 200 OK in 352ms (Views: 108.4ms)
+Started GET "/accounts/dashboard" for 127.0.0.1 at 2018-01-27 18:25:10 +0700
+Processing by AccountsController#dashboard as HTML
+RenewToken '0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167'
+Authentication > 0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167
+  Rendering accounts/dashboard.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (3.7ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (2.9ms)
+  Rendered accounts/dashboard.html.erb within layouts/application (16.0ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (2.9ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (1.3ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.6ms)
+Completed 200 OK in 820ms (Views: 44.7ms)
+Started GET "/pembayaran-umrah" for 127.0.0.1 at 2018-01-27 18:25:12 +0700
+Processing by AccountsController#pembayaranpacket as HTML
+RenewToken '0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167'
+Authentication > 0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167
+  Rendering accounts/transaksi/pembayaranumrah.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (3.3ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (1.7ms)
+  Rendering accounts/partials/navigasi_pembayaran.html.erb
+  Rendered accounts/partials/navigasi_pembayaran.html.erb (2.7ms)
+  Rendered accounts/transaksi/pembayaranumrah.html.erb within layouts/application (22.0ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (2.1ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.9ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (1.7ms)
+Completed 200 OK in 371ms (Views: 53.9ms)
+Started GET "/informasi" for 127.0.0.1 at 2018-01-27 18:25:36 +0700
+Processing by AccountsController#notification as HTML
+RenewToken '0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167'
+Authentication > 0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167
+  Rendering accounts/notification/index.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (1.6ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (1.1ms)
+  Rendered accounts/notification/index.html.erb within layouts/application (8.5ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.3ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 3429ms (Views: 30.0ms)
+Started POST "/informasi/update_status" for 127.0.0.1 at 2018-01-27 18:25:41 +0700
+Processing by Api::Account::NotifikasiController#update_notifikasi as JSON
+  Parameters: {"id"=>"9"}
+RenewToken '0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167'
+Completed 200 OK in 156ms (Views: 0.3ms)
+Started GET "/app/logout" for 127.0.0.1 at 2018-01-27 18:25:59 +0700
+Processing by Api::Auth::AuthController#removeAndRevoke as HTML
+RenewToken '0633a46c2a58e53814f089142b474eb379b34b86dbba23906a9c1b42914d9167'
+Redirected to http://localhost:3000/
+Completed 302 Found in 135ms
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:25:59 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (79.5ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (2.6ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.7ms)
+Completed 200 OK in 6000ms (Views: 101.9ms)
+Started POST "/api/login" for 127.0.0.1 at 2018-01-27 18:27:07 +0700
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"afb"=>"001aa815a6bda48a60332d0fd8a01598", "no_telepon"=>"riganjil", "password"=>"[FILTERED]"}
+RenewToken ''
+Redirected to http://localhost:3000/abutours-login?res=fails
+Completed 302 Found in 66ms
+Started GET "/abutours-login?res=fails" for 127.0.0.1 at 2018-01-27 18:27:07 +0700
+Processing by AuthController#login as HTML
+  Parameters: {"res"=>"fails"}
+RenewToken ''
+  Rendering auth/login.html.erb within layouts/application_logister
+  Rendered auth/login.html.erb within layouts/application_logister (0.9ms)
+Completed 200 OK in 26ms (Views: 7.9ms)
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:28:13 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (68.7ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.7ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.8ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (1.0ms)
+Completed 200 OK in 4311ms (Views: 91.4ms)
+Started POST "/api/login" for 127.0.0.1 at 2018-01-27 18:28:49 +0700
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"afb"=>"001aa815a6bda48a60332d0fd8a01598", "no_telepon"=>"ri.ganjil@gmail.com", "password"=>"[FILTERED]"}
+RenewToken ''
+Redirected to http://localhost:3000/abutours-login?res=fails
+Completed 302 Found in 160ms
+Started GET "/abutours-login?res=fails" for 127.0.0.1 at 2018-01-27 18:28:49 +0700
+Processing by AuthController#login as HTML
+  Parameters: {"res"=>"fails"}
+RenewToken ''
+  Rendering auth/login.html.erb within layouts/application_logister
+  Rendered auth/login.html.erb within layouts/application_logister (0.9ms)
+Completed 200 OK in 91ms (Views: 7.0ms)
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:29:06 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (93.6ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (2.9ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (1.2ms)
+Completed 200 OK in 4013ms (Views: 116.9ms)
+Started GET "/auth/facebook?fp=001aa815a6bda48a60332d0fd8a01598" for 127.0.0.1 at 2018-01-27 18:38:53 +0700
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:39:06 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (65.6ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (2.8ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.8ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.6ms)
+Completed 200 OK in 4142ms (Views: 87.6ms)
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:39:18 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (70.7ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.2ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 4040ms (Views: 89.4ms)
+Started GET "/detil-paket/PRD831180108/PKB/2018/03/umrah-reguler-plus-aqsa-amanah-maret-april-2018-12-hari-quad" for 127.0.0.1 at 2018-01-27 18:39:30 +0700
+Processing by UmrahController#detailpacket as HTML
+  Parameters: {"kode"=>"PRD831180108", "kk"=>"PKB", "th"=>"2018", "bln"=>"03", "seo"=>"umrah-reguler-plus-aqsa-amanah-maret-april-2018-12-hari-quad"}
+RenewToken ''
+  Rendering umrah/detailpacket.html.erb within layouts/application
+  Rendered umrah/detailpacket.html.erb within layouts/application (3.7ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.2ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.8ms)
+Completed 200 OK in 1099ms (Views: 24.7ms)
+Started GET "/abutours-login" for 127.0.0.1 at 2018-01-27 18:39:34 +0700
+Processing by AuthController#login as HTML
+RenewToken ''
+  Rendering auth/login.html.erb within layouts/application_logister
+  Rendered auth/login.html.erb within layouts/application_logister (0.9ms)
+Completed 200 OK in 25ms (Views: 6.3ms)
+Started GET "/auth/facebook?fp=001aa815a6bda48a60332d0fd8a01598" for 127.0.0.1 at 2018-01-27 18:39:38 +0700
+Started GET "/" for 127.0.0.1 at 2018-01-27 18:40:41 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (74.6ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.5ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.7ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (3.1ms)
+Completed 200 OK in 3978ms (Views: 105.6ms)
+Started GET "/" for 127.0.0.1 at 2018-01-30 13:41:58 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (88.1ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.4ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (1.0ms)
+Completed 200 OK in 5939ms (Views: 114.1ms)
+Started GET "/paket-haji" for 127.0.0.1 at 2018-01-30 13:42:12 +0700
+Processing by HajiController#pakethaji as HTML
+RenewToken ''
+  Rendering haji/index.html.erb within layouts/application
+  Rendered haji/index.html.erb within layouts/application (2.1ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.3ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.4ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 295ms (Views: 25.8ms)
+Started GET "/abutours" for 127.0.0.1 at 2018-01-30 13:42:19 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (61.5ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.2ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 4990ms (Views: 79.5ms)
+Started GET "/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji" for 127.0.0.1 at 2018-02-28 19:25:59 +0700
+Processing by LandingController#blogdetil as HTML
+  Parameters: {"id"=>"69", "judul_seo"=>"Hukum dan Syarat Wajib Haji"}
+RenewToken ''
+  Rendering errors/500.html.erb within layouts/application_errors
+  Rendered errors/500.html.erb within layouts/application_errors (3.1ms)
+Started GET "/blog" for 127.0.0.1 at 2018-02-28 19:26:08 +0700
+Processing by LandingController#blog as HTML
+RenewToken ''
+  Rendering landing/blog.html.erb within layouts/application
+  Rendered landing/blog.html.erb within layouts/application (6.6ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (2.0ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (1.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (2.0ms)
+Completed 200 OK in 1118ms (Views: 48.5ms)
+Started GET "/404" for 127.0.0.1 at 2018-02-28 19:26:14 +0700
+  Rendering landing/blog-detail.html.erb within layouts/application
+  Rendered landing/blog-detail.html.erb within layouts/application (7.1ms)
+  Rendering errors/500.html.erb within layouts/application_errors
+  Rendered errors/500.html.erb within layouts/application_errors (1.1ms)
+Completed 200 OK in 109208ms (Views: 73.8ms)
+Processing by ErrorsController#not_found as HTML
+Started GET "/blog" for 127.0.0.1 at 2018-02-28 19:27:48 +0700
+RenewToken ''
+Processing by LandingController#blog as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (1.0ms)
+Completed 200 OK in 69ms (Views: 28.5ms)
+  Rendering mobile/sites/pages/blog/index.html.erb within layouts/application_mobile
+  Rendered mobile/sites/pages/blog/index.html.erb within layouts/application_mobile (5.1ms)
+  Rendering mobile/partials/mobilenavbar.html.erb
+  Rendered mobile/partials/mobilenavbar.html.erb (1.2ms)
+  Rendering mobile/partials/footer.html.erb
+  Rendered mobile/partials/footer.html.erb (1.2ms)
+Completed 200 OK in 662ms (Views: 30.1ms)
+Started GET "/404" for 127.0.0.1 at 2018-02-28 19:27:50 +0700
+Processing by ErrorsController#not_found as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (1.9ms)
+Completed 200 OK in 127ms (Views: 60.8ms)
+Started GET "/blog" for 127.0.0.1 at 2018-02-28 19:28:12 +0700
+Processing by LandingController#blog as HTML
+RenewToken ''
+  Rendering mobile/sites/pages/blog/index.html.erb within layouts/application_mobile
+  Rendered mobile/sites/pages/blog/index.html.erb within layouts/application_mobile (4.8ms)
+  Rendering mobile/partials/mobilenavbar.html.erb
+  Rendered mobile/partials/mobilenavbar.html.erb (1.8ms)
+  Rendering mobile/partials/footer.html.erb
+  Rendered mobile/partials/footer.html.erb (1.4ms)
+Completed 200 OK in 683ms (Views: 30.0ms)
+Started GET "/404" for 127.0.0.1 at 2018-02-28 19:28:13 +0700
+Processing by ErrorsController#not_found as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (1.2ms)
+Completed 200 OK in 97ms (Views: 43.5ms)
+Started GET "/" for 127.0.0.1 at 2018-03-04 18:59:40 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering mobile/sites/pages/mobileHome.html.erb within layouts/application_mobile
+  Rendered mobile/sites/pages/mobileHome.html.erb within layouts/application_mobile (20.8ms)
+  Rendering mobile/partials/mobilenavbar.html.erb
+  Rendered mobile/partials/mobilenavbar.html.erb (1.0ms)
+  Rendering mobile/partials/footer.html.erb
+  Rendered mobile/partials/footer.html.erb (0.6ms)
+Completed 200 OK in 6587ms (Views: 41.5ms)
+Started GET "/404" for 127.0.0.1 at 2018-03-04 18:59:48 +0700
+Processing by ErrorsController#not_found as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (0.9ms)
+Started GET "/penambahan-biaya" for 127.0.0.1 at 2018-03-04 19:00:00 +0700
+Completed 200 OK in 24299ms (Views: 24204.5ms)
+Processing by LayoutsController#penambahanbiaya as HTML
+RenewToken ''
+  Rendering mobile/sites/pages/penambahanbiaya/index.html.erb within layouts/application_mobile
+  Rendered mobile/sites/pages/penambahanbiaya/index.html.erb within layouts/application_mobile (1.2ms)
+  Rendering mobile/partials/mobilenavbar.html.erb
+  Rendered mobile/partials/mobilenavbar.html.erb (0.9ms)
+  Rendering mobile/partials/footer.html.erb
+  Rendered mobile/partials/footer.html.erb (0.8ms)
+Completed 200 OK in 160ms (Views: 21.8ms)
+Started GET "/404" for 127.0.0.1 at 2018-03-04 19:00:13 +0700
+Processing by ErrorsController#not_found as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (1.1ms)
+Completed 200 OK in 160ms (Views: 62.6ms)
+Started GET "/penambahan-biaya" for 127.0.0.1 at 2018-03-04 19:00:23 +0700
+Processing by LayoutsController#penambahanbiaya as HTML
+RenewToken ''
+  Rendering mobile/sites/pages/penambahanbiaya/index.html.erb within layouts/application_mobile
+  Rendered mobile/sites/pages/penambahanbiaya/index.html.erb within layouts/application_mobile (1.1ms)
+  Rendering mobile/partials/mobilenavbar.html.erb
+  Rendered mobile/partials/mobilenavbar.html.erb (0.7ms)
+  Rendering mobile/partials/footer.html.erb
+  Rendered mobile/partials/footer.html.erb (0.4ms)
+Completed 200 OK in 111ms (Views: 16.6ms)
+Started GET "/404" for 127.0.0.1 at 2018-03-04 19:00:24 +0700
+Processing by ErrorsController#not_found as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (1.0ms)
+Completed 200 OK in 152ms (Views: 46.8ms)
+Started GET "/haji" for 127.0.0.1 at 2018-03-04 19:00:32 +0700
+Processing by UiController#haji as HTML
+RenewToken ''
+  Rendering mobile/sites/pages/haji/mSearch.html.erb within layouts/application_mobile
+  Rendered mobile/sites/pages/haji/mSearch.html.erb within layouts/application_mobile (3.4ms)
+  Rendering mobile/partials/mobilenavbar.html.erb
+  Rendered mobile/partials/mobilenavbar.html.erb (0.7ms)
+  Rendering mobile/partials/footer.html.erb
+  Rendered mobile/partials/footer.html.erb (0.6ms)
+Completed 200 OK in 716ms (Views: 18.5ms)
+Started GET "/404" for 127.0.0.1 at 2018-03-04 19:00:34 +0700
+Processing by ErrorsController#not_found as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (0.9ms)
+Completed 200 OK in 124ms (Views: 31.7ms)
+Started GET "/" for 127.0.0.1 at 2018-04-03 19:30:10 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (31.8ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.5ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.6ms)
+Completed 200 OK in 5029ms (Views: 61.0ms)
+Started POST "/api/login" for 127.0.0.1 at 2018-04-03 19:30:51 +0700
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"afb"=>"d3e1b1cbe8d2b980e2830b7d4ad6fb66", "no_telepon"=>"081355719747", "password"=>"[FILTERED]"}
+RenewToken ''
+Redirected to http://localhost:3000/accounts/dashboard
+Completed 302 Found in 1099ms
+Started GET "/accounts/dashboard" for 127.0.0.1 at 2018-04-03 19:30:52 +0700
+Processing by AccountsController#dashboard as HTML
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+Authentication > e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182
+  Rendering accounts/dashboard.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (3.1ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (18.2ms)
+  Rendered accounts/dashboard.html.erb within layouts/application (28.9ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (0.8ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 1602ms (Views: 50.8ms)
+Started GET "/pembayaran-umrah" for 127.0.0.1 at 2018-04-03 19:31:04 +0700
+Processing by AccountsController#pembayaranpacket as HTML
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+Authentication > e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182
+  Rendering accounts/transaksi/pembayaranumrah.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (5.9ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (1.7ms)
+  Rendering accounts/partials/navigasi_pembayaran.html.erb
+  Rendered accounts/partials/navigasi_pembayaran.html.erb (4.5ms)
+  Rendered accounts/transaksi/pembayaranumrah.html.erb within layouts/application (26.5ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.4ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (1.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.9ms)
+Completed 200 OK in 780ms (Views: 60.2ms)
+Started GET "/transaksi-tiket" for 127.0.0.1 at 2018-04-03 19:31:07 +0700
+Processing by AccountsController#pembeliantiket as HTML
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+Authentication > e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182
+  Rendering accounts/transaksi/ticketpesawat.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (1.9ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (1.0ms)
+  Rendering accounts/partials/navigasi_pembayaran.html.erb
+  Rendered accounts/partials/navigasi_pembayaran.html.erb (0.8ms)
+  Rendered accounts/transaksi/ticketpesawat.html.erb within layouts/application (456.0ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (0.8ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.5ms)
+Completed 200 OK in 1164ms (Views: 477.6ms)
+Started GET "/e-ticket/pdf/ABU121823EVC-depart-263e0cff0b973cf9f9034ffd5989d7a2.pdf" for 127.0.0.1 at 2018-04-03 19:31:38 +0700
+Processing by PpobPesawatController#eticket_pdf as PDF
+  Parameters: {"kode_booking"=>"ABU121823EVC", "tipe"=>"depart", "hash"=>"263e0cff0b973cf9f9034ffd5989d7a2"}
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+***************WICKED***************
+  Rendering email/e-ticket_pdf.html.erb within layouts/application_email_pdf
+  Rendered email/e-ticket_pdf.html.erb within layouts/application_email_pdf (17.9ms)
+Completed 200 OK in 1247ms (Views: 0.1ms)
+Started GET "/e-ticket/pdf/ABU121823EVC-depart-263e0cff0b973cf9f9034ffd5989d7a2.pdf" for 127.0.0.1 at 2018-04-03 19:31:42 +0700
+Processing by PpobPesawatController#eticket_pdf as PDF
+  Parameters: {"kode_booking"=>"ABU121823EVC", "tipe"=>"depart", "hash"=>"263e0cff0b973cf9f9034ffd5989d7a2"}
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+***************WICKED***************
+  Rendering email/e-ticket_pdf.html.erb within layouts/application_email_pdf
+  Rendered email/e-ticket_pdf.html.erb within layouts/application_email_pdf (14.1ms)
+Completed 200 OK in 1132ms (Views: 0.1ms)
+Started GET "/transaksi-tiket" for 127.0.0.1 at 2018-04-03 19:32:16 +0700
+Processing by AccountsController#pembeliantiket as HTML
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+Authentication > e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182
+  Rendering accounts/transaksi/ticketpesawat.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (1.8ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (1.2ms)
+  Rendering accounts/partials/navigasi_pembayaran.html.erb
+  Rendered accounts/partials/navigasi_pembayaran.html.erb (0.9ms)
+  Rendered accounts/transaksi/ticketpesawat.html.erb within layouts/application (445.0ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.5ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.6ms)
+Completed 200 OK in 1118ms (Views: 470.3ms)
+Started GET "/transaksi-tiket" for 127.0.0.1 at 2018-04-03 19:34:04 +0700
+Processing by AccountsController#pembeliantiket as HTML
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+Authentication > e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182
+  Rendering accounts/transaksi/ticketpesawat.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (4.2ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (2.3ms)
+  Rendering accounts/partials/navigasi_pembayaran.html.erb
+  Rendered accounts/partials/navigasi_pembayaran.html.erb (1.1ms)
+  Rendered accounts/transaksi/ticketpesawat.html.erb within layouts/application (502.0ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.2ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (1.0ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (1.1ms)
+Completed 200 OK in 1512ms (Views: 534.5ms)
+Started GET "/transaksi-tiket" for 127.0.0.1 at 2018-04-03 19:34:19 +0700
+Processing by AccountsController#pembeliantiket as HTML
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+Authentication > e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182
+  Rendering accounts/transaksi/ticketpesawat.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (2.0ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (1.3ms)
+  Rendering accounts/partials/navigasi_pembayaran.html.erb
+  Rendered accounts/partials/navigasi_pembayaran.html.erb (1.0ms)
+  Rendered accounts/transaksi/ticketpesawat.html.erb within layouts/application (474.4ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.3ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.6ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.6ms)
+Completed 200 OK in 1289ms (Views: 496.0ms)
+Started GET "/transaksi-tiket" for 127.0.0.1 at 2018-04-03 19:35:39 +0700
+Processing by AccountsController#pembeliantiket as HTML
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+Authentication > e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182
+  Rendering accounts/transaksi/ticketpesawat.html.erb within layouts/application
+  Rendering accounts/partials/sidebar.html.erb
+  Rendered accounts/partials/sidebar.html.erb (3.3ms)
+  Rendering accounts/partials/bannerTop.html.erb
+  Rendered accounts/partials/bannerTop.html.erb (2.0ms)
+  Rendering accounts/partials/navigasi_pembayaran.html.erb
+  Rendered accounts/partials/navigasi_pembayaran.html.erb (1.0ms)
+  Rendered accounts/transaksi/ticketpesawat.html.erb within layouts/application (457.8ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (0.9ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.9ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.7ms)
+Completed 200 OK in 1146ms (Views: 484.0ms)
+Started GET "/app/logout" for 127.0.0.1 at 2018-04-03 19:36:01 +0700
+Processing by Api::Auth::AuthController#removeAndRevoke as HTML
+RenewToken 'e7cf1d045004dc467c5e86fb879cc41a6cb155b33e8e63a3b81b9254ca4a9182'
+Redirected to http://localhost:3000/
+Completed 302 Found in 495ms
+Started GET "/" for 127.0.0.1 at 2018-04-03 19:36:02 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (26.7ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (0.9ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (0.5ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.6ms)
+Completed 200 OK in 5221ms (Views: 48.4ms)
+Started GET "/404" for 127.0.0.1 at 2018-04-03 19:36:24 +0700
+Processing by ErrorsController#not_found as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (1.3ms)
+Started GET "/" for 127.0.0.1 at 2018-04-03 19:36:52 +0700
+Processing by LandingController#home as HTML
+RenewToken ''
+  Rendering landing/home.html.erb within layouts/application
+  Rendered landing/home.html.erb within layouts/application (26.5ms)
+  Rendering partials/landing_navbar.html.erb
+  Rendered partials/landing_navbar.html.erb (1.1ms)
+  Rendering components/footer_apps.html.erb
+  Rendered components/footer_apps.html.erb (1.0ms)
+  Rendering partials/landing_footer.html.erb
+  Rendered partials/landing_footer.html.erb (0.7ms)
+Completed 200 OK in 4654ms (Views: 49.8ms)
+Started GET "/404" for 127.0.0.1 at 2018-04-03 19:37:18 +0700
+Processing by ErrorsController#not_found as HTML
+RenewToken ''
+  Rendering errors/404.html.erb within layouts/application_errors
+  Rendered errors/404.html.erb within layouts/application_errors (1.0ms)
+Completed 200 OK in 94780ms (Views: 93863.2ms)
+Completed 200 OK in 148190ms (Views: 148003.6ms)

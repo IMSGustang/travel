@@ -1,0 +1,98 @@
+<% content_for :head do %>
+    <title>Refund | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Refund</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <form action="/api/refund-otp-confirmation" method="post" class="card gCard-refund">
+              <input type="hidden" name="no_trans" value="<%= params['no_trans_refund'] %>">
+              <div class="card-header gCard-refund__header">
+                <h1 class="text-center mb-0">
+                  Masukan kode OTP
+                </h1>
+              </div>
+              <div class="card-body gCard-refund__body p-5">
+                <table class="table table-flex">
+                    <tr>
+                      <td>
+                        <input type="text" id="otp1" name="otp1" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp2" name="otp2" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp3" name="otp3" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp4" name="otp4" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp5" name="otp5" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                      <td>
+                        <input type="text" id="otp6" name="otp6" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td colspan="6" class="pt-3">
+                        <p class="card-text text-center mt-12">
+                          Tidak terima kode ? <a id="resendOtp" href="/resend-verifikasi-otp-refund/<%= params['no_trans_refund'] %>" class="text-success">Kirim ulang kode</a>
+                        </p>
+                      </td>
+                  </tr>
+                  <% if !@message.nil? %>
+                  <tr>
+                    <td style="color: red" class="pt-3">
+                      <p class="card-text text-center mt-12">
+                          <span class="text-danger">Pesan*</span>
+                        </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="card-text text-center mt-12">
+                        <span class="text-danger"><%= @message['otp_notification'] %></span>
+                      </p>
+                    </td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+
+              <div class="card-footer gCard-refund__footer">
+                <p class="text-center">
+                  <button type="submit" class="btn btn-success">Langkah selanjutnya</button>
+                </p>
+              </div>
+            </form>
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<% content_for :foot do %>
+    <script type="text/javascript">
+      $.autotab({ tabOnSelect: true });
+      $('.kode').autotab('filter', 'kode');
+    </script>
+<% end %>

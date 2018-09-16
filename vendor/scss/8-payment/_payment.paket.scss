@@ -1,0 +1,127 @@
+.c-formpemesanan {
+  & .daftar-produk {
+    &__item {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: 1px solid #e3e1e0;
+      border-left: none;
+      border-right: none;
+      margin: 0;
+      margin-bottom: -1px;
+      padding: 8px 0;
+
+      &-header {
+        width: 130px !important;
+        max-width: 130px !important;
+        height: 130px !important;
+        display: flex;
+        align-items: center;
+        padding: 0px 0;
+
+        & img {
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      &-body {
+        padding: 5px;
+        padding-left: 15px;
+
+        & .list-group-flush {
+          margin: 0;
+          padding: 0;
+          & .list-group-item {
+            padding: 0;
+            margin-bottom: 5px;
+            border: none;
+
+            &__nm-paket {
+              line-height: 20px;
+              font-size: 16px;
+              height: 40px;
+
+              & .item-line {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                position: relative;
+                overflow: hidden;
+                height: 40px !important;
+                max-height: 40px !important;
+                margin-bottom: 0;
+                &.item-link {
+                  font-weight: normal;
+                  overflow: hidden;
+                  height: 40px;
+                  -webkit-transition: all .2s ease-out;
+                  -o-transition: all .2s ease-out;
+                  transition: all .2s ease-out;
+                  text-transform: capitalize;
+                  color: rgba(0, 0, 0, .9);
+                }
+
+                &::after {
+                  content: "";
+                  text-align: right;
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
+                  width: 25%;
+                  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+                  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+                  background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+                  background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+                  height: 22px !important;
+                }
+              }
+            }
+
+            // harga
+            &__hr-paket {
+              font-size: 20px;
+              font-weight: 600;
+              color: rgba(0, 0, 0, .9);
+            }
+
+            // fasilitas
+            &__fa-paket {
+              font-size: 13px;
+              color: rgba(0, 0, 0, .6);
+              & i {
+                font-size: 13px;
+                color: #e63946;
+                margin-top: -1px;
+                margin-right: 2px;
+              }
+            }
+
+            // keberangkatan
+            &__kb-paket {
+              font-size: 13px;
+              color: rgba(0, 0, 0, .6);
+            }
+          }
+        }
+      }
+
+      &-footer {
+        padding: 0 15px;
+        & p {
+          text-transform: lowercase;
+          font-size: 14px;
+          text-align: right;
+          & span {
+            text-transform: uppercase !important;
+            font-size: 12px;
+            color: rgba(0, 0, 0, .45);
+          }
+        }
+      }
+    }
+  }
+}

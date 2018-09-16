@@ -1,0 +1,202 @@
+.s-toko {
+  & .s-toko__item {
+    & .s-toko__item-body {
+      & .media {
+        align-items: center;
+        & img {
+          max-width: 100%;
+          height: 60px;
+        }
+
+        & .media-body {
+          & h5 {
+            font-weight: 500;
+            font-size: 16px !important;
+          }
+
+          & .level-user {
+            font-size: 12px;
+            opacity: .75;
+          }
+
+          & .user-location {
+            font-size: 12px;
+            opacity: .5;
+          }
+        }
+      }
+    }
+
+    & .carousel {
+      & .carousel-inner {
+        max-height: 161px;
+        height: 161px;
+        & .carousel-item {
+
+        }
+      }
+    }
+  }
+
+  & .bordersideleft:before{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    top: 43%;
+    border-color: transparent transparent transparent #ffffff !important;
+    border-width: 11px !important;
+    z-index: 10;
+  }
+}
+
+.agen-location {
+  & .list-group-item {
+    & p {
+      font-size: 12px;
+      text-transform: uppercase;
+      opacity: .75;
+      & i {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.title-paket-toko {
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+.productagen {
+
+  & .card {
+    margin-bottom: 15px;
+
+    & .card-body-image {
+      position: relative;
+      align-items: center;
+      width: 100%;
+      transition: transform 0.6s ease;
+      backface-visibility: hidden;
+      perspective: 1000px;
+      height: 200px !important;
+      overflow: hidden;
+      display: flex;
+    }
+
+    & .badge-date {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      font-weight: normal;
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      padding: 6px 12px;
+      text-transform: uppercase;
+      font-size: 12px;
+      background-color: $color-green;
+    }
+
+    & img {
+      width: 100%;
+      display: block !important;
+      vertical-align: middle;
+    }
+
+    & .card-body {
+      position: relative;
+      background: #ffffff;
+      padding: 12px;
+
+      & .name-packet {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        height: 42px !important;
+        max-height: 42px !important;
+        margin-bottom: 0;
+
+        &.name-packet-line {
+          font-weight: normal;
+          overflow: hidden;
+          height: 42px;
+          text-transform: capitalize;
+          color: rgba(0, 0, 0, .75);
+          font-size: 14px;
+        }
+
+        & .price-packet {
+          -webkit-transition: all .2s ease-out;
+          -o-transition: all .2s ease-out;
+          transition: all .2s ease-out;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 15px;
+          color: #333333;
+        }
+
+        &::after {
+          content: "";
+          text-align: right;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 25%;
+          background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+          background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+          background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+          background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+          height: 25px !important;
+        }
+      }
+
+      & .packet-city {
+        text-transform: uppercase;
+
+        & .text-muted {
+          opacity: .85;
+          font-weight: 300 !important;
+          font-size: 10px;
+
+        }
+      }
+
+      & .packet-rate {
+        font-size: 12px;
+        color: #b7b7b7;
+        font-weight: 300;
+
+        & i {
+          font-size: 12px;
+          color: $color-default;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    & .price-packet {
+      color: $color-default !important;
+    }
+  }
+}
+
+.item-display {
+  & .file-input {
+    display: block !important;
+
+    & img {
+      padding: 10px;
+      height: 100px;
+    }
+  }
+}

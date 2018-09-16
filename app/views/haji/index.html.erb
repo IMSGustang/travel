@@ -1,0 +1,101 @@
+<%= content_for :head do %>
+    <title>Paket Haji Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="_landing | c-cover-head">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag 'lib/slider/umrah_haji.png', :class => 'd-block w-100', :alt => '' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-hajj">
+      <div class="container">
+        <div class="pl-2">
+          <h3 class="title-hajj mb-1">
+            Berangkat Haji Bersama Abutours
+          </h3>
+          <p class="title-sub-hajj">
+            Nikmati layanan terbaik kami dengan harga murah & fasilitas terbaik
+          </p>
+        </div>
+
+        <% if data['status'] == 200 %>
+            <div class="row pl-3 pr-3">
+              <% data['data'].each do |row| %>
+                  <div class="col-3 pl-2 pr-2">
+                    <a href="/paket-haji/<%= row['kode_produk'] %>/<%= row['kdkantor'] %>/<%= row['tahun'] %>/<%= row['bulan'] %>/<%= row['nama_seo'].downcase %>" class="productagen">
+                      <div class="card mt-2 mb-2">
+                        <div class="card-body-image">
+                          <span class="badge badge-date badge-success"><% row['kota'] %></span>
+                          <%= image_tag !row['gambar'].nil? ? row['gambar'] : '/assets/no_images/no_package_1.png', :class => 'image-small mx-auto d-block', :alt => '' %>
+                        </div>
+                        <div class="card-body">
+                          <div class="name-packet name-packet-line">
+                            <p class="price-packet mb-0">
+                              Rp <%= number_with_delimiter(row['harga_jual_rp'].to_i) %>
+                            </p>
+                            <%= row['nama'].capitalize %>
+                          </div>
+
+                          <p class="packet-rate mb-0 mt-0">
+                            <span class="text-muted">fasilitas</span>
+                            <!--Active Star-->
+                            <% (1..row['rating']).each do |star|%>
+                                <i class="ion-android-star"></i>
+                            <% end %>
+                            <!--End-->
+                            <!--Non Active Star-->
+                            <%(1..5-row['rating']).each do |star|%>
+                                <i class="ion-android-star-outline"></i>
+                            <% end %>
+                            <!--End-->
+                          </p>
+                          <p class="card-text packet-city m-0">
+                            <small class="text-muted"><%= row['kantor'] %></small>
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+              <% end %>
+            </div>
+        <% else %>
+            <div class="w-blank text-center p-5">
+              <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+              <p class="mb-0 text-center">
+                Maaf, untuk sementara paket tidak tersedia
+              </p>
+            </div>
+        <% end %>
+
+      </div>
+      <% if data['status'] == 200 %>
+          <nav aria-label="Page navigation" class="mt-1">
+            <ul class="pagination justify-content-center mb-0">
+              <li class="page-item">
+                <%= @page['link_prev'].html_safe %>
+              </li>
+              <% @page['html'].each do |page| %>
+                  <%= page.html_safe %>
+              <% end %>
+              <li class="page-item">
+                <%= @page['link_next'].html_safe %>
+              </li>
+            </ul>
+          </nav>
+      <% end %>
+    </div>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

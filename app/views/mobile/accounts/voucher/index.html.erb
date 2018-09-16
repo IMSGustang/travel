@@ -1,0 +1,151 @@
+<%= content_for :active_voucher do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Voucher Saya</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <nav class="nav nav-pills nav-justified tabs-voucher pt-0" id="myTab" role="tablist">
+      <a class="nav-item nav-link active" id="voucher-tab" data-toggle="tab" href="#voucher" role="tab" aria-controls="voucher" aria-selected="true">
+        Voucher Saya
+      </a>
+
+      <a class="nav-item nav-link" id="belivoucher-tab" data-toggle="tab" href="#belivoucher" role="tab" aria-controls="belivoucher" aria-selected="false">
+        Beli Voucher
+      </a>
+
+      <a class="nav-item nav-link" id="transaksivoucher-tab" data-toggle="tab" href="#transaksivoucher" role="tab" aria-controls="transaksivoucher" aria-selected="false">
+        History
+      </a>
+    </nav>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="voucher" role="tabpanel" aria-labelledby="voucher-tab">
+        <div class="data-voucherumrah pt-3">
+          <% if !@data.nil? %>
+              <% @data.each do |item| %>
+                  <div class="card card-voucherumrah">
+                    <a data-toggle="collapse" href="#desc<%= item['no_voucher'] %>" role="button" aria-expanded="false" aria-controls="desc<%= item['no_voucher'] %>">
+                      <div class="card-body">
+                        <table class="table table-sm mb-0">
+                          <tr>
+                            <td>
+                              <p class="noTransaction mb-0">
+                                <span>Nominal Voucher</span> <br>
+                                <strong><%= number_to_currency(item['nominal'], precision: 0, unit: 'Rp ', delimiter: '.') %></strong>
+                              </p>
+                            </td>
+
+                            <td width="80">
+                              <p class="statusVoucher mb-0">
+                                <span>Status</span>
+                                <%
+                                  date = item['tgl_akhir'].to_date
+                                  today = Date.today
+                                  if item['is_used'] == 'Y'
+                                    color = 'danger'
+                                    status = 'Terpakai'
+                                  else
+                                    status = 'Belum Terpakai'
+                                    if date < today
+                                      color = 'danger'
+                                      status += ' (Expired)'
+                                    else
+                                      color = 'success'
+                                      status += ' (Aktif)'
+                                    end
+                                  end
+                                %>
+                                <span class="badge badge-<%= color %>"><%= status %></span>
+                              </p>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="collapse" id="desc<%= item['no_voucher'] %>" style="margin-top: -8px">
+                    <div class="card card-collapse">
+                      <table class="table mb-0">
+                        <tr>
+                          <td>
+                            <p class="mb-0">
+                            Kode Voucher
+                          </p>
+                          </td>
+                          <td>
+                            <p class="mb-0">
+                              <strong><%= item['no_voucher'] %></strong>
+                            </p>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <p class="mb-0">
+                            Tanggal Aktif
+                          </p>
+                          </td>
+                          <td>
+                            <p class="mb-0">
+                              <strong><%= item['tgl_mulai'] %></strong>
+                            </p>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <p class="mb-0">
+                            Tanggal Expired
+                          </p>
+                          </td>
+                          <td>
+                            <p class="mb-0">
+                              <strong><%= item['tgl_akhir'] %></strong>
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+              <% end %>
+          <% else %>
+              <div class="card card-body">
+                <p class="mb-0">
+                  Anda belum memiliki voucher
+                </p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- beli voucher -->
+      <div class="tab-pane fade" id="belivoucher" role="tabpanel" aria-labelledby="belivoucher-tab">
+        <div class="data-voucherumrah pt-3">
+          <div class="card card-voucherumrah">
+            <div class="card-body">
+              <p class="text-center mb-0">
+                <small>Maaf, voucher belum tersedia saat ini</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- history transaksi voucher -->
+      <div class="tab-pane fade" id="transaksivoucher" role="tabpanel" aria-labelledby="transaksivoucher-tab">
+        <div class="data-voucherumrah pt-3">
+          <div class="card card-voucherumrah">
+            <div class="card-body">
+              <p class="text-center mb-0">
+                <small>Maaf, anda belum memiliki transaksi voucher</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

@@ -1,0 +1,205 @@
+<% content_for :head do %>
+    <title>Markup harga | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Markup harga</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user mb-2">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <h4 class="mt-4 text-muted">
+              Pengaturan Seat Umrah KCP (Kantor Cabang Pembantu)
+            </h4>
+
+            <div class="data-jamaah">
+              <div class="card card-steps mb-2">
+                <table class="table table-sm mb-0">
+                  <tbody>
+                  <td class="active">
+                    <div class="media">
+                      <div class="align-self-center mr-2">
+                        <i class="ion-arrow-graph-up-right"></i>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="mt-1 mb-0">
+                          Markup Harga
+                        </h5>
+                        <p class="mb-0">
+                          Masukkan harga jual anda
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="media">
+                      <div class="align-self-center mr-2">
+                        <i class="ion-person"></i>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="mt-1 mb-0">
+                          Data Jamaah
+                        </h5>
+                        <p class="mb-0">
+                          Masukkan data jamaah yang akan berangkat
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  </tbody>
+                </table>
+              </div>
+
+              <form action="/pengaturan-seat-jamaah/<%= params[:kdbook]%>/<%= params[:kdproduk]%>/<%= params[:kdkantor]%>" method="post">
+
+                <input type="hidden" name="authenticity_token" value="token_value">
+                <div class="card card-form">
+                  <div class="card-body">
+                    <table class="table table-sm mb-0">
+                      <tbody>
+                      <tr>
+                        <td colspan="3">
+                          <div class="form-group">
+                            <input type="text" name="nama_paket" class="form-control form-control-lg" value="<%= @req['namapaket'] %>" readonly/>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="2">
+                          <div class="form-group">
+                            <label for="">Bulan Keberangkatan</label>
+                            <select name="bulan" class="form-control" id="bulan">
+                              <option value="">Pilih bulan keberangkatan...</option>
+                              <% @bln.each do |bln| %>
+                                  <option value="<%= bln['bulan'] %>"> <%= TimeFormat::month(bln['bulan']) %></option>
+                              <% end %>
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <label for="">Tahun Keberangkatan</label>
+                            <input type="text" name="tahun" class="form-control" value="<%= @req['tahun'] %>" readonly/>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <div class="form-group">
+                            <label for="">Harga Dasar</label>
+                            <input type="text" name="harga_dasar" class="form-control" id="harga_dasar">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <label for="">Pax</label>
+                            <input type="number" name="pax" value="1" class="form-control" readonly>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <label for="">Jumlah</label>
+                            <input type="number" name=jumlah" value="1" class="form-control" readonly>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <div class="form-group">
+                            <label for="">Harga Jual</label>
+                            <input type="text" name="harga_jual" class="form-control" id="harga_jual">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <label for="">Diskon (%)</label>
+                            <input type="number" name="diskon" id="diskon" class="form-control">
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer">
+                    <table class="table table-sm mb-0">
+                      <tr>
+                        <td><a href="/pengaturan-seat-kcp" class="btn btn-block btn-outline-dark">Kembali</a></td>
+                        <!--<td><a href="/pengaturan-seat-jamaah" class="btn btn-block btn-danger">Lanjutkan</a></td>-->
+                        <td><button class="btn btn-block btn-danger">Lanjutkan</button></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<% content_for :foot do %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script type="text/javascript">
+        var total_bayar = 0;
+
+        //      Replace Value
+        $('#harga_dasar').maskMoney({prefix: 'Rp ', thousands: ',', decimal: ',', precision: 0});
+        $('#harga_jual').maskMoney({prefix: 'Rp ', thousands: ',', decimal: ',', precision: 0});
+        //        Select2
+        $("#bulan").select2({
+            theme: 'bootstrap'
+        });
+
+//        untuk menghilangkan stringnya
+        $('#harga_jual').on('keyup', function(){
+            var harga = $('#harga_jual').val();
+            harga = harga.replace('Rp','');
+            harga = harga.replace(',','');
+            harga = harga.replace(',','');
+            harga = harga.replace(',','');
+            harga = harga.replace('.','');
+            harga = harga.replace(' ','');
+            total_bayar = harga;
+        });
+//        Eksekusi diskon
+        $('#diskon').on('keyup', function(){
+            if($('#diskon').val() < 0 || $('#diskon').val() > 100){
+                swal('Perhatian','Maaf, data berupa persen (%).','error');
+                var number = numeral(total_bayar).format('0,0');
+                $("#harga_jual").val('Rp ' + number);
+                $('#diskon').val("");
+            }else{
+
+                var diskon = total_bayar * $('#diskon').val() / 100;
+                var bayar_all = total_bayar - diskon;
+                var number = numeral(bayar_all).format('0,0');
+                $("#harga_jual").val('Rp ' + number);
+            }
+        });
+    </script>
+<% end %>

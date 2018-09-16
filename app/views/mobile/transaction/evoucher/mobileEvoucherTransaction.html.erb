@@ -1,0 +1,78 @@
+<%= content_for :active_transaction_evoucher do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Transaksi Evoucher</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <%= render template: 'mobile/transaction/partials/mobileTabsTransactions' %>
+    <%= render template: 'mobile/transaction/partials/mobileSubtabsTransactions' %>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="tagihan" role="tabpanel" aria-labelledby="tagihan-tab">
+        <div class="data-transaction pt-3">
+          <div class="card card-transaction">
+            <a href="">
+              <div class="card-body">
+                <table class="table table-sm mb-0">
+                  <tr>
+                    <td>
+                      <p class="tglTransaction mb-0 text-right mb-2">
+                        sabtu , 12-01-2018
+                      </p>
+
+                      <p class="noTransaction mb-0">
+                        <span>No Transaksi</span> : <strong>TMP-CNM-8691801124058</strong>
+                      </p>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p class="mb-0">
+                        <span class="badge badge-danger">Konfirmasi Pembayaran</span>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+        <div class="data-transaction pt-3">
+          <div class="card card-transaction">
+            <a href="">
+              <div class="card-body">
+                <table class="table table-sm mb-0">
+                  <tr>
+                    <td>
+                      <p class="tglTransaction text-right mb-2">
+                        Jumat , 12-01-2018
+                      </p>
+
+                      <p class="noTransaction mb-0">
+                        <span>No Transaksi</span> : <strong>TMP-CNM-8691801124058</strong>
+                      </p>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p class="mb-0">
+                        <span class="badge badge-success">Sukses</span>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

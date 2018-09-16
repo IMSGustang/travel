@@ -1,0 +1,99 @@
+.autocomplete-suggestions {
+  text-align: left;
+  cursor: default;
+  //border: 1px solid #ccc;
+  border-top: 0;
+  background: #fff;
+  -webkit-box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+  -moz-box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+  box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+
+  /* core styles should not be changed */
+  position: absolute;
+  display: none;
+  z-index: 9999;
+  max-height: 254px;
+  overflow: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 5px;
+  margin-top: 1px;
+}
+
+.autocomplete-suggestion {
+  position: relative;
+  padding: 10px .6em;
+  line-height: 26px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #333;
+  border-top: 1px dotted #f3f1f0;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.autocomplete-suggestion b {
+  font-weight: normal;
+  color: $color-default;
+}
+
+.autocomplete-suggestion.selected {
+  background: #f9f7f6;
+}
+
+.p-help__cover {
+  background-color: $color-default;
+  padding: 60px 0;
+  & .card {
+    background-color: transparent;
+    border: none;
+
+    & .card-title {
+      color: #ffffff;
+      font-weight: bold !important;
+    }
+
+    & h3 {
+      color: #ffffff;
+      opacity: .85;
+      font-size: 18px !important;
+    }
+
+    & .helps {
+      & .form-group {
+        margin-bottom: 0;
+        & .form-control {
+          -webkit-box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+          -moz-box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+          box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          border: none !important;
+        }
+
+        & .input-group-addon {
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          border: none !important;
+          position: absolute;
+          background-color: transparent;
+          z-index: 5;
+          right: 0;
+          padding: 5px;
+          padding-right: 15px;
+
+          & i {
+            color: rgba(0, 0, 0, .75);
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}

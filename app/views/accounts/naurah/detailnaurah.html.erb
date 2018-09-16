@@ -1,0 +1,342 @@
+<% content_for :head do %>
+    <title>Detil Paket Umrah | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Paket naurah</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <% if @err_json != false %>
+                  <section class="c-abutravel__detil">
+                    <div class="card c-abutravel__detil-card border-none m-0">
+                      <div class="card-body c-abutravel__detil-card--item">
+                        <div class="media">
+                          <div class="media-body">
+                            <table class="table m-0 p-0">
+                              <tr>
+                                <td class="p-0">
+                                  <h3 class="mt-1 mb-3 text-uppercase">
+                                    Paket umrah bersama oktober 2019 quad plus batulicin
+                                  </h3>
+                                  <h6 class="mt-1 mb-3 text-uppercase">
+                                    Kantor batulicin
+                                  </h6>
+                                  <h3 class="mt-0 mb-1">
+                                    Rp 30,000,000
+                                  </h3>
+
+                                  <p class="mt-3 mb-1">
+                                    <button type="button" class="btn btn-outline-danger" id="tooltip2">
+                                      <%= image_tag 'lib/icon/ticket.png', :class => 'mx-auto d-block', :height => '33px' %>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger" id="tooltip3">
+                                      <%= image_tag 'lib/icon/hotel.png', :class => 'mx-auto d-block', :height => '33px' %>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger" id="tooltip4">
+                                      <%= image_tag 'lib/icon/busway.png', :class => 'mx-auto d-block', :height => '33px' %>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger" id="tooltip5">
+                                      <%= image_tag 'lib/icon/perlengkapan.png', :class => 'mx-auto d-block', :height => '33px' %>
+                                    </button>
+                                  </p>
+                                </td>
+                                <td width="151" class="p-0">
+                                  <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#information">
+                                    Pesan Sekarang
+                                  </button>
+                                </td>
+                              </tr>
+                            </table>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card c-tabs__detil border-none">
+                      <div class="card-header c-tabs__detil-header">
+                        <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#informasi" role="tab"
+                               aria-controls="informasi">Persyaratan Umum</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#fasilitas" role="tab"
+                               aria-controls="hotel">Fasilitas</a>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="tab-content">
+                        <div class="tab-pane tab-pane-informasi fade show active" id="informasi" role="tabpanel">
+                          <div class="card-body">
+                            <dl class="row">
+                              <dt class="col-sm-3 text-uppercase">PERSIAPAN BERKAS</dt>
+                              <dd class="col-sm-9">
+                                <ul>
+                                  <li>Paspor</li>
+                                  <li>Paspor</li>
+                                  <li>Paspor</li>
+                                  <li>Paspor</li>
+                                </ul>
+                              </dd>
+                            </dl>
+                          </div>
+                        </div>
+
+                        <div class="tab-pane tab-pane-hotel fade" id="fasilitas" role="tabpanel">
+                          <div class="card-body card-block-maskapai">
+                            <dl class="row">
+                              <dt class="col-3">Maskapai</dt>
+                              <dd class="col-9">
+                                <table>
+                                  <tr>
+                                    <td>
+                                      <%= image_tag 'lib/pesawat/1.jpg', :class => 'mx-auto d-block' %>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-3">Nama Maskapai</dt>
+                              <dd class="col-9">
+                                Garuda Indonesia - GT009
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-3">Fasilitas</dt>
+                              <dd class="col-9">
+                                Hiburan
+                              </dd>
+                            </dl>
+                          </div>
+
+                          <div class="card-body card-block-hotel">
+                            <dl class="row">
+                              <dt class="col-3">Hotel Madinah</dt>
+                              <dd class="col-9">
+                                <table>
+                                  <tr>
+                                    <td>
+                                      <%= image_tag 'lib/hotel/1.jpg', :class => 'mx-auto d-block' %>
+                                    </td>
+                                    <td>
+                                  </tr>
+                                </table>
+                                <p class="card-text card-text-rating">
+                          <span class="text-uppercase">
+                            Al Burch
+                          </span>
+                                  <i class="icon-star-full2"></i>
+                                  <i class="icon-star-full2"></i>
+                                  <i class="icon-star-full2"></i>
+                                  <i class="icon-star-full2"></i>
+                                </p>
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-3">Tentang Hotel</dt>
+                              <dd class="col-9">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi, asperiores aut dicta
+                                ea esse facere facilis harum ipsum iusto molestias nihil odio odit quam, quo reprehenderit
+                                tempore, vero vitae.
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-3">Fasilitas Umum</dt>
+                              <dd class="col-9">
+                                WC, Bantal, Selimut
+                              </dd>
+                            </dl>
+                          </div>
+
+                          <div class="card-body card-block-hotel">
+                            <dl class="row">
+                              <dt class="col-3">Hotel Makkah</dt>
+                              <dd class="col-9">
+                                <table>
+                                  <tr>
+                                    <td>
+                                      <%= image_tag 'lib/hotel/2.jpg', :class => 'mx-auto d-block' %>
+                                    </td>
+                                  </tr>
+                                </table>
+
+                                <p class="card-text card-text-rating">
+                                  <span class="text-uppercase">Al Ikhlas</span>
+                                  <i class="icon-star-full2"></i>
+                                  <i class="icon-star-full2"></i>
+                                  <i class="icon-star-full2"></i>
+                                  <i class="icon-star-full2"></i>
+                                </p>
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-3">Tentang Hotel</dt>
+                              <dd class="col-9">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur at atque
+                                dignissimos, dolor dolores ex harum ipsa minima natus quod quos reiciendis reprehenderit saepe,
+                                soluta, ullam. Facere, mollitia.
+                              </dd>
+                            </dl>
+
+
+                            <dl class="row">
+                              <dt class="col-3">Fasilitas Umum</dt>
+                              <dd class="col-9">
+                                WC, Air, Bantal
+                              </dd>
+                            </dl>
+                          </div>
+
+                          <div class="card-body card-block-hotel border-none">
+                            <dl class="row">
+                              <dt class="col-12">Tour & Itinerary</dt>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-3">Hari 1</dt>
+                              <dd class="col-9">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias aperiam architecto, asperiores aspernatur eum expedita fugit minima quibusdam quos sapiente tempora, voluptatem. Accusamus dolorem est laboriosam odio quos reprehenderit.
+                              </dd>
+                            </dl>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+              <% else %>
+                  <p class="text-center">
+                    Data Tidak Ditemukan
+                  </p>
+              <% end %>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+
+    <div class="modal fade modal-information" id="information" tabindex="-1" role="dialog" aria-labelledby="information" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title text-muted">
+              Informasi Paket
+            </h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="icon-cross2"></i></span>
+            </button>
+          </div>
+
+          <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#syarat" role="tab"
+                 aria-controls="informasi">Syarat & Ketentuan
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#visa" role="tab"
+                 aria-controls="hotel">
+                Informasi Visa
+              </a>
+            </li>
+          </ul>
+
+          <div class="modal-body">
+            <div class="tab-content">
+              <div class="tab-pane tab-pane-informasi fade show active" id="syarat" role="tabpanel">
+                <div class="card-body c-syarat">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab animi dicta dolor dolores ducimus, ea eaque eum facere, incidunt non odit quas quidem quis repellendus veritatis? Culpa dolorum quae tempora!
+                </div>
+              </div>
+
+              <div class="tab-pane tab-pane-informasi fade" id="visa" role="tabpanel">
+                <div class="card-body c-visa">
+                  <table class="table table-sm">
+                    <tr>
+                      <td class="text-justify">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet, consequatur cupiditate dolore fugiat magni perferendis quas qui quia repudiandae rerum, suscipit? Dolor earum facere libero magni nam praesentium, tenetur.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Demikianlah pengumuman ini kami sampaikan semoga kiranya dapat
+                        dimaklumi. Untuk informasi lebih lanjut dapat menghubungi call center
+                        dan kantor cabang Abu Tours terdekat.
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <a href="" class="btn btn-lg btn-block btn-danger">
+              Pesan Sekarang
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(function() {
+            $("#tooltip2").popover({
+                content: "Tiket pesawat pulang - pergi",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+            $("#tooltip3").popover({
+                content: "Hotel Madinah & Makkah",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+            $("#tooltip4").popover({
+                content: "Bus Antar - Jemput",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+            $("#tooltip5").popover({
+                content: "Koper, Baju Ihram dan Baju Batik",
+                trigger: 'hover',
+                placement: 'top',
+                delay: {show: 0, hide: 0}
+            });
+        });
+    </script>
+<% end %>

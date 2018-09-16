@@ -1,0 +1,113 @@
+@import '2-settings/settings.colors',
+        '2-settings/settings.fonts',
+        '2-settings/settings.bases',
+        '2-settings/settings.atributs';
+
+@import '4-components/components.buttons',
+        '4-components/components.cards',
+        '4-components/components.forms',
+        '4-components/components.tables',
+        '4-components/components.tabs',
+        '4-components/components.navbar',
+        '4-components/components.list',
+        '4-components/components.modals',
+        '4-components/components.breadcrumb',
+        '4-components/components.pagination',
+
+        '4-components/components.heading',
+        '4-components/components.paragraf',
+
+        '4-components/components.banner',
+        '4-components/components.badge',
+        '4-components/components.checkbox',
+        '4-components/components.radiobuttons',
+        '4-components/components.swiper.custome',
+        '4-components/components.alert',
+        '4-components/components.accordion',
+        '4-components/components.footer';
+
+@import '5-utilities/utilities.bases',
+        '5-utilities/blank';
+
+@import '6-plugins/plugins.prettydropdown',
+        '6-plugins/plugins.share',
+        '6-plugins/plugins.countdown',
+        '6-plugins/plugins.datatables',
+        '6-plugins/plugins.datarangepicker',
+        '6-plugins/plugins.ui-datepicker',
+        '6-plugins/plugins.fileuploader',
+        '6-plugins/plugins.fileinputs',
+        '6-plugins/plugins.sweetalert',
+        '6-plugins/plugins.select2',
+        '6-plugins/plugins.select2.themes',
+        '6-plugins/plugins.autocomplete',
+        '6-plugins/plugins.slinkysidebar',
+        '6-plugins/plugins.swiper',
+        '6-plugins/plugins.jqueryTicket',
+        '6-plugins/plugins.lightbox',
+        '6-plugins/plugins.loader',
+        '6-plugins/plugins.fullcalendar',
+        '6-plugins/plugins.fullcalendar.prints',
+        '6-plugins/plugins.bootstrapslider';
+
+@import '7-pages/_detilproduk/detilproduk.pages';
+
+@import '7-pages/_loginregisters/page.loginregisters';
+
+@import '7-pages/_accounts/accounts.bannertop',
+        '7-pages/_accounts/accounts.content',
+        '7-pages/_accounts/accounts.paket',
+        '7-pages/_accounts/accounts.refund',
+        '7-pages/_accounts/accounts.sidebar',
+        '7-pages/_accounts/accounts.selectcosts',
+        '7-pages/_accounts/accounts.invoiceCost',
+        '7-pages/_accounts/accounts.pengajuan';
+
+@import '7-pages/_errors/errors';
+
+@import '7-pages/_download/download.apps';
+
+@import '7-pages/_packet/packet',
+        '7-pages/_packet/listpacket';
+
+@import '7-pages/_landing/landing.home',
+        '7-pages/_landing/landing.about',
+        '7-pages/_landing/landing.services',
+        '7-pages/_landing/landing.register.partnerships',
+        '7-pages/_landing/landing.blog',
+        '7-pages/_landing/landing.help',
+        '7-pages/_landing/landing.costs';
+
+@import '7-pages/_ticket/ticket';
+
+@import '7-pages/_abufiture/homefiture',
+        '7-pages/_abufiture/new.homefiture',
+        '7-pages/_abufiture/searchticketV2',
+        '7-pages/_abufiture/searchingticket';
+
+@import '7-pages/_ownerships/manajemenpacket',
+        '7-pages/_ownerships/settings';
+
+@import '7-pages/_tokoagen/bases',
+        '7-pages/_tokoagen/pesananpaket';
+
+@import '7-pages/_haji/product';
+
+@import '7-pages/_naurah/naurahbase';
+
+@import '7-pages/_terms/content';
+
+@import '7-pages/_hotel/home',
+        '7-pages/_hotel/hoverimages',
+        '7-pages/_umrah/hoverimages';
+
+@import '8-payment/payment.navbar',
+        '8-payment/payment.content',
+        '8-payment/payment.invoice',
+        '8-payment/payment.formpemesanan',
+        '8-payment/payment.paket',
+        '8-payment/payment.sidebar',
+        '8-payment/payment.footer';
+
+@import '7-pages/_store/storecart',
+        '7-pages/_store/product'

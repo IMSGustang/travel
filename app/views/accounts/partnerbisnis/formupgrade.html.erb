@@ -1,0 +1,505 @@
+<% content_for :head do %>
+    <title>Form Upgrade Akun | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-0">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0">
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-user c-dashboard-user-small">
+                <%= render template: 'accounts/partials/bannerTop' %>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <h5 class="card-title text-center text-uppercase pb-2 pt-3">
+                <small>Silahkan Lengkapi Berkas Formulir Dibawah ini</small>
+              </h5>
+
+              <form name="" method="post">
+                <div class="card c-dashboard-content mt-1">
+                  <div class="card-body c-dashboard-content__item c-upgrade">
+                    <div class="row">
+                      <div class="col-10 offset-1">
+                        <div class="form-group row">
+                          <div class="col-12">
+                            <label class="col-form-label">Pilih Level Upgrade</label>
+                            <select id="partner" name="partner">
+                              <option value="76023" title="Out of Stock" disabled>
+                                Pilih level upgrade...
+                              </option>
+                              <option data-prefix="<span aria-hidden='true'></span>">
+                                AGEN GOLD
+                              </option>
+                              <option data-prefix="<span aria-hidden='true'></span>">
+                                AGEN PLATINUM
+                              </option>
+                              <option data-prefix="<span aria-hidden='true'></span>">
+                                MITRA
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-12">
+                            <label class="col-form-label">Jumlah Pembayaran</label>
+                            <h3 class="mb-0 text-success">
+                              Rp 20.000.000
+                            </h3>
+                            <p class="mb-0">
+                              <small>
+                                <a href="#" class="card-link text-info" data-toggle="modal" data-target="#benefit">
+                                  Lihat keuntungan anda <i class="icon-arrow-right32"></i>
+                                </a>
+                              </small>
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-3 pr-0">
+                            <label class="col-form-label">Title</label>
+                            <select id="title" name="title">
+                              <option value="76023" title="Out of Stock" disabled>
+                                Pilih title...
+                              </option>
+                              <option data-prefix="<span aria-hidden='true'></span>">
+                                Tuan
+                              </option>
+                              <option data-prefix="<span aria-hidden='true'></span>">
+                                Nyonya
+                              </option>
+                              <option data-prefix="<span aria-hidden='true'></span>">
+                                Nona
+                              </option>
+                            </select>
+                          </div>
+                          <div class="col-9">
+                            <label class="col-form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" placeholder="Siapa nama lengkap mu ?">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-12">
+                            <label class="col-form-label">Nomor Identitas (KTP)</label>
+                            <input type="text" class="form-control" placeholder="Berapa nomor KTP mu ?">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-4">
+                            <label class="col-form-label">Jenis Kelamin</label>
+                            <select id="jk" name="jk">
+                              <option data-prefix="<span aria-hidden='true'></span>">
+                                Perempuan
+                              </option>
+                              <option data-prefix="<span aria-hidden='true'></span>">
+                                Laki - Laki
+                              </option>
+                            </select>
+                          </div>
+
+                          <div class="col-4 pl-0 pr-0">
+                            <label class="col-form-label">Tempat Lahir</label>
+                            <input type="text" class="form-control" placeholder="Dimana kamu lahir ?">
+                          </div>
+
+                          <div class="col-4">
+                            <label class="col-form-label">Tanggal Lahir</label>
+                            <input type="text" name="tgl_lahir" class="form-control" placeholder="">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-12">
+                            <label class="col-form-label">Nomor Telepon</label>
+                            <input type="number" class="form-control" placeholder="Berapa nomor telepon kamu ?">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-12">
+                            <label class="col-form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="Apa nama email kamu ?">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-6 pr-0">
+                            <label class="col-form-label">Provinsi</label>
+                            <div class="input-group">
+                              <select class="js-example-placeholder-single form-control">
+                                <option value="jk">Jakarta</option>
+                                <option value="Makassar">Batulicin</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <label class="col-form-label">Kota/Kabupaten</label>
+                            <div class="input-group">
+                              <select class="js-example-placeholder-single form-control">
+                                <option value="jk">Jakarta</option>
+                                <option value="Makassar">Batulicin</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-12">
+                            <label class="col-form-label">Kecamatan</label>
+                            <div class="input-group">
+                              <select class="js-example-placeholder-single form-control">
+                                <option value="jk">Jakarta</option>
+                                <option value="Makassar">Batulicin</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-4 pr-0">
+                            <label class="col-form-label">Kelurahan</label>
+                            <div class="input-group">
+                              <select class="js-example-placeholder-single form-control">
+                                <option value="jk">Jakarta</option>
+                                <option value="Makassar">Batulicin</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-4 pr-0">
+                            <label class="col-form-label">RT</label>
+                            <input type="text" class="form-control" placeholder="Berapa nomor RT anda ?">
+                          </div>
+                          <div class="col-4">
+                            <label class="col-form-label">RW</label>
+                            <input type="text" class="form-control" placeholder="Berapa nomor RW anda ?">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-12">
+                            <label class="col-form-label">Alamat Lengkap</label>
+                            <textarea class="form-control" rows="3" placeholder="Alamat tempat tinggal anda sekarang ?"></textarea>
+                          </div>
+                        </div>
+
+                        <fieldset class="form-group row">
+                          <div class="col-sm-12">
+                            <div class="form-check">
+                              <input id="checkbox1" type="checkbox" value="1" name="checkbox" class="form-check-input">
+                              <label class="form-check-label" for="checkbox1">
+                                Saya sangat setuju dengan
+                                <a href="" class="card-link text-danger" data-toggle="modal" data-target="#kemitraan">
+                                  syarat & ketentuan yang berlaku
+                                </a>
+                                untuk menjadi partner bisnis abutours.com
+                              </label>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- --------------------------------------------------- -->
+                <div class="card c-dashboard-content mt-1 mb-3">
+                  <div class="card-body c-dashboard-content__item">
+                    <table class="table table-flex">
+                      <tr>
+                        <td class="bt-none">
+                          <a href="/" class="btn btn-lg btn-block btn-secondary">
+                            Kembali
+                          </a>
+                        </td>
+                        <td class="bt-none">
+                          <a href="/pilih-metode-pembayaran" class="btn btn-lg btn-block btn-primary">Lanjutkan</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+    <!-- ---------------------- Modal Benefit ----------------------------- -->
+    <div class="modal fade" id="benefit" tabindex="-1" role="dialog" aria-labelledby="benefitlabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg c-bg-transparant">
+          <div class="modal-header">
+            <h5 class="modal-title" id="benefitlabel">Apa Keuntungan Meng-Upgrade Akun Saya ?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="icon-cross2"></i></span>
+            </button>
+          </div>
+          <form method="post">
+            <div class="modal-body p-0 c-bg-transparant">
+              <div class="card c-dashboard-content mt-1 c-bg-transparant">
+                <div class="card-body p-0 c-dashboard-content__item">
+                  <div class="row mb-3 mt-5 pl-0 pr-0">
+                    <div class="col-4 p-0">
+                      <div class="card text-center p-gold">
+                        <div class="card-body">
+                          <h4 class="card-title">Agen Gold</h4>
+                          <h1 class="display-5">15jt</h1>
+
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Administrasi</small>
+                              </p>
+                              <p class="lead mb-0">
+                                Rp 500.000
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Free Umrah Tahun Ke</small>
+                              </p>
+                              <p class="lead mb-0">
+                                5
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Jumlah Voucher</small>
+                              </p>
+                              <p class="lead mb-0">
+                                15
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>ID Username</small>
+                              </p>
+                              <p class="lead mb-0">
+                                abutours.com
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-4 p-0">
+                      <div class="card text-center p-mitra">
+                        <div class="card-top"></div>
+                        <div class="card-body">
+                          <h4 class="card-title">Mitra</h4>
+                          <h1 class="display-5">100jt</h1>
+
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Administrasi</small>
+                              </p>
+                              <p class="lead mb-0">
+                                Rp 500.000
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Free Umrah Selama Kontrak</small>
+                              </p>
+                              <p class="lead mb-0">
+                                1
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Voucher 1 juta</small>
+                              </p>
+                              <p class="lead mb-0">
+                                100 Voucher
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Fee income pasif perbulan</small>
+                              </p>
+                              <p class="lead mb-0">
+                                1,1jt sampai 58 bulan
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>sertifikat Polis</small>
+                              </p>
+                              <p class="lead mb-0">
+                                100jt
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>ID Username</small>
+                              </p>
+                              <p class="lead mb-0">
+                                abutours.com
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-4 p-0">
+                      <div class="card text-center p-platinum">
+                        <div class="card-body">
+                          <h4 class="card-title">Agen Platinum</h4>
+                          <h1 class="display-5">20jt</h1>
+
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-center">
+                              <p class="mb-0">
+                                <small>Administrasi</small>
+                              </p>
+                              <p class="lead mb-0">
+                                Rp 500.000
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Free Umrah Tahun Ke</small>
+                              </p>
+                              <p class="lead mb-0">
+                                3
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>Jumlah Voucher</small>
+                              </p>
+                              <p class="lead mb-0">
+                                20
+                              </p>
+                            </li>
+
+                            <li class="list-group-item">
+                              <p class="mb-0">
+                                <small>ID Username</small>
+                              </p>
+                              <p class="lead mb-0">
+                                abutours.com
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------- Modal syarat & ketentuan ------------------------------ -->
+    <div class="modal fade" id="kemitraan" tabindex="-1" role="dialog" aria-labelledby="kemitraan" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+          <div class="modal-header">
+            <h5 class="modal-title" id="kemitraan">Syarat & Ketentuan Kemitraan Abutours</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="icon-cross2"></i></span>
+            </button>
+          </div>
+          <form method="post">
+            <div class="modal-body">
+              <div class="alert alert-warning" role="alert">
+                <small class="m-0">
+                  Mohon perhatikan syarat & ketentuan untuk bergabung dengan kemitraan
+                </small>
+              </div>
+
+              <ul>
+                <li class="mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda autem consequatur
+                  consequuntur
+                  corporis culpa cumque dolores eius ex magnam necessitatibus nihil odio, placeat quam reiciendis rem
+                  tenetur velit voluptas.
+                </li>
+                <li class="mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda autem consequatur
+                  consequuntur
+                  corporis culpa cumque dolores eius ex magnam necessitatibus nihil odio, placeat quam reiciendis rem
+                  tenetur velit voluptas.
+                </li>
+                <li class="mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda autem consequatur
+                  consequuntur
+                  corporis culpa cumque dolores eius ex magnam necessitatibus nihil odio, placeat quam reiciendis rem
+                  tenetur velit voluptas.
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#partner').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#title').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+            $('#jk').prettyDropdown({
+                afterLoad: function () {
+                    console.log('abutours.com | best travel services');
+                }
+            });
+
+            // select serarch
+            $(document).ready(function () {
+                $(".js-example-placeholder-single").select2({
+                    placeholder: ""
+                });
+            });
+
+            // daterange picker
+            $(document).ready(function () {
+                $('input[name="tgl_lahir"]').daterangepicker({
+                    "singleDatePicker": true,
+                    "autoApply": true,
+                    "showDropdowns": true
+                });
+            });
+        });
+    </script>
+<% end %>

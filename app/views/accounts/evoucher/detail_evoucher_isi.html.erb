@@ -1,0 +1,85 @@
+<% content_for :head do %>
+    <title>E-Voucher | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Detail Pembelian E-Voucher</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <form action="/pulsa/beli" method="post">
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <input type="hidden" name="msisdn" value="<%= telepon %>">
+                <input type="hidden" name="product" value="<%= data['produk_id'] %>">
+                <div class="card c-dashboard-content mt-1 mb-0">
+                  <div class="card-body c-dashboard-content__item">
+                    <div class="row justify-content-center">
+                      <div class="col-10">
+                        <div class="media">
+                          <%= image_tag 'lib/icon/tagihan.svg', :class => 'd-flex align-self-center mr-4', :height => '131px', :alt => '' %>
+                          <div class="media-body">
+                            <h5 class="lead text-uppercase mt-2 mb-2">Detail Pembelian E-Voucher</h5>
+
+                            <p class="mb-0 mt-3">
+                              Pulsa <%= data['voucher'] %> <%= data['harga'] %>
+                            </p>
+                            <p class="mb-0 mt-0">
+                              <%= telepon %>
+                            </p>
+
+                            <h5 class="mt-4">
+                              <p class="mb-1 text-muted">
+                                <small>Harga Bayar</small>
+                              </p>
+                              Rp <%= number_with_delimiter(data['harga']) %>
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row justify-content-center">
+                      <div class="col-6">
+                        <button class="btn btn-block btn-danger">Lanjutkan</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+
+    </script>
+<% end %>

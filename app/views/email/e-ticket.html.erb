@@ -1,0 +1,436 @@
+<% content_for :heademail do %>
+    <title>E-Ticket</title>
+<% end %>
+
+<% content_for :email do %>
+    <div class="w-content">
+      <div style="position: absolute;top: 0;left: 0;right: 0;background: #f9f7f6;min-height: 100%;">
+        <div class="w-content-body">
+          <div style="margin: 0 auto;width: 90%;min-height: 100%;height: 100%;background: #fff;margin-top: 20px;">
+            <!-- ---------------------------------------- -->
+            <div class="w-content-head">
+              <div style="display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;padding: 0px 30px;border-bottom: 1px solid #f3f1f0;">
+                <div style="-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;padding: 15px 0;">
+                  <h3 style="margin: 4px 0;text-transform: uppercase">
+                    E-Tiket / <span style="opacity: .75">E-Ticket</span>
+                  </h3>
+                  <p style="margin: 4px 0;font-size: 14px;opacity: .75;">
+                    Itinerary & Receipt
+                  </p>
+                </div>
+
+                <div style="-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;text-align: right;">
+                  <div style="background: #CC334D;display: inline-block;position: absolute;padding: 20px 10px;margin-left: -90px;">
+                    <%= image_tag 'logo/logo_w.png', :style => 'max-width: 100%;max-height: 70px;margin: 0;padding: 0;' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ---------------------------------------- -->
+            <div class="w-content-time">
+              <div style="display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;padding: 0px 30px;">
+                <div style="-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;padding: 15px 0;">
+                  <p style="margin: 5px 0;font-size: 11px;opacity: .75;text-transform: uppercase;">
+                    Kode Booking
+                  </p>
+                  <h1 style="margin-top: 10px;margin-bottom: 0;font-weight: 600;color: #CC334D;">
+                      <%= @data['dataMain']['booking_code'] %>
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <!-- ---------------------------------------- -->
+            <div class="w-content-ticket">
+              <div style="padding: 0px 30px;">
+                <p style="margin: 4px 0;margin-bottom: 15px;font-size: 10px;letter-spacing: .7px;text-transform: uppercase;">
+                  Waktu Penerbangan : <%= @data['dataMain']['flight_date'] %>
+                </p>
+
+                <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #CC334D;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                  <thead>
+                  <tr>
+                    <td style="padding: 15px 5px;vertical-align: middle;min-width: 131px;">
+                      <%= image_tag @data['dataMain']['order_foto'], :style => 'max-width: 100%;max-height: 80px;margin: 0;padding: 0;' %>
+                      <p style="text-transform: uppercase;font-size: 10px;margin: 5px 0px;opacity: .7">
+                        <%= @data['dataMain']['airlines_name'] %> <%= @data['dataMain']['flight_number'] %>
+                      </p>
+                    </td>
+
+                    <td style="padding: 15px 5px;vertical-align: middle;min-width: 515px;width: 100%;">
+                      <div class="timeline">
+                        <style scoped>
+                          ul::before {
+                            content: '';
+                            height: 100%;
+                            width: 1px;
+                            background-color: #CC334D;
+                            position: absolute;
+                            top: 0;
+                            left: 14px;
+                            z-index: 0;
+                          }
+                        </style>
+                        <ul style="padding: 0 6px;
+                            margin: 0;
+                            list-style: none;
+                            position: relative">
+                          <li>
+                            <div style="display: inline-block;
+                                margin: 21px 3px;
+                                vertical-align: top;
+                                width: 12px;
+                                height: 12px;
+                                box-sizing: border-box;
+                                -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;
+                                background: #ffffff;
+                                z-index: 1;
+                                position: relative;
+                                border: 1px solid #CC334D;">
+                            </div>
+                            <div class="time" style="width: 10%;
+                                font-size: 13px;
+                                font-weight: bold;
+                                display: inline-block;
+                                margin: 16px 0;
+                                vertical-align: top;
+                                padding-top: 0.25em;">
+                              <%= @data['departures']['simple_departure_time']  %>
+                            </div>
+                            <div class="desc" style="width: 50%;
+                                display: inline-block;
+                                margin: 1em 0;
+                                vertical-align: top;
+                            ">
+                              <h3 style="font-size: 0.9em;
+                                  font-weight: 400;
+                                  line-height: 20px;
+                                  margin: 0;">
+                                <%= @data['departures']['departure_city_name'] %> (<%= @data['departures']['departure_city'] %>)
+                              </h3>
+                              <h4 style="margin: 0;
+                                  font-size: 0.7em;
+                                  opacity: .7;
+                                  font-weight: 400;">
+                                <%= @data['departures']['departure_airport_name'] %>
+                              </h4>
+                            </div>
+                          </li>
+
+                          <li>
+                            <div style="display: inline-block;
+                                margin: 21px 3px;
+                                vertical-align: top;
+                                width: 12px;
+                                height: 12px;
+                                box-sizing: border-box;
+                                -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;
+                                background: #CC334D;
+                                z-index: 1;
+                                position: relative;
+                                border: 1px solid #ffffff;">
+                            </div>
+                            <div class="time" style="width: 10%;
+                                font-size: 13px;
+                                font-weight: bold;
+                                display: inline-block;
+                                margin: 16px 0;
+                                vertical-align: top;
+                                padding-top: 0.25em;">
+                                <%= @data['departures']['simple_arrival_time']  %>
+                            </div>
+                            <div class="desc" style="width: 50%;
+                                display: inline-block;
+                                margin: 1em 0;
+                                vertical-align: top;">
+                              <h3 style="font-size: 0.9em;
+                                  font-weight: 400;
+                                  line-height: 20px;
+                                  margin: 0;">
+                                <%= @data['departures']['arrival_city_name'] %> (<%= @data['departures']['arrival_city'] %>)
+                              </h3>
+                              <h4 style="margin: 0;
+                                  font-size: 0.7em;
+                                  opacity: .7;
+                                  font-weight: 400;">
+                                <%= @data['departures']['arrival_airport_name']  %>
+                              </h4>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                  </thead>
+                </table>
+
+              </div>
+            </div>
+            <!-- ---------------------------------------- -->
+            <div class="w-content-items">
+              <div style="padding: 0 30px">
+                <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #CC334D;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                  <tr>
+                    <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px;">
+                      <div style="display: -ms-flexbox;
+                          display: flex;
+                          -ms-flex-align: start;
+                          align-items: flex-start;">
+
+                        <%= image_tag 'lib/ui-icon/eticket/check.png',
+                                      :style => 'max-width: 100%;
+                                      height: 33px;
+                                      -ms-flex-item-align: center!important;
+                                      align-self: center!important;
+                                      vertical-align: midlle;
+                                      opacity: .75;
+                                      margin-right: 10px;'%>
+
+                        <div style="-ms-flex: 1;
+                            flex: 1;">
+                          <p style="margin: 4px 0;font-size: 12px;">
+                            Tunjukkan e-tiket ini dan identitas para penumpang dibawah ini saat check-in
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px">
+                      <div style="display: -ms-flexbox;
+                          display: flex;
+                          -ms-flex-align: start;
+                          align-items: flex-start;">
+
+                        <%= image_tag 'lib/ui-icon/eticket/check_in.png',
+                                      :style => 'max-width: 100%;
+                                      height: 33px;
+                                      -ms-flex-item-align: center!important;
+                                      align-self: center!important;
+                                      vertical-align: midlle;
+                                      opacity: .75;
+                                      margin-right: 10px;'%>
+
+                        <div style="-ms-flex: 1;
+                            flex: 1;">
+                          <p style="margin: 4px 0;font-size: 12px;">
+                            Check-in <strong>paling lambat 90 Menit</strong> sebelum jadwal keberangkatan
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td style="vertical-align: middle;padding: 20px 5px;min-width: 171px;">
+                      <div style="display: -ms-flexbox;
+                          display: flex;
+                          -ms-flex-align: start;
+                          align-items: flex-start;">
+
+                        <%= image_tag 'lib/ui-icon/eticket/times.png',
+                                      :style => 'max-width: 100%;
+                                      height: 33px;
+                                      -ms-flex-item-align: center!important;
+                                      align-self: center!important;
+                                      vertical-align: midlle;
+                                      opacity: .75;
+                                      margin-right: 10px;'%>
+
+                        <div style="-ms-flex: 1;
+                            flex: 1;">
+                          <p style="margin: 4px 0;font-size: 12px;">
+                            Waktu tertera adalah waktu bandara setempat
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- ---------------------------------------- -->
+            <div class="w-content-passangers">
+              <div style="padding: 0 30px;min-height: 353px;">
+                <table cellpadding="0" cellspacing="0" style="border-top: 1px solid #e3e1e0;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                  <thead>
+                  <tr>
+                    <th colspan="4" style="padding: 15px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 10px;
+                        text-align: left;
+                        opacity: .7;
+                        text-transform: uppercase;
+                        width: 100%;">
+                      Daftar Penumpang
+                    </th>
+                  </tr>
+                  <tr>
+                    <th style="padding: 5px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 13px;
+                        text-align: left;
+                        min-width: 33px;">
+                      No. <br>
+                      <span style="opacity: .5">
+                        No.
+                      </span>
+                    </th>
+                    <th style="padding: 5px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 13px;
+                        text-align: left;
+                        min-width: 272px;">
+                      Passanger(s) <br>
+                      <span style="opacity: .5">
+                        Penumpang
+                      </span>
+                    </th>
+                    <th style="padding: 5px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 13px;
+                        text-align: left;
+                        min-width: 131px;">
+                      Ticket Type <br>
+                      <span style="opacity: .5">
+                        Jenis Tiket
+                      </span>
+                    </th>
+                    <th style="padding: 5px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 13px;
+                        width: 100%;
+                        text-align: left;">
+                      Baggage <br>
+                      <span style="opacity: .5">
+                        Bagasi
+                      </span>
+                    </th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @data['dataPassengers'].each_with_index do |row, i| %>
+                  <tr>
+                    <td style="padding: 5px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 13px;
+                        opacity: .5;
+                        text-align: left;">
+                      <%= i + 1 %>
+                    </td>
+                    <td style="padding: 5px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 13px;
+                        text-align: left;">
+                      <%= row['title'] %> <%= row['first_name'] %> <%= row['last_name'] %>
+                    </td>
+                    <td style="padding: 5px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 13px;
+                        text-align: left;">
+                        <%= row['type'] %>
+                    </td>
+                    <td style="padding: 5px 5px;
+                        vertical-align: top;
+                        font-weight: 500;
+                        font-size: 13px;
+                        text-align: left;">
+                        <%= row['check_in_baggage'] %>
+                    </td>
+                  </tr>
+                  <% end %>
+
+                  <!--<tr>-->
+                    <td style="padding: 5px 5px;
+                        /*vertical-align: top;*/
+                        /*font-weight: 500;*/
+                        /*font-size: 13px;*/
+                        /*opacity: .5;*/
+                        text-align: left;">
+                      <!--2-->
+                    <!--</td>-->
+                    <td style="padding: 5px 5px;
+                        /*vertical-align: top;*/
+                        /*font-weight: 500;*/
+                        /*font-size: 13px;*/
+                        text-align: left;">
+                      <!--Tn. Gustang Haris Mustafa-->
+                    <!--</td>-->
+                    <td style="padding: 5px 5px;
+                        /*vertical-align: top;*/
+                        /*font-weight: 500;*/
+                        /*font-size: 13px;*/
+                        text-align: left;">
+                      <!--Dewasa-->
+                    <!--</td>-->
+                    <td style="padding: 5px 5px;
+                        /*vertical-align: top;*/
+                        /*font-weight: 500;*/
+                        /*font-size: 13px;*/
+                        text-align: left;">
+                      <!--20 kg-->
+                    <!--</td>-->
+                  <!--</tr>-->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- ---------------------------------------- -->
+            <div class="w-content-footer">
+              <div style="padding: 0 30px">
+                <table cellpadding="0" cellspacing="0" style="border-top: 4px solid #f3f1f0;width: 100%;overflow-x: auto;display: block;    -webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                  <tr>
+                    <td style="vertical-align: middle;padding: 20px 5px;min-width: 272px;">
+                      <div style="display: -ms-flexbox;
+                          display: flex;
+                          -ms-flex-align: start;
+                          align-items: flex-start;">
+
+                        <%= image_tag 'logo/bestravel.png',
+                                      :style => 'max-width: 100%;
+                                      height: 30px;
+                                      -ms-flex-item-align: center!important;
+                                      align-self: center!important;
+                                      vertical-align: midlle;
+                                      opacity: .75;
+                                      margin-right: 10px;'%>
+
+                        <div style="-ms-flex: 1;
+                            flex: 1;">
+                          <p style="margin: 4px 0;font-size: 12px;">
+                            Customer service abutours <br>
+                            (021) 227 93 555
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td style="vertical-align: middle;padding: 20px 5px;text-align: right;width: 100%">
+                      <div style="display: -ms-flexbox;
+                          display: flex;
+                          -ms-flex-align: start;
+                          align-items: flex-start;">
+
+                        <div style="-ms-flex: 1;
+                            flex: 1;">
+                          <p style="margin: 4px 0;font-size: 12px;text-align: right;opacity: .5">
+                            Best travel service
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- ---------------------------------------- -->
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

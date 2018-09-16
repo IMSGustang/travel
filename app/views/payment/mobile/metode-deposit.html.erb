@@ -1,0 +1,155 @@
+<%= content_for :headmobile do %>
+    <title>Detail Metode Pembayaran</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-tagihan-payment-method">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-sm mb-0">
+            <tbody>
+            <tr>
+              <td>
+                <small>Total Tagihan Anda</small>
+                <h5 class="mb-0">
+                  <%= number_to_currency(data['dataMain']['nominal_transfer'], precision: 0, unit: "IDR ") %>
+                </h5>
+              </td>
+
+              <td width="120" class="text-right">
+                <a class="card-link" data-toggle="collapse" href="#linkdetailtagihan" role="button" aria-expanded="false" aria-controls="linkdetailtagihan">
+                  Lihat Tagihan <i class="ion-ios-arrow-down"></i>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="collapse" id="linkdetailtagihan">
+        <div class="card card-collapse">
+          <div class="card-body">
+            <form id="mainForm">
+              <input type="hidden" name="kode_transaksi" value="<%= data['kodeTransaksi'] %>">
+              <table class="table table-sm mb-0">
+                <tbody>
+                <tr>
+                  <td>
+                    Subtotal
+                  </td>
+                  <td width="150">
+                    <%= number_to_currency(data['dataMain']['nominal_transfer'], precision: 0, unit: "IDR ") %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>
+                    Tagihan
+                  </th>
+                  <th width="150">
+                    <%= number_to_currency(data['dataMain']['nominal_transfer'], precision: 0, unit: "IDR ") %>
+                  </th>
+                </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!%= react_component 'mobilePaymentMethodDetail' %>
+    <div class="data-payment-method-detail">
+      <div class="card">
+        <div class="card-header">
+          <%= link_to "Ganti Metode Pembayaran", :back, :class => "btn btn-sm btn-block btn-outline-danger" %>
+        </div>
+        <div class="card-body">
+          <table class="table table-sm mb-0">
+            <tbody>
+            <tr>
+              <td>
+                <p class="text-left mb-0">
+                  Deposit
+                </p>
+              </td>
+              <td width="140" class="text-right">
+                <small>Sisa saldo anda</small>
+                <p class="text-info mb-0">
+                  <%= number_to_currency(session[:account_saldo], precision: 0, unit: "Rp ") %>
+                </p>
+              </td>
+            </tr>
+            <% if session[:account_saldo] < data['dataMain']['nominal_transfer'] %>
+                <tr>
+                  <th>
+                    <p class="text-left mb-0">
+                      Saldo Tidak Mencukupi
+                    </p>
+                  </th>
+                  <th width="140">
+                  </th>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="data-navbar-price  fixed-bottom">
+      <nav class="navbar navbar-price navbar-light">
+            <span class="navbar-brand">
+                <table class="table table-sm mb-0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <% if session[:account_saldo] < data['dataMain']['nominal_transfer'] %>
+                            <a href="/tambah-saldo-abupay" class="btn btn-block btn-danger">Topup Sekarang</a>
+                            <% else %>
+                            <a onclick="paid()" class="btn btn-block btn-danger">Bayar Sekarang</a>
+                            <% end %>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </span>
+      </nav>
+    </div>
+<% end %>
+
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        function paid() {
+            $.ajax({
+                url: "/api/deposit/get-otp",
+                type: "get",
+                data: $("#mainForm").serialize(),
+                success: function (data) {
+                    if (data.status == 200) {
+                        swal({
+                            title: "Sukses!",
+                            text: "Kode OTP berhasil dikirim",
+                            type: "success",
+                            showConfirmButton: false
+                        });
+                        location.href="/evoucher/beli/<%= data['kodeTransaksi'] %>/ABUPAY/otp"
+                    } else {
+                        sweetAlert("Mohon Maaf...", data.message, "error");
+                    }
+                },
+                error: function (xhr, thrownError, err) {
+                    if (err != 'Internal Server Error') {
+                        if (err == 'Timeout') {
+                            sweetAlert("Mohon Maaf...", "Koneksi terputus, Coba Lagi", "error");
+                        }
+                        sweetAlert("Mohon Maaf...", err, "error");
+                    } else {
+                        sweetAlert("Mohon Maaf...", "Terjadi kesalahan", "warning");
+                    }
+                }
+            });
+        }
+    </script>
+<% end %>

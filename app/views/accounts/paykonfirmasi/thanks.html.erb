@@ -1,0 +1,54 @@
+<% content_for :head do %>
+    <title>Terima Kasih | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Konfirmasi</li>
+              </ol>
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user c-dashboard-user-small">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-content c-bg-thanks mt-1">
+                <div class="card-body c-dashboard-content__item">
+                  <%= image_tag 'lib/icon/4.svg', :class => 'mx-auto d-block img-rounded mt-3 mb-3', :height => '177px' %>
+
+                  <p class="text-center text-muted">
+                    Hallo, Gustang Blammats <br>
+                    Terima kasih atas kepercayaan anda untuk bertransaksi di abutours
+                  </p>
+
+                  <p class="text-center">
+                    <small>
+                      Ayo, perbanyak transaksi dan dapatkan berbagai keuntungan
+                    </small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>

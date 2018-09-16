@@ -1,0 +1,198 @@
+//.p-blog__header {
+//  //margin-top: 60px;
+//  background: #ffffff;
+//
+//  & .nav {
+//    background-color: transparent;
+//
+//    & .nav-item {
+//      color: #333333;
+//
+//      &.display-4 {
+//        font-size: 30px;
+//      }
+//
+//      & .nav-link {
+//        font-size: 14px;
+//        margin-top: 0px;
+//        color: #333333;
+//        font-weight: bold;
+//        text-transform: uppercase;
+//        -webkit-transition: all .2ms ease;
+//        -moz-transition: all .2ms ease;
+//        -ms-transition: all .2ms ease;
+//        -o-transition: all .2ms ease;
+//        transition: all .2ms ease;
+//
+//        &:hover {
+//          color: #555555;
+//        }
+//      }
+//    }
+//  }
+//}
+
+.p-blog {
+  margin-top: 0;
+
+  & .p-blog__item {
+    border: none;
+    & .card-header {
+      background-color: transparent;
+      border: none;
+
+      & h1 {
+        line-height: 45px;
+        font-weight: bold;
+        letter-spacing: -.5px;
+        font-size: 30px !important;
+      }
+
+      & .text-muted {
+
+      }
+
+      & .rrssb-buttons {
+        max-width: 50%;
+      }
+    }
+
+    & .card-img-top {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      max-width: 100%;
+    }
+
+    & .p-blog__item-b {
+      & img {
+        max-width: 100%;
+        height: 50px;
+      }
+    }
+
+    & .list-group-flush {
+      & .list-group-item {
+        border-color: #f3f1f0;
+        &.display-4 {
+          font-size: 20px;
+          font-weight: 500;
+        }
+
+        & .card-link {
+          font-size: 14px;
+          color: #787876;
+          font-weight: bold;
+
+          &:hover {
+            color: #383836;
+          }
+        }
+      }
+    }
+  }
+
+  & .card-side-blog {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+
+    & .card-header {
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 20px;
+      background-color: transparent;
+
+      & span {
+        font-size: 14px;
+        text-transform: uppercase;
+        background: #fff;
+        font-weight: bold;
+        padding-right: 10px;
+      }
+
+      & hr {
+        margin: 0;
+        margin-top: -12px;
+      }
+    }
+
+    & .card-body {
+      padding: 10px 0;
+      & .list-unstyled {
+        & .media {
+          margin-bottom: 14px;
+
+          & .thumb {
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            position: relative;
+            align-items: flex-start;
+            width: 100px;
+            backface-visibility: hidden;
+            perspective: 1000px;
+            height: 125px !important;
+            overflow: hidden;
+            display: flex;
+
+            & img {
+              -webkit-border-radius: 0px;
+              -moz-border-radius: 0px;
+              border-radius: 0px;
+              width: 100%;
+            }
+          }
+
+          & .media-body {
+            position: relative;
+            overflow: hidden;
+            height: 118px;
+
+            & .title-desc {
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              position: relative;
+              overflow: hidden;
+              height: 16px !important;
+              max-height: 16px !important;
+              margin-bottom: -4px !important;
+
+              &.title-desc-line {
+                overflow: hidden;
+                text-transform: capitalize;
+                color: #303030;
+                font-size: 16px;
+                font-weight: bold;
+              }
+
+              &::after {
+                content: "";
+                text-align: right;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 25%;
+                background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+                background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+                background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+                background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+                height: 16px !important;
+              }
+            }
+
+          & p {
+            font-size: 14px;
+            color: #000;
+            opacity: .75;
+          }
+          }
+        }
+      }
+    }
+  }
+}

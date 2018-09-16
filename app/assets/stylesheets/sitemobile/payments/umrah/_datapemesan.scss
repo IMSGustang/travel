@@ -1,0 +1,319 @@
+.data-purchase-summary {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-header {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: none;
+      background-color: transparent;
+
+      & h5 {
+        background-color: #ffffff;
+        padding: 5px 10px;
+        padding-left: 0;
+        font-size: 14px;
+        letter-spacing: -.5px;
+        width: 150px;
+        position: relative;
+      }
+
+      & hr {
+        margin-top: -12px;
+      }
+    }
+
+    & .card-body {
+      padding-top: 0;
+      & .media {
+        & img {
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          max-width: 100%;
+          max-height: 82px;
+        }
+
+        & .media-body {
+          & .name-packet {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            height: 40px !important;
+            max-height: 40px !important;
+            margin-bottom: 0;
+
+            &.name-packet-line {
+              overflow: hidden;
+              height: 40px;
+              text-transform: capitalize;
+              color: rgba(0, 0, 0, .75);
+              font-size: 12px;
+              font-weight: 500;
+              letter-spacing: -.5px;
+            }
+
+            &::after {
+              content: "";
+              text-align: right;
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              width: 25%;
+              background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(95%, white));
+              background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+              background: -o-linear-gradient(left, rgba(255, 255, 255, 0), white 95%);
+              background: linear-gradient(to right, rgba(255, 255, 255, 0), white 95%);
+              height: 22px !important;
+            }
+          }
+
+          & .price-packet {
+            -webkit-transition: all .2s ease-out;
+            -o-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+            text-transform: capitalize;
+            font-weight: 500;
+            font-size: 15px !important;
+            color: $color-default;
+            letter-spacing: -.5px;
+          }
+
+          & .packet-city {
+            text-transform: capitalize;
+            color: #333333;
+            opacity: .75;
+            font-weight: normal !important;
+            font-size: 10px;
+            line-height: 14px;
+            margin-top: 5px !important;
+          }
+
+          & .packet-rate {
+            color: $color-stars;
+            font-size: 12px;
+            margin-top: -4px;
+
+            & i {
+              font-size: 15px;
+              margin-right: 2px;
+            }
+          }
+        }
+      }
+    }
+
+    & .card-footer {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      padding: 0 20px;
+      padding-bottom: 4px;
+      border: none;
+      background: #f5f5f5;
+      & .table {
+        & td {
+          padding: 0;
+          border: none;
+
+          & small {
+            text-transform: uppercase;
+            font-size: 10px;
+            opacity: .75;
+          }
+
+          & p {
+            font-size: 12px;
+            margin-top: -4px;
+            letter-spacing: -.5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.data-detail-buyer {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-header {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: none;
+      background-color: transparent;
+
+      & h5 {
+        background-color: #ffffff;
+        padding: 5px 10px;
+        padding-left: 0;
+        font-size: 14px;
+        letter-spacing: -.5px;
+        width: 106px;
+        position: relative;
+      }
+
+      & hr {
+        margin-top: -12px;
+      }
+    }
+
+    & .card-body {
+      padding-top: 0;
+      & .table {
+        & td {
+          border: none;
+          padding: 0;
+          padding-right: 8px;
+
+          & .form-group {
+            & label {
+              font-size: 12px;
+              margin-bottom: 0;
+              opacity: .7;
+            }
+
+            & .form-control {
+              -webkit-border-radius: 0px;
+              -moz-border-radius: 0px;
+              border-radius: 0px;
+              border: none;
+              border-bottom: 1px solid #d3d1d0;
+              padding-left: 0;
+              font-size: 12px;
+              height: 36px;
+
+              &:focus {
+                -webkit-box-shadow: none !important;
+                -moz-box-shadow: none !important;
+                box-shadow: none !important;
+                border-bottom: 1px solid $color-default;
+              }
+            }
+
+            .select2-container--bootstrap .select2-selection {
+              -webkit-border-radius: 0px !important;
+              -moz-border-radius: 0px !important;
+              border-radius: 0px !important;
+              border: none;
+              border-bottom: 1px solid #d3d1d0;
+              padding-left: 0;
+            }
+          }
+
+          &:last-child {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.data-code-voucher {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-header {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: none;
+      background-color: transparent;
+
+      & h5 {
+        background-color: #ffffff;
+        padding: 5px 10px;
+        padding-left: 0;
+        font-size: 14px;
+        letter-spacing: -.5px;
+        width: 170px;
+        position: relative;
+      }
+
+      & hr {
+        margin-top: -12px;
+      }
+    }
+
+    & .card-body {
+      & .input-group {
+        & .form-control {
+          -webkit-border-radius: 0px;
+          -moz-border-radius: 0px;
+          border-radius: 0px;
+          font-size: 12px;
+        }
+
+        & .btn {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      & .btn {
+        font-size: 14px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+      }
+    }
+  }
+}
+
+.data-ringkasan-pesanan {
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    & .card-header {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      border: none;
+      background-color: transparent;
+
+      & h5 {
+        background-color: #ffffff;
+        padding: 5px 10px;
+        padding-left: 0;
+        font-size: 14px;
+        letter-spacing: -.5px;
+        width: 140px;
+        position: relative;
+      }
+
+      & hr {
+        margin-top: -12px;
+      }
+    }
+
+    & .card-body {
+      font-size: 14px;
+      letter-spacing: -.5px;
+    }
+  }
+}

@@ -1,0 +1,110 @@
+<%= content_for :active_home do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Beli Paket Data di Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-cover-evoucher">
+      <div class="card card-body">
+        <h6 class="mb-0">
+          Penuhi kebutuhan harian mu!
+        </h6>
+        <p class="mb-0">
+          Enjoy Your Day
+        </p>
+      </div>
+    </div>
+
+    <div class="data-products-evoucher pl-3 pr-3">
+      <div class="card card-body c-form-evoucher">
+        <form action="/paket-data/detail" method="post">
+
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i data-feather="smartphone"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Nomor Telepon</label>
+                <input type="text" name="msisdn" class="form-control" placeholder="08XX-XXX-XX" onkeyup="cekHarga(this.value, 'PaketData')">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="search-invoice">
+              <div class="search-invoice-images">
+                <i data-feather="more-horizontal"></i>
+              </div>
+              <div class="search-invoice-group">
+                <label>Nominal</label>
+                <select id="nominalPaketData" name="nominal" class="form-control" onchange="active(this.value, 'PaketData')">
+                  <option value="disabled" selected disabled> Pilih nominal
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="mb-3 mt-3" id="priceTagPaketData">
+            Rp 0
+          </h4>
+
+          <% if session[:acc_token] %>
+              <button type="submit" class="btn btn-block btn-danger disabled" disabled id="btnPaketData">
+                Beli Sekarang
+              </button>
+          <% else %>
+              <a href="/abutours-login" class="btn btn-block btn-danger disabled" disabled id="btnPaketData">
+                Beli Sekarang
+              </a>
+          <% end %>
+
+        </form>
+      </div>
+
+      <div class="card card-body mb-3">
+        <div class="row justify-content-center">
+          <div class="col-3">
+            <%= image_tag 'lib/ui-icon/provider/axis.png', :class => 'img-rounded', height: '25' %>
+          </div>
+          <div class="col-3">
+            <%= image_tag 'lib/ui-icon/provider/bolt.png', :class => 'img-rounded', height: '25' %>
+          </div>
+          <div class="col-3">
+            <%= image_tag 'lib/ui-icon/provider/indosat_ooredoo.png', :class => 'img-rounded', height: '25' %>
+          </div>
+          <div class="col-3">
+            <%= image_tag 'lib/ui-icon/provider/smartfren.png', :class => 'img-rounded', height: '25' %>
+          </div>
+          <div class="col-3">
+            <%= image_tag 'lib/ui-icon/provider/telkomsel.png', :class => 'img-rounded', height: '25' %>
+          </div>
+          <div class="col-3">
+            <%= image_tag 'lib/ui-icon/provider/three.png', :class => 'img-rounded', height: '25' %>
+          </div>
+          <div class="col-3">
+            <%= image_tag 'lib/ui-icon/provider/xl_axiata.png', :class => 'img-rounded', height: '25' %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#nominalPaketData").select2({
+                theme: "bootstrap"
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#nominalPaketData').on('change', function (e) {
+            $('#priceTagPaketData').html($(this).find("option:selected").data('price'));
+        });
+    </script>
+<% end %>

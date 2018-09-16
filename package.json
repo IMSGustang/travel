@@ -1,0 +1,7 @@
+{
+  "name": "abumeni",
+  "private": true,
+  "dependencies": {
+    "compass": "^0.1.1"
+  }
+}

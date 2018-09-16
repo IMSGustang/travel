@@ -1,0 +1,86 @@
+.c-souvenir-cart {
+  padding-bottom: 15px;
+  background: #f9f7f6;
+
+  &-item {
+    border: none;
+    padding: 0;
+
+    & .table {
+
+      & td {
+        vertical-align: middle;
+
+        & .media {
+          & img {
+            width: 55px;
+          }
+
+          &-body {
+
+            & p {
+              font-size: 14px;
+              color: rgba(0, 0, 0, .65);
+            }
+
+            & h6 {
+              font-size: 16px;
+              color: rgba(0, 0, 0, .75);
+            }
+
+          }
+        }
+
+        & .close {
+          top: 0;
+          right: 0;
+          padding: .15rem 1.25rem;
+
+          & i {
+            font-size: 24px !important;
+          }
+        }
+
+        & .form-group {
+          & .input-group {
+            &-btn {
+              & .btn-secondary {
+                -webkit-box-shadow: none !important;
+                -moz-box-shadow: none !important;
+                box-shadow: none !important;
+                -webkit-border-radius: 0;
+                -moz-border-radius: 0;
+                border-radius: 0;
+                background: #f9f7f6;
+                border: 1px solid #e3e1e0;
+                padding: 4px 14px;
+                & i {
+                  font-size: 24px;
+                  color: #333;
+                }
+              }
+            }
+
+            & .form-control {
+              border: 1px solid #e3e1e0;
+              font-size: 13px;
+              padding: 4px;
+            }
+          }
+        }
+      }
+    }
+
+    &-sidebar {
+      border: 1px solid #f3f1f0;
+
+      & h6 {
+        font-size: 15px;
+        color: rgba(0, 0, 0, .5);
+        & span {
+          color: rgba(0, 0, 0, .85);
+        }
+      }
+    }
+  }
+}

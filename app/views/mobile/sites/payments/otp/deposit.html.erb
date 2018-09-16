@@ -1,0 +1,66 @@
+<%= content_for :active_otp do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>OTP</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-otp">
+      <div class="card">
+        <div class="card-body">
+          <form id="otpForm" method="post" action="/api/transaksi/abupay/otp/<%= params[:no_trans]%>" class="needs-validation1" novalidate>
+            <input type="hidden" name="type" value="<%=params['type']%>">
+            <div class="form-group">
+              <p>
+                Masukkan kode verifikasi
+              </p>
+              <table class="table table-sm mb-0">
+                <tr>
+                  <td>
+                    <input type="text" id="otp1" name="otp1" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp2" name="otp2" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp3" name="otp3" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp4" name="otp4" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp5" name="otp5" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                  <td>
+                    <input type="text" id="otp6" name="otp6" class="kode form-control form-control-sm text-center text-uppercase" maxlength="1" size="1" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="6" class="pt-3">
+                    <p class="card-text text-center mt-12">
+                      Tidak terima kode ?
+                      <a id="resendOtp" href="#" class="text-success">Kirim ulang kode</a>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="6" class="pt-3">
+                    <button type="submit" class="btn btn-block btn-danger">Kirim</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<%= content_for :footmobile do %>
+    <script type="text/javascript">
+        $.autotab({tabOnSelect: true});
+        $('.kode').autotab('filter', 'kode');
+    </script>
+<% end %>

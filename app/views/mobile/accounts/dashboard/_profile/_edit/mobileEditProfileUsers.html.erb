@@ -1,0 +1,136 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Edit Profile customer</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-edit-fiture">
+        <div class="card card-images">
+            <div class="card-body"></div>
+            <div class="thumbnail">
+              <%= image_tag !session[:account_detail][:foto]['url'].nil? ? session[:account_detail][:foto]['url'] : "https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g", :class => 'mx-auto d-block', :alt => '', onerror: 'this.error=null;this.src="https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g"' %>
+            </div>
+        </div>
+
+        <div class="card card-list">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="/pengaturan-akun-profile/data-pribadi" class="w-100">
+                        <div class="media">
+                            <div class="align-self-center mr-2">
+                                <div class="icons-sm icons-datapribadi"></div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="mb-0">Data Pribadi</h6>
+                                <p class="mb-0">
+                                    Ubah informasi data pribadi anda
+                                </p>
+                            </div>
+                            <div class="align-self-center ml-2">
+                                <div class="icons-sm icons-arrow-right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="/pengaturan-akun-profile/data-alamat" class="w-100">
+                        <div class="media">
+                            <div class="align-self-center mr-2">
+                                <div class="icons-sm icons-address"></div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="mb-0">Alamat</h6>
+                                <p class="mb-0">
+                                    Ubah informasi alamat anda
+                                </p>
+                            </div>
+                            <div class="align-self-center ml-2">
+                                <div class="icons-sm icons-arrow-right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="/data-bank" class="w-100">
+                        <div class="media">
+                            <div class="align-self-center mr-2">
+                                <div class="icons-sm icons-rekening"></div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="mb-0">Rekening Bank</h6>
+                                <p class="mb-0">
+                                    Ubah informasi rekening
+                                </p>
+                            </div>
+                            <div class="align-self-center ml-2">
+                                <div class="icons-sm icons-arrow-right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="/pengaturan-akun-profile/nomor-telepon" class="w-100">
+                        <div class="media">
+                            <div class="align-self-center mr-2">
+                                <div class="icons-sm icons-telepon"></div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="mb-0">Telepon</h6>
+                                <p class="mb-0">
+                                    Ubah informasi no telepon anda
+                                </p>
+                            </div>
+                            <div class="align-self-center ml-2">
+                                <div class="icons-sm icons-arrow-right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="/pengaturan-akun-profile/akun-email" class="w-100">
+                        <div class="media">
+                            <div class="align-self-center mr-2">
+                                <div class="icons-sm icons-email"></div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="mb-0">Email</h6>
+                                <p class="mb-0">
+                                    Ubah informasi email anda
+                                </p>
+                            </div>
+                            <div class="align-self-center ml-2">
+                                <div class="icons-sm icons-arrow-right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="/pengaturan-password" class="w-100">
+                        <div class="media">
+                            <div class="align-self-center mr-2">
+                                <div class="icons-sm icons-password"></div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="mb-0">Password</h6>
+                                <p class="mb-0">
+                                    Ubah informasi password anda
+                                </p>
+                            </div>
+                            <div class="align-self-center ml-2">
+                                <div class="icons-sm icons-arrow-right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<% end %>

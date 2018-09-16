@@ -1,0 +1,221 @@
+<% content_for :head do %>
+    <title>Riwayat Pembayaran | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4 sticky">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0 theiaStickySidebar">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Konfirmasi Penjualan</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <ul class="nav tabs-voucher">
+              <li class="nav-item">
+                <a class="nav-link <%= active_class('/daftar-penjualan') %>" href="/daftar-penjualan">
+                  Daftar Penjualan
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= active_class('/history-penjualan') %>" href="/history-penjualan">History Penjualan</a>
+              </li>
+            </ul>
+            <!-- --------------------------------------------------- -->
+            <% if @data && @data.size > 0 %>
+                <% @data.each do |data| %>
+            <div class="c-bg-white-accounts c-packetowner">
+              <div class="card c-dashboard-paket c-packetowner__item">
+                <div class="card-body c-dashboard-paket__item c-packetowner__item--body p-0">
+                  <table class="table table-pesanan">
+                    <tr>
+                      <td class="pc-1">
+                        <%= image_tag data && data['detail_paket'] && data['detail_paket']['gambar'] ? data['detail_paket']['gambar']['url'] : 'no_images/no_package_1.png', :class => 'img-rounded', :alt => '' %>
+                      </td>
+
+                      <td class="pc-2">
+                        <small>Nama paket</small>
+                        <h3 class="">
+                          <%= data['detail_paket']['nama_paket'] if data['detail_paket'] %>
+                        </h3>
+                        <p class="mb-0">
+                          <%= TimeFormat::indonesiaMonthAlphabet(data['detail_pemesanan']['tgltrans']) if data['detail_pemesanan'] %>
+                        </p>
+                      </td>
+
+                      <td class="pc-3">
+                        <small>Status</small>
+                        <p class="text-info">
+                          <%= data['status_bayar'] %>
+                        </p>
+                      </td>
+
+                      <td class="pc-4">
+                        <a href="#view<%= data['nomor_bayar'] %>" class="btn btn-block btn-sm btn-success" data-toggle="collapse" aria-expanded="false" aria-controls="">
+                          Lihat <i class="ion-ios-arrow-thin-right"></i>
+                        </a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4" class="pc-5 p-0">
+                        <div class="collapse" id="view<%= data['nomor_bayar'] %>">
+                          <div class="card">
+                            <form id="formKonfirmasiPesanan" method="post">
+                              <div class="card-body">
+                                <h4>
+                                  Detail Pembayaran
+                                </h4>
+                                <table class="table table-sm">
+                                  <tr>
+                                    <td class="td-1 text-danger text-right" colspan="3">
+                                      <span class="lead">
+                                        No Transaksi #<%= data['nomor_bayar'] %>
+                                      </span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="td-1">
+                                      <small>Bukti Transfer</small>
+                                      <p class="mb-0">
+                                        <a href="<%= data['gambar'] && data['gambar']['url'] ? "#{data['gambar']['url']}?iframe=true" : 'assets/no_images/no_package_1.png' %>" data-lightbox="preview<%= data['nomor_bayar'] %>">
+                                          <%= image_tag data['gambar'] && data['gambar']['url'] ? data['gambar']['url'] : 'no_images/no_package_1.png', :class => 'img-rounded', :alt => '' %>
+                                        </a>
+                                      </p>
+                                    </td>
+                                    <td class="td-1">
+                                      <small>Nominal Pembayaran</small>
+                                      <p class="mb-0">
+                                        <%= number_to_currency(data['jumlah'], precision: 0, unit: 'Rp ', delimiter: '.') %>
+                                      </p>
+                                    </td>
+                                    <td class="td-1">
+                                      <small>Bank</small>
+                                      <p class="mb-0">
+                                        <%= "#{data['detail_bank']['nama_bank']} #{data['detail_bank']['no_rekening']}" if data['detail_bank'] %>
+                                      </p>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+
+                              <div class="card-body">
+                                <h4>
+                                  Detail Pemesan
+                                </h4>
+                                <table class="table table-sm">
+                                  <tr>
+                                    <td class="td-1">
+                                      <small>Nama Pemesan</small>
+                                      <p class="mb-0">
+                                        <%= "#{data['detail_pelanggan']['nama_depan']} #{data['detail_pelanggan']['nama_belakang']}" if data['detail_pelanggan'] %>
+                                      </p>
+                                    </td>
+                                    <td class="td-1">
+                                      <small>Email</small>
+                                      <p class="mb-0">
+                                        <%= data['detail_pelanggan']['email'] if data['detail_pelanggan'] %>
+                                      </p>
+                                    </td>
+                                    <td class="td-1">
+                                      <small>Telepon</small>
+                                      <p class="mb-0">
+                                        <%= data['detail_pelanggan']['telepon'] if data['detail_pelanggan'] %>
+                                      </p>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td class="td-1" colspan="3">
+                                      <small>Alamat Lengkap</small>
+                                      <p class="mb-0">
+                                        <%= data['detail_pelanggan']['alamat'] if data['detail_pelanggan'] %>
+                                      </p>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td class="td-1" colspan="3">
+                                      <small>Catatan Pemesan</small>
+                                      <p class="mb-0">
+                                        <%= data['keterangan'] %>
+                                      </p>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                              <div class="card-footer">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <input type="hidden" name="kode_booking" value=""/>
+                                    <a href="#view<%= data['nomor_bayar'] %>" class="btn btn-block btn-sm btn-light" data-toggle="collapse" aria-expanded="false" aria-controls="view">
+                                      Tutup
+                                    </a>
+                                  </div>
+                                  <!--<div class="col-4">-->
+                                    <!--<input type="button" class="btn btn-block btn-sm btn-danger" id="reject<%= data['nomor_bayar'].gsub('-', '') %>" data-nomor="<%= data['nomor_bayar'] %>" value="Reject" />-->
+                                  <!--</div>-->
+                                  <!--<div class="col-4">-->
+                                    <!--<input type="button" class="btn btn-block btn-sm btn-primary" id="approve<%= data['nomor_bayar'] %>" data-nomor="<%= data['nomor_bayar'] %>" value="Approve" />-->
+                                  <!--</div>-->
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+                <% end %>
+                <nav aria-label="Page navigation">
+                  <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item">
+                      <%= @page[:link_prev].html_safe %>
+                    </li>
+                    <% @page[:html].each do |page| %>
+                        <%= page.html_safe %>
+                    <% end %>
+                    <li class="page-item">
+                      <%= @page[:link_next].html_safe %>
+                    </li>
+                    </li>
+                  </ul>
+                </nav>
+            <% else %>
+                <div class="w-blank text-center p-5">
+                  <%= image_tag 'icon_blank/no_seat_umroh.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                  <p class="mb-0 text-center">
+                    Maaf, Belum ada data history pembayaran
+                  </p>
+                </div>
+            <% end %>
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<% content_for :foot do %>
+    <script type="text/javascript">
+        lightbox.option({
+            'resizeDuration': 200,
+            'positionFromTop': 150,
+            'wrapAround': true
+        });
+    </script>
+<% end %>

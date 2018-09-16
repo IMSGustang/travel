@@ -1,0 +1,85 @@
+<%= content_for :headlogister do %>
+    <title>Abutours | Kode OTP</title>
+<% end %>
+
+<%= content_for :logister do %>
+    <section class="c-auth">
+      <!-- ---------------------------------------------- -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-faded pt-4 justify-content-center">
+        <a class="navbar-brand" href="/">
+          <%= image_tag 'logo/logo_new.png' %>
+        </a>
+      </nav>
+      <!-- ---------------------------------------------- -->
+      <div class="container">
+        <div class="row pl-3 pr-3 pb-3 pt-0 justify-content-center">
+          <div class="col-md-4">
+            <!-- ---------------------------------------------- -->
+            <div class="card-title text-center pt-3 pb-3 pl-0 mb-1 mt-3">
+              Masukan Kode OTP
+            </div>
+            <!-- ---------------------------------------------- -->
+  
+            <!-- ---------------------------------------------- -->
+            <form id="register" method="post" action="/api/login-verifikasi">
+              <input type="hidden" name="afb" id="afb">
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="icon-mobile"></i></span>
+                  <input type="number" name="otp" class="form-control" placeholder="Kode OTP . . .">
+                </div>
+                <small class="form-text text-center text-muted">
+                  Masukan 6 digit kode OTP yang telah anda dapatkan.  <%= @res %>
+                </small>
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-block btn-success">Kirim</button>
+                <p class="card-text text-center mt-3">
+                  Tidak terima kode? <a href="/app/send-otp/login" class="text-success">Kirim ulang kode</a>
+                </p>
+              </div>
+            </form>
+            <!-- ---------------------------------------------- -->
+          </div>
+        </div>
+      </div>
+      <!-- ---------------------------------------------- -->
+    </section>
+    <!-- <script type="text/javascript">
+      $(document).ready(function(){
+        new Fingerprint2().get(function(result, components){
+          $('#afb').val(result);
+        });
+        if ("<%= @res %>" == 'fails') {
+          swal({
+            title: "Kode verifikasi tidak cocok atau kadaluarsa",
+            timer: 2000,
+            showConfirmButton: false,
+            type: "error"
+          });
+        }
+
+        if ("<%= @res %>" == 'otpfails') {
+          swal({
+            title: "Kode tidak dapat dikirim melebihi 3 kali",
+            timer: 2000,
+            showConfirmButton: false,
+            type: "error",
+            button: false
+          });
+        }
+
+        if ("<%= @res %>" == 'otpsuccess') {
+          swal({
+            title: "Kode berhasil terkirim ke nomor Anda",
+            timer: 2000,
+            showConfirmButton: false,
+            type: "success",
+            button: false,
+          });
+        }
+      });
+    </script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/1.5.1/fingerprint2.min.js"></script>
+<% end %>

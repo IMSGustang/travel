@@ -1,0 +1,125 @@
+<%= content_for :active_profile do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Tambah Data Bank</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-edit-alamat">
+      <div class="card">
+        <form class="form" action="/api/data-bank" method="post" id="needs-validation" novalidate>
+          <div class="card-body">
+            <table class="table table-sm mb-0">
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <label for="">Nama Bank</label>
+                    <select id="Adatabank" name="nama_bank" class="form-control">
+                      <option value="0" disabled>Pilih...</option>
+                      <option value="BCA">
+                        BCA
+                      </option>
+                      <option value="BCA SYARIAH">
+                        BCA SYARIAH
+                      </option>
+                      <option value="BNI">
+                        BNI
+                      </option>
+                      <option value="BNI SYARIAH">
+                        BNI SYARIAH
+                      </option>
+                      <option value="BRI">
+                        BRI
+                      </option>
+                      <option value="BRI SYARIAH">
+                        BRI SYARIAH
+                      </option>
+                      <option value="BTN">
+                        BTN
+                      </option>
+                      <option value="CIMB NIAGA">
+                        CIMB NIAGA
+                      </option>
+                      <option value="MANDIRI">
+                        MANDIRI
+                      </option>
+                      <option value="MANDIRI SYARIAH">
+                        MANDIRI SYARIAH
+                      </option>
+                      <option value="MEGA">
+                        MEGA
+                      </option>
+                      <option value="OCBC NISP">
+                        OCBC NISP
+                      </option>
+                      <option value="PERMATA">
+                        PERMATA
+                      </option>
+                      <option value="LAINNYA">
+                        LAINNYA
+                      </option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <label for="">Nama Rekening</label>
+                    <input type="text" name="atas_nama" class="form-control" placeholder="">
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <label for="">Nomor Rekening</label>
+                    <input type="text" name="no_rekening" class="form-control" placeholder="">
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <label for="">Cabang</label>
+                    <input type="text" name="cabang" class="form-control" placeholder="">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-block btn-danger">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :footmobile do %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Adatabank').select2({
+                theme: 'bootstrap'
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            window.addEventListener("load", function () {
+                var form = document.getElementById("needs-validation");
+                form.addEventListener("submit", function (event) {
+                    if (form.checkValidity() == false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            }, false);
+        }());
+    </script>
+<% end %>

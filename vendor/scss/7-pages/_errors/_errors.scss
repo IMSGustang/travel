@@ -1,0 +1,51 @@
+.c-errors {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, .75);
+  height: 100%;
+
+  &-item {
+    width: 100%;
+
+    & .card {
+      border: none;
+      &-body {
+
+        & .media {
+          align-items: center !important;
+          & .media-body {
+            & h1 {
+              letter-spacing: 2px;
+              font-size: 30px !important;
+            }
+
+            & p {
+              letter-spacing: 1px;
+              font-size: 16px;
+            }
+          }
+        }
+
+        & .display-4 {
+          font-size: 40px;
+        }
+
+        & img {
+          max-width: 400px;
+        }
+
+        & p {
+          & a {
+            color: rgba(0, 0, 0, .75);
+            font-size: 16px;
+
+            &:hover {
+              color: #cb2d3e;
+            }
+          }
+        }
+      }
+    }
+  }
+}

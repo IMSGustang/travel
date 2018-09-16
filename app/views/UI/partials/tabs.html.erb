@@ -1,0 +1,52 @@
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link <%= active_class('/umrah') %>" href="/umrah">
+            <div class="icons-sm icons-umrah d-block m-auto"></div>
+            Paket Umrah
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <%= active_class('/haji') %>" href="/haji">
+          <div class="icons-sm icons-haji d-block m-auto"></div>
+            Paket Haji
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <%= active_class('/flight') %>" href="/flight">
+          <div class="icons-sm icons-tiketpesawat d-block m-auto"></div>
+            Tiket Pesawat
+        </a>
+    </li>
+    <% if Rails.env.development? %>
+    <li class="nav-item">
+        <a class="nav-link <%= active_class('/hotel') %>" href="/hotel">
+          <div class="icons-sm icons-hotel d-block m-auto"></div>
+            Hotel
+        </a>
+    </li>
+    <% end %>
+    <li class="nav-item">
+        <a class="nav-link <%= active_class('/beli-pulsa') %>" href="/beli-pulsa">
+          <div class="icons-sm icons-pulsa d-block m-auto"></div>
+            Pulsa
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <%= active_class('/beli-paketdata') %>" href="/beli-paketdata">
+          <div class="icons-sm icons-paketdata d-block m-auto"></div>
+            Paket Data
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <%= active_class('/beli-tokenlistrik') %>" href="/beli-tokenlistrik">
+          <div class="icons-sm icons-tokenlistrik d-block m-auto"></div>
+            Token Listrik
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <%= active_class('/beli-vouchergame') %>" href="/beli-vouchergame">
+          <div class="icons-sm icons-vouchergame d-block m-auto"></div>
+            Voucher Game
+        </a>
+    </li>
+</ul>

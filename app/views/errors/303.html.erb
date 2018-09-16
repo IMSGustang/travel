@@ -1,0 +1,51 @@
+<% content_for :head do %>
+    <title>Went Something Wrong</title>
+<% end %>
+
+<% content_for :errors do %>
+    <div class="c-errors">
+      <div class="c-errors-item">
+        <div class="container">
+          <div class="row">
+            <div class="col-10 d-none d-sm-none d-md-block">
+              <div class="card">
+                <div class="card-body">
+                  <div class="media">
+                    <%= image_tag 'errors/maintenance_1.png', :class => 'align-self-center mr-4 img-rounded' %>
+                    <div class="media-body">
+                      <h1 class="text-uppercase text-left">
+                        Telah Terjadi Kesalahan!
+                      </h1>
+                      <p class="text-left mb-0">
+                        Maaf, Halaman ini telah terjadi kesalahan, Secepatnya akan kami perbaiki!
+                        <a href="/">
+                          kembali ke halaman awal
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 d-block d-sm-block d-md-none">
+              <div class="card card-small">
+                <%= image_tag 'errors/maintenance_1.png', :class => 'card-img d-block mx-auto' %>
+                <div class="card-body">
+                  <h1 class="text-uppercase text-center">
+                    Telah Terjadi Kesalahan!
+                  </h1>
+                  <p class="text-center mb-0">
+                    Maaf, Halaman ini telah terjadi kesalahan, Secepatnya akan kami perbaiki!
+                    <a href="/">
+                      kembali ke halaman awal
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

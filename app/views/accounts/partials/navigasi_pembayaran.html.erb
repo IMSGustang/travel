@@ -1,0 +1,47 @@
+<ul class="nav tabs-voucher mb-0">
+  <li class="nav-item">
+    <a class="nav-link text-uppercase <%= active_class_sub('/pembayaran-umrah', '/transaksi-umrah') %>" href="/pembayaran-umrah">
+      Umrah
+      <% if @badge_pembelian && @badge_pembelian['status'] == 200 && @badge_pembelian['data'] %>
+          <% item = @badge_pembelian['data'].select {|data| data['tipe'] == 'umrah' }.first %>
+          <span class="badge badge-pill badge-success"><%= item['jumlah'] if item %></span>
+      <% end %>
+    </a>
+  </li>
+  <!--<li class="nav-item">-->
+    <!--<a class="nav-link text-uppercase <%= active_class_sub('/pembayaran-naurah', '/history-pembayaran-naurah') %>" href="/pembayaran-naurah">-->
+      <!--Naurah-->
+      <!--<% if @badge_pembelian && @badge_pembelian['status'] == 200 && @badge_pembelian['data'] %>-->
+          <!--<% item = @badge_pembelian['data'].select {|data| data['tipe'] == 'naurah' }.first %>-->
+          <!--<span class="badge badge-pill badge-success"><%= item['jumlah'] if item && item['jumlah'] > 0 %></span>-->
+      <!--<% end %>-->
+    <!--</a>-->
+  <!--</li>-->
+  <li class="nav-item">
+    <a class="nav-link text-uppercase <%= active_class_sub('/transaksi-haji', '/history-transaksi-haji') %>" href="/transaksi-haji">
+      Haji
+      <% if @badge_pembelian && @badge_pembelian['status'] == 200 && @badge_pembelian['data'] %>
+          <% item = @badge_pembelian['data'].select {|data| data['tipe'] == 'haji' }.first %>
+          <span class="badge badge-pill badge-success"><%= item['jumlah'] if item && item['jumlah'] > 0 %></span>
+      <% end %>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-uppercase <%= active_class_sub('/transaksi-evoucher', '') %>" href="/transaksi-evoucher">
+      E-Voucher
+      <% if @badge_pembelian && @badge_pembelian['status'] == 200 && @badge_pembelian['data'] %>
+          <% item = @badge_pembelian['data'].select {|data| data['tipe'] == 'e-voucher' }.first %>
+          <span class="badge badge-pill badge-success"><%= item['jumlah'] if item && item['jumlah'] > 0 %></span>
+      <% end %>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-uppercase <%= active_class_sub('/transaksi-tiket', '') %>" href="/transaksi-tiket">
+      Tiket Pesawat
+      <% if @badge_pembelian && @badge_pembelian['status'] == 200 && @badge_pembelian['data'] %>
+          <% item = @badge_pembelian['data'].select {|data| data['tipe'] == 'tiket pesawat' }.first %>
+          <span class="badge badge-pill badge-success"><%= item['jumlah'] if item && item['jumlah'] > 0 %></span>
+      <% end %>
+    </a>
+  </li>
+</ul>

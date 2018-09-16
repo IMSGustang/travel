@@ -1,0 +1,249 @@
+<nav class="navbar navbar-expand abu-navbar abu-navbar__top fixed-top">
+  <div class="container pl-3 pr-3">
+    <ul class="navbar-nav nav navbar-item-left">
+      <li class="nav-item">
+        <p class="nav-link m-0">
+          <span>
+            100% Transaksi aman & nyaman
+          </span>
+        </p>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav nav ml-auto navbar-item-left">
+      <li class="nav-item">
+        <a class="nav-link" href="/penambahan-biaya"> Cara Penambahan Biaya? </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about-us"> Tentang Kami </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/blog"> Blog </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/faq"> Bantuan </a>
+      </li>
+
+      <!--<li class="nav-item dropdown <%= active_class_sub('/paket-umrah', '/abustore') %>">-->
+      <!--<a class="nav-link" href="" id="services" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+      <!--Layanan-->
+      <!--</a>-->
+
+      <!--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="services">-->
+      <!--<table class="table">-->
+      <!--<tr>-->
+      <!--<td>-->
+      <!--<a class="dropdown-item" href="/paket-umrah">-->
+      <!--<%= image_tag 'lib/icon/semuabisaumrah.png', :class => 'img-rounded' %>-->
+      <!--<p>-->
+      <!--Paket Umrah-->
+      <!--</p>-->
+      <!--</a>-->
+      <!--</td>-->
+
+      <!--<td class="border-right-0">-->
+      <!--<a class="dropdown-item" href="/abustore">-->
+      <!--<%= image_tag 'lib/icon/store.png', :class => 'img-rounded' %>-->
+      <!--<p>-->
+      <!--Belanja Murah-->
+      <!--</p>-->
+      <!--</a>-->
+      <!--</td>-->
+      <!--</tr>-->
+      <!--</table>-->
+      <!--</div>-->
+      <!--</li>-->
+
+      <!--<li class="nav-item <%= active_class('/partnerships') %>">-->
+      <!--<a class="nav-link" href="/partnerships">-->
+      <!--Kemitraan-->
+      <!--</a>-->
+      <!--</li>-->
+
+      <!--<li class="nav-item <%= active_class_sub('/blog', '/blog-detil') %>">-->
+      <!--<a class="nav-link" href="/blog"> Blog </a>-->
+      <!--</li>-->
+
+      <!--<li class="nav-item <%= active_class('/faq') %>">-->
+      <!--<a class="nav-link" href="/faq"> Bantuan </a>-->
+      <!--</li>-->
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand abu-navbar abu-navbar__landing fixed-top">
+  <div class="container pl-3 pr-3">
+    <a class="navbar-brand" href="/abutours">
+      <%= image_tag "logo/logo_new.png" %>
+    </a>
+    <ul class="navbar-nav nav navbar-item-left" style="width: 70%">
+      <li class="nav-item nav-item-search">
+        <!-- <form method="post"> -->
+        <div class="input-group">
+          <input type="text" class="form-control" id="jamaahInfo" placeholder="Cek Jadwal keberangkatan (Masukkan No KTP/Passpor anda) . . .">
+          <span class="input-group-btn">
+              <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#information" id="jamaahInfoBtn" onclick="jamaahInfo()"><i class="icon-search4"></i></a>
+            </span>
+        </div>
+        <!-- </form> -->
+      </li>
+    </ul>
+
+    <ul class="navbar-nav nav ml-auto navbar-auth">
+      <% if session[:acc_token].nil? %>
+          <li class="nav-item">
+            <div class="dropdown">
+              <button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login
+              </button>
+
+              <div class="dropdown-menu dropdown-menu-right">
+                <form id="needs-validation" method="post" action="/api/login" novalidate>
+                  <input type="hidden" name="afb" id="afb">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="ion-android-phone-portrait"></i></span>
+                      <input type="numbers" name="no_telepon" class="form-control" id="validationCustom01" placeholder="No telepon" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="ion-ios-locked-outline"></i></span>
+                      <input type="password" name="password" class="form-control" id="validationCustom02" placeholder="Password" required>
+                      <a class="hide-password">show</a>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <p class="m-0 p-0 text-left">
+                      <small class="form-text text-muted">
+                        Anda lupa password?
+                        <a href="/app/reset-password-number" class="card-link text-danger">Reset password</a>
+                      </small>
+                    </p>
+                  </div>
+                  <button class="btn btn-block btn-success" type="submit">Login</button>
+                </form>
+                <!-- ---------------------------------------------- -->
+                <div class="separator mb-3 mt-2">
+                  <span class="separator-text">
+                    atau
+                  </span>
+                </div>
+                <!-- ---------------------------------------------- -->
+                <p class="mb-2">
+                  <a href="auth/facebook" class="btn btn-block btn-light" id="authfb">
+                    <%= image_tag 'lib/icon/fb-logo.png' %>
+                    Masuk dengan facebook
+                  </a>
+                </p>
+                <!-- ---------------------------------------------- -->
+                <p class="m-0">
+                  <a href="auth/google_oauth2" class="btn btn-block btn-light" id="authgplus">
+                    <%= image_tag 'lib/icon/gg-logo.png' %>
+                    Masuk dengan google
+                  </a>
+                </p>
+                <!-- ---------------------------------------------- -->
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-danger" href="/abutours-registers">
+              Daftar
+            </a>
+          </li>
+      <% end %>
+
+      <% if !session[:acc_token].nil? %>
+          <li class="nav-item">
+            <a class="nav-link btn btn-light btn-cart" href="/keranjang-belanja">
+              <i class="ion-bag"></i>
+              <span class="badge badge-light">2</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link btn btn-light btn-cart" href="/informasi">
+              <i class="ion-android-notifications-none"></i>
+              <% if @notifikasi && @notifikasi['unread'] > 0 %>
+                  <span id="badge-unread-count" class="badge badge-pill badge-danger"><%= @notifikasi['unread'] %></span>
+              <% end %>
+            </a>
+          </li>
+
+          <li class="nav-item nav-item-user ml-2">
+            <a class="nav-link" href="/accounts/dashboard">
+              <%= image_tag !session[:account_detail][:foto]['url'].nil? ? session[:account_detail][:foto]['url'] : "https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g", onerror: 'this.error=null;this.src="https://www.gravatar.com/avatar/42a1a8c4fa9e9f384f2a29aa4f047da8?s=128&d=mm&r=g"' %>
+            </a>
+          </li>
+      <% end %>
+
+      <li class="nav-item nav-item-apps">
+        <div class="dropdown">
+          <a class="nav-link btn btn-light btn-cart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+            <i class="ion-grid"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <table class="table table-flex table-sm">
+              <tr>
+                <td>
+                  <a href="/umrah">
+                        <span class="badge">
+                          <div class="icons-sm icons-umrah m-auto"></div>
+                        </span>
+                    Umrah
+                  </a>
+                </td>
+                <td>
+                  <a href="/haji">
+                        <span class="badge">
+                          <div class="icons-sm icons-haji m-auto"></div>
+                        </span>
+                    Haji
+                  </a>
+                </td>
+                <td>
+                  <a href="/beli-pulsa">
+                        <span class="badge">
+                          <div class="icons-sm icons-pulsa m-auto"></div>
+                        </span>
+                    Evoucher
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="/flight">
+                        <span class="badge">
+                          <div class="icons-sm icons-tiketpesawat m-auto"></div>
+                        </span>
+                    Tiket Pesawat
+                  </a>
+                </td>
+                <% if Rails.env.development? %>
+                    <td>
+                      <a href="/hotel">
+                        <span class="badge">
+                          <div class="icons-sm icons-hotel m-auto"></div>
+                        </span>
+                        Hotel
+                      </a>
+                    </td>
+                <% else %>
+                    <td></td>
+                <% end %>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="clearfix" style="height: 82px"></div>

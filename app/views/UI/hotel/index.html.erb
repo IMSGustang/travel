@@ -1,0 +1,297 @@
+<%= content_for :head do %>
+    <title>Pesan Hotel di Abutours | best travel services</title>
+<% end %>
+
+<%= content_for :abutours do %>
+    <div class="_landing | c-cover-head">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            </ol>
+          <div class="carousel-inner">
+            <% if @data_slider && @data_slider.count > 0 %>
+                <% first = true %>
+                <% @data_slider.each do |slider| %>
+                    <div class="carousel-item <%= first ? 'active' : '' %>">
+                      <% first = false %>
+                      <%= image_tag slider['foto'], :class => 'd-block w-100', :alt => slider['judul'] %>
+                    </div>
+                <% end %>
+            <% else %>
+                <div class="carousel-item active">
+                  <%= image_tag 'lib/slider/hotel.png', :class => 'd-block w-100', :alt => '' %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+
+    <div class="ui-tabs">
+        <div class="container">
+            <%= render template: 'UI/partials/tabs' %>
+        </div>
+    </div>
+
+    <div class="ui-tabs__content">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <form method="get" action="/cari-hotel">
+                        <table class="table table-sm">
+                            <tr>
+                                <td colspan="3">
+                                    <div class="form-group">
+                                        <label>Kota, tujuan atau nama hotel</label>
+                                        <select id="destination" name="q" class="form-control w-100">
+                                            <option value="disabled" disabled> Cari kota, tujuan atau nama hotel. . .
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td width="151">
+                                    <div class="form-group">
+                                        <label>Tamu</label>
+                                        <select id="tamu" name="adult" class="form-control w-100">
+                                            <option value="disabled" disabled> Jumlah tamu</option>
+                                            <option value="1">1</option>
+                                            <option value="2" selected="">2</option>
+                                            <% (3..8).each do |i| %>
+                                                <option value="<%= i %>"><%= i %></option>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td width="151">
+                                    <div class="form-group">
+                                        <label>Kamar</label>
+                                        <select id="kamar" name="room" class="form-control w-100">
+                                            <option value="disabled" disabled> Jumlah kamar</option>
+                                            <% (1..8).each do |i| %>
+                                                <option value="<%= i %>"> <%= i %> Kamar</option>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="252">
+                                    <div class="form-group">
+                                        <label>Check-in</label>
+                                        <input type="text" name="startdate" id="checkin" class="form-control dates" value="<%= TimeFormat::now %>" required>
+                                    </div>
+                                </td>
+                                <td width="252">
+                                    <div class="form-group">
+                                        <label>Durasi</label>
+                                        <select id="duration" name="night" class="form-control w-100 dates">
+                                            <option value="disabled" disabled> Pilih durasi</option>
+                                            <% (1..8).each do |i| %>
+                                                <option value="<%= i %>"> <%= i %> malam</option>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td width="252">
+                                    <div class="form-group">
+                                        <label class="text-muted">Check-out</label>
+                                        <input type="text" name="enddate" id="checkout" class="form-control" value="">
+                                    </div>
+                                </td>
+                                <td colspan="2">
+                                    <button class="btn btn-block btn-danger">Cari Hotel</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="ui-hotels">
+        <div class="container">
+            <h2 class="title-hotel text-center">
+                Hotel Populer
+            </h2>
+
+            <div class="row pl-3 pr-3 mb-1">
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/bali.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Bali</span></h2>
+                                <p>Lihat 2000 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/jakarta.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Jakarta</span></h2>
+                                <p>Lihat 2000 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/medan.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Medan</span></h2>
+                                <p>Lihat 2000 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/surabaya.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Surabaya</span></h2>
+                                <p>Lihat 2000 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/bali.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Bali</span></h2>
+                                <p>Lihat 2000 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/makassar.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Makassar</span></h2>
+                                <p>Lihat 3 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/yogyakarta.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Yogyakarta</span></h2>
+                                <p>Lihat 300 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/malang.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Malang</span></h2>
+                                <p>Lihat 100 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-4 pl-1 pr-1 mb-2">
+                    <div class="grid">
+                        <figure class="effect-jazz">
+                            <%= image_tag 'hotel_categories/bandung.png', :class => 'card-img' %>
+                            <figcaption>
+                                <h2><span>Bandung</span></h2>
+                                <p>Lihat 1300 hotel tersedia</p>
+                                <a href="#">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+
+<% content_for :foot do %>
+    <script type="text/javascript">
+        // hotelSearch();
+        $(document).ready(function () {
+            // $("#destination").select2({
+            //     theme: "bootstrap"
+            // });
+
+            $("#tamu").select2({
+                theme: "bootstrap"
+            });
+
+            $("#kamar").select2({
+                theme: "bootstrap"
+            });
+
+            $("#duration").select2({
+                theme: "bootstrap"
+            });
+        });
+
+        /* Demo purposes only */
+        $(".hover").mouseleave(
+            function () {
+                $(this).removeClass("hover");
+            }
+        );
+
+        $(function () {
+            var nowDate = new Date();
+            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+            $("#checkin").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOtherMonths: true,
+                numberOfMonths: 2,
+                minDate: today,
+                onSelect: function (selectedDate) {
+                    if (this.id == 'checkin') {
+                        var dateMin = $('#checkin').datepicker("getDate");
+                        durasi = $("#duration");
+                        if (durasi.val() > 1) {
+                            var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + parseInt(durasi.val()));
+                        } else {
+                            var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + 1);
+                        }
+                        $('#checkout').val($.datepicker.formatDate('dd/mm/yy', new Date(rMin)));
+                    }
+                }
+            });
+
+            $(".dates").change(function () {
+                $("input[name='enddate']").val(moment($("input[name='startdate']").val(), 'DDMMYYYY').add($(this).val(), 'days').format('DD/MM/YYYY'));
+            });
+        });
+
+    </script>
+<% end %>

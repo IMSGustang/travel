@@ -1,0 +1,228 @@
+<% content_for :head do %>
+    <title>Penambahan Biaya | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-4">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0 pr-2 ml-15">
+            <div class="_landing | w-breadcrumb">
+              <ol class="breadcrumb border-bottom-0">
+                <li class="breadcrumb-item"><a href="/">Halaman awal</a></li>
+                <li class="breadcrumb-item active">Penambahan biaya</li>
+              </ol>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card c-dashboard-user">
+              <%= render template: 'accounts/partials/bannerTop' %>
+            </div>
+            <!-- --------------------------------------------------- -->
+            <div class="card e-invoice mt-2 mb-4">
+              <div class="card-body e-invoice-body p-5">
+                <div class="head-invoice mb-4">
+                  <%= image_tag 'logo/logo_new.png', :class => 'd-inline' %>
+                  <h2 class="d-inline text-uppercase mb-0">
+                    invoice
+                  </h2>
+                </div>
+
+                <table class="table e-table-invoice mb-0">
+                  <tr>
+                    <td class="e-invoice-body-left text-left">
+                      <h4 class="text-capitalize font-weight-bold mb-1">
+                        <%= session['account_nama_depan'] +' '+session['account_nama_belakang']%>
+                      </h4>
+                      <p class="mb-0">
+                        Tanggal Transaksi : <%= TimeFormat::indonesiaCustom(TimeFormat::indonesia(@data['data']['tgl_trans']), {:format => 'hbt', :operator => '/', :locale => 'id'}) rescue "" %>
+                      </p>
+                      <p class="mb-0">
+                        Nomor Invoice : <%= @data['data']['no_trans'] %>
+                      </p>
+                    </td>
+
+                    <td class="e-invoice-body-right text-right">
+                      <p class="mb-0">
+                        <%= session['account_nama_depan'] +' '+session['account_nama_belakang']%>
+                      </p>
+                      <p class="mb-0">
+                        Telp <%= Number::indonesianFormatPhone(session['account_telepon']) %>
+                      </p>
+                      <p class="mb-0">
+                        <%= session['account_email'] %>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <table class="table e-invoice-transaksi mb-5">
+                  <thead>
+                  <tr>
+                    <th colspan="4">
+                      <span class="text-capitalize">Ringkasan Pembelian</span>
+                    </th>
+                  </tr>
+                  <tr class="table-light">
+                    <th width="10">#</th>
+                    <th width="150">No Invoice</th>
+                    <th>Nama Paket</th>
+                    <th width="180">Jumlah Pax</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><%= @data['data']['detail_transaksi_v1']['notrans'] rescue ""%></td>
+                    <td>
+                      <span class="d-inline-block text-truncate" style="max-width: 300px">
+                      <%= @data['data']['detail_transaksi_v1']['namapaket'] rescue ""%>
+                      </span>
+                    </td>
+                    <td><%= @data['data']['detail_transaksi_v1']['org'] rescue ""%> Pax</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-right">
+                      <strong>Harga Bayar</strong>
+                    </td>
+                    <td class="text-danger">
+                      <strong><%= number_to_currency(@data['data']['detail_transaksi_v1']['hargabayar'], precision: 0, unit: "Rp ") rescue ""%></strong>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+                <table class="table e-invoice-transaksi mt-5">
+                  <thead>
+                  <tr>
+                    <th colspan="3">
+                      <span class="text-capitalize">Ringkasan Penambahan Biaya</span>
+                    </th>
+                  </tr>
+                  <tr class="table-light">
+                    <th width="10">#</th>
+                    <th>Kode Booking</th>
+                    <th width="180">Pilihan Tambahan Biaya</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      <%= @data['data']['kode_booking'] rescue ""%>
+                    </td>
+                    <td class="text-danger">
+                      <strong><%= number_to_currency(@data['data']['harga_bayar'], precision: 0, unit: "Rp ") rescue ""%></strong>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+                <table class="table e-invoice-transaksi mt-5">
+                  <thead>
+                  <tr>
+                    <th colspan="4">
+                      <span class="text-capitalize">Data Jamaah Baru</span>
+                    </th>
+                  </tr>
+                  <tr class="table-light">
+                    <th width="10">#</th>
+                    <th>Nomor Invoice</th>
+                    <th>Kode Booking</th>
+                    <th width="180">Tindakan</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <form action="/api/maklumat/add-jamaah" method="post" id="jamaah1">
+                      <input type="hidden" name="no_trans" value="<%= @data['data']['no_trans'] %>">
+                      <td>1</td>
+                      <td>
+                        <div class="form-group mb-0">
+                          <input name="no_trans_umrah" type="text" class="form-control" id="inputPassword2" placeholder="">
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group mb-0">
+                          <input name="kode_book" type="text" class="form-control" id="inputPassword2" placeholder="">
+                        </div>
+                      </td>
+                      <td>
+                        <button type="submit" class="btn btn-block btn-outline-danger" id="btn-jamaah1">Simpan</button>
+                      </td>
+                    </form>
+                  </tr>
+                  <tr>
+                    <form action="/api/maklumat/add-jamaah" method="post" id="jamaah2">
+                    <input type="hidden" name="no_trans" value="<%= @data['data']['no_trans'] %>">
+                    <td>2</td>
+                    <td>
+                      <div class="form-group mb-0">
+                        <input type="text" class="form-control" id="inputPassword2" placeholder="">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group mb-0">
+                        <input type="text" class="form-control" id="inputPassword2" placeholder="">
+                      </div>
+                    </td>
+                    <td>
+                      <button type="submit" class="btn btn-block btn-outline-danger" id="btn-jamaah2">Simpan</button>
+                    </td>
+                    </form>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="card-footer p-5">
+                <table class="table mb-0">
+                  <thead>
+                  <tr>
+                    <th class="text-right">
+                      Total Bayar
+                    </th>
+                    <th class="text-uppercase text-danger" width="200">
+                      <%= number_to_currency(@data['data']['harga_bayar'], precision: 0, unit: "Rp ") rescue ""%>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tr>
+                    <td>
+                      <a href="" class="btn btn-block btn-light">Kembali</a>
+                    </td>
+                    <td>
+                      <a href="" class="btn btn-block btn-danger">Lanjut Ke Pembayaran</a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :foot do %>
+  <script type="text/javascript">
+    $( "#jamaah2").submit(function( event ) {
+      $('#btn-jamaah2').disabled();
+    });
+    $( "#jamaah1").submit(function( event ) {
+      $('#btn-jamaah1').disabled();
+    });
+  </script>
+<% end %>

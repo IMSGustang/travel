@@ -1,0 +1,95 @@
+<% content_for :head do %>
+    <title>Check Informasi Keberangkatan | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-sm-3 pr-0">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-sm-9 pl-0">
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-user">
+                <%= render template: 'accounts/partials/bannerTop' %>
+
+                <div class="row justify-content-center">
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <h4 class="card-title text-center mb-3 mt-3">
+                        Cek Tiket & Pastikan Jadwal Keberangkatan Mu
+                      </h4>
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Nomor paspor . . .">
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger border-radius-0" type="button">
+                              Check
+                            </button>
+                          </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card c-dashboard-content mt-1">
+                <div class="card-body c-dashboard-content__item">
+                  <div class="media media-information">
+                    <div class="media-body">
+                      <table class="table table-informasi">
+                        <tr>
+                          <td width="200" class="justify-content-center">
+                            <%= image_tag 'lib/cover/gustang.png', :class => 'mx-auto d-block', :alt => '' %>
+                          </td>
+
+                          <th>
+                            <h3>Tiket Umrah</h3>
+
+                            <div class="text-left-xs">
+                              <small>Nama Lengkap</small>
+                              <p>
+                                Gustang Blammats
+                              </p>
+                            </div>
+
+                            <div class="text-left-xs">
+                              <small>Estimasi Keberangkatan</small>
+                              <p>
+                                Januari 2019
+                              </p>
+                            </div>
+
+                            <div class="text-left-xs">
+                              <small>Program</small>
+                              <p>
+                                Reguler 9 Hari Quad
+                              </p>
+                            </div>
+
+                            <div class="text-left-xs text-capitalize">
+                              <small>Tiket umrah hanya berlaku untuk satu orang</small>
+                            </div>
+
+                          </th>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>

@@ -1,0 +1,1393 @@
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:22:21 +0700
+----------------------------------
+Missing partial partials/_pay-footer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:22:31 +0700
+----------------------------------
+Missing partial partials/_pay-footer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:22:33 +0700
+----------------------------------
+Missing partial partials/_pay-footer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:22:35 +0700
+----------------------------------
+Missing partial partials/_pay-footer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:22:45 +0700
+----------------------------------
+Missing partial partials/_pay-footer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:22:54 +0700
+----------------------------------
+Missing partial partials/_pay-footer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:23:08 +0700
+----------------------------------
+Missing partial partials/_pay-footer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:31:08 +0700
+----------------------------------
+Missing template accounts/evoucher/transaksi/render/filter with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:31:30 +0700
+----------------------------------
+undefined local variable or method `link' for #<#<Class:0x007fae35cfccc8>:0x007fae3591fd58>
+Did you mean?  link_to
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:31:52 +0700
+----------------------------------
+Missing template accounts/transaksi/pay-footer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:32:51 +0700
+----------------------------------
+undefined local variable or method `link' for #<#<Class:0x007fae35cfccc8>:0x007fae17302790>
+Did you mean?  link_to
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-08 19:33:45 +0700
+----------------------------------
+undefined local variable or method `link' for #<#<Class:0x007fae35cfccc8>:0x007fae33fea450>
+Did you mean?  link_to
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 10:58:44 +0700
+----------------------------------
+no implicit conversion of String into Integer
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:04:30 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:04:32 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:04:44 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:04:55 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/transaksi-evoucher
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:05:51 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU131019EVC/invoice
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:06:01 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU131019EVC/invoice
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:06:40 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU720496EVC/invoice
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:08:46 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU131019EVC/invoice
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 11:08:59 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU185072EVC/invoice
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-09 12:08:56 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU112448EVC/invoice
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-10 14:21:00 +0700
+----------------------------------
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:118: syntax error, unexpected '<'
+                        </p>
+                         ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:129: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+         E-Tiket / <span style="opacity: .75">E-Ticket</span
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:130: unknown regexp option - h
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:130: syntax error, unexpected tINTEGER, expecting ')'
+                          </h3>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:133: syntax error, unexpected '<', expecting ')'
+                             </p>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:134: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:135: syntax error, unexpected '<'
+                             <div style="-ms-flex-preferred-
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:136: syntax error, unexpected '<'
+                             <div style="background: #CC334D
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:138: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:139: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:140: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:141: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:142: syntax error, unexpected '<'
+                             <!-- --------------------------
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:142: syntax error, unexpected '\n', expecting keyword_do_LAMBDA or tLAMBEG
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:144: syntax error, unexpected '<'
+                             <div style="display: -ms-flexbo
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:145: syntax error, unexpected '<'
+                             <div style="-ms-flex-preferred-
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:146: syntax error, unexpected '<'
+                             <p style="margin: 5px 0;font-si
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:147: syntax error, unexpected tCONSTANT, expecting keyword_do or '{' or '('
+                  Kode Booking
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:151: unknown regexp option - h
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:151: syntax error, unexpected tINTEGER, expecting ')'
+                          </h1>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:153: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:154: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:161: unknown regexp option - p
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:162: syntax error, unexpected '<'
+                             <table cellpadding="0" cellspac
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:162: syntax error, unexpected tIDENTIFIER, expecting ')'
+le cellpadding="0" cellspacing="0" style="border-top: 1px so
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:162: syntax error, unexpected tIDENTIFIER, expecting ')'
+ding="0" cellspacing="0" style="border-top: 1px solid #CC334
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:163: syntax error, unexpected '<'
+                             <thead>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:167: syntax error, unexpected '<', expecting ')'
+                             <p style="text-transform: upper
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:170: syntax error, unexpected '<', expecting ')'
+                             </p>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:171: unknown regexp options - td
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:172: syntax error, unexpected '<'
+                             <td style="padding: 15px 5px;ve
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:173: syntax error, unexpected '<'
+                             <div class="timeline">
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:174: syntax error, unexpected '<'
+                             <style scoped>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:175: syntax error, unexpected tLAMBEG, expecting ')'
+      ul.line-ticket::before {
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:429: syntax error, unexpected keyword_end, expecting ')'
+                           end 
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:483: syntax error, unexpected '<'
+                          </p>
+                           ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:494: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+         E-Tiket / <span style="opacity: .75">E-Ticket</span
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:495: unknown regexp option - h
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:495: syntax error, unexpected tINTEGER, expecting ')'
+                          </h3>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:498: syntax error, unexpected '<', expecting ')'
+                             </p>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:499: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:500: syntax error, unexpected '<'
+                             <div style="-ms-flex-preferred-
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:501: syntax error, unexpected '<'
+                             <div style="background: #CC334D
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:503: syntax error, unexpected '<', expecting ')'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:504: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:505: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:506: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:507: syntax error, unexpected '<'
+                             <!-- --------------------------
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:507: syntax error, unexpected '\n', expecting keyword_do_LAMBDA or tLAMBEG
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:509: syntax error, unexpected '<'
+                             <div style="display: -ms-flexbo
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:510: syntax error, unexpected '<'
+                             <div style="-ms-flex-preferred-
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:511: syntax error, unexpected '<'
+                             <p style="margin: 5px 0;font-si
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:512: syntax error, unexpected tCONSTANT, expecting keyword_do or '{' or '('
+                  Kode Booking
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:516: unknown regexp option - h
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:516: syntax error, unexpected tINTEGER, expecting ')'
+                          </h1>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:518: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:519: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:534: unknown regexp option - p
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:535: syntax error, unexpected '<'
+                             </td>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:549: unknown regexp options - tyl
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:550: syntax error, unexpected '<'
+                             <ul class="line-ticket" style="
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:550: syntax error, unexpected tIDENTIFIER, expecting ')'
+ <ul class="line-ticket" style="padding: 0 6px;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:554: syntax error, unexpected '<'
+                             <li>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:566: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:575: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:576: syntax error, unexpected '<'
+                             <div class="desc" style="width:
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:576: syntax error, unexpected tIDENTIFIER, expecting ')'
+       <div class="desc" style="width: 50%;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:581: syntax error, unexpected '<'
+                             <h3 style="font-size: 0.9em;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:586: syntax error, unexpected '<', expecting ')'
+                             </h3>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:592: unknown regexp option - h
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:592: syntax error, unexpected tINTEGER, expecting ')'
+                          </h5>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:594: unknown regexp option - l
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:595: syntax error, unexpected '<'
+                             <li>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:607: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:616: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:617: syntax error, unexpected '<'
+                             <div class="desc" style="width:
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:617: syntax error, unexpected tIDENTIFIER, expecting ')'
+       <div class="desc" style="width: 50%;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:621: syntax error, unexpected '<'
+                             <h3 style="font-size: 0.9em;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:626: syntax error, unexpected '<', expecting ')'
+                             </h3>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:632: unknown regexp option - h
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:632: syntax error, unexpected tINTEGER, expecting ')'
+                          </h5>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:634: unknown regexp option - l
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:635: syntax error, unexpected '<'
+                             </ul>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:636: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:637: syntax error, unexpected '<'
+                             </td>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:638: unknown regexp options - tr
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:639: syntax error, unexpected '<'
+                             </thead>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:640: unknown regexp options - tabl
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:641: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:642: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:643: syntax error, unexpected '<'
+                             <!-- --------------------------
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:643: syntax error, unexpected '\n', expecting keyword_do_LAMBDA or tLAMBEG
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:645: syntax error, unexpected '<'
+                             <div style="padding: 0 30px">
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:646: syntax error, unexpected '<'
+                             <table cellpadding="0" cellspac
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:646: syntax error, unexpected tIDENTIFIER, expecting ')'
+le cellpadding="0" cellspacing="0" style="border-top: 1px so
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:646: syntax error, unexpected tIDENTIFIER, expecting ')'
+ding="0" cellspacing="0" style="border-top: 1px solid #CC334
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:647: syntax error, unexpected '<'
+                             <tr>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:649: syntax error, unexpected '<'
+                             <div style="display: -ms-flexbo
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:654: syntax error, unexpected '<', expecting ')'
+                             <div style="-ms-flex: 1;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:656: syntax error, unexpected '<'
+                             <p style="margin: 4px 0;font-si
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:657: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+                   Tunjukkan e-tiket ini dan identitas para 
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:657: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+         Tunjukkan e-tiket ini dan identitas para penumpang
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:658: syntax error, unexpected keyword_in
+     dibawah ini saat check-in
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:660: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:661: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:662: unknown regexp options - td
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:663: syntax error, unexpected '<'
+                             <td style="vertical-align: midd
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:664: syntax error, unexpected '<'
+                             <div style="display: -ms-flexbo
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:669: syntax error, unexpected '<', expecting ')'
+                             <div style="-ms-flex: 1;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:671: syntax error, unexpected '<'
+                             <p style="margin: 4px 0;font-si
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:672: syntax error, unexpected keyword_in
+                      Check-in <strong>paling lambat 90 Meni
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:672: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+Check-in <strong>paling lambat 90 Menit</strong>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:674: unknown regexp option - p
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:675: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:676: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:677: syntax error, unexpected '<'
+                             </td>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:688: unknown regexp option - p
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:689: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:690: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:691: syntax error, unexpected '<'
+                             </td>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:692: unknown regexp options - tr
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:693: syntax error, unexpected '<'
+                             </table>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:694: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:695: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:711: unknown regexp options - th
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:712: syntax error, unexpected '<'
+                             </tr>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:723: unknown regexp options - pa
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:724: syntax error, unexpected '<'
+                             </th>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:734: unknown regexp options - pa
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:735: syntax error, unexpected '<'
+                             </th>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:745: unknown regexp options - pa
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:746: syntax error, unexpected '<'
+                             </th>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:756: unknown regexp options - pa
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:757: syntax error, unexpected '<'
+                             </th>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:758: unknown regexp options - tr
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:759: syntax error, unexpected '<'
+                             </thead>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:764: syntax error, unexpected ':', expecting ')'
+             /*vertical-align: top;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:765: syntax error, unexpected '*', expecting &. or :: or '[' or '.'
+                            /*font-weight: 500;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:765: syntax error, unexpected ':', expecting ')'
+                /*font-weight: 500;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:766: syntax error, unexpected '*', expecting &. or :: or '[' or '.'
+                            /*font-size: 13px;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:766: syntax error, unexpected ':', expecting ')'
+                  /*font-size: 13px;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:767: syntax error, unexpected '*', expecting &. or :: or '[' or '.'
+                            /*opacity: .5;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:767: no .<digit> floating literal anymore; put 0 before dot
+                  /*opacity: .5;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:770: unknown regexp options - td
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:770: syntax error, unexpected '>', expecting &. or :: or '[' or '.'
+                         </td>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:777: syntax error, unexpected '<', expecting ')'
+                             </td>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:779: syntax error, unexpected ':', expecting ')'
+             /*vertical-align: top;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:780: syntax error, unexpected '*', expecting &. or :: or '[' or '.'
+                            /*font-weight: 500;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:780: syntax error, unexpected ':', expecting ')'
+                /*font-weight: 500;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:781: syntax error, unexpected '*', expecting &. or :: or '[' or '.'
+                            /*font-size: 13px;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:781: syntax error, unexpected ':', expecting ')'
+                  /*font-size: 13px;*/
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:784: unknown regexp options - td
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:784: syntax error, unexpected '>', expecting &. or :: or '[' or '.'
+                         </td>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:791: syntax error, unexpected '<', expecting ')'
+                             </td>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:792: unknown regexp options - tr
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:795: unknown regexp options - tabl
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:796: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:797: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:798: syntax error, unexpected '<'
+                             <!-- --------------------------
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:798: syntax error, unexpected '\n', expecting keyword_do_LAMBDA or tLAMBEG
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:800: syntax error, unexpected '<'
+                             <div style="padding: 0 30px">
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:801: syntax error, unexpected '<'
+                             <table cellpadding="0" cellspac
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:801: syntax error, unexpected tIDENTIFIER, expecting ')'
+le cellpadding="0" cellspacing="0" style="border-top: 4px so
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:801: syntax error, unexpected tIDENTIFIER, expecting ')'
+ding="0" cellspacing="0" style="border-top: 4px solid #f3f1f
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:802: syntax error, unexpected '<'
+                             <tr>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:804: syntax error, unexpected '<'
+                             <div style="display: -ms-flexbo
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:809: syntax error, unexpected '<', expecting ')'
+                             <div style="-ms-flex: 1;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:811: syntax error, unexpected '<'
+                             <p style="margin: 4px 0;font-si
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:812: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+              Customer service abutours <br>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:813: syntax error, unexpected tINTEGER, expecting ')'
+                     (021) 227 93 555
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:815: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:816: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:817: unknown regexp options - td
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:818: syntax error, unexpected '<'
+                             <td style="vertical-align: midd
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:819: syntax error, unexpected '<'
+                             <div style="display: -ms-flexbo
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:823: syntax error, unexpected '<'
+                             <div style="-ms-flex: 1;
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:825: syntax error, unexpected '<'
+                             <p style="margin: 4px 0;font-si
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:826: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+                   Best travel service
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:827: syntax error, unexpected '<', expecting ')'
+                             </p>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:828: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:829: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:830: unknown regexp options - td
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:831: syntax error, unexpected '<'
+                             </tr>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:832: unknown regexp options - tabl
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:833: syntax error, unexpected '<'
+                             </div>
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:834: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:835: syntax error, unexpected '<'
+                             <!-- --------------------------
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:835: syntax error, unexpected '\n', expecting keyword_do_LAMBDA or tLAMBEG
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:837: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:838: syntax error, unexpected '<'
+                            </div>
+                             ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:839: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:840: syntax error, unexpected '<'
+                        </div>
+                         ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:842: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:843: syntax error, unexpected '<'
+                  </td>
+                   ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:844: unknown regexp options - tr
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:845: syntax error, unexpected '<'
+              </tbody>
+               ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:846: unknown regexp options - tabl
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:847: syntax error, unexpected '<'
+          </td>
+           ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:848: unknown regexp options - tr
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:849: syntax error, unexpected '<'
+      </table>
+       ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:850: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:851: syntax error, unexpected '<'
+  </div>
+   ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:854: unknown regexp option - c
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:854: end pattern with unmatched parenthesis: /div>
+'.freeze;   else 
+@output_buffer.safe_append='  <div class="w-blank text-center p-5">
+    '.freeze;@output_buffer.append=( image_tag 'lib/i
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:854: syntax error, unexpected tSTRING_BEG, expecting ')'
+ 'lib/icon/services_mitra.png', :class => 'mx-auto d-block',
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:854: syntax error, unexpected tIDENTIFIER, expecting ')'
+ices_mitra.png', :class => 'mx-auto d-block', :alt => '' );@
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:854: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+tra.png', :class => 'mx-auto d-block', :alt => '' );@output_
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:854: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+', :class => 'mx-auto d-block', :alt => '' );@output_buffer.
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:855: syntax error, unexpected '<', expecting ')'
+    <p class="mb-0">
+     ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:856: syntax error, unexpected ',', expecting ')'
+      Maaf, Paket produk yang anda cari t
+           ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:857: syntax error, unexpected '<', expecting ')'
+    </p>
+     ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:858: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:862: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:863: syntax error, unexpected '<'
+<!-- --------------------------
+ ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:863: syntax error, unexpected '\n', expecting keyword_do_LAMBDA or tLAMBEG
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:865: unknown regexp options - dv
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:866: syntax error, unexpected '<'
+</section>
+ ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:870: unknown regexp options - javacrpt
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:870: syntax error, unexpected tSTRING_BEG, expecting ')'
+<script type="text/javascript">
+                              ^
+/Applications/DarkHole/abutours.com/beta.abutours.com/app/views/accounts/transaksi/ticketpesawat.html.erb:870: unterminated string meets end of file
+----------------------------------
+http://localhost:3000/transaksi-tiket
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-11 19:27:34 +0700
+----------------------------------
+Missing template accounts/evoucher/pay-invoice-general with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/rubyprojects/beta/app/views"
+  * "/Users/arimaulana/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU417282EVC/invoice
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-15 13:00:31 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/transaksi-tiket
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-15 13:15:44 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/transaksi-tiket
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-15 15:15:50 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/ABU984065EVC?type=deposit
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-15 15:16:40 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/ABU984065EVC?type=tiket
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-15 15:21:01 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/ABU984065EVC?type=tiket
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-15 15:24:33 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/ABU984065EVC?type=tiket
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-15 15:53:54 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/ABU984065EVC?type=tiket
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-22 13:58:03 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/TMP-JKT-8711801199632?type=tiket
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-22 14:07:19 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/TMP-JKT-8711801199632?type=haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-22 14:08:45 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/TMP-JKT-8711801199632
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-22 14:43:47 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/TMP-JKT-8711801199632?type=haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-22 14:44:15 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/TMP-JKT-8711801199632?type=haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-01-22 14:49:43 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/konfirmasi-pembayaran/TMP-JKT-8711801199632?type=haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-11 10:51:14 +0700
+----------------------------------
+undefined local variable or method `data' for #<#<Class:0x00007f845482af98>:0x00007f8454803ce0>
+----------------------------------
+http://localhost:3000/beli-vouchergame
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-11 10:51:22 +0700
+----------------------------------
+undefined local variable or method `data' for #<#<Class:0x00007f845482af98>:0x00007f8458420fc0>
+----------------------------------
+http://localhost:3000/beli-vouchergame
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-11 10:56:19 +0700
+----------------------------------
+undefined local variable or method `data' for #<#<Class:0x00007f845482af98>:0x00007f84588174d0>
+----------------------------------
+http://localhost:3000/beli-vouchergame
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-11 11:04:20 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/voucher-game/detail
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-11 11:04:50 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/voucher-game/detail
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-23 17:26:26 +0700
+----------------------------------
+undefined method `htmlsafe' for "ssssstes":String
+Did you mean?  html_safe
+               html_safe?
+----------------------------------
+http://localhost:3000/blog
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:44:21 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:45:47 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:45:54 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:46:02 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:47:24 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:47:29 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:48:55 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:49:03 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:49:08 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/17/Tata%20cara%20umrah%20yang%20benar
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:49:18 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/17/Tata%20cara%20umrah%20yang%20benar
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:49:27 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:50:36 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:51:53 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:54:58 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:55:01 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:57:36 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:57:39 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:57:45 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/7/umrah
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:57:52 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:58:36 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:58:39 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:59:03 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:59:43 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:59:55 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 18:59:57 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:00:30 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:00:33 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:00:50 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:12:33 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:13:03 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/73/TUTORIAL%20PENGUNAAN%20APLIKASI%20ABUCORP%202
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:13:42 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:14:01 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:14:10 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:14:56 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:15:22 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:15:24 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:16:51 +0700
+----------------------------------
+Missing template mobile/sites/pages/blog/detailBlog with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Applications/XAMPP/xamppfiles/htdocs/GITHUB/beta.abutours.com/app/views"
+  * "/Users/gustang/.rvm/gems/ruby-2.4.0/gems/kaminari-core-1.1.1/app/views"
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-02-28 19:27:48 +0700
+----------------------------------
+nil is not a valid asset source
+----------------------------------
+http://localhost:3000/blog-detil/69/Hukum%20dan%20Syarat%20Wajib%20Haji
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-03-05 20:32:37 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU434060EVC
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-03-05 20:59:09 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU434060EVC/TRANSFER
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-03-05 21:00:42 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU434060EVC/TRANSFER
+
+-----------------------------------
+|			ERROR LOG				|
+-----------------------------------
+2018-03-05 21:01:53 +0700
+----------------------------------
+undefined method `[]' for nil:NilClass
+----------------------------------
+http://localhost:3000/evoucher/beli/ABU434060EVC/TRANSFER
+

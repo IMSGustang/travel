@@ -1,0 +1,274 @@
+<% content_for :headpayments do %>
+    <title>Data Pengiriman Barang | Travel Souvenir Pertama & Terlengkap</title>
+<% end %>
+
+<% content_for :payments do %>
+    <!-- --------------------------------------------------- -->
+    <section class="c-payment">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand pb-2" href="/">
+            <%= image_tag 'logo/logo.png' %>
+          </a>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link nav-link-steps" href="#">Data Pemesanan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-steps" href="#">Metode Pembayaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Konfirmasi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <!-- --------------------------------------------------- -->
+    <section class="c-formpemesanan">
+      <div class="container">
+        <div class="row">
+          <!-- ------------------------------------- -->
+          <div class="col-8">
+            <form action="" method="post">
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block">
+                  <p class="card-title mt-0 mb-4">
+                    Isi Data Pemesanan
+                  </p>
+
+                  <div class="form-group form-group-hotel row">
+                    <div class="col-2">
+                      <label>Title</label>
+                      <select id="title" name="title" class="form-control w-100">
+                        <option value="1" selected> Tuan</option>
+                        <option value="2"> Nona</option>
+                        <option value="3"> Nyonya</option>
+                      </select>
+                    </div>
+
+                    <div class="col-5">
+                      <label>Nama Depan</label>
+                      <input type="text" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="col-5">
+                      <label>Nama Belakang</label>
+                      <input type="text" class="form-control" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group form-group-hotel row">
+                    <div class="col-6">
+                      <label>Email</label>
+                      <input type="text" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="col-6">
+                      <label>No Telepon</label>
+                      <input type="text" class="form-control" placeholder="">
+                    </div>
+                  </div>
+
+                  <p class="card-title mt-4 mb-3">
+                    Informasi tamu yang akan check in
+                  </p>
+
+                  <label class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="datacheckin" checked>
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">
+                      Sama dengan orang yang bisa dihubungi diatas
+                    </span>
+                  </label>
+
+                  <div id="checkedON" style="display: none;">
+                    <div class="form-group form-group-hotel row">
+                      <div class="col-2">
+                        <label>Title</label>
+                        <select id="title2" name="title" class="form-control w-100">
+                          <option value="1" selected> Tuan</option>
+                          <option value="2"> Nona</option>
+                          <option value="3"> Nyonya</option>
+                        </select>
+                      </div>
+
+                      <div class="col-5">
+                        <label>Nama Depan</label>
+                        <input type="text" class="form-control" placeholder="">
+                      </div>
+
+                      <div class="col-5">
+                        <label>Nama Belakang</label>
+                        <input type="text" class="form-control" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group form-group-hotel row">
+                      <div class="col-6">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="">
+                      </div>
+
+                      <div class="col-6">
+                        <label>No Telepon</label>
+                        <input type="text" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card c-formpemesanan-item mb-3">
+                <div class="card-body c-formpemesanan-item-block hotel">
+                  <p class="card-title mt-0 mb-4">
+                    Informasi Kamar
+                  </p>
+
+                  <div class="media">
+                    <div class="images-hotel">
+                      <%= image_tag 'hotel/1.jpg', :class => 'align-self-center mr-3' %>
+                    </div>
+                    <div class="media-body">
+                      <h3 class="mt-0">
+                        Hotel Zephys King
+
+                        <small class="float-right">
+                          22 Dec 2017 - 23 Dec 2017
+                        </small>
+                      </h3>
+                      <p>Standard Double or Twin - Room Only</p>
+
+                      <table class="table table-sm table-flex">
+                        <tr>
+                          <td>
+                            <%= image_tag 'icon_hotel/hotel.png', :class => 'align-self-center' %> 2 Dewasa
+                          </td>
+                          <td>
+                            <%= image_tag 'icon_hotel/hotel.png', :class => 'align-self-center' %> 0 Anak
+                          </td>
+                          <td>
+                            <%= image_tag 'icon_hotel/jumlah_kamar.png', :class => 'align-self-center' %> 1 Kamar
+                          </td>
+                          <td>
+                            <%= image_tag 'icon_hotel/jumlah_kamar.png', :class => 'align-self-center' %> 1 Malam
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <table class="table table-sm table-flex mb-4">
+                <tr>
+                  <td></td>
+                  <td>
+                    <a href="" class="btn btn-block btn-danger">Lanjutkan</a>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </div>
+          <!-- ------------------------------------- -->
+          <div class="col-4 pl-0 sticky">
+            <div class="card c-ringkasan theiaStickySidebar">
+              <div class="card-body c-ringkasan__item">
+                <h5 class="card-title c-ringkasan__title">
+                  Ringkasan Pembayaran
+                </h5>
+
+                <dl class="row">
+                  <dt class="col-12 text-md-right voucher">
+                    <a href="#">Punya kode voucher ?</a>
+                  </dt>
+                  <dd class="col-12 c-voucher">
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="voucher" placeholder="Kode Voucher">
+                      <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">Gunakan</button>
+                      </span>
+                    </div>
+                  </dd>
+
+                  <dt class="col-6">Subtotal</dt>
+                  <dd class="col-6 text-md-right">
+                    Rp 300.000
+                  </dd>
+
+                  <dt class="col-6">Administrasi</dt>
+                  <dd class="col-6 text-md-right">
+                    Free
+                  </dd>
+                </dl>
+
+                <hr class="my-2">
+
+                <dl class="row">
+                  <dt class="col-6"><strong>Total Pembayaran</strong></dt>
+                  <dd class="col-6 text-md-right">
+                    <strong>
+                      Rp 300.000
+                    </strong>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <!-- ------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+
+<% content_for :footpayments do %>
+    <!-- ------------------------------------- -->
+    <%= render template: 'partials/pay-footer' %>
+    <!-- ------------------------------------- -->
+    <script type="text/javascript">
+        // sticky scroll
+        $(document).ready(function () {
+            $('.sticky')
+                .theiaStickySidebar({
+                    additionalMarginTop: 10,
+                    additionalMarginBottom: 20
+                });
+        });
+
+        $(document).ready(function () {
+            if ($("#datacheckin").is(":checked")) {
+                $("#checkedON").hide();
+            } else {
+                $("#checkedON").show();
+            }
+
+            $("#datacheckin").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#checkedON").hide();
+                } else {
+                    $("#checkedON").show();
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#title").select2({
+                theme: "bootstrap"
+            });
+            $("#title2").select2({
+                theme: "bootstrap"
+            });
+        });
+
+        $(document).ready(
+            function () {
+                $(".voucher").click(function () {
+                    $(".c-voucher").toggle('speed,callback');
+                });
+            });
+
+        $('#qty').bootstrapNumber();
+    </script>
+    <!-- ------------------------------------- -->
+<% end %>

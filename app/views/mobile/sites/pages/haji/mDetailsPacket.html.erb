@@ -1,0 +1,234 @@
+<%= content_for :headmobile do %>
+    <title>Detail paket haji</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <div class="data-images-detail mb-0">
+      <div class="card text-white">
+        <% if data['gambar'] && !data['gambar'].nil? %>
+            <%= image_tag data['gambar'], :class => 'card-img', :alt => '' %>
+        <% else %>
+            <%= image_tag 'no_images/no_package_1.png', :class => 'card-img', :alt => '' %>
+        <% end %>
+        <div class="card-img-overlay">
+          <h5 class="card-title">
+            <%= data['nama'].titlecase %>
+          </h5>
+        </div>
+      </div>
+
+      <table class="table table-sm mb-0">
+        <tbody>
+        <tr>
+          <td>
+            <div class="item-overlap item-overlap-line">
+              <i data-feather="map-pin"></i>
+              <span><%= data['kantor'].titlecase %></span>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <h4 class="mb-0">
+              <%= number_to_currency(data['harga_jual'], precision: 0, unit: "USD ") %>
+            </h4>
+          </td>
+          <td>
+            <% if session[:acc_token].nil? %>
+                <a href="/abutours-login" class="btn btn-lg btn-block btn-danger">Beli Paket</a>
+            <% else %>
+                <a href="/approval-paket-haji/<%= params[:kode_produk] %>?kk=<%= params[:kode_kantor] %>&th=<%= params[:tahun] %>&bln=<%= params[:bulan] %>&lu=<%= data['jumlah_hari'] %>" class="btn btn-block btn-danger">
+                  Pesan Sekarang
+                </a>
+            <% end %>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--detail-->
+    <div class="data-paket-detail">
+      <ul class="nav nav-pills nav-justified nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#syarat" role="tab"
+             aria-controls="home" aria-selected="true">Persyaratan Umum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="home-tab" data-toggle="tab" href="#fasilitas" role="tab"
+             aria-controls="home" aria-selected="false">Fasilitas</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="syarat" role="tabpanel"
+             aria-labelledby="syarat-tab">
+          <div id="accordion" role="tablist">
+            <% count = 0 %>
+            <% data['su'].each do |item| %>
+                <% count = count + 1 %>
+                <div class="card">
+                  <div class="card-header" role="tab" id="heading-<%= item['name'].parameterize %>">
+                    <h5 class="data-title mb-0">
+                      <a class="accordion-collapse" data-toggle="collapse" href="#<%= item['name'].parameterize %>"
+                         role="button"
+                         aria-expanded="false" aria-controls="<%= item['name'].parameterize %>">
+                        <%= item['name'] %>
+                      </a>
+                    </h5>
+                  </div>
+
+                  <div id="<%= item['name'].parameterize %>" class="collapse <%= count == 1 ? "show" : "" %>" role="tabpanel"
+                       aria-labelledby="heading-<%= item['name'].parameterize %>" data-parent="#accordion">
+                    <div class="card-body">
+                      <% item['teks'].each do |teks| %>
+                          <p class="m-0">
+                            <%= teks['teks'] %>
+                          </p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="fasilitas" role="tabpanel" aria-labelledby="fasilitas-tab">
+          <div id="accordion2" role="tablist">
+            <div class="card">
+              <div class="card-header" role="tab" id="headingOne">
+                <h5 class="data-title mb-0">
+                  <a class="accordion-collapse" data-toggle="collapse" href="#maskapai"
+                     role="button"
+                     aria-expanded="true" aria-controls="collapseOne">
+                    Maskapai
+                  </a>
+                </h5>
+              </div>
+
+              <div id="maskapai" class="collapse show" role="tabpanel"
+                   aria-labelledby="maskapai" data-parent="#accordion2">
+                <div class="card-body">
+                  <table class="table table-sm table-maskapai">
+                    <tr>
+                      <% if data['maskapai_pergi_haji'] && data['maskapai_pergi_haji']['images_maskapai'] %>
+                          <td>
+                            <%= image_tag data['maskapai_pergi_haji']['images_maskapai'], :class => 'img-fluid', onerror: 'this.error=null;this.src="/assets/no_images/no_package_1.png"' %>
+                          </td>
+                      <% end %>
+                    </tr>
+                    <tr>
+                      <td>
+                        <ul>
+                          <% if data['maskapai_pergi_haji'] %>
+                              <li>
+                                <%= data['maskapai_pergi_haji']['nama_maskapai'] + " (#{data['maskapai_pergi_haji']['kode_maskapai']})" %>
+                              </li>
+                              <li>
+                                <%= data['maskapai_pergi_haji']['fasilitas_maskapai'] %>
+                              </li>
+                          <% end %>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" role="tab" id="headingTwo">
+                <h5 class="data-title mb-0">
+                  <a class="accordion-collapse collapsed" data-toggle="collapse" href="#hotel"
+                     role="button" aria-expanded="false" aria-controls="hotel">
+                    Hotel
+                  </a>
+                </h5>
+              </div>
+              <div id="hotel" class="collapse" role="tabpanel"
+                   aria-labelledby="hotel" data-parent="#accordion2">
+                <div class="card-body">
+                  <table class="table table-hotel table-sm mb-0">
+                    <tr>
+                      <td>
+                        <% if data['hotel_medinah'] && data['hotel_medinah']['images_hotel'] %>
+                            <%= image_tag data['hotel_medinah']['images_hotel'], :class => 'mx-auto d-block img-fluid' %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% if data['hotel_medinah'] && data['hotel_medinah']['img_room_double'] %>
+                            <%= image_tag data['hotel_medinah']['img_room_double'], :class => 'mx-auto d-block img-fluid' %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% if data['hotel_medinah'] && data['hotel_medinah']['img_room_triple'] %>
+                            <%= image_tag data['hotel_medinah']['img_room_triple'], :class => 'mx-auto d-block img-fluid' %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% if data['hotel_medinah'] && data['hotel_medinah']['img_room_quard'] %>
+                            <%= image_tag data['hotel_medinah']['img_room_quard'], :class => 'mx-auto d-block img-fluid' %>
+                        <% end %>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4">
+                        <p class="mb-0">
+                          <% if data['hotel_medinah'] %>
+                              <% (1..data['hotel_medinah']['rating'].to_i).each do |rating| %>
+                                  <i class="icon-star-full2"></i>
+                              <% end %>
+                          <% end %><br>
+                          <span><%= data['hotel_medinah'] ? data['hotel_medinah']['nama_hotel'] : '' %></span>
+                        </p>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4">
+                        <h6 class="mb-0">Tentang Hotel</h6>
+                        <ul>
+                          <li><%= data['hotel_mekah'] ? data['hotel_mekah']['deskripsi'] : '' %></li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4">
+                        <h6 class="mb-0">Fasilitas Umum</h6>
+                        <ul>
+                          <li><%= data['hotel_mekah'] ? data['hotel_mekah']['fasilitas'] : '' %></li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" role="tab" id="headingOne">
+                <h5 class="data-title mb-0">
+                  <a class="accordion-collapse collapsed" data-toggle="collapse" href="#itinerary"
+                     role="button"
+                     aria-expanded="true" aria-controls="collapseOne">
+                    Tour & Itinerary
+                  </a>
+                </h5>
+              </div>
+
+              <div id="itinerary" class="collapse" role="tabpanel"
+                   aria-labelledby="itinerary" data-parent="#accordion2">
+                <div class="card-body">
+                  <p>
+                    <%= data['itinerary'].html_safe %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

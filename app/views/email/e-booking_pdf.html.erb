@@ -1,0 +1,437 @@
+<% content_for :heademail do %>
+    <title>E-Booking</title>
+<% end %>
+
+<% content_for :email do %>
+    <% if @data %>
+        <% @barcode = barcode_output( @data['kode_booking'], 60, 10 ) %>
+    <div style="background: #FFFFFF;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        min-height: 100%;">
+
+      <div style="
+          margin: 4px auto;
+          background: #ffffff;
+          borders: 1px solid #f3f1f0;
+          padding: 30px;">
+
+        <table style="width: 100%;
+            margin: 0;
+            padding: 0;">
+          <tr>
+            <td>
+              <div style="
+              font-size: 16px;
+                  font-weight: bold;">
+                e-Booking
+              </div>
+            </td>
+
+            <td width="50%">
+              <%= wicked_pdf_image_tag 'logo/abutours_com.png', :style => 'max-width: 100%;height: 20px;padding: 5px 0;' %>
+              <div style="border-left: 1px solid #d3d1d0;
+                  padding: 4px;padding-left: 10px">
+                <div>
+                  <div style="text-transform: uppercase;
+                      font-weight: bold;
+                      font-size: 10px;
+                      line-height: 14px;
+                      margin: 0;">
+                    PT. Amanah Bersama Umat
+                  </div>
+                  <div style="line-height: 14px;font-size: 8px">
+                    Izin Resmi Umrah <strong>PPIU NOMOR 559 TAHUN 2017</strong>
+                  </div>
+                  <div style="margin: 0;
+                      font-size: 8px;
+                      line-height: 14px;">
+                    <strong style="text-transform: uppercase">Head Office :</strong> Jl Baji Gau No 32i Makassar - Sulawesi Selatan<br/>Telp : +6285213247455
+                  </div>
+                </div>
+              </div>
+            </td>
+
+          </tr>
+        </table>
+
+        <div style="padding: 30px 0;">
+          <caption>
+            <div style="text-transform: uppercase;
+                border-top-left-radius: 30%;
+                border-top-right-radius: 30%;
+                padding: 8px;
+                color: #ffffff;
+                width: 150px;
+                margin-left: 10px;
+                text-align: center;
+                font-size: 10px;
+                margin-bottom: -2px;
+                position: relative;
+                z-index: 1;
+                background: #303030">
+              Data Pelanggan
+            </div>
+          </caption>
+          <table style="border: 1px solid #e3e1e0;
+              -webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;
+              padding: 8px;
+              width: 100%;">
+            <tbody>
+            <tr>
+              <td>
+                <div style="height: 30px">
+                  <div style="font-size: 12px;
+                      text-transform: uppercase;
+                      margin-bottom: 2px;
+                      font-weight: bold;">
+                    <%= @data['nama_jamaah'] %>
+                  </div>
+                  <div style="font-style: italic;
+                      color: #666666;
+                      font-size: 7px;">
+                    ID : <%= @data['no_trans'] %>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-style: normal;
+                      color: #666666;
+                      margin-bottom: 2px;
+                      font-size: 7px;">
+                    <%= @data['alamat'] %>
+                  </div>
+                  <div style="font-style: normal;
+                      color: #666666;
+                      font-size: 8px;">
+                    No Telp : <%= @data['telepon'] %>
+                  </div>
+                </div>
+              </td>
+
+              <td rowspan="3" width="200">
+                <p style="vertical-align: top;
+                    margin-top: -30px;
+                    font-size: 8px;
+                    text-align: right;
+                    right: 10%;
+                    color: #666666;
+                    position: absolute">
+                  <%= TimeFormat::indonesian_day_name(@data['tanggal_booking']) %>, <%= TimeFormat::indonesiaMonthAlphabet(@data['tanggal_booking']) %>
+                </p>
+                <%= wicked_pdf_image_tag_for_public( @barcode,  { :style => 'width: 100%;height: 60px;display: block;margin: 0 auto;' }) %>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 10px 0; width: 65%">
+                <div style="display: block;
+                    background: #e3e1e0;
+                    height: 1px;"></div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <div style="height: 30px">
+                  <div style="font-size: 9px;
+                      text-transform: uppercase;
+                      margin-bottom: 4px;
+                      font-weight: 500;">
+                    <%= @data['detail_paket'] ? @data['detail_paket']['namapaket'] : '' %>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-style: normal;
+                      color: #666666;
+                      font-size: 8px;">
+                    Estimasi Keberangkatan <%= "#{TimeFormat::month(@data['bulan_paket'])} #{@data['tahun_paket']}" %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="border-top: 1px dashed #d3d1d0;height: 1px">
+          <div style="text-transform: uppercase;
+              font-size: 8px;
+              position: absolute;
+              padding: 4px 12px;
+              background: #FFFFFF;
+              left: 45%;
+              margin-top: -10px;
+              color: #999999;
+          ">
+            Potong disini
+          </div>
+        </div>
+
+        <div style="padding: 30px 0;">
+          <caption>
+            <div style="text-transform: uppercase;
+                border-top-left-radius: 30%;
+                border-top-right-radius: 30%;
+                padding: 8px;
+                color: #ffffff;
+                width: 150px;
+                margin-left: 10px;
+                text-align: center;
+                font-size: 10px;
+                margin-bottom: -2px;
+                position: relative;
+                z-index: 1;
+                background: #303030">
+              Pemberkasan
+            </div>
+          </caption>
+          <table style="border: 1px solid #d3d1d0;
+              -webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;
+              padding: 8px;
+              width: 100%;">
+            <tbody>
+            <tr>
+              <td rowspan="3" width="200">
+                <%= wicked_pdf_image_tag_for_public( @barcode,  { :style => 'width: 100%;height: 60px;display: block;margin: 0 auto;' }) %>
+              </td>
+
+              <td>
+                <table style="width: 100%">
+                  <tr>
+                    <td width="120">
+                      <div style="font-size: 8px;
+                          text-transform: uppercase;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        Nama Pelanggan
+                      </div>
+                    </td>
+
+                    <td width="5">
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        :
+                      </div>
+                    </td>
+
+                    <td>
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        <%= @data['nama_jamaah'] %>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td width="120">
+                      <div style="font-size: 8px;
+                          text-transform: uppercase;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        Nama Paket
+                      </div>
+                    </td>
+
+                    <td width="5">
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        :
+                      </div>
+                    </td>
+
+                    <td>
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        <%= @data['detail_paket'] ? @data['detail_paket']['namapaket'] : '' %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="120">
+                      <div style="font-size: 8px;
+                          text-transform: uppercase;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        Est Keberangkatan
+                      </div>
+                    </td>
+
+                    <td width="5">
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        :
+                      </div>
+                    </td>
+
+                    <td>
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        <%= "#{TimeFormat::month(@data['bulan_paket'])} #{@data['tahun_paket']}" %>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="border-top: 1px dashed #d3d1d0;height: 1px">
+          <div style="text-transform: uppercase;
+              font-size: 8px;
+              position: absolute;
+              padding: 4px 12px;
+              background: #FFFFFF;
+              left: 45%;
+              margin-top: -10px;
+              color: #999999;
+          ">
+            Potong disini
+          </div>
+        </div>
+
+        <div style="padding: 30px 0;">
+
+          <caption>
+            <div style="text-transform: uppercase;
+                border-top-left-radius: 30%;
+                border-top-right-radius: 30%;
+                padding: 8px;
+                color: #ffffff;
+                width: 150px;
+                margin-left: 10px;
+                text-align: center;
+                font-size: 10px;
+                margin-bottom: -2px;
+                position: relative;
+                z-index: 1;
+                background: #303030">
+              Perlengkapan
+            </div>
+          </caption>
+          <table style="border: 1px solid #d3d1d0;
+              -webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;
+              padding: 10px;
+              width: 100%;">
+            <tbody>
+            <tr>
+              <td rowspan="3" width="200">
+                <%= wicked_pdf_image_tag_for_public( @barcode,  { :style => 'width: 100%;height: 60px;display: block;margin: 0 auto;' }) %>
+              </td>
+
+              <td>
+                <table style="width: 100%">
+                  <tr>
+                    <td width="120">
+                      <div style="font-size: 8px;
+                          text-transform: uppercase;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        Nama Pelanggan
+                      </div>
+                    </td>
+
+                    <td width="5">
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        :
+                      </div>
+                    </td>
+
+                    <td>
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        <%= @data['nama_jamaah'] %>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td width="130">
+                      <div style="font-size: 8px;
+                          text-transform: uppercase;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        Nama Paket
+                      </div>
+                    </td>
+
+                    <td width="5">
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        :
+                      </div>
+                    </td>
+
+                    <td>
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        <%= @data['detail_paket'] ? @data['detail_paket']['namapaket'] : '' %>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td width="130">
+                      <div style="font-size: 8px;
+                          text-transform: uppercase;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        Est Keberangkatan
+                      </div>
+                    </td>
+
+                    <td width="5">
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        :
+                      </div>
+                    </td>
+
+                    <td>
+                      <div style="font-size: 8px;
+                          text-transform: capitalize;
+                          margin-bottom: 4px;
+                          font-weight: 500;">
+                        <%= "#{TimeFormat::month(@data['bulan_paket'])} #{@data['tahun_paket']}" %>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+    <% end %>
+<% end %>

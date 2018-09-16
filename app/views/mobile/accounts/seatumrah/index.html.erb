@@ -1,0 +1,180 @@
+<%= content_for :active_seat do %>
+    active
+<% end %>
+
+<%= content_for :headmobile do %>
+    <title>Seat Umrah</title>
+<% end %>
+
+<%= content_for :mobile do %>
+    <%= render template: 'mobile/accounts/seatumrah/components/navtabs' %>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="seat" role="tabpanel" aria-labelledby="seat-tab">
+        <div class="data-seatumrah pt-3">
+          <% @total_seat = 0 %>
+          <% if !@data.nil? %>
+              <% @data.each do |item| %>
+                  <% @total_seat = @total_seat + item['booking'].count %>
+                  <div class="card card-seatumrah">
+                    <a data-toggle="collapse" href="#desc<%= item['no_trans'] %>" role="button" aria-expanded="false" aria-controls="desc">
+                      <div class="card-body">
+                        <table class="table table-sm mb-0">
+                          <tr>
+                            <td>
+                              <p class="noTransaction mb-0">
+                                <span>No Invoice</span> <br>
+                                <strong><%= item['no_trans'] %></strong>
+                              </p>
+                            </td>
+
+                            <td width="80">
+                              <p class="jmlSeat mb-0">
+                                <span>seat</span>
+                                <strong><%= item['booking'].count %></strong>
+                              </p>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="collapse" id="desc<%= item['no_trans'] %>" style="margin-top: -8px">
+                    <div class="card card-collapse">
+                      <table class="table mb-0">
+                        <tr>
+                          <th>Booking</th>
+                          <th>Keberangkatan</th>
+                          <th width="114">Tindakan</th>
+                        </tr>
+                        <% @num = 0 %>
+                        <% item['booking'].each do |sub_item| %>
+                            <tr>
+                              <td>
+                                <p class="mb-0">
+                                  <%= sub_item['kode_booking'] %>
+                                </p>
+                              </td>
+                              <td>
+                                <p class="mb-0">
+                                  <%= TimeFormat::month(sub_item['bulan_paket']) %>
+                                  <%= sub_item['tahun_paket'] %>
+                                </p>
+                              </td>
+                              <td>
+                                <a href="/add-jamaah/<%= sub_item['kode_booking'] %>?kp=<%= item['kode_produk'] %>&kk=<%= item['kode_kantor'] %>" class="btn btn-sm btn-success mb-1">
+                                  <i data-feather="user-plus"></i>
+                                </a>
+                                <a href="transfer-seat/<%= sub_item['kode_booking'] %>" class="btn btn-sm btn-outline-secondary mb-1">
+                                  <i data-feather="repeat"></i>
+                                </a>
+                              </td>
+                            </tr>
+                        <% end %>
+                      </table>
+                    </div>
+                  </div>
+              <% end %>
+          <% else %>
+              <div class="w-blank text-center p-5">
+                <%= image_tag 'icon_blank/no_transaction.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                <p class="mb-0">
+                  Maaf, Anda belum memiliki transaksi
+                </p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+        <div class="data-seatumrah pt-3">
+          <% if @data2 %>
+              <% @data2.each do |item| %>
+                  <div class="card card-seatumrah">
+                    <a data-toggle="collapse" href="#desc<%= item['kode_booking'] %>" role="button" aria-expanded="false" aria-controls="desc">
+                      <div class="card-body">
+                        <table class="table table-sm mb-0">
+                          <tr>
+                            <td>
+                              <p class="noTransaction mb-0">
+                                <span>Booking</span> <br>
+                                <strong><%= item['kode_booking'] %></strong>
+                              </p>
+                            </td>
+
+                            <td width="220">
+                              <p class="noTransaction mb-0">
+                                <span>Tujuan</span> <br>
+                                <strong><%= item['kode_pelanggan'] %></strong>
+                              </p>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="collapse" id="desc<%= item['kode_booking'] %>" style="margin-top: -8px">
+                    <div class="card card-collapse card-collapse-riwayat">
+                      <table class="table mb-0">
+                        <tr>
+                          <td width="140"><p class="mb-0">Kode Transfer</p></td>
+                          <td>
+                            <p class="mb-0">
+                              <%= item['kode_transfer'] %>
+                            </p>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td width="140"><p class="mb-0">Tanggal Transfer</p></td>
+                          <td>
+                            <p class="mb-0">
+                              <%= TimeFormat::indonesia(item['tanggal_transfer']) %>
+                            </p>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td width="140"><p class="mb-0">Nama Agen/Mitra</p></td>
+                          <td>
+                            <p class="mb-0">
+                              <%= item['nama_pelanggan'] %>
+                            </p>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td width="140"><p class="mb-0">Kode Agen/Mitra</p></td>
+                          <td>
+                            <p class="mb-0">
+                              <%= item['kode_pelanggan'] %>
+                            </p>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td width="140"><p class="mb-0">Status Transfer</td>
+                          <td>
+                            <p class="mb-0 text-success">
+                              <%= item['is_confirmed'] == 'Y' ? 'Berhasil' : 'Menunggu Konfirmasi OTP' %>
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+              <% end %>
+          <% else %>
+              <div class="w-blank text-center p-5">
+                <%= image_tag 'icon_blank/no_transaction.png', :class => 'rounded mx-auto d-block', :alt => '' %>
+                <p class="mb-0">
+                  Maaf, Anda belum memiliki transaksi
+                </p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>

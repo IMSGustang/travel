@@ -1,0 +1,143 @@
+<% content_for :head do %>
+    <title>Transaksi Haji | Lebih Dari Sekedar Nikmatnya Ibadah</title>
+<% end %>
+<!-- --------------------------------------------------- -->
+<% content_for :abutours do %>
+    <section class="c-dashboard">
+      <div class="container">
+        <div class="row">
+          <!-- --------------------------------------------------- -->
+          <div class="col-3 pr-0">
+            <div class="card c-dashboard-side pb-5">
+              <div class="card-body c-dashboard-side__item p-0">
+                <%= render template: 'accounts/partials/sidebar' %>
+              </div>
+            </div>
+          </div>
+          <!-- --------------------------------------------------- -->
+          <div class="col-9 pl-0">
+            <!-- --------------------------------------------------- -->
+            <div class="c-bg-white-accounts">
+              <div class="card c-dashboard-user">
+                <%= render template: 'accounts/partials/bannerTop' %>
+              </div>
+              <!-- --------------------------------------------------- -->
+              <h5 class="card-title text-center mb-2 mt-4">
+                Semua Transaksi Pembelian
+              </h5>
+              <ul class="nav justify-content-center tabs-voucher mb-2">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/transaksi-umrah') %>" href="/transaksi-umrah">Paket Umrah</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/transaksi-haji') %>" href="/transaksi-haji">Paket Haji</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_class('/transaksi-souvenir') %>" href="/transaksi-souvenir">Souvenir</a>
+                </li>
+              </ul>
+              <!-- --------------------------------------------------- -->
+              <div class="card c-dashboard-content mt-1 mb-3">
+                <div class="card-body c-dashboard-content__item">
+                  <table class="table table-transaksi mb-3">
+                    <tr>
+                      <th width="300">
+                        <small class="text-uppercase">No Tagihan</small>
+                        <p class="m-0">
+                          <strong>DEP160908113</strong>
+                        </p>
+                      </th>
+                      <th width="300">
+                        <small class="text-uppercase">Jumlah</small>
+                        <p class="m-0">
+                          Rp 3.000.000
+                        </p>
+                      </th>
+                      <th class="text-right">
+                        <small class="text-uppercase">Tanggal Transaksi</small>
+                        <p class="m-0">
+                          2016-09-08
+                        </p>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <small class="text-uppercase">Ringkasan</small>
+                        <div class="media">
+                          <div class="media-body">
+                            <p class="mb-0">
+                              Pembelian Voucher Amanah 10
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <small class="text-uppercase">Status Transaksi</small>
+                        <p class="m-0">
+                    <span class="text-danger mt-2">
+                      Menunggu konfirmasi pembayaran
+                    </span>
+                        </p>
+                      </td>
+                      <td class="text-right">
+                        <a href="/konfirmasi-pembayaran" class="btn btn-success mt-2">Konfirmasi</a>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <table class="table table-transaksi mb-3">
+                    <tr>
+                      <th width="300">
+                        <small class="text-uppercase">No Tagihan</small>
+                        <p class="m-0">
+                          <strong>DEP160908113</strong>
+                        </p>
+                      </th>
+                      <th width="300">
+                        <small class="text-uppercase">Jumlah</small>
+                        <p class="m-0">
+                          Rp 3.000.000
+                        </p>
+                      </th>
+                      <th class="text-right">
+                        <small class="text-uppercase">Tanggal Transaksi</small>
+                        <p class="m-0">
+                          2016-09-08
+                        </p>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <small class="text-uppercase">Ringkasan</small>
+                        <div class="media">
+                          <div class="media-body">
+                            <p class="mb-0">
+                              Pembelian Voucher Amanah 10
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <small class="text-uppercase">Status Transaksi</small>
+                        <p class="m-0">
+                    <span class="text-danger mt-2">
+                      Menunggu Verifikasi
+                    </span>
+                        </p>
+                      </td>
+                      <td class="text-right">
+                        <a href="" class="btn btn-success mt-2">Detail</a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- --------------------------------------------------- -->
+          </div>
+          <!-- --------------------------------------------------- -->
+        </div>
+      </div>
+    </section>
+<% end %>
+<!-- --------------------------------------------------- -->

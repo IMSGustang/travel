@@ -1,0 +1,33 @@
+.data-otp {
+  margin-top: 14px;
+  min-height: 70%;
+
+  & .card {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+
+    & .card-body {
+
+      & p {
+        font-size: 14px;
+      }
+
+      & .table {
+        & td {
+          border: none;
+
+          & .btn {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            padding: 8px;
+            color: #ffffff;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

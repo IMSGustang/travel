@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="js csstransforms supports csstransforms3d">
+<head>
+  <%= yield :headmobile %>
+  <%= favicon_link_tag 'logo/favicon.png' %>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+  <meta name="description" content="Abu Tours & Travel Umrah memberikan jaminan transaksi aman, fasilitas dan pelayanan ibadah yang lebih baik untuk perjalanan umroh maupun haji anda. Kami Tumbuh dari Kepercayaan Anda, lebih dari sekedar nikmatnya beribadah."/>
+  <meta name="author" content="PT Amanah Bersama Ummat"/>
+  <% if controller.controller_name == "umrah" && controller.action_name == "detailpacket" %>
+      <meta property="og:title" content="<%= @data && @data['nama'] ? @data['nama'].titlecase : 'www.abutours.com - lebih dari sekedar nikmatnya ibadah' %>"/>
+      <meta property="og:description" content="<%= @data && @data['nama'] ? @data['nama'].titlecase : 'www.abutours.com - semua bisa umrah bersama kami' %>"/>
+  <% else %>
+      <meta property="og:title" content="www.abutours.com - lebih dari sekedar nikmatnya ibadah"/>
+      <meta property="og:description" content="www.abutours.com - semua bisa umrah bersama kami"/>
+  <% end %>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.abutours.com"/>
+  <meta property="og:image" content="https://www.abutours.com/abutours/logo/favicon.png"/>
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application_mobile', media: 'all' %>
+  <%= javascript_include_tag 'application_mobile' %>
+
+
+  <% if Rails.env.production? %>
+
+      <!-- Google Tag Manager -->
+      <script>(function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({
+              'gtm.start':
+                  new Date().getTime(), event: 'gtm.js'
+          });
+          var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src =
+              'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-5HKZP56');</script>
+      <!-- End Google Tag Manager -->
+
+  <% end %>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HKZP56"
+          height="0" width="0" style="display:none;visibility:hidden">
+  </iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<%= render template: 'mobile/partials/mobilenavbar' %>
+
+<%= yield :mobile %>
+
+<%= render template: 'mobile/partials/footer' %>
+
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=346056079084312';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+<%= yield :footmobile %>
+<script type="text/javascript">
+    //hide or show password
+    $('.hide-password').on('click', function () {
+        var $this = $(this),
+            $password_field = $this.prev('input');
+        ( 'password' == $password_field.attr('type') ) ? $password_field.attr('type', 'text') : $password_field.attr('type', 'password');
+        ( 'hide' == $this.text() ) ? $this.text('show') : $this.text('hide');
+
+        $password_field.focus();
+        $password_field[0].setSelectionRange($password_field.val().length, $password_field.val().length);
+    });
+
+    if (<%= !flash[:status].nil? ? flash[:status] : false %>) {
+        if ("<%= @res %>" == 'success') {
+            swal({
+                text: '<%= flash[:message] %>',
+                imageUrl: './assets/lib/sticker/36.png',
+                imageHeight: 96,
+                timer: 3000,
+                onOpen: function () {
+                    swal.showLoading()
+                }
+            });
+        }
+    }
+    if (<%= !flash[:status].nil? ? flash[:status] : false %>) {
+        if ("<%= @res %>" == 'fails') {
+            swal({
+                text: '<%= flash[:message] %>',
+                imageUrl: './assets/lib/sticker/17.png',
+                imageHeight: 96,
+                timer: 3000,
+                onOpen: function () {
+                    swal.showLoading()
+                }
+            });
+        }
+    }
+</script>
+<script type="text/javascript">
+    function cekHarga(val, type) {
+        if (type == "PaketData") {
+            miniType = "paket-data";
+            url = "/" + miniType + "/inquiry-news/" + val
+        } else if (type == "TokenListrik") {
+            miniType = "token-listrik";
+            url = "/" + miniType + "/inquiry/" + val
+        } else if (type == "VoucherGame") {
+            miniType = "voucher-game";
+            url = "/" + miniType + "/inquiry/" + val
+        } else {
+            miniType = type.toLowerCase();
+            url = "/" + miniType + "/inquiry-news/" + val
+        }
+        nominal = $(`#nominal${type}`);
+        nominal.html('');
+        if (val.length > 9) {
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (data) {
+                    nominal.html('');
+                    if (data.status == 200) {
+                        if (type == "TokenListrik") {
+                            nominal.html('');
+                            admin = parseInt(data.data.admin);
+                            data = data.power_purchase_denom.item;
+                            $.each(data, function (i, value) {
+                                harga = numberFormat(parseInt(value) + admin);
+                                nominal.append("<option value='" + value + "' data-price='Rp " + harga + "'data-value='" + value + "'>" + numberFormat(value) + "</option>");
+                            });
+                        } else {
+                            $.each(data['data'], function (i, value) {
+                                nominal.append("<option value='" + value.product_id + "' data-price='Rp " + numberFormat(value.price) + "' data-value='" + value.nominal + "'>" + value.voucher + ' - ' + value.nominal + "</option>");
+                            });
+                        }
+                        $(`#priceTag${type}`).html($(`#nominal${type}`).find("option:selected").data('price'));
+                        active($(`#nominal${type}`).val(), type);
+                    } else {
+                        swal({
+                            text: 'Maaf, Mohon periksa kembali inputan Anda!',
+                            imageUrl: 'assets/lib/sticker/25.png',
+                            imageWidth: 100,
+                            animation: true,
+                            showConfirmButton: false,
+                            timer: 6000
+                        });
+                    }
+                },
+                error: function (data) {
+                    swal({
+                        text: 'Maaf, Mohon periksa kembali inputan Anda!',
+                        imageUrl: 'assets/lib/sticker/26.png',
+                        imageWidth: 100,
+                        animation: true,
+                        showConfirmButton: false,
+                        timer: 6000,
+                        onOpen: function () {
+                            swal.showLoading()
+                        }
+                    });
+                }
+            });
+        }
+    }
+    function active(val, type) {
+        if (val) {
+            $(`#btn${type}`).removeAttr('disabled');
+            $(`#btn${type}`).removeClass('disabled');
+        } else {
+            $(`#btn${type}`).attr('disabled');
+            $(`#btn${type}`).addClass('disabled');
+        }
+        $('#nominalTokenListrik').on('change', function (e) {
+           $('#priceTagToken').html($(this).find("option:selected").data('price'));
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-sidenav]').sidenav();
+    })
+
+    feather.replace()
+</script>
+</html>

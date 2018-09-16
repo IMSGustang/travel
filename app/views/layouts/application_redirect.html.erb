@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="js csstransforms supports csstransforms3d">
+<head>
+  <%= yield :headapps %>
+  <%= favicon_link_tag 'logo/favicon.png' %>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Abu Tours & Travel Umrah memberikan jaminan transaksi aman, fasilitas dan pelayanan ibadah yang lebih baik untuk perjalanan umroh maupun haji anda. Kami Tumbuh dari Kepercayaan Anda, lebih dari sekedar nikmatnya beribadah."/>
+  <meta name="author" content="PT Amanah Bersama Ummat"/>
+
+  <meta property="og:title" content="www.abutours.com - lebih dari sekedar nikmatnya ibadah"/>
+  <meta property="og:description" content="www.abutours.com - semua bisa umrah bersama kami"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.abutours.com"/>
+  <meta property="og:image" content="https://www.abutours.com/abutours/logo/favicon.png"/>
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'redirect_apps', media: 'all' %>
+  <%= javascript_include_tag 'redirect_apps' %>
+</head>
+<body>
+  <%= yield :apps %>
+</body>
+</html>

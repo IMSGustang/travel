@@ -1,0 +1,316 @@
+<% data.each do |row| %>
+    <% row['data']['item'].each do |rowFlight| %>
+
+        <% if rowFlight['fares'][sc] %>
+            <table class="table table-flex table-ticket mt-1 mb-3">
+
+              <% rowFlightItem = rowFlight['flights']['item'] %>
+              <% if rowFlightItem.count == 2
+                   transit = '1 transit'
+                   waktuBerangkat = rowFlightItem[0]['depart_time']
+                   waktuTiba = rowFlightItem[1]['arrive_time']
+                   countTransit = 1
+                 elsif rowFlightItem.count == 3
+                   transit = '2 transit'
+                   countTransit = 2
+                   waktuBerangkat = rowFlightItem[0]['depart_time']
+                   waktuTiba = rowFlightItem[2]['arrive_time']
+                 else
+                   transit = 'langsung'
+                   countTransit = 0
+                   waktuBerangkat = rowFlightItem['depart_time']
+                   waktuTiba = rowFlightItem['arrive_time']
+                 end
+              %>
+              <tr>
+                <td>
+                  <%= image_tag 'lib/pesawat/batikair.png', :class => 'rounded mt-2 mr-2', :alt => '' %>
+                  <%= image_tag 'lib/pesawat/lion.png', :class => 'rounded mt-2', :alt => '' %>
+                  <p class="mb-0">
+                    <small class="text-muted">
+                      Multi - Maskapai
+                    </small>
+                  </p>
+                  <p class="mb-0">
+                    <%= row['airline'] %> -
+                    <!%= rowFlight['flights']['item'] %>
+                  </p>
+                </td>
+
+                <td>
+                  <h3 class="mb-0">
+                    <%= waktuBerangkat %>
+                  </h3>
+                  <p class="mb-0">
+                    <small class="text-muted">Jakarta (CGK)</small>
+                  </p>
+                </td>
+
+                <td>
+                  <h3 class="mb-0">
+                    <%= waktuTiba %>
+                  </h3>
+                  <p class="mb-0">
+                    <small class="text-muted">Makassar (UPG)</small>
+                  </p>
+                </td>
+
+                <td>
+                  <h3 class="mb-0">
+                    4j 0m <!%= rowFlight['flights'] %>
+                  </h3>
+                  <small class="text-muted"><%= transit %></small>
+                </td>
+
+                <td>
+                  <h3 class="mb-0">
+                    <i class="icon-briefcase"></i>
+                  </h3>
+                </td>
+
+                <td>
+                  <h3 class="mb-0">
+                    Rp <%= number_with_delimiter(rowFlight['fares'][sc]['by_ages']['adult']['total']) %>
+                  </h3>
+                  <small class="text-muted">
+                    <del>Rp 10.000</del>
+                  </small>
+                </td>
+              </tr>
+              <!-- --------------------------------------------------------------- -->
+              <tr>
+                <td colspan="2" class="border-top-0 pt-0 pb-0">
+                  <p class="mt-1">
+                    <a class="collapsed text-danger" data-toggle="collapse" data-parent="#accordion" href="#Cpenerbangan<%= rowFlight['id'] %>" aria-expanded="false" aria-controls="Cpenerbangan">
+                      <span><i class="icon-arrow-down32"></i> Detil Penerbangan</span>
+                    </a>
+                  </p>
+                </td>
+
+                <td colspan="2" class="border-top-0 pt-0 pb-0">
+                  <p class="mt-1">
+                    <a class="collapsed text-danger" data-toggle="collapse" data-parent="#accordion" href="#Charga<%= rowFlight['id'] %>" aria-expanded="false" aria-controls="Charga">
+                      <i class="icon-arrow-down32"></i> Detil Harga
+                    </a>
+                  </p>
+                </td>
+
+                <td colspan="2" class="border-top-0 pt-0 pb-0">
+                  <p>
+                    <a href="/form-pemesanan-tiket" class="btn btn-sm btn-block btn-success">Pilih</a>
+                  </p>
+                </td>
+              </tr>
+              <!-- --------------------------------------------------------------- -->
+              <tr>
+                <td colspan="6" class="p-0 border-0">
+                  <div id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="card m-0">
+                      <div id="Cpenerbangan<%= rowFlight['id'] %>" class="collapse m-0" role="tabpanel" aria-labelledby="Cpenerbangan1">
+                        <div class="card-body m-0 pl-0 pr-0">
+                          <table class="table table-flex">
+                            <tr>
+                              <td class="border-top-0">
+                                <%= image_tag 'lib/pesawat/lion.png', :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                                <p class="mb-0 text-center">
+                                  <small class="text-muted">
+                                    Lion Air - Maskapai
+                                  </small>
+                                </p>
+                              </td>
+                              <!-- --------------------------------------------------------------- -->
+                              <td class="border-top-0">
+                                <ul>
+                                  <li><span></span>
+                                    <div>
+                                      <div class="title">
+                                        <table class="table table-flex">
+                                          <tr>
+                                            <td>
+                                              10:40 <br>
+                                              <p class="mb-0">
+                                                12 Desember 2017
+                                              </p>
+                                            </td>
+                                            <td>
+                                              <h6 class="mb-0">
+                                                Surabaya (SUB)
+                                              </h6>
+                                              <p class="mb-0">
+                                                Juanda
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </div>
+
+                                      <div class="info"><i class="icon-airplane3"></i> 1j 30m
+                                      </div>
+
+                                      <div class="title">
+                                        <table class="table table-flex">
+                                          <tr>
+                                            <td>
+                                              10:40 <br>
+                                              <p class="mb-0">
+                                                13 Desember 2017
+                                              </p>
+                                            </td>
+                                            <td>
+                                              <h6 class="mb-0">
+                                                Makassar (UPG)
+                                              </h6>
+                                              <p class="mb-0">
+                                                Hasanuddin
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </td>
+                              <!-- --------------------------------------------------------------- -->
+                              <td class="border-top-0">
+                                <small>
+                                  - Boeing 737 <br>
+                                  - Tata kursi : 3-3 <br>
+                                  - Jarak antar kursi : 29 inci (standar) <br>
+                                  - Bagasi kabin : 7 Kg <br>
+                                  - Bagasi : 20 kg
+                                </small>
+                              </td>
+                            </tr>
+                            <!-- --------------------------------------------------------------- -->
+                            <tr>
+                              <td class="pt-0 pb-0 m-0">
+                                <div class="alert alert-success mt-3 mb-3 ml-5 mr-5">
+                                  <i class="icon-info22"></i> Transit Selama 7 jam di surabaya
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- --------------------------------------------------------------- -->
+                            <tr>
+                              <td class="border-top-0">
+                                <%= image_tag 'lib/pesawat/lion.png', :class => 'rounded mx-auto d-block mt-4', :alt => '' %>
+                                <p class="mb-0 text-center">
+                                  <small class="text-muted">
+                                    Lion Air - Maskapai
+                                  </small>
+                                </p>
+                              </td>
+                              <!-- --------------------------------------------------------------- -->
+                              <td class="border-top-0">
+                                <ul>
+                                  <li><span></span>
+                                    <div>
+                                      <div class="title">
+                                        <table class="table table-flex">
+                                          <tr>
+                                            <td>
+                                              10:40 <br>
+                                              <p class="mb-0">
+                                                12 Desember 2017
+                                              </p>
+                                            </td>
+                                            <td>
+                                              <h6 class="mb-0">
+                                                Surabaya (SUB)
+                                              </h6>
+                                              <p class="mb-0">
+                                                Juanda
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </div>
+
+                                      <div class="info"><i class="icon-airplane3"></i> 1j 30m
+                                      </div>
+
+                                      <div class="title">
+                                        <table class="table table-flex">
+                                          <tr>
+                                            <td>
+                                              10:40 <br>
+                                              <p class="mb-0">
+                                                13 Desember 2017
+                                              </p>
+                                            </td>
+                                            <td>
+                                              <h6 class="mb-0">
+                                                Makassar (UPG)
+                                              </h6>
+                                              <p class="mb-0">
+                                                Hasanuddin
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </td>
+                              <!-- --------------------------------------------------------------- -->
+                              <td class="border-top-0">
+                                <small>
+                                  - Boeing 737 <br>
+                                  - Tata kursi : 3-3 <br>
+                                  - Jarak antar kursi : 29 inci (standar) <br>
+                                  - Bagasi kabin : 7 Kg <br>
+                                  - Bagasi : 20 kg
+                                </small>
+                              </td>
+                            </tr>
+                            <!-- --------------------------------------------------------------- -->
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card m-0">
+                      <div id="Charga<%= rowFlight['id'] %>" class="collapse m-0" role="tabpanel" aria-labelledby="Charga1">
+                        <div class="card-body m-0 p-0">
+                          <table class="table">
+                            <tr>
+                              <td class="border-top-0">
+                                <h6 class="lead">
+                                  Jakarta (CGK)-Makassar (UPG)
+                                </h6>
+                              </td>
+                              <!-- --------------------------------------------------------------- -->
+                              <td class="border-top-0">
+                                <h6 class="lead">
+                                  Harga Dasar Dewasa (x1)
+                                  <span class="float-right">
+                                                Rp 1.200.000
+                                              </span>
+                                </h6>
+
+                                <hr class="my-3">
+
+                                <h6 class="">
+                                  Jumlah Pembayaran
+                                  <span class="float-right">
+                                                Rp 1.200.000
+                                              </span>
+                                </h6>
+                              </td>
+                              <!-- --------------------------------------------------------------- -->
+                            </tr>
+                            <!-- --------------------------------------------------------------- -->
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+            </table>
+        <% else %>
+        <% end %>
+    <% end %>
+<% end %>
